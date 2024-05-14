@@ -1,0 +1,86 @@
+.main {
+  flex-direction: row;
+  padding: 60px 80px 60px 80px;
+  gap: 80px;
+  background-color: var(--color-mode-1-element2);
+}
+
+.main div:nth-of-type(1) {
+  flex-grow: 1;
+}
+
+.main div:nth-of-type(2) {
+  flex-grow: 2;
+}
+
+.col-5px {
+  flex-direction: column;
+  padding: 5px 0 5px;
+  gap: 5px;
+}
+
+.sign-up-input {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo,
+.goal,
+.one-goal,
+.row-5px,
+.col-5px {
+  width: inherit;
+  height: auto;
+  display: flex;
+}
+
+.left-col {
+  width: inherit;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 35px 0 35px;
+  gap: 30px;
+  align-items: center;
+}
+
+.logo {
+  flex-direction: row;
+  padding: 18px 0 18px 15px;
+  gap: 12px;
+  align-items: center;
+}
+
+.kpi-tracker {
+  font-size: 40px;
+  font-family: var(--logo-font);
+  color: var(--color-mode-1-button);
+  min-width: 230px;
+}
+
+.goal-group {
+  width: inherit;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row-5px {
+  flex-direction: row;
+  gap: 5px;
+}
+
+.tick-icon-15px {
+  min-width: var(--small-tick-size);
+  min-height: var(--small-tick-size);
+}
+
+.frame {
+  flex-direction: column;
+  padding: 60px 60px 60px 60px;
+  gap: 30px;
+  align-items: center;
+}
