@@ -1,6 +1,6 @@
 .main {
   flex-direction: row;
-  padding: 60px 80px 60px 80px;
+  padding: 100px 80px 60px 80px;
   gap: 80px;
   background-color: var(--color-mode-1-element2);
 }
@@ -14,6 +14,9 @@
 }
 
 .col-5px {
+  width: inherit;
+  height: auto;
+  display: flex;
   flex-direction: column;
   padding: 5px 0 5px;
   gap: 5px;
@@ -24,13 +27,12 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .logo,
 .goal,
-.one-goal,
-.row-5px,
-.col-5px {
+.one-goal {
   width: inherit;
   height: auto;
   display: flex;
@@ -68,9 +70,19 @@
   gap: 10px;
 }
 
-.row-5px {
+.row-5px,
+.row-5px-center {
+  width: 100%;
+  height: auto;
+  display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.row-5px-center {
+  justify-content: center;
 }
 
 .tick-icon-15px {
@@ -80,7 +92,54 @@
 
 .frame {
   flex-direction: column;
-  padding: 60px 60px 60px 60px;
+  padding: 60px 60px 90px 60px;
   gap: 30px;
   align-items: center;
+}
+
+.social-button {
+  padding: 0 10px 0 10px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-white-text);
+  color: var(--color-black-text);
+  width: 100%;
+  height: var(--text-field-height);
+  border-radius: var(--button-border-radius);
+  border: none;
+  cursor: pointer;
+  border: 2px solid var(--color-mode-1-button);
+}
+
+.social-button:hover {
+  background-color: var(--color-mode-1-element2);
+  border: 2px solid var(--color-mode-1-button);
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+hr{
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+}
+
+span{
+  white-space:nowrap;
+}
+
+.sup-text {
+  display: none;
+}
+
+.back {
+  position: absolute;
+  top: 150px;
+  left: 1250px;
 }

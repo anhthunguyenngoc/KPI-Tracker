@@ -90,14 +90,14 @@
   }
   
   .button{
+    width: 100%;
+    height: var(--text-field-height);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: var(--color-mode-1-button);
     color: var(--color-white-text);
-    width: 100%;
-    height: var(--text-field-height);
     border-radius: var(--button-border-radius);
     border: none;
     cursor: pointer;
