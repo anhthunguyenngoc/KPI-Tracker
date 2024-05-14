@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="../css/app-style-guide.css" />
     <link rel="stylesheet" href="../css/sign-up-style.css" />
+    <link rel="stylesheet" href="../css/sign-in-style.css" />
     
     <link
       rel="stylesheet"
@@ -73,7 +74,7 @@
       <!-- input -->
       <div class="frame">
 
-        <h2 class="page-title">Đăng ký</h2>
+        <h2 class="page-title">Đăng nhập</h2>
         <form class="sign-up-input">
 
           <div class="col-5px">     
@@ -87,40 +88,29 @@
           <div class="col-5px">     
             <div class="input-bx">
               <input type="text" required>  
-              <span class="label-text">Nhập email</span>           
-            </div>    
-            <div class="sup-text">Supporting text</div>
-          </div>
-
-          <div class="col-5px">     
-            <div class="input-bx">
-              <input type="text" required>  
               <span class="label-text">Nhập mật khẩu</span>           
             </div>    
             <div class="sup-text">Supporting text</div>
           </div>
 
-          <div class="col-5px">     
-            <div class="input-bx">
-              <input type="text" required>  
-              <span class="label-text">Xác nhận mật khẩu</span>           
-            </div>       
-            <div class="sup-text">Supporting text</div>
-          </div>
         </form>
+        
+        <div class="row-5px-right">
+          <span class="link" id="forgot_pass">Quên mật khẩu</span>
+        </div>
 
-        <button class="button" id="sign_up">
-          <div>Đăng ký</div>
+        <button class="button" id="sign_in">
+          <div>Đăng nhập</div>
         </button>
 
         <div class="row-5px-center">
-          <span>Đã có tài khoản?</span>
-          <span class="link" id="sign_in">Đăng nhập</span>
+          <span>Chưa có tài khoản?</span>
+          <span class="link" id="sign_up">Đăng ký</span>
         </div>
 
         <div class="row-5px">
           <hr>
-          <span>Hoặc đăng ký bằng</span>
+          <span>Hoặc đăng nhập bằng</span>
           <hr>
         </div>
         
@@ -169,6 +159,6 @@
     <footer class="footer"></footer>
 
     <script src="../js/social-log-in.js"></script>
-    <script src="../js/sign-up.js"></script>
+    <script src="../js/sign-in.js"></script>
   </body>
 </html>
