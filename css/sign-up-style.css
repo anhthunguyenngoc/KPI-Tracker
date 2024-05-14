@@ -30,7 +30,6 @@
   gap: 10px;
 }
 
-.logo,
 .goal,
 .one-goal {
   width: inherit;
@@ -49,6 +48,9 @@
 }
 
 .logo {
+  width: inherit;
+  height: auto;
+  display: flex;
   flex-direction: row;
   padding: 18px 0 18px 15px;
   gap: 12px;

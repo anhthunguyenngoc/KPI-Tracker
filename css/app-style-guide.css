@@ -89,7 +89,7 @@
     cursor: pointer;
   }
   
-  .button{
+  button{
     width: 100%;
     height: var(--text-field-height);
     display: flex;
@@ -103,9 +103,16 @@
     cursor: pointer;
   }
   
-  .button:hover {
+  button:hover {
     background-color: var(--color-mode-1-button-hover);
     border: 2px solid var(--color-mode-1-button);
+  }
+
+
+  .icon-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
   }
 
   .input-bx{
