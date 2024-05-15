@@ -7,6 +7,8 @@
     --body-size: 14px;
     --small-body-size: 12px;
     --page-title: 22px;
+    --heading2: 32px;
+    --big: 57px;
     --mym3-typography-small-14-size: 16px;
   
     /* Colors */
@@ -79,7 +81,6 @@
 
   .page-title{
     font-size: var(--page-title);
-    width: 100%;
   }
   
   .link {
@@ -165,4 +166,8 @@
     background-color: var(--color-mode-1-frame-background);
     border-radius: var(--frame-border-radius);
     box-shadow: -4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  span {
+    white-space: nowrap;
   }
