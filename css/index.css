@@ -1,0 +1,490 @@
+<style>
+  .kpi-tracker {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    background-color: #f3fcfc;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    font-weight: 400;
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 991px) {
+    .header {
+      flex-wrap: wrap;
+    }
+  }
+
+  .logo-container {
+    display: flex;
+    gap: 12px;
+    font-size: 48px;
+    color: #2a7378;
+  }
+
+  @media (max-width: 991px) {
+    .logo-container {
+      font-size: 40px;
+    }
+  }
+
+  .logo {
+    aspect-ratio: 0.85;
+    object-fit: contain;
+    width: 55px;
+  }
+
+  .logo-text {
+    font-family: "Paytone One", sans-serif;
+  }
+
+  @media (max-width: 991px) {
+    .logo-text {
+      font-size: 40px;
+    }
+  }
+
+  .user-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    width: 50px;
+    margin: auto 0;
+  }
+
+  .user-actions {
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    justify-content: space-between;
+    margin: auto 0;
+    padding: 0 55px;
+  }
+
+  @media (max-width: 991px) {
+    .user-actions {
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+  }
+
+  .login-link {
+    color: #2a7378;
+    margin: auto 0;
+    font: 22px "Roboto Flex", sans-serif;
+  }
+
+  .start-button {
+    justify-content: center;
+    border-radius: 100px;
+    background-color: #2a7378;
+    color: #fff;
+    padding: 13px 45px;
+    font: 32px "Roboto Flex", sans-serif;
+  }
+
+  @media (max-width: 991px) {
+    .start-button {
+      padding: 0 20px;
+    }
+  }
+
+  .main-content {
+    align-self: center;
+    width: 100%;
+    max-width: 1353px;
+  }
+
+  @media (max-width: 991px) {
+    .main-content {
+      max-width: 100%;
+    }
+  }
+
+  .productivity-section {
+    gap: 20px;
+    display: flex;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-section {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+
+  .productivity-text {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 45%;
+    margin-left: 0;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-text {
+      width: 100%;
+    }
+  }
+
+  .productivity-content {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    font-weight: 400;
+    margin: auto 0;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-content {
+      margin-top: 40px;
+    }
+  }
+
+  .productivity-title {
+    color: #2a7378;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font: 39px "Paytone One", sans-serif;
+  }
+
+  .productivity-description {
+    color: #439ba1;
+    margin-top: 54px;
+    font: 28px "Paytone One", sans-serif;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-description {
+      margin-top: 40px;
+    }
+  }
+
+  .productivity-image {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 55%;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-image {
+      width: 100%;
+    }
+  }
+
+  .productivity-image-container {
+    display: flex;
+    flex-direction: column;
+    fill: #2a7378;
+    overflow: hidden;
+    position: relative;
+    min-height: 623px;
+    flex-grow: 1;
+    padding-top: 80px;
+  }
+
+  .productivity-bg {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .productivity-img {
+    aspect-ratio: 1.37;
+    object-fit: contain;
+    width: 608px;
+    box-shadow: -20px 20px 4px rgba(0, 0, 0, 0.5);
+    align-self: end;
+    margin-top: 48px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-img {
+      margin-top: 40px;
+    }
+  }
+
+  .productivity-img-border {
+    object-fit: contain;
+    width: 100%;
+    stroke-width: 2px;
+    stroke: #fff;
+    border: 2px solid #fff;
+    margin-top: 52px;
+  }
+
+  @media (max-width: 991px) {
+    .productivity-img-border {
+      margin-top: 40px;
+    }
+  }
+
+  .planning-section {
+    width: 100%;
+  }
+
+  @media (max-width: 991px) {
+    .planning-section {
+      max-width: 100%;
+    }
+  }
+
+  .planning-container {
+    gap: 20px;
+    display: flex;
+  }
+
+  @media (max-width: 991px) {
+    .planning-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+
+  .planning-image {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 35%;
+    margin-left: 0;
+  }
+
+  @media (max-width: 991px) {
+    .planning-image {
+      width: 100%;
+    }
+  }
+
+  .planning-img {
+    aspect-ratio: 1.01;
+    object-fit: contain;
+    width: 100%;
+    fill: #2a7378;
+    flex-grow: 1;
+  }
+
+  .planning-text {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 65%;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .planning-text {
+      width: 100%;
+    }
+  }
+
+  .planning-content {
+    margin-top: 200px;
+  }
+
+  @media (max-width: 991px) {
+    .planning-content {
+      margin-top: 40px;
+    }
+  }
+
+  .planning-content-container {
+    gap: 20px;
+    display: flex;
+  }
+
+  @media (max-width: 991px) {
+    .planning-content-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+
+  .planning-text-content {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 43%;
+    margin-left: 0;
+  }
+
+  @media (max-width: 991px) {
+    .planning-text-content {
+      width: 100%;
+    }
+  }
+
+  .planning-text-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    padding: 28px 38px 28px 0;
+  }
+
+  @media (max-width: 991px) {
+    .planning-text-container {
+      margin-top: 22px;
+    }
+  }
+
+  .planning-title {
+    color: #def2f1;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font: 39px "Paytone One", sans-serif;
+  }
+
+  .planning-description {
+    color: #fff;
+    margin-top: 40px;
+    font: 28px "Paytone One", sans-serif;
+  }
+
+  .planning-image-content {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 57%;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .planning-image-content {
+      width: 100%;
+    }
+  }
+
+  .planning-content-img {
+    aspect-ratio: 1.75;
+    object-fit: contain;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 991px) {
+    .planning-content-img {
+      margin-top: 22px;
+    }
+  }
+
+  .kpi-tracking-section {
+    align-self: center;
+    width: 100%;
+    max-width: 1368px;
+  }
+
+  @media (max-width: 991px) {
+    .kpi-tracking-section {
+      max-width: 100%;
+    }
+  }
+
+  .kpi-tracking-container {
+    gap: 20px;
+    display: flex;
+  }
+
+  @media (max-width: 991px) {
+    .kpi-tracking-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+
+  .kpi-tracking-text {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 50%;
+    margin-left: 0;
+  }
+
+  @media (max-width: 991px) {
+    .kpi-tracking-text {
+      width: 100%;
+    }
+  }
+
+  .kpi-tracking-content {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    font-weight: 400;
+    margin: auto 0;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 991px) {
+    .kpi-tracking-content {
+      margin-top: 40px;
+    }
+  }
+
+  .kpi-tracking-title {
+    color: #2a7378;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font: 39px "Paytone One", sans-serif;
+  }
+
+  .kpi-tracking-description {
+    color: #439ba1;
+    margin-top: 35px;
+    font: 28px "Paytone One", sans-serif;
+  }
+
+  .kpi-tracking-image {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 50%;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .kpi-tracking-image {
+      width: 100%;
+    }
+  }
+
+  .kpi-tracking-img {
+    aspect-ratio: 0.91;
+    object-fit: contain;
+    width: 100%;
+    fill: #2a7378;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 991px) {
+    .kpi-tracking-img {
+      margin-top: 12px;
+    }
+  }
+
+  .footer {
+    background-color: #3aafa9;
+    min-height: 90px;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  @media (max-width: 991px) {
+    .footer {
+      max-width: 100%;
+    }
+  }
+</style>
