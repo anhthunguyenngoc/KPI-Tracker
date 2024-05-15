@@ -1,0 +1,203 @@
+.main_content{
+    flex-direction: row;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 20px 30px 20px 30px;
+}
+.content{
+    flex-grow: 1;
+    width: 70%;
+    
+}
+.sidebar{
+    flex-grow: 1;
+    width: 20%;
+    padding: 20px 30px 20px 30px;
+    border-radius: 25px;
+    background-color: var(--color-mode-1-element2);
+    align-items: center;
+    margin: 20px;
+}
+
+.top-content {
+    padding: 20px 30px 20px 30px;
+    border-radius: 25px;
+    background-color: var(--color-mode-1-element2);
+    margin: 20px;
+}
+
+.bottom-content {
+    padding: 20px 30px 20px 30px;
+    border-radius: 25px;
+    background-color: var(--color-mode-1-element2);
+    margin: 20px;
+}
+
+.top-content__navbar:first-of-type {
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 28px;
+    width: 100%;
+}
+.top-content__navbar {
+    display: flex;
+    justify-content: space-between;
+}
+.top-content__navbar-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+.date-kpi{            
+    background-color: var(--color-white-text);
+    border-radius: var(--br-8xs);
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    height: var(--text-field-height);
+    display: flex;
+    padding: 0px 10px 0px 10px;
+}
+.KPI_container {
+    display: flex;
+    min-width: 225px;
+    min-height: 25px;
+    font-size: 20px;
+}
+
+.KPI_container:nth-of-type(1) > .KPI {
+    background-color: #F2DEDE;
+}
+
+.KPI_container:nth-of-type(2) > .KPI {
+    background-color: #9CB2D7;
+}
+
+.KPI_container:nth-of-type(3) > .KPI {
+    background-color:violet;
+}
+
+.KPI{
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 10px;
+    width: 63.5%;
+}
+
+.hour{
+    background-color: beige; 
+    border-radius: 0px 5px 5px 0px;
+    justify-content: center;
+    width: 36.5%;
+}
+.KPI, .hour {
+    display: inline-block;
+    margin: none;
+    display: flex;
+    align-items: center; 
+}
+
+.kpi-button {
+    height: var(--text-field-height);
+    display: flex;
+    padding: 0px 10px 0px 10px;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    background-color: var(--color-mode-1-button);
+    color: var(--color-white-text);
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    border-radius: var(--button-border-radius);
+  }
+
+  .kpi-button img {
+    height: 20px;
+  }
+
+.item-button {
+    height: var(--text-field-height);
+    display: flex;
+    padding: 0px 10px 0px 10px;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    background-color: var(--color-mode-1-button);
+    color: var(--color-white-text);
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    border-radius: var(--button-border-radius);
+  }
+
+.scheduleContainer {
+    width: inherit;
+    height: auto;
+    display: flex;
+    min-height: 524px;
+    margin-top: 20px;
+    border-radius: var(--br-8xs);
+    background-color: var(--color-white-text);
+}
+.sidebar_content {
+    margin-top: 30px;
+    width: 100%;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+}
+.heading3 {
+    font-size: 22px;
+}
+
+.searchBar {
+    display: flex;
+    width: 100%;
+}
+.sort_filter{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.searchBar input {
+    width: 80%;
+    margin-right: 15px;
+}
+
+.tools {
+    width: 100%;
+}
+
+.list{
+    height: 480px;
+    margin: 30px 0px 30px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-task {
+    list-style: none;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    width: 100%;
+    margin: 7px 0px 7px 0px;
+    background-color: var(--color-white-text);
+    justify-content: center; 
+    align-items: flex-start;
+    border-radius: var(--br-8xs);
+}
+
+.list-task:hover{
+    background-color: var(--color-mode-1-button-hover);
+    border: 2px solid var(--color-mode-1-button);
+}
+.corlor-task, .name-task{
+    display: inline-block;
+}
+

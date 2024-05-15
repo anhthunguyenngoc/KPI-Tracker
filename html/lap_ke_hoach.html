@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <script src="../js/header.js"></script>
+    <link rel="stylesheet" href="../css/app-style-guide.css" />
+    <link rel="stylesheet" href="../css/lap_ke_hoach.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
+    />
+
+    <title>Lập kế hoạch - KPI Tracker</title>
+  </head>
+
+  <body>
+    <div class ="wrapper">
+      <div id="header">
+        <header-component> </header-component>
+      </div>
+      <div class="main_content">
+        <div class="content">
+          <div class="top-content">
+            <nav class="top-content__navbar">
+              <ul class="top-content__navbar-list">
+                <h1 class="page-title">Thiết lập mục tiêu KPI</h1>
+              </ul>
+              <ul class="top-content__navbar-list">
+                <li class="date-kpi">Đợt: đến ngày 27/05/2024 </li>
+                <li class="top-content__navbar-item item-button">
+                  <img src="../images/clock.svg">
+                </li>
+              </ul>
+            </nav>
+            <nav class="top-content__navbar">
+              <ul class="top-content__navbar-list">
+                <li class="KPI_container">
+                  <div class="KPI">Giảng dạy</div>
+                  <div class="hour">80 giờ</div>
+                </li>
+                <li class="KPI_container">
+                  <div class="KPI">Nghiên cứu</div>
+                  <div class="hour">70 giờ</div> 
+                </li>
+                <li class="KPI_container">
+                  <div class="KPI">Phục vụ</div>
+                  <div class="hour">60 giờ</div>
+                </li>
+                <li class="kpi-button">
+                  <img src="../images/plus.svg">
+              </ul>
+            </nav>
+          </div>
+          <div class="bottom-content">
+            <div>
+              <nav class="top-content__navbar">
+                <ul class="top-content__navbar-list">
+                  <h1 class="page-title">29/6-5/7</h1>
+                </ul>
+                <ul class="top-content__navbar-list">
+                  <li class="top-content__navbar-item item-button">Chọn</li>
+                  <li class="top-content__navbar-item item-button">
+                    <img src="../images/share-schedule.svg">
+                  </li>
+                  <li class="top-content__navbar-item item-button">
+                    <img src="../images/edit.svg">
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="scheduleContainer">
+            </div>
+          </div>
+        </div>
+        <div class="sidebar">
+          <div>
+            <h3 class="heading3"> Danh sách công việc</h3>
+          </div>
+          <div class="sidebar_content">
+            <div class="tools">
+              <div class="searchBar">
+                <div class="input-bx">
+                  <input type="text" required>  
+                  <span class="label-text">Tìm kiếm nhiệm vụ</span>           
+                </div>
+                <div class="top-content__navbar-item item-button">
+                  <img src="../images/search.svg">
+                </div>
+              </div>
+              <div class="sort_filter">
+                <ul class="top-content__navbar-list">
+                  <li class="top-content__navbar-item item-button">Chọn</li>
+                  <li class="top-content__navbar-item item-button">
+                    <img src="../images/sort.svg">
+                  </li>
+                  <li class="top-content__navbar-item item-button">
+                    <img src="../images/filter.svg">
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="list">
+              <ul class="list-task">
+                <li class="color-task">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+                    </svg>
+                </li>
+                <li class="name-task">Phát triển hệ thống</li>
+              </ul>
+              <ul class="list-task">
+                <li class="color-task">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="30" height="30" rx="15" fill="#F2DEDE"/>
+                    </svg>
+                </li>
+                <li class="name-task">Giao diện và trải nghiệm</li>
+              </ul>
+              <ul class="list-task">
+                <li class="color-task">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+                    </svg>
+                </li>
+                <li class="name-task">Nghiên cứu ứng dụng</li>
+              </ul>
+            </div>
+            <div class="add_button">
+              <button class="button" id="sign_up">
+                <img src="../images/plus.svg">
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div id="footer">
+        <footer class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>
