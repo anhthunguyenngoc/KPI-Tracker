@@ -97,6 +97,7 @@
   padding: 60px 60px 90px 60px;
   gap: 30px;
   align-items: center;
+  max-width: 600px;
 }
 
 .social-button {
@@ -142,6 +143,11 @@ span{
 
 .back {
   position: absolute;
-  top: 150px;
-  left: 1250px;
+  top: 140px;
+  right: 120px;
+}
+
+.page-title {
+  width: 100%;
+  justify-content: left;
 }
