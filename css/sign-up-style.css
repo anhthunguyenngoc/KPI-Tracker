@@ -145,6 +145,7 @@ span{
   position: absolute;
   top: 140px;
   right: 120px;
+  cursor: pointer;
 }
 
 .page-title {
