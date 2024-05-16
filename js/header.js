@@ -55,7 +55,7 @@ class Header extends HTMLElement {
       <div></div>
     
       <div class="right">
-        <button class="icon-button"> 
+        <button class="user-button"> 
           <img 
           class="right-icon" 
           loading="lazy" 
@@ -64,7 +64,7 @@ class Header extends HTMLElement {
           /> 
         </button> 
     
-        <button class="icon-button"> 
+        <button class="user-button"> 
           <img 
           class="right-icon" 
           loading="lazy" 
@@ -203,11 +203,6 @@ class Header extends HTMLElement {
             width: 50px;
             height: 50px;
             border-radius: 100px;
-          }
-
-          .icon-button{
-            width: 50px;
-            height: 50px;
           }
 
           .user {

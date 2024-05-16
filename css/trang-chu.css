@@ -1,8 +1,6 @@
 .main{
     display: flex;
     flex-direction: column;
-    padding: 0 53px 0px 53px;
-    gap: 20px;
 }
 
 .kpi-container{
@@ -20,7 +18,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    font-size: var(--page-title);
+    font-size: var(--heading1);
     padding: 0 0 0 60px;
 }
 
@@ -70,35 +68,16 @@
     
   }
 
-.h2{
-
-    font-size: var(--body-size);
-}
-
-.head,.head2{
-    font-size: var(--page-title);
-}
-
-.head2{
-    padding-top: 15px;
-}
-
-
-.frame {
-    position: relative; /* Định vị tương đối cho khung */
-}
-
 .container {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-.frame{
+section{
     height: auto;
     justify-content: center; /* Căn giữa ngang */
     align-items: center;     /* Căn giữa dọc */
-    padding: 20px 30px 20px 30px;
 }
 
 .kpi-circle {

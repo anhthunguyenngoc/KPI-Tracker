@@ -4,9 +4,9 @@
     --logo-font: "Paytone One";
   
     /* font sizes */
-    --body-size: 14px;
+    --body-size: 18px;
     --small-body-size: 12px;
-    --page-title: 22px;
+    --heading1: 22px;
     --heading2: 32px;
     --big: 50px;
     --mym3-typography-small-14-size: 16px;
@@ -24,7 +24,7 @@
     
     --button-border-radius: 5px;
     --frame-border-radius: 25px;
-    --text-field-height: 40px;
+    --text-field-height: 45px;
     --small-tick-size: 20px;
     
     /* Gaps */
@@ -67,6 +67,9 @@
     width: inherit;
     height: auto;
     display: flex;
+    min-height: 660px;
+    padding: 0 53px 53px 53px;
+    gap: 25px;
   }
   
   .footer {
@@ -79,8 +82,8 @@
     font-size: var(--small-body-size);
   }
 
-  .page-title{
-    font-size: var(--page-title);
+  .heading1{
+    font-size: var(--heading1);
   }
   
   .link {
@@ -91,8 +94,6 @@
   }
   
   button{
-    width: 100%;
-    height: var(--text-field-height);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -100,20 +101,13 @@
     background-color: var(--color-mode-1-button);
     color: var(--color-white-text);
     border-radius: var(--button-border-radius);
-    border: none;
+    border: 2px solid var(--color-mode-1-button);
     cursor: pointer;
   }
   
   button:hover {
     background-color: var(--color-mode-1-button-hover);
     border: 2px solid var(--color-mode-1-button);
-  }
-
-
-  .icon-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
   }
 
   .input-bx{
@@ -159,15 +153,21 @@
     border: 3px solid var(--color-mode-1-button);
   }
 
-  .frame {
-    width: inherit;
+  section {
+    width: 100%;
     height: auto;
     display: flex;
     background-color: var(--color-mode-1-frame-background);
     border-radius: var(--frame-border-radius);
     box-shadow: -4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px 30px 20px 30px;
   }
 
   span {
     white-space: nowrap;
   }
+
+  .img-button {
+    width: auto;
+    height: auto;
+}
