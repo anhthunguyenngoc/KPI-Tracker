@@ -1,46 +1,34 @@
-.main_content{
+.main{
     flex-direction: row;
-    display: flex;
     flex-wrap: nowrap;
-    padding: 20px 30px 20px 30px;
+    height: 730px;
 }
 .content{
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     width: 70%;
-    
+    height: 100%;
+    gap: 25px;
 }
 .sidebar{
     flex-grow: 1;
     width: 20%;
-    padding: 20px 30px 20px 30px;
-    border-radius: 25px;
-    background-color: var(--color-mode-1-element2);
-    align-items: center;
-    margin: 20px;
+    height: 100%;
 }
 
-.top-content {
-    padding: 20px 30px 20px 30px;
-    border-radius: 25px;
-    background-color: var(--color-mode-1-element2);
-    margin: 20px;
+section {
+    flex-direction: column;
+    height: 100%;
+    gap: 30px;
 }
 
 .bottom-content {
     padding: 20px 30px 20px 30px;
     border-radius: 25px;
     background-color: var(--color-mode-1-element2);
-    margin: 20px;
 }
 
-.top-content__navbar:first-of-type {
-    margin-bottom: 20px;
-}
-
-.page-title {
-    font-size: 28px;
-    width: 100%;
-}
 .top-content__navbar {
     display: flex;
     justify-content: space-between;
@@ -49,7 +37,9 @@
     display: flex;
     gap: 10px;
     list-style: none;
-    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
 }
 .date-kpi{            
     background-color: var(--color-white-text);
@@ -65,7 +55,7 @@
     display: flex;
     min-width: 225px;
     min-height: 25px;
-    font-size: 20px;
+    height: auto;
 }
 
 .KPI_container:nth-of-type(1) > .KPI {
@@ -77,13 +67,15 @@
 }
 
 .KPI_container:nth-of-type(3) > .KPI {
-    background-color:violet;
+    background-color: #FFDBA6;
 }
 
 .KPI{
     border-radius: 5px 0px 0px 5px;
     padding-left: 10px;
     width: 63.5%;
+    height: 100%;
+    padding: 10px 15px 10px 15px;
 }
 
 .hour{
@@ -91,6 +83,8 @@
     border-radius: 0px 5px 5px 0px;
     justify-content: center;
     width: 36.5%;
+    height: 100%;
+    padding: 10px 10px 10px 10px;
 }
 .KPI, .hour {
     display: inline-block;
@@ -98,24 +92,6 @@
     display: flex;
     align-items: center; 
 }
-
-.kpi-button {
-    height: var(--text-field-height);
-    display: flex;
-    padding: 0px 10px 0px 10px;
-    flex-direction: row;
-    justify-content: center; 
-    align-items: center;
-    background-color: var(--color-mode-1-button);
-    color: var(--color-white-text);
-    border-radius: var(--button-border-radius);
-    cursor: pointer;
-    border-radius: var(--button-border-radius);
-  }
-
-  .kpi-button img {
-    height: 20px;
-  }
 
 .item-button {
     height: var(--text-field-height);
@@ -133,23 +109,21 @@
 
 .scheduleContainer {
     width: inherit;
-    height: auto;
     display: flex;
-    min-height: 524px;
-    margin-top: 20px;
+    height: 100%;
     border-radius: var(--br-8xs);
     background-color: var(--color-white-text);
 }
 .sidebar_content {
-    margin-top: 30px;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 .sidebar{
     display: flex;
     flex-direction: column;
-}
-.heading3 {
-    font-size: 22px;
 }
 
 .searchBar {
@@ -159,45 +133,69 @@
 .sort_filter{
     display: flex;
     justify-content: flex-end;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
-.searchBar input {
-    width: 80%;
+.searchBar div {
+    width: 100%;
     margin-right: 15px;
 }
 
 .tools {
     width: 100%;
+    height: auto;
+}
+
+.set-kpi {
+    height: auto;
 }
 
 .list{
-    height: 480px;
-    margin: 30px 0px 30px 0px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .list-task {
     list-style: none;
-    flex-wrap: wrap;
     display: flex;
-    flex-direction: column;
-    height: 40px;
+    flex-direction: row;
+    height: auto;
     width: 100%;
     margin: 7px 0px 7px 0px;
     background-color: var(--color-white-text);
-    justify-content: center; 
-    align-items: flex-start;
+    border: 2px solid var(--color-white-text);
+    justify-content: left; 
+    align-items: center;
     border-radius: var(--br-8xs);
+    padding: 10px 15px 10px 15px;
+    gap: 20px;
 }
 
 .list-task:hover{
     background-color: var(--color-mode-1-button-hover);
     border: 2px solid var(--color-mode-1-button);
+    color: var(--color-white-text);
+    cursor: pointer;
 }
 .corlor-task, .name-task{
     display: inline-block;
 }
 
+.img-button {
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.img-button img {
+    width: 26px;
+    height: 26px;
+}
+
+button {
+    width: 100%;
+    padding: 10px 15px 10px 15px;
+}

@@ -1,13 +1,7 @@
-.row-5px-right {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  flex-grow: 1;
+#forgot_pass-1-frame {
+  display: none;
 }
 
-.row-5px-right {
-  justify-content: right;
+#forgot_pass-2-frame {
+  display: none;
 }
