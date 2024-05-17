@@ -84,12 +84,6 @@ class Header extends HTMLElement {
         
       </div>
     </header>
-
-    <script>
-    document.getElementById("schedule").addEventListener("click", function() {
-          window.open("../html/lap_ke_hoach.html", '_top');
-      });
-    </script>
     
         <style>
         a{

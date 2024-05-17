@@ -13,7 +13,7 @@
   flex-grow: 2;
 }
 
-.col-5px {
+#col-5px, .col-5px {
   width: inherit;
   height: auto;
   display: flex;
@@ -22,7 +22,7 @@
   gap: 5px;
 }
 
-.sign-up-input {
+#sign-up-input, .sign-up-input {
   width: 100%;
   height: auto;
   display: flex;
