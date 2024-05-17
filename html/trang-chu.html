@@ -5,7 +5,8 @@
 
     <link rel="stylesheet" href="../css/app-style-guide.css" />
     <link rel="stylesheet" href="../css/trang-chu.css"/>
-        <script src="../js/header.js" type="text/javascript" defer></script>
+    <script src="../js/header.js" type="text/javascript" defer></script>
+    <script src="../js/trang-chu.js" type="text/javascript" defer></script>
 
     <link
       rel="stylesheet"
@@ -58,49 +59,58 @@
                             <input type="date" id="birthday" name="birthday" class="styled-date-input">
                         </div>
                         <div class="container">
-                            <button class="icon-button">
-                                <img class="left.svg" loading="lazy" alt=""  src="../Images/left.svg"/> </button> 
-                            <button class="icon-button"> 29 </button>
-                            <button class="icon-button"> 30 </button>
-                            <button class="icon-button"> 31 </button>
-                            <button class="icon-button"> 32 </button>
-                            <button class="icon-button"> 33 </button>
-                            <button class="icon-button"> 34 </button>
-                            <button class="icon-button"> 35 </button>
-                            <button class="icon-button">
-                                <img class="left.svg" loading="lazy" alt=""  src="../Images/right.svg"/> </button> 
+                            <svg viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.2911 0.25L17.1079 2.25428L3.74149 17L17.1079 31.7457L15.2911 33.75L0.107903 17L15.2911 0.25Z" fill="#3AAFA9"/>
+                            </svg>
+                            <button class="day-button"> 29 </button>
+                            <button class="day-button"> 30 </button>
+                            <button class="day-button"> 01 </button>
+                            <button class="day-button"> 02 </button>
+                            <button class="day-button"> 03 </button>
+                            <button class="day-button"> 04 </button>
+                            <button class="day-button"> 05 </button>
+                            <svg viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z" fill="#3AAFA9"/>
+                            </svg>                                
+                        </div>
+                        <div id="task-list">
+                            
                         </div>
                      </div>
                 </section>
                 
             </div>
             <div class="section2">
-                <h1 class="heading1">Tiến độ công việc</h1>
-                <section>
-                    <div>
-                    <svg class="kpi-circle" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
-                        <!-- height tăng thì y giảm-->
-                        <svg width="109" height="170" x="0" y="-61" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
-                            <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
-                            <g class="parallax">
-                                <use class="back-layer" xlink:href="#gentle-wave" x="48" y="0" />
-                                <use class="front-layer" xlink:href="#gentle-wave" x="48" y="7" />
-                            </g>
-                        </svg>
-                        <path class="outside" d="M110 55C110 24.6243 85.3757 0 55 0H110V55Z" />
-                        <path class="outside" d="M55 110C85.3757 110 110 85.3757 110 55V110H55Z" />
-                        <path class="outside" d="M0 55C0 85.3757 24.6243 110 55 110H0V55Z" />
-                        <path class="outside" d="M55 0C24.6243 0 0 24.6243 0 55V0H55Z" />
-                        <circle cx="55" cy="55" r="52.5" stroke="#3AAFA9" stroke-width="5"/>
-                        </svg>
+                <div class="col-5px">
+                    <h1 class="heading1">Tiến độ công việc</h1>
+                    <section>
+                        <div>
+                        <svg class="kpi-circle" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
+                            <!-- height tăng thì y giảm-->
+                            <svg width="109" height="170" x="0" y="-61" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
+                                <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
+                                <g class="parallax">
+                                    <use class="back-layer" xlink:href="#gentle-wave" x="48" y="0" />
+                                    <use class="front-layer" xlink:href="#gentle-wave" x="48" y="7" />
+                                </g>
+                            </svg>
+                            <path class="outside" d="M110 55C110 24.6243 85.3757 0 55 0H110V55Z" />
+                            <path class="outside" d="M55 110C85.3757 110 110 85.3757 110 55V110H55Z" />
+                            <path class="outside" d="M0 55C0 85.3757 24.6243 110 55 110H0V55Z" />
+                            <path class="outside" d="M55 0C24.6243 0 0 24.6243 0 55V0H55Z" />
+                            <circle cx="55" cy="55" r="52.5" stroke="#3AAFA9" stroke-width="5"/>
+                            </svg>
+                            
+                            
+                        </div>   
+                    </section>
+                </div>
+                <div class="col-5px">
+                    <h1 class="heading1">Thống kê tuần trước</h1>
+                    <section>
                         
-                        
-                    </div>   
-                </section>
-                <h1 class="heading1">Thống kê tuần trước</h1>
-                <section>
-                    
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
