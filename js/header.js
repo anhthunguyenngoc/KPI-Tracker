@@ -87,7 +87,8 @@ class Header extends HTMLElement {
     
         <style>
         a{
-                 text-decoration: none;
+          text-decoration: none;
+          white-space: nowrap;
         }
         .header {
             width: 100%;
