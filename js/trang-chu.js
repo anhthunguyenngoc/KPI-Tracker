@@ -1,4 +1,75 @@
-function oneTaskHome() {
+const chartData = {
+    labels: ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"],
+    datasets: [{
+        data: [8, 18, 2, 8],
+        backgroundColor: ["#e63946", "#254BDD", "#ffbe0b", "#1d3557"],
+        hoverBackgroundColor: ["fff", "fff", "fff", "fff"],
+    }] 
+};
+
+const pieChart = document.getElementById("pie-chart");
+const details = document.getElementById("details");
+
+new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: chartData,
+    plugins: [ChartDataLabels],
+    options: {
+        plugins: {
+            datalabels: {
+                color: '#fff',
+                font: {
+                    size: 18,
+                    family: 'Roboto Flex',
+                    
+                },
+            },
+            legend: {
+                position: 'right',
+                fullSize: true,
+                labels: {
+                    color: '#000',
+                    font: {
+                        size: 18,
+                        family: 'Roboto Flex',
+                        
+                    },
+                    padding: 15
+                },
+                onHover: handleHover,
+                onLeave: handleLeave
+            }, 
+            tooltip: {
+                enabled: true
+            }                                     
+        },
+        reponsive: true
+    }
+    });
+
+    function populateUl() {
+        chartData.labels.forEach((l, i) => {
+            let span = document.createElement("span");
+            span.innerHTML = `${l}`;
+            details.appendChild(span);
+        })
+    }
+
+    function handleHover(evt, item, legend) {
+        legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
+          colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
+        });
+        legend.chart.update();
+      }
+    
+      function handleLeave(evt, item, legend) {
+        legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
+          colors[index] = color.length === 9 ? color.slice(0, -2) : color;
+        });
+        legend.chart.update();
+      }
+
+  function oneTaskHome() {
     const template = document.createElement("template");
     template.innerHTML = `
     <div class="one-task">
@@ -124,8 +195,38 @@ function oneTaskHome() {
 
     }
 
+    function kpi(){
+        const template = document.createElement("template");
+        template.innerHTML = `
+        <div id="kpi">
+            <svg class="kpi-circle" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
+            <!-- height tăng thì y giảm-->
+            <svg width="109" height="170" x="0" y="-61" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
+                <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
+                <g class="parallax">
+                    <use class="back-layer" xlink:href="#gentle-wave" x="48" y="0" />
+                    <use class="front-layer" xlink:href="#gentle-wave" x="48" y="7" />
+                </g>
+            </svg>
+            <path class="outside" d="M110 55C110 24.6243 85.3757 0 55 0H110V55Z" />
+            <path class="outside" d="M55 110C85.3757 110 110 85.3757 110 55V110H55Z" />
+            <path class="outside" d="M0 55C0 85.3757 24.6243 110 55 110H0V55Z" />
+            <path class="outside" d="M55 0C24.6243 0 0 24.6243 0 55V0H55Z" />
+            <circle cx="55" cy="55" r="52.5" stroke="#3AAFA9" stroke-width="5"/>
+            </svg>
+            <span class="percentage">40%</span> 
+            <span>Giảng dạy</span> 
+        </div>
+        `;
+    return template.innerHTML;
+    }
+
   clickAndDrag("week-list", ".day-button", ".container svg");
 
   document.getElementById("week-list").innerHTML = week();
+
+  document.getElementById("kpi-list").innerHTML = kpi();
   
   document.getElementById("one-task").innerHTML = oneTaskHome();
+
+  populateUl();

@@ -266,24 +266,64 @@ section{
     gap: 15px;
 }
 
+#statistic-frame .left, 
+#statistic-frame .center { 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
 
 #statistic-frame .left { 
-    width: 100%;
-    height: 100%;
-    display: flex;
+    width: fit-content;
     flex-direction: column;
-    gap: 15px;
 }
 
-#statistic-frame .center #pie-chart { 
-    width: 150px;
-    height: 150px;
+#statistic-frame .centern{ 
+    flex-grow: 2;
 }
 
-#statistic-frame .right { 
+#statistic-frame .center #pie-chart{ 
+    max-height: 160px;
+}
+
+.kpi-list-container {
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    height: 100%;
+    height: auto;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.kpi-list-container #left,
+.kpi-list-container #right{
+    width: 40px;
+    height: 70px ;
+}
+
+#kpi-list {
+    width: 100%;
+}
+
+#kpi-list #kpi {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    width: fit-content;
+    height: fit-content;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#kpi .percentage {
+    position: absolute;
+    bottom: 82px;
+    left: 35px;
+    font-size: var(--heading1);
+    color: var(--color-mode-1-button-hover);
 }

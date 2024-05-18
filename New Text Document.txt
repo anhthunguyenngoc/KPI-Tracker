@@ -44,14 +44,14 @@
     <div class="chartCard">
       <div class="chartBox">
         <canvas id="myChart"></canvas>
-        <ul onmouseout="hideTooltip()">
-            <li onmouseover="showTooltip(0, 0)">Mon</li>
-            <li onmouseover="showTooltip(0, 1)">Mon</li>
-            <li onmouseover="showTooltip(0, 2)">Mon</li>
-            <li onmouseover="showTooltip(0, 3)">Mon</li>
-            <li onmouseover="showTooltip(0, 4)">Mon</li>
-            <li onmouseover="showTooltip(0, 5)">Mon</li>
-            <li onmouseover="showTooltip(0, 6)">Mon</li>
+        <ul>
+            <li onmouseover="showTooltip(0)">Mon</li>
+            <li onmouseover="showTooltip(1)">Mon</li>
+            <li onmouseover="showTooltip(2)">Mon</li>
+            <li onmouseover="showTooltip(3)">Mon</li>
+            <li onmouseover="showTooltip(4)">Mon</li>
+            <li onmouseover="showTooltip(5)">Mon</li>
+            <li onmouseover="showTooltip(6)">Mon</li>
         </ul>
       </div>
     </div>
@@ -108,20 +108,7 @@
     const chartVersion = document.getElementById('chartVersion');
     chartVersion.innerText = Chart.version;
 
-    function showTooltip(dataset, dataIndex){
-    console.log(dataIndex)
-
-    myChart.tooltip.hi
-
-    myChart.update();
-  }
-
-  function hideTooltip(){
-    myChart.tooltip.setActivateElements([]);
-
-    myChart.setActivateElements([]);
-  }
-
+    function 
     </script>
 
   </body>

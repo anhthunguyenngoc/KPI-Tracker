@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../css/trang-chu.css"/>
     <script src="../js/header.js" type="text/javascript" defer></script>
     <script src="../js/trang-chu.js" type="text/javascript" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
@@ -56,7 +57,7 @@
                     <div class="task">
                         <div class="day">
                             <label for="birthday">Chọn ngày:</label>
-                            <input type="date" id="birthday" name="birthday" class="styled-date-input">
+                            <input type="month" class="styled-date-input">
                         </div>
                         <div class="container">
                             <svg id="left" viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
@@ -80,24 +81,17 @@
                 <div class="col-5px">
                     <h1 class="heading1">Tiến độ công việc</h1>
                     <section>
-                        <div>
-                        <svg class="kpi-circle" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
-                            <!-- height tăng thì y giảm-->
-                            <svg width="109" height="170" x="0" y="-61" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
-                                <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
-                                <g class="parallax">
-                                    <use class="back-layer" xlink:href="#gentle-wave" x="48" y="0" />
-                                    <use class="front-layer" xlink:href="#gentle-wave" x="48" y="7" />
-                                </g>
+                        <div class="kpi-list-container">
+                            <svg id="left" viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.2911 0.25L17.1079 2.25428L3.74149 17L17.1079 31.7457L15.2911 33.75L0.107903 17L15.2911 0.25Z" fill="#3AAFA9"/>
                             </svg>
-                            <path class="outside" d="M110 55C110 24.6243 85.3757 0 55 0H110V55Z" />
-                            <path class="outside" d="M55 110C85.3757 110 110 85.3757 110 55V110H55Z" />
-                            <path class="outside" d="M0 55C0 85.3757 24.6243 110 55 110H0V55Z" />
-                            <path class="outside" d="M55 0C24.6243 0 0 24.6243 0 55V0H55Z" />
-                            <circle cx="55" cy="55" r="52.5" stroke="#3AAFA9" stroke-width="5"/>
-                            </svg>
-                            
-                            
+                            <div id="kpi-list">
+              
+                            </div>
+                            <svg id="right" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z" fill="#3AAFA9"/>
+                            </svg>    
+                                                         
                         </div>   
                     </section>
                 </div>
@@ -115,43 +109,8 @@
             
                             <div class="center">
                                 <canvas id="pie-chart"></canvas>
-                                
-                                <!-- You can find the library code from below link  -->
-                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                <!-- end of library link  -->
-                                
-                                <script>
-                                    new Chart(document.getElementById('pie-chart'), {
-                                    type: 'pie',
-                                    data: {
-                                        labels: ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"],
-                                        datasets: [{
-                                        backgroundColor: ["#e63946", "#254BDD",
-                                            "#ffbe0b", "#1d3557"
-                                        ],
-                                        data: [418, 263, 434, 586]
-                                        }]
-                                    },
-                                    options: {
-                                        plugins: {
-                                            legend: {
-                                                display: false,
-                                            },                                      
-                                        },
-                                        reponsive: true
-                                    }
-                                    });
-                                </script>
                             </div>
-            
-                            <div class="right">
-                                <ul>
-                                    <li class="percentage"></li>
-                                    <li class="percentage"></li>
-                                    <li class="percentage"></li>
-                                    <li class="percentage"></li>
-                                </ul>
-                            </div>  
+
                         </div>
                         
                     </section>
@@ -161,5 +120,7 @@
     </main>
  
     <footer class="footer"></footer>
+
+    
   </body>
 </html>
