@@ -86,6 +86,10 @@
   .heading1{
     font-size: var(--heading1);
   }
+
+  .heading2{
+    font-size: var(--heading2);
+  } 
   
   .link {
     font-size: var(--body-size);

@@ -59,22 +59,18 @@
                             <input type="date" id="birthday" name="birthday" class="styled-date-input">
                         </div>
                         <div class="container">
-                            <svg viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="left" viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15.2911 0.25L17.1079 2.25428L3.74149 17L17.1079 31.7457L15.2911 33.75L0.107903 17L15.2911 0.25Z" fill="#3AAFA9"/>
                             </svg>
-                            <button class="day-button"> 29 </button>
-                            <button class="day-button"> 30 </button>
-                            <button class="day-button"> 01 </button>
-                            <button class="day-button"> 02 </button>
-                            <button class="day-button"> 03 </button>
-                            <button class="day-button"> 04 </button>
-                            <button class="day-button"> 05 </button>
-                            <svg viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+                            <div id="week-list">
+
+                            </div>
+                            <svg id="right" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z" fill="#3AAFA9"/>
                             </svg>                                
                         </div>
                         <div id="task-list">
-                            
+                            <div id="one-task"></div>
                         </div>
                      </div>
                 </section>
@@ -108,6 +104,55 @@
                 <div class="col-5px">
                     <h1 class="heading1">Thống kê tuần trước</h1>
                     <section>
+                        <div id="statistic-frame">
+                            <div class="left">
+                                <div>
+                                    <span id="so-lg" class="heading2">36</span>
+                                    <span id="don-vi">giờ</span>
+                                </div>
+                                <span>Chỉ tiêu đã hoàn thành</span>
+                            </div>
+            
+                            <div class="center">
+                                <canvas id="pie-chart"></canvas>
+                                
+                                <!-- You can find the library code from below link  -->
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                <!-- end of library link  -->
+                                
+                                <script>
+                                    new Chart(document.getElementById('pie-chart'), {
+                                    type: 'pie',
+                                    data: {
+                                        labels: ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"],
+                                        datasets: [{
+                                        backgroundColor: ["#e63946", "#254BDD",
+                                            "#ffbe0b", "#1d3557"
+                                        ],
+                                        data: [418, 263, 434, 586]
+                                        }]
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: {
+                                                display: false,
+                                            },                                      
+                                        },
+                                        reponsive: true
+                                    }
+                                    });
+                                </script>
+                            </div>
+            
+                            <div class="right">
+                                <ul>
+                                    <li class="percentage"></li>
+                                    <li class="percentage"></li>
+                                    <li class="percentage"></li>
+                                    <li class="percentage"></li>
+                                </ul>
+                            </div>  
+                        </div>
                         
                     </section>
                 </div>
