@@ -24,12 +24,108 @@ function oneTaskHome() {
         </div>
     </div>
     `;
-    return template.content.firstElementChild;
+    return template.innerHTML;
   }
 
-  let container = document.getElementById("task-list"); 
+  function week(){
+    const template = document.createElement("template");
+    template.innerHTML = `
+        <button class="day-button">29</button>
+        <button class="day-button active">30</button>
+        <button class="day-button">01</button>
+        <button class="day-button">02</button>
+        <button class="day-button">03</button>
+        <button class="day-button">04</button>
+        <button class="day-button">05</button>
+        <button class="day-button">06</button>
+        <button class="day-button">07</button>
+        <button class="day-button">08</button>
+        <button class="day-button">09</button>
+        <button class="day-button">10</button>
+        <button class="day-button">11</button>
+        <button class="day-button">12</button>
+        <button class="day-button">13</button>
+        <button class="day-button">14</button>
+        <button class="day-button">15</button>
+        <button class="day-button">16</button>
+        <button class="day-button">17</button>
+        <button class="day-button">18</button>
+        <button class="day-button">19</button>
+        <button class="day-button">20</button>
+        <button class="day-button">21</button>
+        <button class="day-button">22</button>
+        <button class="day-button">23</button>
+        <button class="day-button">24</button>
+        <button class="day-button">25</button>
+        <button class="day-button">26</button>
+        <button class="day-button">27</button>
+        <button class="day-button">28</button>
+    `;
+    return template.innerHTML;
+  }
+
+  function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'grabbed_elem') {
+    const slider = document.getElementById(selector);
+    arrowIcons = document.querySelectorAll(icon);
+    allTabs = slider.querySelectorAll(tab);
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDown = true;
+        slider.classList.add(classOnEvent);
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    
+        // prevent default child behavior
+        document.body.addEventListener('click', function( event ){
+            if (slider.contains(event.target)) {
+                event.preventDefault();
+            }
+        });
+    });
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove(classOnEvent);
+    });
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove(classOnEvent);
+    });
+    slider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * scroll_speed; //scroll-fast
+        slider.scrollLeft = scrollLeft - walk;
+    });
+
+    const handleIcons = (scrollVal) => {
+        let maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
+        arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
+        arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
+    }
+
+    arrowIcons.forEach(icon => {
+        icon.addEventListener("click", () => {
+            let scrollWidth = slider.scrollLeft += icon.id === "left" ? -455 : 455;
+            handleIcons(scrollWidth);
+        });
+    });
+
+    allTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            slider.querySelector(".active").classList.remove("active");
+            tab.classList.add("active");
+        });
+    });
+
+    }
+
+  clickAndDrag("week-list", ".day-button", ".container svg");
+
+  document.getElementById("week-list").innerHTML = week();
   
-  document.getElementById("left").addEventListener("click", function() {
-    const node = oneTaskHome();
-    container.appendChild(node);
-  });
+  document.getElementById("one-task").innerHTML = oneTaskHome();
