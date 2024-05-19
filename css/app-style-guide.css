@@ -10,7 +10,7 @@
     --heading1: 22px;
     --heading2: 32px;
     --big: 50px;
-    --mym3-typography-small-14-size: 16px;
+    --small-size: 14px;
   
     /* Colors */
     --color-mode-1-button: #2a7378;
@@ -22,6 +22,7 @@
     --color-white-text: #fff;
     --color-disabled: #a9a9a9;
     --color-error-button: #953333;
+    --color-mode-1-shadow: #2a737866;
     
     --button-border-radius: 5px;
     --frame-border-radius: 25px;
@@ -79,8 +80,8 @@
     background-color: var(--color-mode-1-button);
   }
 
-  .small-body-text{
-    font-size: var(--small-body-size);
+  .small-text{
+    font-size: var(--small-size);
   }
 
   .heading1{
@@ -164,7 +165,7 @@
     display: flex;
     background-color: var(--color-mode-1-frame-background);
     border-radius: var(--frame-border-radius);
-    box-shadow: -4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 4px 4px 0 var(--color-mode-1-shadow);
     padding: 20px 30px 20px 30px;
   }
 

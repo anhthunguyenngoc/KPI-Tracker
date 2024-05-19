@@ -4,10 +4,9 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
     <link rel="stylesheet" href="../css/app-style-guide.css"/>
+    <link rel="stylesheet" href="../css/trang-chu.css" />
     <link rel="stylesheet" href="../css/Theo-doi-kpi.css" />
-    
-   
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
@@ -23,38 +22,68 @@
   <body>
     <header-component> </header-component>
     <main class="main">
-      <div></div>
+      <div id="kpi-tomtat">
+        <svg id="frame-wave" width="1600" height="111" viewBox="0 0 1600 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_3922_17426)">
+            <path d="M0 110.44L24.2222 103.089C48.4444 95.6 96.6667 81.1047 145.556 73.6155C193.889 66.2643 242.222 66.2643 291.111 58.9132C339.444 51.424 387.778 36.9287 436.667 34.9615C484.889 33.1324 533.333 44.1764 582.222 55.2204C630.333 66.2643 678.889 77.3083 727.778 82.8303C775.778 88.3523 824.444 88.3523 872.222 82.8303C921.222 77.3083 970 66.2643 1017.78 62.5715C1066.67 59.0167 1115.56 62.468 1163.33 57.0495C1212.11 51.424 1261.11 36.9287 1308.89 42.3472C1357.56 47.9727 1405.56 73.512 1454.44 77.3083C1503 81.1047 1551.11 62.468 1575.56 53.3912L1600 44.1764V110.44H1575.78C1551.56 110.44 1503.33 110.44 1454.44 110.44C1406.11 110.44 1357.78 110.44 1308.89 110.44C1260.56 110.44 1212.22 110.44 1163.33 110.44C1115.11 110.44 1066.67 110.44 1017.78 110.44C969.667 110.44 921.111 110.44 872.222 110.44C824.222 110.44 775.556 110.44 727.778 110.44C678.778 110.44 630 110.44 582.222 110.44C533.333 110.44 484.444 110.44 436.667 110.44C387.889 110.44 338.889 110.44 291.111 110.44C242.444 110.44 194.444 110.44 145.556 110.44C97 110.44 48.8889 110.44 24.4444 110.44H0Z" fill="#9CD6D3"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_3922_17426">
+            <path d="M0 0H1600V95.4399C1600 103.724 1593.28 110.44 1585 110.44H15C6.71569 110.44 0 103.724 0 95.4399V0Z" fill="white"/>
+            </clipPath>
+            </defs>
+        </svg>
+                
         <section>
-            <div class="nd-1">
-                <span>Tiến độ hiện tại</span>
-            </div>
-            <div class="nd-2">
-                <span>10 ngày<br>Dự kiến hoàn thành</span>
-            </div>
-            <div class="nd-3">
-                <span>79%
-                <br>KPI đã hoàn thành</span>
-            </div>
-          </section>
+            <div class="kpi-container">
+                <div class="nd-1">
+                    <span>Tiến độ hiện tại</span>
+                </div>
 
-        <div class="container">
-            <div class="frame-1"></div>
-            <div class="frame-1"></div>
-            <div class="frame-1"></div>
-            <div class="frame-1"></div>
-        </div>
-        
-        <h2 class="head">Thống kê kết quả KPI đạt được</h2>
+                <div class="nd-2">
+                    <div>
+                        <span class="focus">79</span>
+                        <span class="donvi">%</span> 
+                    </div>
+                    <span>KPI đã hoàn thành</span>
+                </div>
 
-        <div class="frame-3">
+                <div class="nd-3">
+                    <div>
+                        <span class="focus">10</span>
+                        <span class="donvi">ngày</span> 
+                    </div>
+                    <span>Dự kiến hoàn thành</span>
+                </div>                   
+            </div>                            
+        </section>            
+      </div>
+
+      <div class="kpi-list-container">       
+        <div id="kpi-detail-list"> </div>
+        <svg id="left" class="lr" viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.2911 0.25L17.1079 2.25428L3.74149 17L17.1079 31.7457L15.2911 33.75L0.107903 17L15.2911 0.25Z" fill="#3AAFA9"/>
+          </svg>
+        <svg id="right" class="lr" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z" fill="#3AAFA9"/>
+        </svg> 
+      </div>
+      <div class="col-10px">
+        <h1 class="heading1">Thống kê kết quả KPI đạt được</h1>
+
+        <section class="chart-container">
             <div>
-                <span class="time-period">29/6 - 05/7</span>
+                <span>29/6 - 05/7</span>
             </div>
+            <canvas id="line-chart">
 
-        </div>   
+            </canvas>
+        </section>   
+      </div>
     </main>
     <footer class="footer"></footer>
     <script src="../js/header.js"></script>
-
+    <script src="../js/Theo-doi-kpi.js"></script>
+    
   </body>
    </html> 

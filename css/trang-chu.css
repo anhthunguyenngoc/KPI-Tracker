@@ -1,5 +1,4 @@
 .main{
-    display: flex;
     flex-direction: column;
 }
 #kpi-tomtat {
@@ -11,13 +10,14 @@
 #frame-wave {
     position: absolute;
     width: 100%;
-    bottom: -10px;
+    height: fit-content;
+    bottom: -1px;
     border-radius: var(--frame-border-radius);
 }
 
 .kpi-container{
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center; /* Căn giữa ngang */
@@ -360,7 +360,7 @@ section{
     bottom: -4.5px;
 }
 
-.kpi-list-container #kpi-list .kpi .percentage {
+.percentage {
     position: absolute;
     bottom: 78px;
     left: 38px;
