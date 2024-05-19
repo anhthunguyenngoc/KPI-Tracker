@@ -55,169 +55,364 @@ class Header extends HTMLElement {
       <div></div>
     
       <div class="right">
-        <button class="user-button"> 
-          <img 
-          class="right-icon" 
-          loading="lazy" 
-          alt="" 
-          src="../images/top-app-bar/help.svg"
-          /> 
-        </button> 
-    
-        <button class="user-button"> 
-          <img 
-          class="right-icon" 
-          loading="lazy" 
-          alt="" 
-          src="../images/top-app-bar/alert.svg" 
-          /> 
-        </button> 
+          <div id="guidance">
+              <button class="user-button"> 
+                  <img 
+                  class="right-icon" 
+                  loading="lazy" 
+                  alt="" 
+                  src="../images/top-app-bar/help.svg"
+                  /> 
+              </button> 
+          </div>
 
-        <button class="user-button"> 
-          <img 
-          class="user" 
-          loading="lazy" 
-          alt="" 
-          src="../images/user.svg" 
-          /> 
-        </button> 
-        
+        <div id="notification">
+          <div id="alert" class="hidden">
+              <div id="title">Thông báo</div>
+              <div id="content">
+                  <div id="alert-content">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                  </div>
+              </div>
+              <div id="read-mark">Đánh dấu là đã đọc</div>
+          </div>
+              <button class="user-button" id="alert-button"> 
+                  <img 
+                  class="right-icon" 
+                  loading="lazy" 
+                  alt="" 
+                  src="../images/top-app-bar/alert.svg" 
+                  /> 
+              </button> 
+          </div>
+          <div id="user-avatar-part">
+              <button class="user-button" id="user-button"> 
+                  <img 
+                  class="user" 
+                  loading="lazy" 
+                  alt="" 
+                  src="../images/user.svg" 
+                  /> 
+              </button> 
+
+              <div id="user-popup-container" class="hidden">
+                  <div id="user-popup" >
+                      <a id="settings-container" href="setting.html">
+                          <img 
+                          class="right-icon" 
+                          loading="lazy" 
+                          alt="" 
+                          src="../images/setting.svg" >
+                          <p>Cài đặt</p>
+                      </a>
+                      <a id="logout-container" href="../index.html">
+                          <img 
+                          class="right-icon" 
+                          loading="lazy" 
+                          alt="" 
+                          src="../images/logout.svg" >
+                          <p>Đăng xuất</p>
+                      </a>
+                  </div>
+              </div>
+          </div>
       </div>
     </header>
     
         <style>
-        a{
-          text-decoration: none;
-          white-space: nowrap;
-        }
-        .header {
-            width: 100%;
-            height: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 20px 10px 20px;
+          #user-popup-container {
+            z-index: 10;
+            position: absolute;
+            top: 85px;
+            right: 20px ;
+          }
+          #user-popup a p {
+              color: var(--MyM3-color-dark-theme-text, #FFF);
+              text-align: center;
+              font-family: var(--body-font);
+              font-size: var(--body-size);
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+          }
+          #user-popup a {
+              display: flex;
+              height: 65px;
+              padding-left: 30px;
+              flex-direction: row;
+              align-items: center;
+              gap: var(--gap-11xl);
+              flex-shrink: 0;
+              align-self: stretch;
+              border-radius: var(--button-border-radius);
+              background-color: var(--color-mode-1-button);
+          }
+          #user-popup a:hover {
+              background-color: var(--color-mode-1-button-hover);
+              border: 2px solid var(--color-mode-1-button);
+          }
+          #user-popup {
+              display: flex;
+              width: 225px;
+              height: 174px;
+              padding: 10px;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: flex-end;
+              border-radius: 15px;
+              background-color: var(--color-mode-1-frame-background);
+              box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+          }
+          #content::-webkit-scrollbar {
+              width: 6px;
           }
 
-          .header div:nth-of-type(2) {
-            width: 100%;
+              /* Track */
+          #content::-webkit-scrollbar-track {
+              background: var(--color-mode-1-footer); 
+              border-radius: 2px;
+              width: 6px;
+          }
+              
+              /* Handle */
+          #content::-webkit-scrollbar-thumb {
+              width: 4px;
+              background: var(--color-mode-1-button); 
+              border-radius: 2px;
           }
 
-          .logo {
-            width: auto;
-            height: 70px;
-            display: flex;
-            flex-direction: row;
-            padding: 18px 15px 18px 15px;
-            gap: 12px;
-            align-items: center;
+              /* Handle on hover */
+          #content::-webkit-scrollbar-thumb:hover {
+              background: #154e53; 
+              
           }
-          
-          .logo:hover {
-            border-radius: var(--button-border-radius);
-            border: none;
-            background-color: var(--color-mode-1-frame-background); 
-            cursor: pointer;
+          #title {
+              margin-top: 14px;
+              padding-left: 9px;
+              font-family: "Roboto Flex";
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 24px; /* 150% */
+              letter-spacing: 0.15px;
           }
-          
-          .kpi-tracker {
-            font-size: 38px;
-            font-family: var(--logo-font);
-            color: var(--color-mode-1-button);
-            width: auto;
+          #read-mark {
+              margin-top: 20px;
+              padding-left: 73px;
+              font-family: "Roboto Flex";
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 20px; /* 142.857% */
+              letter-spacing: 0.1px;
           }
-          
-          .left {
-            width: fit-content;
-            height: inherit;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+          #read-mark:hover {
+              color: var(--color-mode-1-button);
+              cursor: pointer;
           }
-          
-          .mouse-layer {
-            width: auto;
-            height: 55px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 20px 10px 20px 10px;
+          #alert {
+              width: 209px;
+              height: 342px;
+              position:absolute ;
+              top: 20px;
+              right: 150px;
+              z-index: 10;
+              background-color: var(--color-mode-1-frame-background) ;
+              border-radius: var(--button-border-radius);
+              box-shadow: -4px 4px 4px 0 rgba(0, 0, 0, 0.25);
           }
-          
-          .mouse-layer:hover{
-            border-radius: var(--button-border-radius);
-            border: none;
-            background-color: var(--color-mode-1-frame-background); 
-            cursor: pointer;
+          #content {
+              width: 198px;
+              height: 247px;
+              overflow-y: scroll;
+              overflow-x: hidden;
           }
 
-          .mouse-layer span {
-            font-size: var(--page-title);
-            color: var(--color-mode-1-button);
-            font-weight: 500px;
-            white-space:nowrap;
+          a{
+              text-decoration: none;
           }
-          
-          .mouse-layer svg {
-            width: 26px;
-            height: 26px;
-            fill: none;
-          }
-          
-          .svg1 path {
-            stroke: var(--color-mode-1-button);
-            stroke-width: 3;
-            stroke-linecap: round;
-          }
-          
-          .svg2 path {
-            fill: var(--color-mode-1-button);
-          }
-          
-          .right {
-            width: fit-content;
-            height: fit-content;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-          }
-          
-          .right-icon {
-            width: 28px;
-            height: 28px;
-          }
+          .header {
+              width: 100%;
+              height: auto;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              padding: 10px 20px 10px 20px;
+              }
+  
+              .header div:nth-of-type(2) {
+              width: 100%;
+              }
+  
+              .logo {
+              width: auto;
+              height: 70px;
+              display: flex;
+              flex-direction: row;
+              padding: 18px 15px 18px 15px;
+              gap: 12px;
+              align-items: center;
+              }
+              
+              .logo:hover {
+              border-radius: var(--button-border-radius);
+              border: none;
+              background-color: var(--color-mode-1-frame-background); 
+              cursor: pointer;
+              }
+              
+              .kpi-tracker {
+              font-size: 38px;
+              font-family: var(--logo-font);
+              color: var(--color-mode-1-button);
+              width: auto;
+              }
+              
+              .left {
+              width: fit-content;
+              height: inherit;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              gap: 20px;
+              }
+              
+              .mouse-layer {
+              width: auto;
+              height: 55px;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              padding: 20px 10px 20px 10px;
+              }
+              
+              .mouse-layer:hover{
+              border-radius: var(--button-border-radius);
+              border: none;
+              background-color: var(--color-mode-1-frame-background); 
+              cursor: pointer;
+              }
+  
+              .mouse-layer span {
+              font-size: var(--page-title);
+              color: var(--color-mode-1-button);
+              font-weight: 500px;
+              white-space:nowrap;
+              }
+              
+              .mouse-layer svg {
+              width: 26px;
+              height: 26px;
+              fill: none;
+              }
+              
+              .svg1 path {
+              stroke: var(--color-mode-1-button);
+              stroke-width: 3;
+              stroke-linecap: round;
+              }
+              
+              .svg2 path {
+              fill: var(--color-mode-1-button);
+              }
+              
+              .right {
+              width: fit-content;
+              height: fit-content;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              gap: 15px;
+              }
+              
+              .right-icon {
+              width: 28px;
+              height: 28px;
+              }
+  
+              .user-button{
+              width: 50px;
+              height: 50px;
+              border-radius: 100px;
+              }
+  
+              .user {
+              width: 28px;
+              height: 28px;
+              }
+  
+              .t {
+              stroke: var(--color-mode-1-footer); 
+              stroke-linecap: round;
+              }
+  
+              .k {
+              stroke: var(--color-mode-1-button); 
+              stroke-width: 25;
+              stroke-linecap: round;
+              }
+              .hidden {
+                  display: none;
+              }
 
-          .user-button{
-            width: 50px;
-            height: 50px;
-            border-radius: 100px;
-          }
+              #alert-content {
+                  margin-top: 15px;
+                  margin-left: 5px;
+              }
 
-          .user {
-            width: 28px;
-            height: 28px;
-          }
-
-          .t {
-            stroke: var(--color-mode-1-footer); 
-            stroke-linecap: round;
-          }
-
-          .k {
-            stroke: var(--color-mode-1-button); 
-            stroke-width: 25;
-            stroke-linecap: round;
-          }
+              #alert-content div {
+                  width: 187px;
+                  height: 47px;
+                  margin-bottom: 6px;
+              }
+              #alert-content div:hover {
+                  background-color: var(--color-mode-1-footer);
+              }
         </style>
+
       `;
     }
   }
   
   customElements.define('header-component', Header);
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const notification = document.querySelector("#alert");
+    const alertButton = document.querySelector("#alert-button");
+    const userAvatar = document.querySelector("#user-avatar-part");
+    const userPopup = document.querySelector("#user-popup-container");
+    const hideBoth = () => {
+        notification.classList.add("hidden");
+        userPopup.classList.add("hidden");
+    };
+
+    document.body.addEventListener("click", (e) => {
+        if (!notification.contains(e.target) && !alertButton.contains(e.target)) {
+            notification.classList.add("hidden");
+        }
+        if (!userPopup.contains(e.target) && !userAvatar.contains(e.target)) {
+            userPopup.classList.add("hidden");
+        }
+    });
+
+    userAvatar.addEventListener("click", (e) => {
+        e.stopPropagation();
+        notification.classList.add("hidden"); 
+        userPopup.classList.toggle("hidden");
+    });
+
+    alertButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        userPopup.classList.add("hidden"); 
+        notification.classList.toggle("hidden");
+    });
+});
