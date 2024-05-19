@@ -1,11 +1,5 @@
 const kpiPercentage = [45, 75, 45, 30];
 const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
-const kpiHeight = {
-    maxHeight: 203,
-    maxY: -191,
-    minHeight: 80,
-    minY: 81,
-}
 
 const chartData = {
     labels: kpiName,
@@ -24,7 +18,6 @@ const taskData = {
 };
 
 const pieChart = document.getElementById("pie-chart");
-const details = document.getElementById("details");
 
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
