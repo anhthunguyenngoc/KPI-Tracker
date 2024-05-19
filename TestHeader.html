@@ -65,17 +65,20 @@
         <div></div>
       
         <div class="right">
-          <button class="user-button"> 
-            <img 
-            class="right-icon" 
-            loading="lazy" 
-            alt="" 
-            src="./images/top-app-bar/help.svg"
-            /> 
-          </button> 
+            <div id="guidance">
+                <button class="user-button"> 
+                    <img 
+                    class="right-icon" 
+                    loading="lazy" 
+                    alt="" 
+                    src="./images/top-app-bar/help.svg"
+                    /> 
+                </button> 
+            </div>
+
           <div id="notification">
             <div id="alert" class="hidden">
-                <div id="title">Thong bao</div>
+                <div id="title">Thông báo</div>
                 <div id="content">
                     <div id="alert-content">
                         <div></div>
@@ -86,7 +89,7 @@
                         <div></div>
                     </div>
                 </div>
-                <div id="read-mark">Danh dau la da doc</div>
+                <div id="read-mark">Đánh dấu là đã đọc</div>
             </div>
                 <button class="user-button" id="alert-button"> 
                     <img 
@@ -97,20 +100,81 @@
                     /> 
                 </button> 
             </div>
-  
-          <button class="user-button"> 
-            <img 
-            class="user" 
-            loading="lazy" 
-            alt="" 
-            src="./images/user.svg" 
-            /> 
-          </button> 
-          
+            <div id="user-avatar-part">
+                <button class="user-button" id="user-button"> 
+                    <img 
+                    class="user" 
+                    loading="lazy" 
+                    alt="" 
+                    src="./images/user.svg" 
+                    /> 
+                </button> 
+
+                <div id="user-popup-container" class="hidden">
+                    <div id="user-popup" >
+                        <a id="settings-container" href="">
+                            <img 
+                            class="right-icon" 
+                            loading="lazy" 
+                            alt="" 
+                            src="./images/setting.svg" >
+                            <p>Cài đặt</p>
+                        </a>
+                        <a id="logout-container" href="">
+                            <img 
+                            class="right-icon" 
+                            loading="lazy" 
+                            alt="" 
+                            src="./images/logout.svg" >
+                            <p>Đăng xuất</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
       </header>
       
           <style>
+            #user-popup a p {
+                color: var(--MyM3-color-dark-theme-text, #FFF);
+                text-align: center;
+                font-family: var(--body-font);
+                font-size: var(--body-size);
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+            #user-popup a {
+                display: flex;
+                height: 65px;
+                padding-left: 30px;
+                flex-direction: row;
+                align-items: center;
+                gap: var(--gap-11xl);
+                flex-shrink: 0;
+                align-self: stretch;
+                border-radius: var(--button-border-radius);
+                background-color: var(--color-mode-1-button);
+            }
+            #user-popup a:hover {
+                background-color: var(--color-mode-1-button-hover);
+                border: 2px solid var(--color-mode-1-button);
+            }
+            #user-popup {
+                position: absolute;
+                top: 85px;
+                right: 20px ;
+                display: flex;
+                width: 255px;
+                height: 174px;
+                padding: 10px;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-end;
+                border-radius: 15px;
+                color: var(--color-mode-1-frame-background, #FFF);
+                box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+            }
             #content::-webkit-scrollbar {
                 width: 6px;
             }
@@ -126,12 +190,13 @@
             #content::-webkit-scrollbar-thumb {
                 width: 4px;
                 background: var(--color-mode-1-button); 
+                border-radius: 2px;
             }
 
                 /* Handle on hover */
             #content::-webkit-scrollbar-thumb:hover {
-                background: #25767c; 
-                border-radius: 2px;
+                background: #154e53; 
+                
             }
             #title {
                 margin-top: 14px;
@@ -153,13 +218,17 @@
                 line-height: 20px; /* 142.857% */
                 letter-spacing: 0.1px;
             }
+            #read-mark:hover {
+                color: var(--color-mode-1-button);
+                cursor: pointer;
+            }
             #alert {
                 width: 209px;
                 height: 342px;
                 position:absolute ;
                 top: 20px;
                 right: 150px;
-                /*display: absolute;*/
+
                 background-color: var(--color-mode-1-frame-background) ;
                 border-radius: var(--button-border-radius);
                 box-shadow: -4px 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -311,33 +380,32 @@
                 #alert-content div {
                     width: 187px;
                     height: 47px;
+                    margin-bottom: 6px;
                 }
                 #alert-content div:hover {
                     background-color: var(--color-mode-1-footer);
                 }
           </style>
           <script>
-            
-            /*const notification = document.querySelector("#alert");
-            document.body.addEventListener("click", (e) => {
-                if (!notification.contains(e.target) && !alertButton.contains(e.target)) {
-                    notification.classList.add("hidden");
-                }
-            });
-            const alertButton = document.querySelector("#alert-button");
-            alertButton.addEventListener("click",(e) => {
-                e.stopPropagation();
-                notification.classList.remove("hidden");
-            })*/
             document.addEventListener('DOMContentLoaded', (event) => {
                 const notification = document.querySelector("#alert");
                 const alertButton = document.querySelector("#alert-button");
+                const userAvatar = document.querySelector("#user-button");
+                const userPopup = document.querySelector("#user-popup-container");
 
                 document.body.addEventListener("click", (e) => {
                     if (!notification.contains(e.target)) {
                         notification.classList.add("hidden");
                     }
+                    if (!userPopup.contains(e.target)) {
+                        userPopup.classList.add("hidden");
+                    }
                 });
+
+                userAvatar.addEventListener("click", (e)=> {
+                    e.stopPropagation();
+                    userPopup.classList.toggle("hidden");
+                })
 
                 alertButton.addEventListener("click", (e) => {
                     e.stopPropagation();
