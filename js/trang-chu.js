@@ -1,9 +1,9 @@
-const kpiPercentage = [45, 75, 45, 45];
+const kpiPercentage = [45, 75, 45, 30];
 const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
 const kpiHeight = {
-    maxHeight: 300,
+    maxHeight: 203,
     maxY: -191,
-    minHeight: 30,
+    minHeight: 80,
     minY: 81,
 }
 
@@ -138,7 +138,7 @@ new Chart(document.getElementById("pie-chart"), {
     }
 
     function getHeignt(percent){
-        var height = 30 + 2.70*percent;
+        var height = 80 + 2.03*percent;
         return height;
     }
 
@@ -147,17 +147,32 @@ new Chart(document.getElementById("pie-chart"), {
         return y;
     }
 
-    function addKPI(){
+    function addKPIcss(){
+        const template = document.createElement("template");
         kpiName.forEach((v, i) => {
             var height = getHeignt(kpiPercentage[i]);
             var y = getY(height);
             console.log(height + " "+ y+ " "+ kpiPercentage[i]);
+            template.innerHTML += `
+            .kpi:nth-of-type(${i+1}) .kpi-circle svg:nth-of-type(1){
+                height: ${height}px;
+                transform: translateY(${y});
+            }
+
+            `
+        })
+        
+        return template.innerHTML;
+    }
+
+    function addKPI(){
+        kpiName.forEach((v, i) => {           
             const div = document.createElement("div");
             div.className = "kpi";
             div.innerHTML = `      
             <div class="kpi-circle">  
                                                  
-                    <svg width="109" heigth="${height}" x="0" y="${y}" viewBox="0 0 110 107" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="109" heigth="30" x="0" y="81" viewBox="0 0 110 107" xmlns="http://www.w3.org/2000/svg">
                         <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
                         <g class="parallax">
                             <use class="back-layer" xlink:href="#gentle-wave" x="48" y="0" />
@@ -177,10 +192,11 @@ new Chart(document.getElementById("pie-chart"), {
             </div>
             <span class="percentage">${kpiPercentage[i]}%</span> 
             <span>${v}</span>        
-
-        `;
+            
+        `;           
             document.getElementById("kpi-list").appendChild(div);
-        })
+        });
+        document.getElementById("kpi-list").innerHTML += `<style>`+ addKPIcss()+`<\style>`;
     }
 
     function addDay(){
