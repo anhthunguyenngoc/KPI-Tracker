@@ -47,14 +47,6 @@ new Chart(document.getElementById("pie-chart"), {
     }
     });
 
-    function populateUl() {
-        chartData.labels.forEach((l, i) => {
-            let span = document.createElement("span");
-            span.innerHTML = `${l}`;
-            details.appendChild(span);
-        })
-    }
-
     function handleHover(evt, item, legend) {
         legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
           colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
@@ -198,7 +190,7 @@ new Chart(document.getElementById("pie-chart"), {
     function kpi(){
         const template = document.createElement("template");
         template.innerHTML = `
-        <div id="kpi">
+        
             <svg class="kpi-circle" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
             <!-- height tăng thì y giảm-->
             <svg width="109" height="170" x="0" y="-61" viewBox="0 0 110 111" xmlns="http://www.w3.org/2000/svg">
@@ -216,17 +208,35 @@ new Chart(document.getElementById("pie-chart"), {
             </svg>
             <span class="percentage">40%</span> 
             <span>Giảng dạy</span> 
-        </div>
+        
         `;
     return template.innerHTML;
     }
 
-  clickAndDrag("week-list", ".day-button", ".container svg");
+    function addKPI(){
+        for(i=0; i<4; i++){
+            const div = document.createElement("div");
+            div.className = "kpi";
+            div.innerHTML = kpi();
+            document.getElementById("kpi-list").appendChild(div);
+        }
+    }
+
+    function addDay(){
+        for(i=0; i<31; i++){
+            const button = document.createElement("button");
+            button.className = "kpi";
+            if(i!=5)
+            div.innerHTML = kpi();
+            document.getElementById("kpi-list").appendChild(div);
+        }
+    }
 
   document.getElementById("week-list").innerHTML = week();
 
-  document.getElementById("kpi-list").innerHTML = kpi();
+  addKPI();
   
   document.getElementById("one-task").innerHTML = oneTaskHome();
 
-  populateUl();
+  clickAndDrag("week-list", ".day-button", ".container svg");
+

@@ -305,11 +305,17 @@ section{
     height: 70px ;
 }
 
-#kpi-list {
+.kpi-list-container #kpi-list {
     width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    gap: 50px;
+    overflow-x: hidden;
 }
 
-#kpi-list #kpi {
+.kpi-list-container #kpi-list .kpi {
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -320,7 +326,7 @@ section{
     position: relative;
 }
 
-#kpi .percentage {
+.kpi-list-container #kpi-list .kpi .percentage {
     position: absolute;
     bottom: 82px;
     left: 35px;
