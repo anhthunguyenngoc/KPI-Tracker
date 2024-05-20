@@ -187,19 +187,12 @@ section {
     display: inline-block;
 }
 
-.img-button {
-    border-radius: 5px;
-    padding: 5px 5px 5px 5px;
-    min-width: 40px;
-    min-height: 40px;
+button {
+    width: 100%;
+    padding: 10px 15px 10px 15px;
 }
 
 .img-button img {
     width: 26px;
     height: 26px;
-}
-
-button {
-    width: 100%;
-    padding: 10px 15px 10px 15px;
-}
+  }

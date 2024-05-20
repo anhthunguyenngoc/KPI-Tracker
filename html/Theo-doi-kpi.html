@@ -72,8 +72,22 @@
         <h1 class="heading1">Thống kê kết quả KPI đạt được</h1>
 
         <section class="chart-container">
-            <div>
-                <span>29/6 - 05/7</span>
+            
+            <div class="interact"> 
+              <div class="choose-chart-range">     
+                <span class="heading1">29/6 - 05/7</span>
+                <button class="img-button">
+                  <img src="../images/calender.svg">
+                </button>
+              </div>  
+              <div id="choose-chart-type">
+                <button id="day" class="chart-type-button">
+                    <span> Ngày </span>
+                </button>
+                <button id="month" class="chart-type-button">
+                  <span> Tháng </span>
+                </button>
+              </div>       
             </div>
             <canvas id="line-chart">
 

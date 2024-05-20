@@ -3,8 +3,10 @@ const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
 const kpiUp = [2, 8, 5, 3];
 const kpiNow = [24, 26, 32, 16];
 const kpiGoal = [53, 35, 71, 53];
+const color_mode_1_footer = "#3aafa9"
+const color_mode_1_button = "#2a7378"
 
-const chartData = {
+var chartData = {
     labels: ["29/4", "30/4", "1/5", "2/5", "3/5", "4/5", "5/5"],
     datasets: [{
         data: [8, 18, 2, 8, 3, 5, 6],
@@ -18,9 +20,11 @@ const chartData = {
         pointHoverRadius: 15,
         pointHoverBorderWidth: 3,
         pointHoverBackgroundColor: "#439BA1",
-        pointBorderColor:"#2a7378"
+        pointBorderColor:"#2a7378",
+        
     }] 
 };
+var xTitle = 'Ngày trong tuần';
 
 const chartAreaBorder = {
     id: 'line-chart',
@@ -36,18 +40,17 @@ const chartAreaBorder = {
     }
   };
 
-const lineChart = document.getElementById("line-chart");
+const font = {
+    size: 18,
+    family: 'Roboto Flex',                     
+};
+Chart.defaults.font = font;
+Chart.defaults.color = '#000';
 
-new Chart(document.getElementById("line-chart"), {
+const lineChart = new Chart(document.getElementById("line-chart"), {
     type: 'line',
     data: chartData,
-    options: {
-        chartAreaBorder: {
-            borderColor: "#2a7378",
-            borderWidth: 2,
-            borderDash: [5, 5],
-            borderDashOffset: 2,
-          },
+    options: {      
         animation: {
             easing: 'easeInCubic',
         },
@@ -58,15 +61,62 @@ new Chart(document.getElementById("line-chart"), {
         reponsive: true,
         plugins: {
             legend: {
-                display: false,
+                display: false,             
             },
             tooltip: {
                 usePointStyle: true,
                 position: 'nearest',
+                backgroundColor: '#def2f1',
+                titleColor: '#000',
+                bodyColor: '#000',
+                callbacks: {
+                    label: (context) => {
+                        console.log(context)
+                        return ` Đã hoàn thành: ${context.raw} giờ`
+                    }
+                }
             }                                     
-        }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 24,
+                title: {
+                    display: true,
+                    text: 'Số chỉ tiêu đã hoàn thành'
+                },
+                border: {
+                    color: "#9CD6D3",
+                    width: 5,
+                },
+                grid: {
+                    color: "#9CD6D3",
+                }
+              },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Ngày trong tuần',
+                },
+                border: {
+                    color: "#9CD6D3",
+                    width: 5,
+                },
+                grid: {
+                    color: "#9CD6D3",
+                }
+            }
+        },
+        /*
+        chartAreaBorder: {
+            borderColor: "#2a7378",
+            borderWidth: 2,
+            borderDash: [5, 5],
+            borderDashOffset: 2,
+          },
+          */
     },
-    plugins: [chartAreaBorder],
+    //plugins: [chartAreaBorder],
     });
 
 function getHeignt(percent){
@@ -195,6 +245,24 @@ function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'gra
     });
 
     }
+
+    document.getElementById("month").addEventListener("click", () => {
+        chartData.labels = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
+        chartData.datasets[0].data = [8, 18, 2, 8, 3, 5, 6, 8, 3, 5, 6, 20]
+        lineChart.options.scales.x.title.text = 'Tháng trong năm'
+        lineChart.update()
+        document.getElementById("day").style.backgroundColor = color_mode_1_button
+        document.getElementById("month").style.backgroundColor = color_mode_1_footer
+    });
+
+    document.getElementById("day").addEventListener("click", () => {
+        chartData.labels = ["29/4", "30/4", "1/5", "2/5", "3/5", "4/5", "5/5"]
+        chartData.datasets[0].data = [8, 18, 2, 8, 3, 5, 6]
+        lineChart.options.scales.x.title.text = 'Ngày trong tuần'
+        lineChart.update()
+        document.getElementById("day").style.backgroundColor = color_mode_1_footer
+        document.getElementById("month").style.backgroundColor = color_mode_1_button
+    });
 
 addKPI();
 

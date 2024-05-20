@@ -47,7 +47,7 @@ section {
 }
 
 .percentage {
-  bottom: 64px;
+  bottom: 74px;
   left: 68px;
 }
 
@@ -81,8 +81,8 @@ section {
 
 #line-chart {
   width: 100%;
-  max-width: 1000px;
-  max-height: 450px;
+  max-width: 1200px;
+  max-height: 500px;
   background-color: var(--color-white-text);
   padding: 20px 20px 20px 20px;
 }
@@ -92,7 +92,56 @@ section {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
   align-items: center;
   justify-content: center;
+}
+
+.interact {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:  space-between;
+}
+
+#choose-chart-type {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.choose-chart-range {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.chart-type-button {
+  width: 100px;
+  height: 40px;
+  border-radius: 0px;
+}
+
+#day {
+  border-radius:10px 0px 0px 10px;
+  background-color: var(--color-mode-1-footer);
+}
+
+#month {
+  border-radius:0px 10px 10px 0px; 
+}
+
+.img-button {
+  padding: 3px 3px 3px 2px;
+}
+
+.img-button img {
+  width: 100%;
+  height: 100%;
 }

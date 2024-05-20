@@ -278,7 +278,7 @@ section{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 0px;
 }
 
 #statistic-frame .left, 
@@ -301,7 +301,7 @@ section{
 }
 
 #statistic-frame .center #pie-chart{ 
-    max-height: 160px;
+    max-height: 133px;
 }
 
 .kpi-list-container {

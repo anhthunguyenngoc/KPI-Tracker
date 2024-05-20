@@ -17,6 +17,11 @@ const taskData = {
     state: [true, false, false],
 };
 
+const font = {
+    size: 18,
+    family: 'Roboto Flex',                     
+};
+
 const pieChart = document.getElementById("pie-chart");
 
 new Chart(document.getElementById("pie-chart"), {
@@ -38,12 +43,10 @@ new Chart(document.getElementById("pie-chart"), {
                 fullSize: true,
                 labels: {
                     color: '#000',
-                    font: {
-                        size: 18,
-                        family: 'Roboto Flex',
-                        
-                    },
-                    padding: 15
+                    font: font,
+                    padding: 10,
+                    usePointStyle: true,
+                    pointStyle: 'rectRounded',
                 },
                 onHover: handleHover,
                 onLeave: handleLeave
@@ -197,7 +200,7 @@ new Chart(document.getElementById("pie-chart"), {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
 
-        for(i=0; i<31; i++){
+        for(i=0; i<30; i++){
             const button = document.createElement("button");
             button.className = "day-button";
             if(day==dd){
