@@ -39,8 +39,16 @@ section {
     padding:  8px 4px 0px 16px;
 }
 
+#shared-schedules {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
 .schedule {
-    width: 300px;
+    max-width: 300px;
     display: flex;
     padding: 10px 25px;
     flex-direction: column;
