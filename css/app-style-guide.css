@@ -116,6 +116,13 @@
     border: 2px solid var(--color-mode-1-button);
   }
 
+  .img-button {
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
   .input-bx{
     position: relative;
     width: 100%;
@@ -166,7 +173,7 @@
     background-color: var(--color-mode-1-frame-background);
     border-radius: var(--frame-border-radius);
     box-shadow: -4px 4px 4px 0 var(--color-mode-1-shadow);
-    padding: 20px 30px 20px 30px;
+    padding: 30px 30px 30px 30px;
   }
 
   span {
