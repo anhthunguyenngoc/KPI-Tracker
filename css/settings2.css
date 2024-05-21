@@ -1,0 +1,131 @@
+.main {
+   
+    background-color: var(--color-mode-1-frame-background);
+    padding:0;
+    height: fit-content;
+}
+
+.flex {
+    display: flex;
+}
+
+#top-part {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: fixed;
+    width: 280px;
+}
+
+#title {
+    color: var(--color-black-text);
+    /* MyM3/typography/heading1 -32 */
+    font-family: var(--body-font);
+    font-size: var(--heading2);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#back-button button{
+    width: 75px;
+    height: 43px;
+    border-radius: 25px;
+
+}
+
+#back-button button img {
+    padding-top: 10px;
+}
+
+#search-bar {
+    gap: 10px;
+}
+
+.input-bx input {
+    height: 40px;
+}
+
+.img-button {
+    width: 40px;
+    height: 40px;
+}
+
+#side-bar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding:  40px 30px;
+    gap: 30px;
+}
+#fixed-container {
+    position: fixed;
+    width:280px;
+    height: 450px;
+    top: 275px;
+    overflow-y: auto;
+}
+
+#settings-content {
+    flex-direction: column;
+    gap: 20px;
+}
+.sub-settings {
+margin-top: 15px;}
+
+.settings-title {
+    font-family: var(--body-font);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sub-settings a {
+    text-decoration: none;
+    color: var(--MyM3-color-mode-1-button, #2A7378);
+    font-family: var(--body-font);
+    font-size: var(--body-size);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#fixed-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+    /* Track */
+#fixed-container::-webkit-scrollbar-track {
+    background: var(--color-mode-1-element2); 
+    border-radius: 2px;
+    width: 6px;
+}
+    
+    /* Handle */
+#fixed-container::-webkit-scrollbar-thumb {
+    width: 4px;
+    background: var(--color-mode-1-button); 
+    border-radius: 2px;
+}
+
+    /* Handle on hover */
+#fixed-container::-webkit-scrollbar-thumb:hover {
+    background: #154e53; 
+}
+
+
+#right-part {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: var(--color-white-text);
+    border-radius: 25px 0px 0px 25px;
+    padding: 45px;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+}
