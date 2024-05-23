@@ -1,7 +1,7 @@
 .main{
     flex-direction: row;
     flex-wrap: nowrap;
-    height: 730px;
+    height: fit-content;
 }
 .content{
     display: flex;
@@ -196,3 +196,101 @@ button {
     width: 26px;
     height: 26px;
   }
+
+
+/*
+*  Calendar
+*/
+
+.fc-toolbar.fc-header-toolbar {
+    background-color: var(--color-mode-1-frame-background);
+    color: #ffffff;
+    padding: 10px;
+  }
+  .fc-toolbar.fc-header-toolbar .fc-button {
+    background-color: var(--color-mode-1-button);
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-right: 5px;
+
+  }
+  .fc-toolbar.fc-header-toolbar .fc-button:hover {
+    background-color: var(--color-mode-1-button-hover);
+  }
+  .fc-toolbar.fc-header-toolbar h2 {
+    color: var(--color-black-text);
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 5px 20px;
+    font-family: var(--body-font);
+    font-size: var(--heading2);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .fc-timegrid-slot {
+    border-color: rgba(255, 255, 255, 0.3); /* Change color and opacity of the grid lines */
+  }
+  .fc-timegrid-slot.fc-timegrid-slot-label {
+    background-color: rgba(42, 115, 120, 0.1); /* Change background color of the time labels */
+  }
+  .fc-timegrid-slot.fc-timegrid-slot-lane {
+    border-color: rgba(163, 160, 160, 0.3); /* Change color and opacity of the horizontal lines */
+  }
+  .fc-col-header-cell {
+    border-color: rgba(255, 255, 255, 0.3); /* Change color and opacity of the header cell borders */
+  }
+
+
+#calander {
+    /*height: 800px;*/
+}  
+
+
+tbody tr {
+    height: calc((600px - 60px) / 8); 
+  }
+  .fc .fc-timegrid-slot-label {
+    vertical-align: top;
+    text-align: start;
+  }
+
+
+.fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0;
+    padding-bottom: 1em;
+}
+
+div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
+    width: 6px;
+}
+
+.fc .fc-scroller-liquid-absolute::-webkit-scrollbar {
+    width: 6px;
+}
+
+    /* Track */
+    .fc .fc-scroller-liquid-absolute::-webkit-scrollbar-track {
+    background: var(--color-mode-1-element2); 
+    border-radius: 2px;
+    width: 6px;
+}
+    
+    /* Handle */
+    .fc .fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
+    width: 4px;
+    background: var(--color-mode-1-button); 
+    border-radius: 2px;
+}
+
+    /* Handle on hover */
+    .fc .fc-scroller-liquid-absolute::-webkit-scrollbar-thumb:hover {
+    background: #154e53; 
+}
+
+element.style {}

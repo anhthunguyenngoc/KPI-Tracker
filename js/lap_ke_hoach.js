@@ -97,3 +97,90 @@ function clickAndDragY(selector, scroll_speed = 3, classOnEvent = 'grabbed_elem'
 clickAndDrag('.list');
 
 clickAndDragY('.list');
+
+
+// calendar
+
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        height: 'auto',
+        locale: 'vi',
+        allDaySlot: false,
+        slotLabelFormat: {
+            hour: 'numeric',
+            minute: '2-digit',
+            meridiem: 'short'
+        },
+        slotDuration: {hours:3},
+        slotMinTime: '00:00:00',  // Start at midnight
+        slotMaxTime: '24:00:00',  // End at midnight the next day
+        //height: 'auto', // Automatically adjust height
+        customButtons: {
+            select: {
+                text: 'Chọn',
+                click: function() {
+                alert('clicked the custom button!');
+                }
+            },
+            share: {
+                click: function() {
+                alert('clicked the custom button!');
+                },
+            },
+            insert: {
+                click: function() {
+                alert('clicked the custom button!');
+                }
+            },
+        },
+        titleFormat: {  
+            month: '2-digit', 
+            day: '2-digit' ,
+            omitCommas: true,
+        },
+        headerToolbar : {
+            start: 'title',
+            center: 'prev,today,next',
+            end: 'select,share,insert'
+        },
+        buttonText: {
+            today: 'Today'
+        },
+        events : [
+            {
+            id: 'a',
+            title: 'Testing',
+            start: '2024-05-23T09:00:00',
+            end: '2024-05-23T11:07:00',
+            display: 'auto',
+            backgroundColor: '#F2DEDE'
+            },
+            {
+                id: 'a',
+                title: 'Testing',
+                start: '2024-05-23T06:00:00',
+                end: '2024-05-23T08:07:00',
+                display: 'auto',
+                backgroundColor: '#F2DEDE'
+                }
+        ]
+            
+        }
+
+  );
+  let event = calendar.getEventById('a') // an event object!
+    let start = event.start // a property (a Date object)
+    console.log(start.toISOString()) // "2018-09-01T00:00:00.000Z"
+    calendar.render();
+    document.querySelector('.fc-share-button').innerHTML = `
+  <img src="../images/share-schedule.svg" />
+    `;
+    document.querySelector('.fc-insert-button').innerHTML = `
+  <img src="../images/edit.svg" />
+    `;
+  });
+
+  
+ 
