@@ -1,13 +1,62 @@
-  function oneTask() {
+  
+// Simple data storage
+  let storage = {
+    KPIs: [
+        {   
+            id: '#KPI01',
+            name: "Nghiên cứu",
+            color : "#9CB2D7",
+            tasks : [
+                {
+                    id: '#KPI01task01',
+                    title: 'Phát triển hệ thống',
+                    start: '2024-05-23T09:00:00',
+                    end: '2024-05-23T11:07:00',
+                    backgroundColor: '#9CB2D7'
+                },
+                {
+                    id: '#KPI01task02',
+                    title: 'Nghiên cứu ứng dụng',
+                    start: '2024-05-24T09:00:00',
+                    end: '2024-05-24T11:30:00',
+                    backgroundColor: '#9CB2D7'
+                },
+
+            ]
+        },
+        {
+            id: '#KPI02',
+            name: "Giảng dạy",
+            color : "#F2DEDE",
+            tasks : [
+                {
+                    id: '#KPI02task01',
+                    title: 'Giao diện và trải nghiệm',
+                    start: '2024-05-24T14:10:00',
+                    end: '2024-05-24T17:30:00',
+                    backgroundColor: '#F2DEDE'
+                },
+
+            ]
+        }
+    ]
+}
+
+let KPICounter = 0;
+let taskCounter = -1;
+
+
+  
+  function oneTask(event) {
     const template = document.createElement("template");
     template.innerHTML = `
-    <ul class="list-task">
+    <ul class="list-task" id="${event.id}">
         <li class="color-task">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+            <rect width="30" height="30" rx="15" fill="${event.backgroundColor}"/>
         </svg>
         </li>
-        <li class="name-task">Phát triển hệ thống</li>
+        <li class="name-task">${event.title}</li>
     </ul>
     `;
     return template.content.firstElementChild;
@@ -15,9 +64,22 @@
 
   let container = document.getElementById("list"); 
   document.getElementById("add-task-button").addEventListener("click", function() {
-    const node = oneTask();
+    let node;
+    if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
+        KPICounter ++;
+        if (storage.KPIs[KPICounter] === undefined) return;
+        taskCounter = 0;
+        node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
+    } else {
+        taskCounter ++;
+        node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
+    }
     container.appendChild(node);
   });
+
+
+
+
 
   function clickAndDrag(selector, scroll_speed = 3, classOnEvent = 'grabbed_elem') {
     const slider = document.querySelector(selector);
@@ -103,8 +165,9 @@ clickAndDragY('.list');
 
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-    let calendar = new FullCalendar.Calendar(calendarEl, {
+    let calendarInit = {
         initialView: 'timeGridWeek',
+        eventStartEditable: false,
         height: 'auto',
         locale: 'vi',
         allDaySlot: false,
@@ -121,7 +184,40 @@ document.addEventListener('DOMContentLoaded', function() {
             select: {
                 text: 'Chọn',
                 click: function() {
-                alert('clicked the custom button!');
+                    
+                    
+                    if (calendarInit.eventStartEditable === true) {
+                        calendar.destroy();
+                        calendarInit.eventStartEditable = false;
+                        calendarInit.customButtons.select.text = "Chọn";
+                        calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
+                        calendar.render();
+                        const selectButton = document.querySelector(".fc-select-button");
+                        selectButton.style["backgroundColor"] = "#2a7378";
+                        document.querySelector('.fc-share-button').innerHTML = `
+                            <img src="../images/share-schedule.svg" />
+                                `;
+                        document.querySelector('.fc-insert-button').innerHTML = `
+                            <img src="../images/edit.svg" />
+                                `;
+                    } else {
+                        calendar.destroy();
+                        calendarInit.eventStartEditable = true;
+                        calendarInit.customButtons.select.text = "";
+                        calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
+                        calendar.render();
+                        const selectButton = document.querySelector(".fc-select-button");
+                        selectButton.style["backgroundColor"] = "#3aafa9";
+                        selectButton.innerHTML = `
+                        <img src="../images/x.svg" />
+                          `;
+                          document.querySelector('.fc-share-button').innerHTML = `
+  <img src="../images/share-schedule.svg" />
+    `;
+    document.querySelector('.fc-insert-button').innerHTML = `
+  <img src="../images/edit.svg" />
+    `;
+                    }
                 }
             },
             share: {
@@ -131,7 +227,17 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             insert: {
                 click: function() {
-                alert('clicked the custom button!');
+                calendar.destroy();
+                calendarInit.events = storage.KPIs[0].tasks;
+                calendarInit.events.push(storage.KPIs[1].tasks[0]);
+                calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
+                calendar.render();
+                document.querySelector('.fc-share-button').innerHTML = `
+  <img src="../images/share-schedule.svg" />
+    `;
+    document.querySelector('.fc-insert-button').innerHTML = `
+  <img src="../images/edit.svg" />
+    `;
                 }
             },
         },
@@ -167,12 +273,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
         ]
             
-        }
-
-  );
-  let event = calendar.getEventById('a') // an event object!
-    let start = event.start // a property (a Date object)
-    console.log(start.toISOString()) // "2018-09-01T00:00:00.000Z"
+        };
+    let calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
     calendar.render();
     document.querySelector('.fc-share-button').innerHTML = `
   <img src="../images/share-schedule.svg" />
