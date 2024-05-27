@@ -1,12 +1,17 @@
-const kpiPercentage = [45, 75, 45, 30];
+const kpiPercentage = [25, 50, 100, 50];
 const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
+const color_pink_pastel = "#F06292"; //"#F48FB1"; 
+const color_blue_pastel = "#64B5F6"; //"#90CAF9";  
+const color_yellow_pastel = "#FFD54F"; //"#FFE082";
+const color_cyan_pastel = "#4DB6AC"; //"#80CBC4";
 
 const chartData = {
     labels: kpiName,
     datasets: [{
-        data: [8, 18, 2, 8],
-        backgroundColor: ["#e63946", "#254BDD", "#ffbe0b", "#1d3557"],
-        hoverBackgroundColor: ["fff", "fff", "fff", "fff"],
+        data: [8, 10, 12, 6],
+        backgroundColor: [color_pink_pastel + 'A4', color_blue_pastel + 'A4', color_yellow_pastel + 'A4', color_cyan_pastel + 'A4'],
+        hoverBackgroundColor: [color_pink_pastel + 'ff', color_blue_pastel + 'ff', color_yellow_pastel + 'ff', color_cyan_pastel + 'ff'],
+        borderWidth:0,
     }] 
 };
 
@@ -53,7 +58,7 @@ new Chart(document.getElementById("pie-chart"), {
             }, 
             tooltip: {
                 enabled: true
-            }                                     
+            },                                  
         },
         reponsive: true
     }
@@ -61,67 +66,67 @@ new Chart(document.getElementById("pie-chart"), {
 
     function handleHover(evt, item, legend) {
         legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
-          colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
+            colors[index] = index === item.index ? color.slice(0, -2) + 'ff' : color.slice(0, -2) + '4D';
         });
         legend.chart.update();
       }
     
     function handleLeave(evt, item, legend) {
-    legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
-        colors[index] = color.length === 9 ? color.slice(0, -2) : color;
-    });
-    legend.chart.update();
+        legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
+            colors[index] = color.endsWith('4D') ? color.slice(0, -2) + 'A4' : color.slice(0, -2) + 'A4';
+        });
+        legend.chart.update();
     }
 
     function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'grabbed_elem', scrollW) {
-    const slider = document.getElementById(selector);
-    arrowIcons = document.querySelectorAll(icon);
-    allTabs = slider.querySelectorAll(tab);
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+        const slider = document.getElementById(selector);
+        arrowIcons = document.querySelectorAll(icon);
+        allTabs = slider.querySelectorAll(tab);
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-    slider.addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        isDown = true;
-        slider.classList.add(classOnEvent);
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    
-        // prevent default child behavior
-        document.body.addEventListener('click', function( event ){
-            if (slider.contains(event.target)) {
-                event.preventDefault();
-            }
+        slider.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            isDown = true;
+            slider.classList.add(classOnEvent);
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        
+            // prevent default child behavior
+            document.body.addEventListener('click', function( event ){
+                if (slider.contains(event.target)) {
+                    event.preventDefault();
+                }
+            });
         });
-    });
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.remove(classOnEvent);
-    });
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.remove(classOnEvent);
-    });
-    slider.addEventListener('mousemove', (e) => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * scroll_speed; //scroll-fast
-        slider.scrollLeft = scrollLeft - walk;
-    });
-
-    const handleIcons = (scrollVal) => {
-        let maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
-        arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
-        arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
-    }
-
-    arrowIcons.forEach(icon => {
-        icon.addEventListener("click", () => {
-            let scrollWidth = slider.scrollLeft += icon.id === "left" ? -455 : 455;
-            handleIcons(scrollWidth);
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove(classOnEvent);
         });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove(classOnEvent);
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * scroll_speed; //scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        const handleIcons = (scrollVal) => {
+            let maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
+            arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
+            arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
+        }
+
+        arrowIcons.forEach(icon => {
+            icon.addEventListener("click", () => {
+                let scrollWidth = slider.scrollLeft += icon.id === "left" ? -455 : 455;
+                handleIcons(scrollWidth);
+            });
     });
 
     allTabs.forEach(tab => {
@@ -148,7 +153,6 @@ new Chart(document.getElementById("pie-chart"), {
         kpiName.forEach((v, i) => {
             var height = getHeignt(kpiPercentage[i]);
             var y = getY(height);
-            console.log(height + " "+ y+ " "+ kpiPercentage[i]);
             template.innerHTML += `
             .kpi:nth-of-type(${i+1}) .kpi-circle svg:nth-of-type(1){
                 height: ${height}px;
@@ -168,7 +172,7 @@ new Chart(document.getElementById("pie-chart"), {
             div.innerHTML = `      
             <div class="kpi-circle">  
                                                  
-                    <svg width="109" heigth="30" x="0" y="81" viewBox="0 0 110 107" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="109" x="0" viewBox="0 0 110 107" xmlns="http://www.w3.org/2000/svg">
                         <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
                         <g class="parallax">
                             <use class="back-layer" xlink:href="#gentle-wave" x="48" y="0" />

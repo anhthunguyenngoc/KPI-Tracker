@@ -18,6 +18,7 @@
     --color-mode-1-frame-background: #def2f1;
     --color-mode-1-element2: #9CD6D3;
     --color-mode-1-button-hover: #439BA1;
+    --color-mode-1-background: #fff;
     --color-black-text: #000;
     --color-white-text: #fff;
     --color-disabled: #a9a9a9;
@@ -63,11 +64,15 @@
     flex-direction: column;
     font-family: var(--body-font);
     font-size: var(--body-size);    
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    padding: 5px 0 53px 0;
   }
   
   .main {
-    width: inherit;
-    height: auto;
+    width: 100%;
+    height: 100%;
     display: flex;
     min-height: 660px;
     padding: 0 53px 53px 53px;
