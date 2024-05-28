@@ -82,9 +82,7 @@
     scrollbar-width: 6px; /* Thiết lập kích thước của thanh cuộn */
     scrollbar-color: var(--color-mode-1-button) var(--color-mode-1-element2); 
   }
-  *:hover {
-    scrollbar-color: #154e53 var(--color-mode-1-element2); 
-  }
+  
   body {
     display: flex;
     flex-direction: column;
@@ -196,6 +194,35 @@
   .input-bx input:focus{
     border: 3px solid var(--color-mode-1-button);
   }
+
+  input[type=number] {
+    border: none;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+  }
+
+  input[type=number] {
+    border: none;
+    outline: none;
+    padding: 5px;
+  }
+
+  
+  input[type=number]:valid{
+    border: 3px solid var(--color-white-text);
+  }
+
+  input[type=number]:hover,
+  input[type=number]:focus {
+    border: 3px solid var(--color-mode-1-button);
+  }
+
 
   section {
     width: 100%;
