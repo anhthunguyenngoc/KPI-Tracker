@@ -11,6 +11,12 @@
     --heading2: 32px;
     --big: 50px;
     --small-size: 14px;
+
+    /*Mobile font size*/
+    --mobile-heading1: 20px;
+    --mobile-title-size: 14px;
+    --mobile-body-size: 12px;
+    --mobile-label-size: 11px;
   
     /* Colors */
     --color-mode-1-button: #2a7378;

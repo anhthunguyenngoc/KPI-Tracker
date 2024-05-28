@@ -162,6 +162,10 @@ section {
     min-height: 100%;
     gap: 10px;
   }
+  .nd1-name{
+    font-size: 18px;
+    padding-top: 10px;
+  }
   .nd-1 {
     max-width: 10px;
     padding: 0px 0px 150px 30px;
