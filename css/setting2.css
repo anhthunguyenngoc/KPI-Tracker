@@ -29,6 +29,32 @@ body {
     gap: 45px;
 }
 
+.up-down {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.spinner-up{
+    padding: 3px 3px 3px 3px; 
+}
+
+.spinner-down{
+    padding: 3px 3px 3px 3px; 
+}
+
+.spinner-up{
+    transform: rotate(-180deg);
+}
+.spinner-up:hover,
+.spinner-down:hover{
+    border-color: var(--color-mode-1-button-hover);
+}
+
+.input-up-down{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
 section {
     box-shadow: none;
 }
@@ -82,7 +108,7 @@ section {
 
 .sub-settings a {
     text-decoration: none;
-    color: var(--MyM3-color-mode-1-button, #2A7378);
+    color: var(--color-mode-1-button);
     font-family: var(--body-font);
     font-size: var(--body-size);
     font-style: normal;
@@ -90,8 +116,37 @@ section {
     line-height: normal;
 }
 
+.slider {
+    width: 100%;
+    appearance: none;
+    height: 18px;
+    border-radius: 25px;
+    background-color: var(--color-mode-1-element2);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .slider::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: var(--color-mode-1-button);
+    box-shadow: -508px 0 0 500px var(--color-mode-1-button);
+  }
+
+  .slider:hover::-webkit-slider-thumb {
+    background-color: var(--color-mode-1-button-hover);
+    box-shadow: -508px 0 0 500px var(--color-mode-1-button-hover);
+  }
 .flex {
     display: flex;
+}
+
+input[type=number] {
+    height: 45px;
+    text-align: center;
 }
 
 #title {
@@ -128,18 +183,14 @@ section {
     height: 40px;
 }
 
-#personalize,
-#user-info  {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .tt-update-div {
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: 45px;
     justify-content: space-between;
+    align-items: center;
+    gap: 60px;
 }
 
 .update-button {
@@ -170,13 +221,13 @@ section {
 .text-and-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .font-content {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 20px;
     height: fit-content;
     width: 100%;
 }
@@ -186,7 +237,7 @@ section {
     width: 60%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .font-content-right {
@@ -205,21 +256,30 @@ section {
 .font-size-control {
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 100%;
     height: fit-content;
     gap: 10px;
 }
 
-.select-menu{
+.select-menu1{
     width: 100%;
     position: relative;
 }
-.select-menu .select-btn{
+
+.select-menu2, 
+.select-menu3 {
+    width: 39%;
+    position: relative;
+}
+
+.select-menu1 .select-btn, 
+.select-menu2 .select-btn, 
+.select-menu3 .select-btn{
     display: flex;
-    height: 55px;
+    height: 45px;
     background: #fff;
     padding: 20px;
-    font-size: 18px;
     font-weight: 400;
     border-radius: 7px;
     align-items: center;
@@ -228,7 +288,6 @@ section {
 }
 
 .select-btn i{
-    font-size: 25px;
     transition: 0.3s;
 }
 
@@ -236,28 +295,37 @@ section {
     fill: var(--color-mode-1-button);
 }
 
-.select-menu.active .select-btn i{
+.select-btn:hover i svg path {
+    fill: var(--color-mode-1-button-hover);
+}
+
+.select-menu1.active .select-btn i,
+.select-menu2.active .select-btn i{
     transform: rotate(-180deg);
 }
 
-.select-menu .options{
+.select-menu1 .options,
+.select-menu2 .options,
+.select-menu3 .options{
     width: 100%;
     position: absolute; /* Đặt vị trí tuyệt đối cho options */
     top: 100%; /* Đặt vị trí top để options hiển thị dưới select-btn */
     left: 0; /* Đặt vị trí trái để options bắt đầu từ vị trí của select-btn */
     z-index: 1; /* Đảm bảo options hiển thị trên các phần tử khác */
-    padding: 20px;
+    padding: 10px;
     margin-top: 10px;
     border-radius: 7px;
     background: #fff;
     display: none;
 }
-.select-menu.active .options{
+.select-menu1.active .options,
+.select-menu2.active .options,
+.select-menu3.active .options{
     display: block;
 }
 .options .option{
     display: flex;
-    height: 55px;
+    height: 45px;
     cursor: pointer;
     padding: 0 16px;
     border-radius: 7px;
@@ -269,14 +337,64 @@ section {
     background: var(--color-mode-1-button-hover);
 }
 
-.option .option-text{
-    font-size: 18px;
+.toggle-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.slider {
-    width: 100%;
+.toggle-switch input {
+    display: none;
 }
 
+.toggle-switch label {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    background-color: var(--color-mode-1-element2);
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-switch label::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: left 0.3s;
+}
+
+.toggle-switch input:checked + label {
+    background-color: var(--color-mode-1-button)
+}
+
+.toggle-switch input:checked + label::before {
+    left: 27px;
+}
+
+.switch-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+#right-part-background #personalize, 
+#right-part-background #user-info, 
+#right-part-background #notify, 
+#right-part-background #language, 
+#right-part-background #security {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 #theme-color-1 {
     height: 70px;
     width: 120px;
