@@ -384,6 +384,169 @@ section{
     position: relative;
 }
 
+@media only screen and (max-width: 768px) {
+    .main {
+        padding: 0 15px;
+    }
+
+    #kpi-tomtat section{
+        height: 150px;
+    }
+    .nd-1{
+        padding: 0 20px 0 20px;
+        font-size: var(--mobile-body-size);
+    }
+
+    .nd-2, .nd-3{
+        padding: 0 20px 0 0;
+        font-size: var(--mobile-body-size);
+    }
+
+    .focus {
+        font-size: var(--mobile-heading1);
+    }
+
+    .heading2{
+        font-size: var(--mobile-heading1);
+    }
+
+    .donvi {
+        font-size: var(--mobile-title-size);
+    }
+
+    #don-vi {
+        font-size: var(--mobile-title-size);
+    }
+
+    .part2 {
+        flex-direction: column;
+        max-height: 100%;
+        min-height: 100%;
+        gap: 25px;
+    }
+
+    #daily-task {
+        flex-grow: 1.5;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: 100%;
+      }
+
+    .heading1{
+        font-size: var(--mobile-heading1);
+    }
+
+    #daily-task section{
+        padding: 20px;
+    }
+
+    .day{
+        font-size: var(--mobile-title-size);
+    }
+
+    #week-list {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .day-button {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        border-radius: 100px;
+        background-color: var(--color-white-text);
+        border-color: var(--color-white-text);
+        color: var(--color-black-text);
+        font-size: var(--mobile-label-size);
+    }
+
+    .one-task{
+        font-size: var(--mobile-body-size);
+    }
+
+    .section2 {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .col-5px {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        font-size: var(--mobile-title-size);
+    }
+
+    .col-5px section{
+        height: 200px;
+        padding: 20px;
+    }
+
+    .kpi-list-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        gap: 20px;
+        justify-content: left;
+        align-items: center;
+    }
+    
+    .kpi-list-container #left,
+    .kpi-list-container #right{
+        width: 20px;
+        height: 35px ;
+    }
+
+    .kpi-list-container #kpi-list {
+        max-width: 100%;
+        
+    }
+
+    .kpi-circle {
+        width: 100px;
+    }
+
+    #statistic-frame {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0px;
+    }
+    
+    #statistic-frame .left, 
+    #statistic-frame .center { 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    #statistic-frame .left { 
+        width: fit-content;
+        flex-direction: column;
+    }
+    
+    #statistic-frame .center{ 
+        flex-grow: 1;
+    }
+
+    #pie-chart{ 
+        font-size: var(--mobile-label-size);
+    }
+
+    /*Ket thuc*/
 .footer {
     height: 90px;
 }
