@@ -1,234 +1,224 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-    
-        <link rel="stylesheet" href="../css/app-style-guide.css" />
-        <link rel="stylesheet" href="../css/setting-style.css" />
-        
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
-        />
-    
-        <title>KPI Tracker</title>
-      </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt</title>
+    <link rel="stylesheet" href="../css/app-style-guide.css">
+    <link rel="stylesheet" href="../css/setting2.css">
 
-    <body>
-        <div class = "main">
-            <div class = "slide-bar">
-                <div class = "button">
-    
+    <script src="../js/setting.js" type="text/javascript" defer></script>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
+    />
+</head>
+<body>
+    <main class="main">
+        <div id="side-bar">
+            <div id="top-part">
+                <div id="back-button">
+                    <button id="back">
+                        <img src="../images/back-white-version.svg" alt="">
+                    </button>
                 </div>
-    
-                <div class = "setting">
-                    <h1>Cài đặt</h1>
-                </div>
-                
-                <div class = "findField">
-    
-                </div>
-    
-                <div class = "infoField">
-                    <h2>Thông tin</h2>
-                    <h3>Thông tin cá nhân</h3>
-                </div>
-    
-                <div class = "infoField">
-                    <h2>Cá nhân hóa</h2>
-                    <h3>Thay đổi màu sắc chủ đề</h3>
-                    <h3>Thay đổi kiểu chữ</h3>
-                </div>
-    
-                <div class = "infoField">
-                    <h2>Thông báo</h2>
-                    <h3>Cài đặt âm thanh thông báo</h3>
-                    <h3>Nhắc nhở công việc hàng ngày</h3>
-                    <h3>Thiết lập thời gian nhắc nhở</h3>
-                </div>
-    
-                <div class = "infoField">
-                    <h2>Ngôn ngữ</h2>
-                    <h3>Thay đổi ngôn ngữ hiển thị</h3>
-                </div>
-    
-                <div class = "infoField">
-                    <h2>Bảo mật</h2>
-                    <h3>Thay đổi mật khẩu</h3>
-                    <h3>Xác thực 2 lớp</h3>
+                <div id="title">Cài đặt</div>
+                <div id="search-bar" class="flex">
+                    <div class="input-bx">
+                        <input type="text" required>  
+                        <span class="label-text" id="text-holder">Tìm kiếm nhiệm vụ</span>           
+                    </div>
+                    <button class="img-button">
+                        <img src="../images/search.svg">
+                    </button>
+                    
                 </div>
             </div>
-    
-            <div class = "detailedSetting">
-                <div class = "detailedInfo">
-                    <div id = "oneone">
-                        <div>
-                            <h2>Thông tin cá nhân</h2>
-                        </div>
+            <div id="fixed-container">
+                <div id="settings-content" class="flex">
 
-                        <div class = "button">
-
-                        </div>
+                    <div class="settings-nav" id="info">
+                        <p class="settings-title">Thông tin</p>
+                        <p class="sub-settings">
+                            <a href="">Thông tin cá nhân</a>
+                        </p>
                     </div>
-
-                    <div id = "onetwo">
-                        <div class = "avatar"> 
-
-                        </div>
-
-                        <div class = "info">
-                            <p>tabeos</p>
-                            <p>Trần Trung Anh</p>
-                            <p>anh.tt214989@sis.hust.edu.vn</p>
-                            <p>11/11/2003</p>
-                            <p>Sinh viên</p>
-                        </div>
-
-                        <div class = "area"></div>
+                    <div class="settings-nav" id="theme">
+                        <p class="settings-title">Cá nhân hóa</p>
+                        <p class="sub-settings">
+                            <a href="">Thay đổi màu sắc chủ đề</a>
+                        </p>
+                        <p class="sub-settings">
+                            <a href="">Thay đổi màu chữ</a>
+                        </p>
                     </div>
+                    <div class="settings-nav" id="notification">
+                        <p class="settings-title">Thông báo</p>
+                        <p class="sub-settings">
+                            <a href="">Cài đặt âm thanh thông báo</a>
+                        </p>
+                        <p class="sub-settings">
+                            <a href="">Nhắc nhở công việc hằng ngày</a>
+                        </p>
+                        <p class="sub-settings">
+                            <a href="">Thiết lập thời gian nhắc nhở</a>
+                        </p>
+                    </div>
+                    <div class="settings-nav" id="language">
+                        <p class="settings-title">Ngôn ngữ</p>
+                        <p class="sub-settings">
+                            <a href="">Thay đổi ngôn ngữ</a>
+                        </p>
+                    </div>
+                    <div class="settings-nav" id="security">
+                        <p class="settings-title">Bảo mật</p>
+                        <p class="sub-settings">
+                            <a href="">Thay đổi mật khẩu</a>
+                        </p>
+                        <p class="sub-settings">
+                            <a href="">Xác thực 2 lớp</a>
+                        </p>
+                    </div>
+            
+                    
+                </div>
+            </div>
+         </div>
+        <div id="right-part">   
+        <div id="right-part-background">
+            <section id="user-info">
+                <div class="tt-update-div">
+                    <span class="settings-title">Thông tin</span>
+                    <button class="update-button"> Chỉnh sửa </button>
                 </div>
 
-                <div class = "detailedCustom">
-                    <div id ="twoone">
-                        <h2>Cá nhân hóa</h2>
+                <div id="tt-body">
+                    <div id="user-image">
+                        <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="70" cy="70" r="70" fill="#2A7378"/>
+                            </svg>                            
                     </div>
+                    <div class="content">
+                        <span>tabeos</span>
+                        <span>Trần Trung Anh</span>
+                        <span>anh.tt214989@sis.hust.edu</span>
+                        <span>11/11/2003</span>
+                        <span>Sinh viên</span>
+                    </div>
+                </div>
+            </section>
+            <section id="personalize">
+                <div>
+                    <span class="settings-title">Cá nhân hóa</span>
+                </div>
+                <div class="text-and-content">
+                    <span>Thay đổi màu sắc chủ đề</span>
 
-                    <div id = "twotwo">
-                        <h3>Thay đổi màu sắc chủ đề</h3>
-                        <div class="theme-colors">
-                            <div class="color-option white"></div>
-                            <div class="color-option cream"></div>
-                            <div class="color-option teal"></div>
-                            <div class="color-option black"></div>
+                    <div id="list-color">
+                        <div id="theme-color-1">
+                            <div class="colors">
+                                <div class="color1"></div>
+                                <div class="color2"></div>
+                                <div class="color3"></div>
+                            </div>                           
+                        </div>
+
+                        <div id="theme-color-2">
+                            <div class="colors">
+                                <div class="color1"></div>
+                                <div class="color2"></div>
+                                <div class="color3"></div>
+                            </div>                           
+                        </div>
+
+                        <div id="theme-color-3">
+                            <div class="colors">
+                                <div class="color1"></div>
+                                <div class="color2"></div>
+                                <div class="color3"></div>
+                            </div>                           
+                        </div>
+
+                        <div id="theme-color-4">
+                            <div class="colors">
+                                <div class="color1"></div>
+                                <div class="color2"></div>
+                                <div class="color3"></div>
+                            </div>                           
                         </div>
                     </div>
+                </div>
+                <div class="text-and-content">
+                    <span>Thay đổi kiểu chữ</span>
+                    <div class="font-content">
+                        <div class="font-content-left">
+                            <div class="select-menu">
+                                <div class="select-btn">
+                                    <span class="sBtn-text">Roboto Flex</span>
+                                    <i class="bx bx-chevron-down">
+                                        <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.70034 9.96578C9.08517 10.5799 8.08881 10.5799 7.47258 9.96578L0.652696 3.14272C0.0364602 2.52754 -0.235657 0.916016 1.71152 0.916016H15.4635C17.4763 0.916016 17.1386 2.52649 16.5223 3.14272L9.70034 9.96578Z"/>
+                                        </svg>                                            
+                                    </i>
+                                </div>
+                                <ul class="options">
+                                    <li class="option">
+                                        <span class="option-text">Roboto Flex</span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text">Garamond</span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text">Calibri</span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text">Verdana</span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text">Helvetica</span>
+                                    </li>
+                                </ul>
+                            </div>
 
-                    <div>
-                        <h3>Thay đổi kiểu chữ</h3>
-                    </div>
-
-                    <div id = "twothree">
-                        <div>
-                            <select class="font-select">
-                                <option value="Roboto Flex">Roboto Flex</option>
-                                <!-- Thêm các lựa chọn font khác tại đây -->
-                            </select>
                             <div class="font-size-control">
                                 <input type="range" min="10" max="100" value="50" class="slider">
                                 <div class="spinner">
                                     <input type="number" min="10" max="100" value="50">
-                                    <div class="spinner-buttons">
-                                        <button class="spinner-up">▲</button>
-                                        <button class="spinner-down">▼</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="preview">
-                            Hôm nay là một ngày nắng đẹp
+                        
+                        <div class="font-content-right">
+                            Hôm nay là 1 ngày nắng đẹp.
                         </div>
                     </div>
+                </div>
+            </section>
+            <section id="notify">
+                <div>
+                    <span class="settings-title">Thông báo</span>
                 </div>
                 
-
-                <div class = "detailedNotify">
-                    <div id ="threeone">
-                        <div>
-                            <h2>Thông báo</h2>
-                        </div>
-
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="switch1">
-                            <label for="switch1" class="switch-label">Tắt</label>
-                        </div>
-                    </div>
-
-                    <div id = "threetwo">
-                        <div>
-                            <h3>Cài đặt âm thanh thông báo</h3>
-                        </div>
-
-                        <div>
-                            <select class="select-box">
-                                <option value="Nokia">Nokia</option>
-                                <option value="SamSung">SamSung</option>
-                                <option value="Iphone">Iphone</option>
-                                <option value="Bíp bíp">Bíp bíp</option>
-                                <option value="Bob">Bob</option>
-                                <!-- Thêm các lựa chọn khác tại đây -->
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id = "threethree">
-                        <div>
-                            <h3>Nhắc nhở công việc hàng ngày</h3>
-                        </div>
-                        
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="switch2">
-                            <label for="switch2" class="switch-label">Tắt</label>
-                        </div>
-                    </div>
-
-                    <div id ="threefor">
-                        <h3>Thiết lập thời gian nhắc nhở trước</h3>
-                    </div>
+            </section>
+            <section id="language">
+                <div>
+                    <span class="settings-title">Ngôn ngữ</span>
                 </div>
-
-                <div class = "detailedLang">
-                    <div id ="forone">
-                        <h2>Ngôn ngữ</h2>
-                    </div>
-
-                    <div id = "fortwo">
-                        <div>
-                            <h3>Thay đổi ngôn ngữ hiển thị</h3>
-                        </div>
-
-                        <div>
-                            <select class="select-lang">
-                                <option value="Tiếng Việt">Tiếng Việt</option>
-                                <option value="English">English</option>
-                                <option value="日本語">日本語</option>
-                                <!-- Thêm các lựa chọn khác tại đây -->
-                            </select>
-                        </div>
-                    </div>
+                
+            </section>
+            <section id="security">
+                <div>
+                    <span class="settings-title">Bảo mật</span>
                 </div>
-
-                <div class = "detailedSecurity">
-                    <div id ="fiveone">
-                        <h2>Bảo mật</h2>
-                    </div>
-
-                    <div id = "fivetwo">
-                        <div>
-                            <h3>Thay đổi mật khẩu</h3>
-                        </div>
-
-                        <div class = "button"></div>
-                    </div>
-
-                    <div id = "fivethree">
-                        <div>
-                            <h3>Xác thực 2 lớp</h3>
-                        </div>
-
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="switch2">
-                            <label for="switch2" class="switch-label">Tắt</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
+            </section>
         </div>
-        
-    </body>
+    </div>
+    </main>
+</body>
 </html>
