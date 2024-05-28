@@ -182,11 +182,15 @@ h1 {
   }
   section {
     border-radius: 0px;
+    height: 100%;
   }
   .main div:nth-of-type(2) {
     flex-grow: 1;
   }
   .row-5px {
     justify-content: center;
+  }
+  .heading1 {
+    font-size: 26px;
   }
 }
