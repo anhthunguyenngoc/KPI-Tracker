@@ -123,3 +123,40 @@ button.tool img {
     box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
     border: 2px solid var(--color-mode-1-button);
 }
+
+@media only screen and (max-width: 768px) {
+    .main {
+        padding: 0 15px;
+        min-height: auto;
+    }
+    #title{
+        flex-direction: column;
+        gap: 15px;
+    }
+    #title.flex{
+        padding-left: 0;
+    }
+
+    .heading2 {
+        font-size: var(--mobile-heading1);
+    }
+
+    #tools-bar {
+        flex-wrap: wrap;
+        justify-content: right;
+        padding: 15px, 0;
+    }
+
+    #shared-schedules {
+        justify-content:center;
+        gap: 15px;
+    }
+
+    .user p {
+        font-size: var(--mobile-body-size);
+    }
+
+    .views {
+        font-size: var(--mobile-body-size);
+    }
+}
