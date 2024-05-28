@@ -267,3 +267,28 @@ function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'gra
 addKPI();
 
 clickAndDrag("kpi-detail-list", ".kpi-detail", ".lr");
+
+// Lấy các phần tử cần thiết
+const kpiDetailList = document.getElementById('kpi-detail-list');
+const lDir = document.getElementById('l-div');
+const rDir = document.getElementById('r-div');
+
+// Thêm sự kiện click cho l-dir và r-dir
+lDir.addEventListener('click', function() {
+  kpiDetailList.scrollLeft -= 100; // Điều chỉnh giá trị lùi đi khi click
+});
+
+rDir.addEventListener('click', function() {
+  kpiDetailList.scrollLeft += 100; // Điều chỉnh giá trị tiến đi khi click
+});
+
+// Ẩn l-dir nếu không thể lùi được nữa
+kpiDetailList.addEventListener('scroll', function() {
+  if (kpiDetailList.scrollLeft === 0) {
+    lDir.style.display = 'none';
+    rDir.style.display = 'block';
+  } else {
+    lDir.style.display = 'block';
+    rDir.style.display = 'none';
+  }
+});
