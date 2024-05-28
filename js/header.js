@@ -378,6 +378,30 @@ class Header extends HTMLElement {
               #alert-content div:hover {
                   background-color: var(--color-mode-1-footer);
               }
+              
+              @media screen and (max-width: 468px){
+                .kpi-tracker,
+                .mouse-layer {
+                    display: none;
+                }
+                .t {
+                    stroke: var(--color-mode-1-frame-background);
+                }
+                .k {
+                    stroke: var(--color-mode-1-button);
+                }
+                .k, .t {
+
+                }
+                .right {
+                    margin-right: 20px;
+                }
+                .header{
+                    padding: 5px 0px 5px 0px;
+                    background-color: var(--color-mode-1-footer);
+                }
+            
+              }
         </style>
 
       `;

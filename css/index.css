@@ -71,4 +71,23 @@ header {
           button span {
             font-weight: 500px;
           }
+    
+          @media screen and (max-width: 468px) {
+            .kpi-tracker {
+              font-size: 30px;
+              min-width: 120px;
+              margin-left: 10px;
+            }
+            header div:nth-of-type(3) {
+              width: 130px;
+              height: 45px;
+            }
+            .sign-in{
+              display: none;
+            }
+            .logo{
+              gap: 0;
+              padding: 18px 10px 18px 0px;
+            }
+          }
 
