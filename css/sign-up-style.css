@@ -3,6 +3,7 @@
   padding: 100px 80px 60px 80px;
   gap: 80px;
   background-color: var(--color-mode-1-element2);
+  height: 100%;
 }
 
 .main div:nth-of-type(1) {
@@ -108,6 +109,7 @@ section {
   gap: 30px;
   align-items: center;
   max-width: 600px;
+  height: fit-content;
 }
 
 .social-button {
@@ -167,4 +169,28 @@ button {
 
 h1 {
   width: 100%;
+}
+
+@media screen and (max-width: 468px) {
+  .left-col {
+    display: none;
+  }
+  .main {
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+    min-height: 100%;
+  }
+  section {
+    border-radius: 0px;
+    height: 100%;
+  }
+  .main div:nth-of-type(2) {
+    flex-grow: 1;
+  }
+  .row-5px {
+    justify-content: center;
+  }
+  .heading1 {
+    font-size: 26px;
+  }
 }

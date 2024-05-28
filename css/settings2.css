@@ -1,8 +1,7 @@
 .main {
-   
     background-color: var(--color-mode-1-frame-background);
     padding:0;
-    height: fit-content;
+    height: 100vh;
 }
 
 .flex {

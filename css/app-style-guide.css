@@ -25,6 +25,28 @@
     --color-mode-1-element2: #9CD6D3;
     --color-mode-1-button-hover: #439BA1;
     --color-mode-1-background: #fff;
+
+    --color-mode-2-button: #254E58;
+    --color-mode-2-footer: #458797;
+    --color-mode-2-frame-background: #def2f1;
+    --color-mode-2-element2: #9CD6D3;
+    --color-mode-2-button-hover: #439BA1;
+    --color-mode-2-background: #FFFFF7;
+
+    --color-mode-3-button: #1C3334;
+    --color-mode-3-footer: #1C3334;
+    --color-mode-3-frame-background: #def2f1;
+    --color-mode-3-element2: #9CD6D3;
+    --color-mode-3-button-hover: #439BA1;
+    --color-mode-3-background: #376E6F;
+
+    --color-mode-4-button: #254E58;
+    --color-mode-4-footer: #45A29E;
+    --color-mode-4-frame-background: #C5C6C7;
+    --color-mode-4-element2: #9CD6D3;
+    --color-mode-4-button-hover: #439BA1;
+    --color-mode-4-background: #080808;
+
     --color-black-text: #000;
     --color-white-text: #fff;
     --color-disabled: #a9a9a9;
@@ -63,8 +85,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: 6px; /* Thiết lập kích thước của thanh cuộn */
+    scrollbar-color: var(--color-mode-1-button) var(--color-mode-1-element2); 
   }
-
+  *:hover {
+    scrollbar-color: #154e53 var(--color-mode-1-element2); 
+  }
   body {
     display: flex;
     flex-direction: column;
@@ -73,7 +99,7 @@
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
-    padding: 5px 0 53px 0;
+    overflow-y: auto;
   }
   
   .main {
@@ -194,4 +220,21 @@
   .img-button {
     width: auto;
     height: auto;
+}
+
+@media screen and (max-width: 468px){
+  body {
+    font-size: 16px;
+    padding: 0px 0 0 0; ;
+  }
+  .link {
+    font-size: medium;
+  }
+
+  .footer {
+    display: none;
+  }
+  section {
+    box-shadow: 0px 0px 0px 0px;
+  }
 }

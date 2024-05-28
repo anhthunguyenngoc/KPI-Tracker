@@ -11,22 +11,57 @@ body {
     gap: 0;
 }
 
-#side-bar {
-    position: relative;
-    width: 30%;
+#right-part {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    overflow-y: auto;
 }
 
-#right-part {
-    width: 70%;
+#right-part-background {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     background-color: var(--color-mode-1-background);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding: 45px 45px 45px 45px;
+    gap: 45px;
+}
+
+section {
+    box-shadow: none;
+}
+  
+  #fixed-container {
+    flex: 1 1 auto; /* Co giãn, không co lại, chiều cao tự động */
+    overflow-y: auto; /* Cho phép phần fixed-container có thể kéo lên xuống khi nội dung vượt quá chiều cao */
+    padding: 10px; /* Khoảng cách nội dung với viền */
+  }
+
+#side-bar {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+    gap: 30px;
+    padding: 30px 30px 30px 30px;
 }
 
 #fixed-container {
-    position: fixed;
+    flex: 1 1 auto;
     width: 100%;
     height: 450px;
     top: 275px;
     overflow-y: auto;
+}
+
+#top-part {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 0 auto;
+    width: 100%;
 }
 
 #settings-content {
@@ -34,11 +69,12 @@ body {
     gap: 20px;
 }
 .sub-settings {
-margin-top: 15px;}
+    margin-top: 15px;
+}
 
 .settings-title {
     font-family: var(--body-font);
-    font-size: 22px;
+    font-size: var(--heading1);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -54,39 +90,8 @@ margin-top: 15px;}
     line-height: normal;
 }
 
-#fixed-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-    /* Track */
-#fixed-container::-webkit-scrollbar-track {
-    background: var(--color-mode-1-element2); 
-    border-radius: 2px;
-    width: 6px;
-}
-    
-    /* Handle */
-#fixed-container::-webkit-scrollbar-thumb {
-    width: 4px;
-    background: var(--color-mode-1-button); 
-    border-radius: 2px;
-}
-
-    /* Handle on hover */
-#fixed-container::-webkit-scrollbar-thumb:hover {
-    background: #154e53; 
-}
-
 .flex {
     display: flex;
-}
-
-#top-part {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    position: fixed;
-    width: 100%;
 }
 
 #title {
@@ -123,3 +128,319 @@ margin-top: 15px;}
     height: 40px;
 }
 
+#personalize,
+#user-info  {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tt-update-div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.update-button {
+    padding: 7px 25px;
+}
+
+#tt-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 40px;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+#list-color{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.text-and-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.font-content {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    height: fit-content;
+    width: 100%;
+}
+
+.font-content-left {
+    height: fit-content;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.font-content-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: fit-content;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    padding: 20PX;
+    border-radius: 7px;
+    background-color: white;
+}
+
+.font-size-control {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    gap: 10px;
+}
+
+.select-menu{
+    width: 100%;
+    position: relative;
+}
+.select-menu .select-btn{
+    display: flex;
+    height: 55px;
+    background: #fff;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 7px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.select-btn i{
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.select-btn i svg path {
+    fill: var(--color-mode-1-button);
+}
+
+.select-menu.active .select-btn i{
+    transform: rotate(-180deg);
+}
+
+.select-menu .options{
+    width: 100%;
+    position: absolute; /* Đặt vị trí tuyệt đối cho options */
+    top: 100%; /* Đặt vị trí top để options hiển thị dưới select-btn */
+    left: 0; /* Đặt vị trí trái để options bắt đầu từ vị trí của select-btn */
+    z-index: 1; /* Đảm bảo options hiển thị trên các phần tử khác */
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 7px;
+    background: #fff;
+    display: none;
+}
+.select-menu.active .options{
+    display: block;
+}
+.options .option{
+    display: flex;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 7px;
+    align-items: center;
+    background: #fff;
+}
+.options .option:hover{
+    color: var(--color-white-text);
+    background: var(--color-mode-1-button-hover);
+}
+
+.option .option-text{
+    font-size: 18px;
+}
+
+.slider {
+    width: 100%;
+}
+
+#theme-color-1 {
+    height: 70px;
+    width: 120px;
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
+    flex-direction: column;
+    align-items: flex-end; /* Căn phần tử con về phía dưới */
+    justify-content: flex-end; /* Căn phần tử con về phía trái */
+    background-color: var(--color-mode-1-background);
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#theme-color-1 .colors {
+    display: flex; 
+    flex-direction: row;
+    gap: 3px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#theme-color-1 .color1{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-1-button);
+    border-radius: 2px;
+}
+
+#theme-color-1 .color2{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-1-footer);
+    border-radius: 2px;
+}
+
+#theme-color-1 .color3{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-1-frame-background);
+    border-radius: 2px;
+}
+
+#theme-color-2 {
+    height: 70px;
+    width: 120px;
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
+    flex-direction: column;
+    align-items: flex-end; /* Căn phần tử con về phía dưới */
+    justify-content: flex-end; /* Căn phần tử con về phía trái */
+    background-color: var(--color-mode-2-background);
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#theme-color-2 .colors {
+    display: flex; 
+    flex-direction: row;
+    gap: 3px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#theme-color-2 .color1{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-2-button);
+    border-radius: 2px;
+}
+
+#theme-color-2 .color2{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-2-footer);
+    border-radius: 2px;
+}
+
+#theme-color-2 .color3{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-2-frame-background);
+    border-radius: 2px;
+}
+
+#theme-color-3 {
+    height: 70px;
+    width: 120px;
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
+    flex-direction: column;
+    align-items: flex-end; /* Căn phần tử con về phía dưới */
+    justify-content: flex-end; /* Căn phần tử con về phía trái */
+    background-color: var(--color-mode-3-background);
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#theme-color-3 .colors {
+    display: flex; 
+    flex-direction: row;
+    gap: 3px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#theme-color-3 .color1{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-3-button);
+    border-radius: 2px;
+}
+
+#theme-color-3 .color2{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-3-footer);
+    border-radius: 2px;
+}
+
+#theme-color-3 .color3{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-3-frame-background);
+    border-radius: 2px;
+}
+
+#theme-color-4 {
+    height: 70px;
+    width: 120px;
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử con */
+    flex-direction: column;
+    align-items: flex-end; /* Căn phần tử con về phía dưới */
+    justify-content: flex-end; /* Căn phần tử con về phía trái */
+    background-color: var(--color-mode-4-background);
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#theme-color-4 .colors {
+    display: flex; 
+    flex-direction: row;
+    gap: 3px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#theme-color-4 .color1{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-4-button);
+    border-radius: 2px;
+}
+
+#theme-color-4 .color2{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-4-footer);
+    border-radius: 2px;
+}
+
+#theme-color-4 .color3{
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-mode-4-frame-background);
+    border-radius: 2px;
+}
