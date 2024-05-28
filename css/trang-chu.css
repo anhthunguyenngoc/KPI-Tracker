@@ -383,3 +383,7 @@ section{
     gap: 20px;
     position: relative;
 }
+
+.footer {
+    height: 90px;
+}
