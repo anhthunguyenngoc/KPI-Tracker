@@ -403,7 +403,7 @@ section{
     }
 
     .focus {
-        font-size: var(--mobile-heading1);
+        font-size: 35px;
     }
 
     .heading2{
