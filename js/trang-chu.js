@@ -16,7 +16,7 @@ const chartData = {
 };
 
 const taskData = {
-    name: ["Phát triển hệ thống QLDT - B1.506", "Giao diện và trải nghiệm người dùng", "Nghiên cứu ứng dụng công nghệ Blockchain trong định danh điện tử"],
+    name: ["Phát triển hệ thống QLDT - B1.506", "Giao diện và trải nghiệm người dùng", "Nghiên cứu công nghệ Blockchain"],
     time: ["9:00 - 11:45", "16:00 - 17:30", "18:00 - 19:00"],
     note: ["Ghi chú", "Ghi chú", "Ghi chú"],
     state: [true, false, false],
@@ -31,6 +31,18 @@ const pieChart = document.getElementById("pie-chart");
 Chart.defaults.padding = 0;
 Chart.defaults.margin = 0;
 
+// Function returns size for responsive 
+
+function getResponsiveFontSize() {
+    const width = window.innerWidth;
+    if (width < 780) {
+        return {
+            size: 11,
+            family: 'Roboto Flex',                     
+        };
+    } else return font;
+}
+
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
     data: chartData,
@@ -39,18 +51,14 @@ new Chart(document.getElementById("pie-chart"), {
         plugins: {
             datalabels: {
                 color: '#fff',
-                font: {
-                    size: 18,
-                    family: 'Roboto Flex',
-                    
-                },
+                font: getResponsiveFontSize(),
             },
             legend: {
                 position: 'right',
                 fullSize: true,
                 labels: {
                     color: '#000',
-                    font: font,
+                    font: getResponsiveFontSize(),
                     padding: 10,
                     usePointStyle: true,
                     pointStyle: 'rectRounded',
