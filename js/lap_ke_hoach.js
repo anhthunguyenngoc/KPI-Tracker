@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendarInit = {
         initialView: 'timeGridWeek',
         eventStartEditable: false,
-
+        height: 'auto',
         locale: 'vi',
         allDaySlot: false,
         slotLabelFormat: {
