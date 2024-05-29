@@ -566,3 +566,25 @@ input[type=number] {
     background-color: var(--color-mode-4-frame-background);
     border-radius: 2px;
 }
+#back-button2 {
+    display: none;
+}
+@media screen and (max-width: 468px){
+    #side-bar {
+        display: none;
+    }
+    #right-part {
+        width: auto;
+    }
+    #tt-body, #list-color, .tt-update-div {
+        overflow-y: auto;
+    }
+    #back-button2 {
+        display: block;
+    }
+    #right-part-background{
+        gap: 15px;
+        padding: 15px;
+        border-radius: 0;
+    }
+}

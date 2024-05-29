@@ -45,6 +45,8 @@ section {
     flex-direction: row;
     align-items: center;
     height: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .date-kpi{            
     background-color: var(--color-white-text);
