@@ -428,7 +428,7 @@ section{
     }
 
     .focus {
-        font-size: var(--mobile-heading1);
+        font-size: 35px;
     }
 
     .heading2{
@@ -570,10 +570,12 @@ section{
 
     #pie-chart{ 
         font-size: var(--mobile-label-size);
-    }
+    }}
 
     /*Ket thuc*/
+
 .footer {
     height: 90px;
 }
 }
+=======

@@ -84,7 +84,7 @@ section {
 }
 
 .hour{
-    background-color: beige; 
+    background-color: #FEFADE; 
     border-radius: 0px 5px 5px 0px;
     justify-content: center;
     width: 36.5%;
@@ -294,3 +294,63 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 }
 
 element.style {}
+
+@media screen and (max-width: 468px){
+    .main{
+        display: block;
+        padding: 0px 15px;
+    }
+    .content{
+        width: 100%;
+        gap: 15px;
+        height: auto;
+    }
+    .top-content__navbar{
+        display: block;
+    }
+    .top-content__navbar-list{
+        display: flex;
+        justify-content: space-between;
+    }
+    #title-kpi{
+        display: block;
+    }
+    .KPI_container{
+        margin-bottom: 5px;
+    }
+    section {
+        gap: 15px;
+        height: fit-content;
+    }
+    .fc .fc-toolbar{
+        display: block;
+    }
+    .fc-toolbar-chunk{
+        margin-bottom: 15px;
+    }
+    .sidebar{
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        height: fit-content;
+    }
+    .sidebar section {
+        height: 500px;
+    }
+    .fc-toolbar-chunk:nth-of-type(2),
+    .fc-toolbar-chunk:nth-of-type(3) {
+        display: table-cell;
+    }
+
+    .fc-toolbar.fc-header-toolbar h2 {
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .scheduleContainer{
+        height: fit-content;
+    }
+    tbody tr{
+        height: calc((400px / 8));
+    }
+}

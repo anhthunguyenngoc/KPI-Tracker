@@ -158,10 +158,14 @@ section {
 
 @media screen and (max-width: 468px){
   .main {
-    padding: 10px 10px 10px 10px;
+    padding: 0px 15px;
     width: 100%;
     min-height: 100%;
-    gap: 10px;
+    gap: 15px;
+  }
+  .nd1-name{
+    font-size: 18px;
+    padding-top: 10px;
   }
   .nd-1 {
     max-width: 10px;
@@ -171,12 +175,13 @@ section {
     gap: 10px;
   }
   .focus{
-    font-size: 40px;
+    font-size: 35px;
   }
   .kpi-list-container #left,
   .kpi-list-container #right {
     width: 30px;
     height: 50px;
+    vertical-align: middle;
   }
   .heading1 {
     font-size: 20px;
@@ -189,6 +194,10 @@ section {
   }
   .kpi-detail{
     padding: 10px 10px 10px 30px;
+  }
+  #l-div, #r-div{
+    height: 153px;
+    
   }
 
 }

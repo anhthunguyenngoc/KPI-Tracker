@@ -128,7 +128,7 @@ class Header extends HTMLElement {
           #user-popup-container {
             z-index: 10;
             position: absolute;
-            top: 85px;
+            top: 90px;
             right: 20px ;
           }
           #user-popup a p {
@@ -333,6 +333,7 @@ class Header extends HTMLElement {
               justify-content: center;
               align-items: center;
               gap: 15px;
+              padding: 20px;
               }
               
               .right-icon {

@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendarInit = {
         initialView: 'timeGridWeek',
         eventStartEditable: false,
-        height: 'auto',
+
         locale: 'vi',
         allDaySlot: false,
         slotLabelFormat: {
@@ -184,8 +184,6 @@ document.addEventListener('DOMContentLoaded', function() {
             select: {
                 text: 'Chọn',
                 click: function() {
-                    
-                    
                     if (calendarInit.eventStartEditable === true) {
                         calendar.destroy();
                         calendarInit.eventStartEditable = false;
@@ -212,17 +210,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         <img src="../images/x.svg" />
                           `;
                           document.querySelector('.fc-share-button').innerHTML = `
-  <img src="../images/share-schedule.svg" />
-    `;
-    document.querySelector('.fc-insert-button').innerHTML = `
-  <img src="../images/edit.svg" />
-    `;
+                        <img src="../images/share-schedule.svg" />
+                            `;
+                            document.querySelector('.fc-insert-button').innerHTML = `
+                        <img src="../images/edit.svg" />
+                            `;
                     }
                 }
             },
             share: {
                 click: function() {
-                alert('clicked the custom button!');
+                    window.location.href = "../html/shared-schedules.html";
                 },
             },
             insert: {

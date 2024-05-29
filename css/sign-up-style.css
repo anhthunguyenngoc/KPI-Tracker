@@ -3,7 +3,6 @@
   padding: 100px 80px 60px 80px;
   gap: 80px;
   background-color: var(--color-mode-1-element2);
-  height: 100%;
 }
 
 .main div:nth-of-type(1) {
