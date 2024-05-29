@@ -487,8 +487,15 @@ section{
         font-size: var(--mobile-label-size);
     }
 
+    div.color-task {
+        width: 38.8px;
+        height: 38.8px;
+        justify-content: center;
+    }
+
     .one-task{
         font-size: var(--mobile-body-size);
+        padding-left: 0;
     }
 
     .section2 {
@@ -535,10 +542,6 @@ section{
         
     }
 
-    .kpi-circle {
-        width: 100px;
-    }
-
     #statistic-frame {
         width: 100%;
         height: 100%;
@@ -573,9 +576,3 @@ section{
     }}
 
     /*Ket thuc*/
-
-.footer {
-    height: 90px;
-}
-}
-=======
