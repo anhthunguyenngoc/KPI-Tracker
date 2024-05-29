@@ -66,6 +66,7 @@ section {
   transform: translateY(-50%);
   background-color: var(--color-mode-1-element2);
   padding: 60px 10px 60px 10px;
+  cursor: pointer;
 }
 
 #l-div {

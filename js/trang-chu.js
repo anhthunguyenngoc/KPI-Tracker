@@ -28,6 +28,8 @@ const font = {
 };
 
 const pieChart = document.getElementById("pie-chart");
+Chart.defaults.padding = 0;
+Chart.defaults.margin = 0;
 
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
@@ -78,7 +80,7 @@ new Chart(document.getElementById("pie-chart"), {
         legend.chart.update();
     }
 
-    function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'grabbed_elem', scrollW) {
+    function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'grabbed_elem') {
         const slider = document.getElementById(selector);
         arrowIcons = document.querySelectorAll(icon);
         allTabs = slider.querySelectorAll(tab);
@@ -115,19 +117,6 @@ new Chart(document.getElementById("pie-chart"), {
             const walk = (x - startX) * scroll_speed; //scroll-fast
             slider.scrollLeft = scrollLeft - walk;
         });
-
-        const handleIcons = (scrollVal) => {
-            let maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
-            arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
-            arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
-        }
-
-        arrowIcons.forEach(icon => {
-            icon.addEventListener("click", () => {
-                let scrollWidth = slider.scrollLeft += icon.id === "left" ? -455 : 455;
-                handleIcons(scrollWidth);
-            });
-    });
 
     allTabs.forEach(tab => {
         tab.addEventListener("click", () => {
@@ -260,3 +249,30 @@ new Chart(document.getElementById("pie-chart"), {
   clickAndDrag("week-list", ".day-button", ".container svg");
 
   clickAndDrag("kpi-list", ".kpi", ".lr");
+
+    // Lấy các phần tử cần thiết
+    const kpiDetailList = document.getElementById('kpi-list');
+    const lDir = document.getElementById('kpi-list-left');
+    const rDir = document.getElementById('kpi-list-right');
+
+    // Thêm sự kiện click cho l-dir và r-dir
+    lDir.addEventListener('click', function() {
+    kpiDetailList.scrollLeft -= 320; // Điều chỉnh giá trị lùi đi khi click
+    });
+
+    rDir.addEventListener('click', function() {
+    kpiDetailList.scrollLeft += 320; // Điều chỉnh giá trị tiến đi khi click
+    });
+
+    // Lấy các phần tử cần thiết
+    const weekList = document.getElementById('week-list');
+    const left = document.getElementById('left');
+    const right = document.getElementById('right');
+    
+    left.addEventListener('click', function() {
+        weekList.scrollLeft -= 455; // Điều chỉnh giá trị lùi đi khi click
+    });
+    
+    right.addEventListener('click', function() {
+        weekList.scrollLeft += 455; // Điều chỉnh giá trị tiến đi khi click
+    });
