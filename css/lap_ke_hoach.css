@@ -302,6 +302,8 @@ element.style {}
     }
     .content{
         width: 100%;
+        gap: 15px;
+        height: auto;
     }
     .top-content__navbar{
         display: block;
@@ -318,17 +320,37 @@ element.style {}
     }
     section {
         gap: 15px;
+        height: fit-content;
     }
     .fc .fc-toolbar{
         display: block;
     }
     .fc-toolbar-chunk{
-        margin: 10px;
+        margin-bottom: 15px;
     }
     .sidebar{
         width: 100%;
         margin-top: 15px;
         margin-bottom: 15px;
-        max-height: 500px;
+        height: fit-content;
+    }
+    .sidebar section {
+        height: 500px;
+    }
+    .fc-toolbar-chunk:nth-of-type(2),
+    .fc-toolbar-chunk:nth-of-type(3) {
+        display: table-cell;
+    }
+
+    .fc-toolbar.fc-header-toolbar h2 {
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+    }
+    .scheduleContainer{
+        height: fit-content;
+    }
+    tbody tr{
+        height: calc((400px / 8));
     }
 }
