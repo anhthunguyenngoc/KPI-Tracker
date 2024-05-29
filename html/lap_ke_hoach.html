@@ -21,13 +21,73 @@
     <div id="header">
       <header-component> </header-component>
     </div>
+    <div class="fixed flex hidden" id="addKPI">
+      <div id="closeButton">
+        <button>
+          <img src="../images/x.svg" alt="">
+        </button>
+      </div>
+      <div id="title"><h2>Thêm chỉ tiêu</h2></div>
+      <div id="uploadMethod">
+        <p>Tải lên từ</p>
+        <div id="methods">
+        </div>
+      </div>
+      <div id="recommendKPI" class="flex">
+        <p>Các chỉ tiêu gợi ý:</p>
+         <button class="recommendButon">Giảng dạy</button>
+         <button class="recommendButon">Nghiên cứu</button>
+         <button class="recommendButon">Cá nhân</button>
+      </div>
+      <div id="input">
+        <div id="realContent">
+          <div class="inputTitle flex">
+            <div>STT</div>
+            <div>Thêm chỉ tiêu*</div>
+            <div>Chọn màu đại diện*</div>
+            <div>Số giờ mục tiêu</div>
+            <div>Trạng thái</div>
+            <div></div>
+          </div>
+            <div id="inputContainer">
+                <div class="inputTitle flex KPIinput">
+                  <div>1</div>
+                  <div>
+                    <input type="text" id="KPIName" placeholder="Thêm chỉ tiêu">
+                  </div>
+                  <div>
+                    <select name="" id="KPIcolor">
+            
+                    </select>
+                  </div>
+                  <div>
+                    <input type="text" placeholder="Số giờ">
+                  </div>
+                  <div>Tạm lưu</div>
+                  <div>
+                    <button class="removeKPI">
+                      <img src="../images/bin.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div id="addKPIButton">
+          <button>+ Thêm chỉ tiêu mới</button>
+        </div>
+
+      </div>
+      <div id="KPIaddButton">
+        <button>Thêm</button>
+      </div>
+    </div>
     <div class="main">
       <div class="content">
         <section class="set-kpi">
           <nav class="top-content__navbar">
             <ul class="top-content__navbar-list">
               <h1 class="heading1">Thiết lập mục tiêu KPI</h1>
-              <button class="img-button">
+              <button class="img-button" id="openAddKPIContainer">
                 <img src="../images/plus.svg">
               </button>
             </ul>
@@ -97,7 +157,7 @@
               </div>
               <div class="sort_filter">
                 <ul class="top-content__navbar-list">
-                  <button class="img-button">
+                  <button class="img-button" id="selectTasksButton">
                     <span> Chọn </span>
                   </button>
                   <button class="img-button">

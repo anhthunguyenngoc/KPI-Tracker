@@ -42,10 +42,208 @@
     ]
 }
 
+
+
+// Add KPI
+const addKPIContainer = document.querySelector("#addKPI");
+const closeAddKPIContainer = document.querySelector("#closeButton");
+const openAddKPIContainer = document.querySelector("#openAddKPIContainer");
+
+const addKPIButton = document.getElementById('addKPIButton');
+
+
+let initAddKPIContainer = () =>{
+        realContent.innerHTML = `
+        <div class="inputTitle flex KPIinput">
+        <div>1</div>
+        <div>
+          <input type="text" id="KPIName" placeholder="Thêm chỉ tiêu">
+        </div>
+        <div>
+          <select name="" id="KPIcolor">
+  
+          </select>
+        </div>
+        <div>
+          <input type="text" placeholder="Số giờ">
+        </div>
+        <div>Tạm lưu</div>
+        <div>
+          <button class="removeKPI">
+            <img src="../images/bin.svg" alt="">
+          </button>
+        </div>
+      </div>
+        `;
+        realContent.appendChild(kpiInput);
+
+}
+      const realContent = document.getElementById('inputContainer');
+      let kpiIndex = 1;
+
+      addKPIButton.addEventListener('click', function() {
+        kpiIndex++;
+        const kpiInput = document.createElement('div');
+        kpiInput.className = 'inputTitle flex KPIinput';
+        kpiInput.innerHTML = `
+          <div>${kpiIndex}</div>
+          <div>
+            <input type="text" placeholder="Thêm chỉ tiêu">
+          </div>
+          <div>
+            <select name="" id="KPIcolor${kpiIndex}">
+              <option value="#9CB2D7">Hồng sáng</option>
+              <option value="#9CB2D7">Xanh nhạt</option>
+            </select>
+          </div>
+          <div>
+            <input type="text" placeholder="Số giờ">
+          </div>
+          <div>Tạm lưu</div>
+          <div>
+            <button class="removeKPI">
+              <img src="../images/bin.svg" alt="">
+            </button>
+          </div>
+        `;
+        realContent.appendChild(kpiInput);
+
+        const removeButtons = document.querySelectorAll('.removeKPI');
+        removeButtons.forEach(button => {
+            
+                button.addEventListener('click', function() {
+                    if (kpiIndex == 1) { 
+
+                    } else {
+                    button.parentElement.parentElement.remove();
+                    updateKPIIndexes();}
+          });
+        });
+      });
+
+      function updateKPIIndexes() {
+    
+                const kpiInputs = document.querySelectorAll('.KPIinput');
+                kpiInputs.forEach((input, index) => {
+            
+                input.firstElementChild.textContent = index + 1;
+                });
+                kpiIndex = kpiInputs.length;
+        
+        }
+
+const addKPIContainerInit = () => {
+
+}
+
+openAddKPIContainer.addEventListener('click', () => {
+    addKPIContainer.classList.remove("hidden");
+    initAddKPIContainer();
+})
+closeAddKPIContainer.addEventListener("click", () => {
+    addKPIContainer.classList.add("hidden");
+    realContent.innerHTML=``;
+    kpiIndex=1;
+})
+
+
+
 let KPICounter = 0;
 let taskCounter = -1;
 
+  // Tương tác chọn nhiệm vụ idk 
 
+  let selectedTasksId = [];
+  const listTasks = document.querySelector("#list");
+
+  function removeStringFromArray(array, stringToRemove) {
+      let index = array.indexOf(stringToRemove);
+      while (index !== -1) {
+        array.splice(index, 1);  // Remove the element at the found index
+        index = array.indexOf(stringToRemove);  // Find the next occurrence
+      }
+    }
+  
+  
+  const submitButton = document.querySelector("#add-task-button"); 
+  const selectTasksButton = document.getElementById("selectTasksButton");
+  
+
+  const toggleSelectTasksButton = () => {
+    if (!selectTasksButton.classList.contains("on")){
+        selectTasksButton.classList.add("on");
+        listTasks.style.border = "3px solid #2a7378";
+        selectTasksButton.innerHTML =`
+            <img src="../images/x.svg" />
+        `;
+        submitButton.innerHTML=`
+            <img src="../images/left.svg" />
+        `;
+    } else {
+    selectTasksButton.classList.remove("on");
+    listTasks.style.border = "";
+    let elements = document.querySelectorAll('.list-task');
+      elements.forEach(function(element) {
+      element.style.border = "";
+      selectedTasksId.length = 0;
+    });
+    selectTasksButton.innerHTML=`
+      <span>Chọn</span>
+      `;
+      submitButton.innerHTML=`
+            <img src="../images/plus.svg" />
+        `;
+    }
+}
+  
+  selectTasksButton.addEventListener('click', toggleSelectTasksButton);
+  
+  
+  function chooseTask (e) {
+      if (selectTasksButton.classList.contains("on")) {
+        
+            let selectedId = e.currentTarget.id;
+            if (selectedTasksId.includes(selectedId)) {
+
+                selectedTasksId = selectedTasksId.filter(item => item !== selectedId);
+                e.currentTarget.style.border = ""; // Remove border styling
+            } else {
+                selectedTasksId.push(selectedId);
+                e.currentTarget.style.border = "3px solid #2a7378"; // Apply border styling
+            }
+        }
+
+  }
+  
+
+  let container = document.getElementById("list"); 
+  document.getElementById("add-task-button").addEventListener("click", function() {
+    if (selectTasksButton.classList.contains("on")) {
+        for (let i = 0; i < selectedTasksId.length; i++) {
+            console.log(selectedTasksId[i]);
+          }
+          toggleSelectTasksButton();
+          
+    } else {
+    let node;
+    if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
+        KPICounter ++;
+        if (storage.KPIs[KPICounter] === undefined) return;
+        taskCounter = 0;
+        node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
+        
+    } else {
+        taskCounter ++;
+        node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
+    }
+    container.appendChild(node);
+    node.addEventListener("click", chooseTask);
+}
+  });
+  
+/////////////////////
+  
+  
   
   function oneTask(event) {
     const template = document.createElement("template");
@@ -62,20 +260,7 @@ let taskCounter = -1;
     return template.content.firstElementChild;
   }
 
-  let container = document.getElementById("list"); 
-  document.getElementById("add-task-button").addEventListener("click", function() {
-    let node;
-    if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
-        KPICounter ++;
-        if (storage.KPIs[KPICounter] === undefined) return;
-        taskCounter = 0;
-        node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
-    } else {
-        taskCounter ++;
-        node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
-    }
-    container.appendChild(node);
-  });
+  
 
 
 
@@ -164,10 +349,11 @@ clickAndDragY('.list');
 // calendar
 
 document.addEventListener('DOMContentLoaded', function() {
+    let editable = false;
     var calendarEl = document.getElementById('calendar');
     let calendarInit = {
         initialView: 'timeGridWeek',
-        eventStartEditable: false,
+        eventStartEditable: editable,
         height: 'auto',
         locale: 'vi',
         allDaySlot: false,
@@ -184,37 +370,16 @@ document.addEventListener('DOMContentLoaded', function() {
             select: {
                 text: 'Chọn',
                 click: function() {
-                    if (calendarInit.eventStartEditable === true) {
-                        calendar.destroy();
-                        calendarInit.eventStartEditable = false;
-                        calendarInit.customButtons.select.text = "Chọn";
-                        calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
-                        calendar.render();
-                        const selectButton = document.querySelector(".fc-select-button");
-                        selectButton.style["backgroundColor"] = "#2a7378";
-                        document.querySelector('.fc-share-button').innerHTML = `
-                            <img src="../images/share-schedule.svg" />
-                                `;
-                        document.querySelector('.fc-insert-button').innerHTML = `
-                            <img src="../images/edit.svg" />
-                                `;
+                    editable = !editable;
+                    calendar.setOption('eventStartEditable',editable);
+                    if (editable) {
+                    document.querySelector('.fc-select-button').innerHTML = `
+                    <img src="../images/x.svg" />
+                        `;
                     } else {
-                        calendar.destroy();
-                        calendarInit.eventStartEditable = true;
-                        calendarInit.customButtons.select.text = "";
-                        calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
-                        calendar.render();
-                        const selectButton = document.querySelector(".fc-select-button");
-                        selectButton.style["backgroundColor"] = "#3aafa9";
-                        selectButton.innerHTML = `
-                        <img src="../images/x.svg" />
-                          `;
-                          document.querySelector('.fc-share-button').innerHTML = `
-                        <img src="../images/share-schedule.svg" />
-                            `;
-                            document.querySelector('.fc-insert-button').innerHTML = `
-                        <img src="../images/edit.svg" />
-                            `;
+                        document.querySelector('.fc-select-button').innerHTML = `
+                        Chọn
+                        `;
                     }
                 }
             },
@@ -225,17 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             insert: {
                 click: function() {
-                calendar.destroy();
-                calendarInit.events = storage.KPIs[0].tasks;
-                calendarInit.events.push(storage.KPIs[1].tasks[0]);
-                calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
-                calendar.render();
-                document.querySelector('.fc-share-button').innerHTML = `
-  <img src="../images/share-schedule.svg" />
-    `;
-    document.querySelector('.fc-insert-button').innerHTML = `
-  <img src="../images/edit.svg" />
-    `;
+               
                 }
             },
         },
@@ -284,3 +439,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
  
+
+
