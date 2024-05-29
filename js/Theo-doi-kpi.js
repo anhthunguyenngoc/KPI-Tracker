@@ -186,7 +186,7 @@ function addKPI(){
     document.getElementById("kpi-detail-list").innerHTML += `<style>`+ addKPIcss()+`<\style>`;
 }
 
-function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'grabbed_elem', scrollW) {
+function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'grabbed_elem') {
     const slider = document.getElementById(selector);
     arrowIcons = document.querySelectorAll(icon);
     allTabs = slider.querySelectorAll(tab);
@@ -224,19 +224,21 @@ function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'gra
         slider.scrollLeft = scrollLeft - walk;
     });
 
+    /*
     const handleIcons = (scrollVal) => {
         let maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
         arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
         arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
     }
 
+    
     arrowIcons.forEach(icon => {
         icon.addEventListener("click", () => {
             let scrollWidth = slider.scrollLeft += icon.id === "left" ? -455 : 455;
             handleIcons(scrollWidth);
         });
     });
-
+    */
     allTabs.forEach(tab => {
         tab.addEventListener("click", () => {
             slider.querySelector(".active").classList.remove("active");
@@ -244,7 +246,7 @@ function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'gra
         });
     });
 
-    }
+}
 
     document.getElementById("month").addEventListener("click", () => {
         chartData.labels = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
@@ -286,9 +288,9 @@ rDir.addEventListener('click', function() {
 kpiDetailList.addEventListener('scroll', function() {
   if (kpiDetailList.scrollLeft === 0) {
     lDir.style.display = 'none';
-    rDir.style.display = 'block';
+    rDir.style.display = 'flex';
   } else {
-    lDir.style.display = 'block';
+    lDir.style.display = 'flex';
     rDir.style.display = 'none';
   }
 });
