@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             share: {
                 click: function() {
-                alert('clicked the custom button!');
+                    window.location.href = "../html/shared-schedules.html";
                 },
             },
             insert: {
