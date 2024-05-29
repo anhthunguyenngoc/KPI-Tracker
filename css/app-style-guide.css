@@ -246,8 +246,14 @@
     width: auto;
     height: auto;
 }
+  .footer-mobile {
+    display: none;
+  }
 
 @media screen and (max-width: 468px){
+  .main {
+    margin-bottom: 60px;
+  }
   body {
     font-size: 16px;
     padding: 0px 0 0 0; ;
@@ -258,6 +264,10 @@
 
   .footer {
     display: none;
+  }
+  .footer-mobile {
+    display: block;
+    height: 50px;
   }
   section {
     box-shadow: 0px 0px 0px 0px;
