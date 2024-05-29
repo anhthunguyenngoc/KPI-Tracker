@@ -576,8 +576,97 @@ input[type=number] {
     #right-part {
         width: auto;
     }
-    #tt-body, #list-color, .tt-update-div {
-        overflow-y: auto;
+
+    div#user-image svg {
+        width: 100px;
+        height: auto;
+    }
+
+    div#theme-color-1, div#theme-color-2, div#theme-color-3, div#theme-color-4 {
+        width: 70px;
+    }
+
+    #theme-color-1 .color1{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-1 .color2{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-1 .color3{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-2 .color1{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-2 .color2{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-2 .color3{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-3 .color1{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-3 .color2{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-3 .color3{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-4 .color1{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-4 .color2{
+        width: 15px;
+        height: 15px;
+    }
+
+    #theme-color-4 .color3{
+        width: 15px;
+        height: 15px;
+    }
+
+    div.font-content{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    div.font-content-left, div.font-content-right{
+        width: 100%;
+    }
+
+    div.tt-update-div{
+        gap: 30px;
+    }
+
+    input#minute, input#giay{
+        width: 40px;
+        height: 40px;
+    }
+
+    span.sBtn-text{
+        font-size: var(--mobile-title-size);
     }
     #back-button2 {
         display: block;
