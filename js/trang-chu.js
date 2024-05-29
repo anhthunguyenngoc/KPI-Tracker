@@ -16,7 +16,7 @@ const chartData = {
 };
 
 const taskData = {
-    name: ["Phát triển hệ thống QLDT - B1.506", "Giao diện và trải nghiệm người dùng", "Nghiên cứu ứng dụng công nghệ Blockchain trong định danh điện tử"],
+    name: ["Phát triển hệ thống QLDT - B1.506", "Giao diện và trải nghiệm người dùng", "Nghiên cứu công nghệ Blockchain"],
     time: ["9:00 - 11:45", "16:00 - 17:30", "18:00 - 19:00"],
     note: ["Ghi chú", "Ghi chú", "Ghi chú"],
     state: [true, false, false],
