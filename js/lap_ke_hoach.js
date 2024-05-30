@@ -3,19 +3,20 @@
   let storage = {
     KPIs: [
         {   
-            id: '#KPI01',
+            id: '#KPI1',
             name: "Nghiên cứu",
             color : "#9CB2D7",
+            hour: "70",
             tasks : [
                 {
-                    id: '#KPI01task01',
+                    id: '#KPI1task01',
                     title: 'Phát triển hệ thống',
                     start: '2024-05-23T09:00:00',
                     end: '2024-05-23T11:07:00',
                     backgroundColor: '#9CB2D7'
                 },
                 {
-                    id: '#KPI01task02',
+                    id: '#KPI1task02',
                     title: 'Nghiên cứu ứng dụng',
                     start: '2024-05-24T09:00:00',
                     end: '2024-05-24T11:30:00',
@@ -25,12 +26,13 @@
             ]
         },
         {
-            id: '#KPI02',
+            id: '#KPI2',
             name: "Giảng dạy",
             color : "#F2DEDE",
+            hour: "80",
             tasks : [
                 {
-                    id: '#KPI02task01',
+                    id: '#KPI2task01',
                     title: 'Giao diện và trải nghiệm',
                     start: '2024-05-24T14:10:00',
                     end: '2024-05-24T17:30:00',
@@ -38,9 +40,17 @@
                 },
 
             ]
+        },
+        {
+            id: '#KPI3',
+            name: "Phục vụ",
+            color : "#FFDBA6",
+            hour: "60",
         }
     ]
 }
+
+
 
 
 
@@ -50,6 +60,33 @@ const closeAddKPIContainer = document.querySelector("#closeButton");
 const openAddKPIContainer = document.querySelector("#openAddKPIContainer");
 
 const addKPIButton = document.getElementById('addKPIButton');
+const submitButton = document.querySelector("#KPIaddButton");
+const errorLabel = document.querySelector("#errorMissingField");
+
+const KPIContainer = document.querySelector("#title-kpi");
+/*
+//
+
+<li id="kpi-example" class="KPI_container">
+              <div class="KPI">Giảng dạy</div>
+              <div class="hour">80 giờ</div>
+            </li>
+*/
+function placeKPI() {
+  KPIContainer.innerHTML="";
+  for (let i = 0; i< storage.KPIs.length; i++) {
+    let KPI = document.createElement('li');
+    KPI.className = 'KPI_container';
+    KPI.innerHTML=`
+      <div class="KPI" style="background-color:${storage.KPIs[i].color}">${storage.KPIs[i].name}</div>
+      <div class="hour">${storage.KPIs[i].hour}</div>
+    `;
+
+    KPIContainer.appendChild(KPI);
+  }
+}
+
+placeKPI();
 
 
 let initAddKPIContainer = () =>{
@@ -57,15 +94,20 @@ let initAddKPIContainer = () =>{
         <div class="inputTitle flex KPIinput">
         <div>1</div>
         <div>
-          <input type="text" id="KPIName" placeholder="Thêm chỉ tiêu">
+          <input type="text" class="KPIName" placeholder="Thêm chỉ tiêu">
         </div>
         <div>
-          <select name="" id="KPIcolor">
-  
+          <select name="" class="KPIcolor">
+            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
           </select>
         </div>
         <div>
-          <input type="text" placeholder="Số giờ">
+          <input type="text" placeholder="Số giờ" class="KPIHours">
         </div>
         <div>Tạm lưu</div>
         <div>
@@ -75,7 +117,7 @@ let initAddKPIContainer = () =>{
         </div>
       </div>
         `;
-        realContent.appendChild(kpiInput);
+        realContent.parentElement.appendChild(realContent);
 
 }
       const realContent = document.getElementById('inputContainer');
@@ -88,16 +130,20 @@ let initAddKPIContainer = () =>{
         kpiInput.innerHTML = `
           <div>${kpiIndex}</div>
           <div>
-            <input type="text" placeholder="Thêm chỉ tiêu">
+            <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
           </div>
           <div>
-            <select name="" id="KPIcolor${kpiIndex}">
-              <option value="#9CB2D7">Hồng sáng</option>
-              <option value="#9CB2D7">Xanh nhạt</option>
+            <select name=""  class="KPIcolor">
+            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
             </select>
           </div>
           <div>
-            <input type="text" placeholder="Số giờ">
+            <input type="text" placeholder="Số giờ" class="KPIHours">
           </div>
           <div>Tạm lưu</div>
           <div>
@@ -132,9 +178,46 @@ let initAddKPIContainer = () =>{
         
         }
 
-const addKPIContainerInit = () => {
 
-}
+
+        // Function to store the data from all input elements
+        submitButton.addEventListener('click', function() {
+          const kpiData = [];
+            const kpiInputs = document.querySelectorAll('.KPIinput');
+            let allFieldsFilled = true;
+
+            kpiInputs.forEach((input, index) => {
+                const kpiName = input.querySelector('.KPIName').value;
+                const kpiColor = input.querySelector('.KPIcolor').value;
+                const kpiHours = input.querySelector('.KPIHours').value;
+
+                if (!kpiName || !kpiColor || !kpiHours) {
+                    allFieldsFilled = false;
+                }
+
+                kpiData.push({
+                    id: "#KPI" + (storage.KPIs.length + index + 1).toString(),
+                    name: kpiName,
+                    color: kpiColor,
+                    hour: kpiHours
+                });
+            });
+
+            if (!allFieldsFilled) {
+                errorLabel.style.display = 'block';
+            } else {
+                errorLabel.style.display = 'none';
+                console.log(kpiData);
+                storage.KPIs = storage.KPIs.concat(kpiData);
+                console.log(storage.KPIs);
+                placeKPI();
+                addKPIContainer.classList.add("hidden");
+                errorLabel.style.display = 'none';
+                realContent.innerHTML=``;
+                kpiIndex=1;
+            }
+          // Here you can store kpiData to localStorage, send it to a server, etc.
+      });
 
 openAddKPIContainer.addEventListener('click', () => {
     addKPIContainer.classList.remove("hidden");
@@ -144,7 +227,11 @@ openAddKPIContainer.addEventListener('click', () => {
 })
 closeAddKPIContainer.addEventListener("click", () => {
     addKPIContainer.classList.add("hidden");
+<<<<<<< HEAD
     document.getElementById('overlay').classList.add("hidden");
+=======
+    errorLabel.style.display = 'none';
+>>>>>>> 6fea9ca82f2f6b9a8114e05b401f0f3d5162c49c
     realContent.innerHTML=``;
     kpiIndex=1;
 })
@@ -168,7 +255,6 @@ let taskCounter = -1;
     }
   
   
-  const submitButton = document.querySelector("#add-task-button"); 
   const selectTasksButton = document.getElementById("selectTasksButton");
   
 

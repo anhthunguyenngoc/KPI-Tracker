@@ -27,6 +27,16 @@ const font = {
     family: 'Roboto Flex',                     
 };
 
+function getResponsiveFontSize() {
+    const width = window.innerWidth;
+    if (width < 780) {
+        return {
+            size: 11,
+            family: 'Roboto Flex',                     
+        };
+    } else return font;
+}
+
 const pieChart = document.getElementById("pie-chart");
 Chart.defaults.padding = 0;
 Chart.defaults.margin = 0;
@@ -37,7 +47,7 @@ function getResponsiveFontSize() {
     const width = window.innerWidth;
     if (width < 780) {
         return {
-            size: '14px',
+            size: 11,
             family: 'Roboto Flex',                     
         };
     } else return font;
@@ -284,4 +294,3 @@ new Chart(document.getElementById("pie-chart"), {
     right.addEventListener('click', function() {
         weekList.scrollLeft += 455; // Điều chỉnh giá trị tiến đi khi click
     });
-

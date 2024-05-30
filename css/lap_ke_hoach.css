@@ -479,7 +479,28 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 }
 
 
-#addKPIButton button{  
+
+#addKPIButton {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+}
+
+
+#addKPIButton div {
+    color: red;
+}
+
+#addKPIButton button{
+    display: flex;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 15px;
+    background: var(--color-mode-1-button);    
     width: fit-content;
     margin-left: 40px;
 }
