@@ -290,8 +290,6 @@
           
       </div>
     </div>
-      
-
         <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
     <script>
         const tuto = introJs();
@@ -365,22 +363,16 @@
         showStepNumbers: true,
         disableInteraction: true,
         stepNumbersOfLabel: "trong",
-        hintShowButton: true
+        hintShowButton: true,
+        hintButtonLabel: "Đã hiểu"
       }).start();
-      tuto.setOption("hintButtonLabel", "Đã hiểu");
+      
       tuto.addHints();
-
 
     function helpClick() {
         tuto.start(); 
         document.getElementById('guidance').style.backgroundColor = "black";
     }
-   
-      introJs().addHints();
-      introJs().showHint(0);
-    document.getElementById('guidance').addEventListener('click', () => {
-        introJs().start();
-    })
 
     </script>
   </body>
