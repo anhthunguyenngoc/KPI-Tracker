@@ -48,9 +48,9 @@
         </svg>
 
 
-      <div id="uploadMethod">
+      <div class="uploadMethod">
         <span>Tải lên từ</span>
-        <div id="methods">
+        <div class="methods">
         </div>
       </div>
       <div id="recommendKPI" class="flex">
@@ -75,27 +75,7 @@
             <div></div>
           </div>
             <div id="inputContainer">
-                <div class="inputTitle flex KPIinput">
-                  <div>1</div>
-                  <div>
-                    <input type="text" id="KPIName" placeholder="Thêm chỉ tiêu">
-                  </div>
-                  <div>
-                    <select name="" id="KPIcolor">
-                      <option value="#9CB2D7">Hồng sáng</option>
-                      <option value="#9CB2D7">Xanh nhạt</option>
-                    </select>
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Số giờ">
-                  </div>
-                  <div>Tạm lưu</div>
-                  <div>
-                    <button class="removeKPI">
-                      <img src="../images/bin.svg" alt="">
-                    </button>
-                  </div>
-                </div>
+                
               </div>
             </div>
       </div>
@@ -105,7 +85,7 @@
     </div>
 
 
-    <div class="flex " id="addTask">
+    <div class="flex hidden" id="addTask">
       <div id="closeTaskButton">
         <button>
           <img src="../images/x.svg" alt="">
@@ -113,63 +93,37 @@
       </div>
       <div class="title"><h2>Thêm nhiệm vụ</h2></div>
       <div class="uploadMethod">
-        <p>Tải lên từ</p>
+        <span>Tải lên từ</span>
         <div class="methods">
         </div>
       </div>
-      <div>
-        <div class="title flex" id="addTaskTitle">
-          <div>STT</div>
-          <div>Tên nhiệm vụ*</div>
-          <div>Chọn chỉ tiêu</div>
-          <div>Số giờ</div>
-          <div>Ngày</div>
-          <div>Thời gian bắt đầu</div>
-          <div>Ghi chú</div>
-          <div>Lặp lại</div>
-          <div></div>
-        </div>
-          <div id="taskInputContainer">
-              <div class="flex task-input">
-                <div>1</div>
-                <div>
-                  <input type="text">
-                </div>
-                <div>
-                  <select name="" id=""></select>
-                </div>
-                <div>
-                  <input type="text" name="" id="">
-                </div>
-                <div>
-                  <input type="date" >
-                </div>
-                <div>
-                  <input type="time" name="" id="">            
-                </div>
-                <div>
-                  <input type="text" name="" id="">
-                </div>
-                <div>
-                  <select name="" id="">
-                    <option value="">Mỗi ngày</option>
-                  </select>
-                </div>
-                <div>
-                  <button class="removeKPI">
-                    <img src="../images/bin.svg" alt="">
-                  </button>
-                </div>
-              </div>
-        </div>
+      <div id="inputTask">
+
         <div id="addTaskButton">
-          <button>+ Thêm chỉ tiêu mới</button>
+          <button>+ Thêm nhiệm vụ mới</button>
           <div id="errorMissingField" class="hidden">*Hãy điền đủ số trường</div>
+        </div>
+        <div>
+          <div class="title flex" id="addTaskTitle">
+            <div>STT</div>
+            <div>Tên nhiệm vụ*</div>
+            <div>Chọn chỉ tiêu</div>
+            <div>Ngày</div>
+            <div>Thời gian bắt đầu</div>
+            <div>Thời gian Kết thúc</div>
+            <div>Ghi chú</div>
+            <div>Lặp lại</div>
+            <div></div>
+          </div>
+            <div id="taskInputContainer">
+                <div class="flex task-input">
+                  
+                </div>
+          </div>
         </div>
       </div>
       <div id="taskAddButton">
         <button>Thêm</button>
-      </div>
       </div>
       <div>
 

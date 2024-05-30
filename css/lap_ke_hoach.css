@@ -334,6 +334,14 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     display: flex;
 }
 
+#inputTask{
+    width: fit-content ;
+    min-height: 320px ;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 #input {
     width: 760px ;
     min-height: 320px ;
@@ -400,7 +408,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     background-color: rgba(0, 0, 0, 0.5); /* Màu overlay */
   }
 
-#inputContainer {
+#inputContainer, #taskInputContainer {
     overflow-y: auto;
     height: 200px;
     display: flex;
@@ -408,8 +416,8 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     gap: 10px   ;
 }
 
-.methods {
-    width: 420px;
+div.methods {
+    width: 400px;
     height: 70px;
     background-color: var(--color-mode-1-background);
     border-radius: var(--button-border-radius);
@@ -480,7 +488,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 
 
-#addKPIButton {
+#addKPIButton, #addTaskButton {
     display: flex;
     flex-direction: row;
     gap: 25px;
@@ -488,11 +496,11 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 }
 
 
-#addKPIButton div {
+#addKPIButton div, #addTaskButton div {
     color: red;
 }
 
-#addKPIButton button{
+#addKPIButton button, #addTaskButton button{
     display: flex;
     height: 40px;
     flex-direction: column;
@@ -532,17 +540,17 @@ ul {
     font-size: 1.5em; /* Kích thước tăng lên */
   }
 
-#KPIaddButton {
+#KPIaddButton , #taskAddButton {
     display: flex;
     width: 290px;
     height: 60px;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
     margin-bottom: 15px;
 }
-#KPIaddButton button {
+#KPIaddButton button, #taskAddButton button {
     font-size: var(--heading1);
 }
 
@@ -610,6 +618,7 @@ ul {
 
 #addTaskTitle {
     gap: 10px;
+    font-size: large;
 }
 
 .task-input {
@@ -629,13 +638,14 @@ ul {
    width: 130px;
 }
 
-.task-input div:nth-of-type(3) select, .task-input div:nth-of-type(4) input,
-#addTaskTitle div:nth-of-type(3), #addTaskTitle div:nth-of-type(4), #addTaskTitle div:nth-of-type(7)
+.task-input div:nth-of-type(3) select, 
+#addTaskTitle div:nth-of-type(3),  #addTaskTitle div:nth-of-type(7)
   {
     width: 83px;
  }
- .task-input div:nth-of-type(5) input, .task-input div:nth-of-type(6) input,  #addTaskTitle div:nth-of-type(5), #addTaskTitle div:nth-of-type(6) {
-    width: 90px;
+ .task-input div:nth-of-type(5) input,.task-input div:nth-of-type(4) input,#addTaskTitle div:nth-of-type(4),
+  .task-input div:nth-of-type(6) input,  #addTaskTitle div:nth-of-type(5), #addTaskTitle div:nth-of-type(6) {
+    width: 100px;
  }
 
 
@@ -648,9 +658,17 @@ ul {
 
 .task-input div input, .task-input div select {
     height: 40px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: none;
-    padding-left: 5px;
+
+}
+
+.task-input div input[type="text"] {
+    padding: 10px;
+}
+
+.task-input div input{
+ padding-left: 5px;
 }
 
 #addTaskButton {

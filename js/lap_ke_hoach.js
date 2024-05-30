@@ -89,36 +89,35 @@ function placeKPI() {
 placeKPI();
 
 
-let initAddKPIContainer = () =>{
+const initAddKPIContainer = () =>{
         realContent.innerHTML = `
         <div class="inputTitle flex KPIinput">
-        <div>1</div>
-        <div>
-          <input type="text" class="KPIName" placeholder="Thêm chỉ tiêu">
-        </div>
-        <div>
-          <select name="" class="KPIcolor">
-            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
-            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
-            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
-            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
-            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
-            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
-          </select>
-        </div>
-        <div>
-          <input type="text" placeholder="Số giờ" class="KPIHours">
-        </div>
-        <div>Tạm lưu</div>
-        <div>
-          <button class="removeKPI">
-            <img src="../images/bin.svg" alt="">
-          </button>
-        </div>
-      </div>
+            <div>1</div>
+            <div>
+              <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
+            </div>
+            <div>
+              <select name=""  class="KPIcolor">
+              <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+              <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+              <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+              <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+              <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+              <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
+              </select>
+            </div>
+            <div>
+              <input type="text" placeholder="Số giờ" class="KPIHours">
+            </div>
+            <div>Tạm lưu</div>
+            <div>
+              <button class="removeKPI">
+                <img src="../images/bin.svg" alt="">
+              </button>
+            </div>
+          </div>
         `;
         realContent.parentElement.appendChild(realContent);
-
 }
       const realContent = document.getElementById('inputContainer');
       let kpiIndex = 1;
@@ -153,7 +152,6 @@ let initAddKPIContainer = () =>{
           </div>
         `;
         realContent.appendChild(kpiInput);
-
         const removeButtons = document.querySelectorAll('.removeKPI');
         removeButtons.forEach(button => {
             
@@ -168,7 +166,6 @@ let initAddKPIContainer = () =>{
       });
 
       function updateKPIIndexes() {
-    
                 const kpiInputs = document.querySelectorAll('.KPIinput');
                 kpiInputs.forEach((input, index) => {
             
@@ -212,6 +209,7 @@ let initAddKPIContainer = () =>{
                 console.log(storage.KPIs);
                 placeKPI();
                 addKPIContainer.classList.add("hidden");
+                document.getElementById('overlay').classList.add("hidden");
                 errorLabel.style.display = 'none';
                 realContent.innerHTML=``;
                 kpiIndex=1;
@@ -222,8 +220,9 @@ let initAddKPIContainer = () =>{
 openAddKPIContainer.addEventListener('click', () => {
     addKPIContainer.classList.remove("hidden");
     document.getElementById('overlay').classList.remove("hidden");
-    tuto.goToStep(3).start();
     initAddKPIContainer();
+    tuto.goToStep(3).start();
+    
 })
 closeAddKPIContainer.addEventListener("click", () => {
     addKPIContainer.classList.add("hidden");
@@ -255,13 +254,197 @@ let taskCounter = -1;
 /*
 
       Add tasks
+      const initAddKPIContainer = () =>{
+        realContent.innerHTML = `
+        <div class="inputTitle flex KPIinput">
+            <div>1</div>
+            <div>
+              <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
+            </div>
+            <div>
+              <select name=""  class="KPIcolor">
+              <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+              <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+              <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+              <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+              <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+              <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
+              </select>
+            </div>
+            <div>
+              <input type="text" placeholder="Số giờ" class="KPIHours">
+            </div>
+            <div>Tạm lưu</div>
+            <div>
+              <button class="removeKPI">
+                <img src="../images/bin.svg" alt="">
+              </button>
+            </div>
+          </div>
+        `;
+        realContent.parentElement.appendChild(realContent);
+}
+      const realContent = document.getElementById('inputContainer');
+      let kpiIndex = 1;
+
+      addKPIButton.addEventListener('click', function() {
+        kpiIndex++;
+        const kpiInput = document.createElement('div');
+        kpiInput.className = 'inputTitle flex KPIinput';
+        kpiInput.innerHTML = `
+          <div>${kpiIndex}</div>
+          <div>
+            <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
+          </div>
+          <div>
+            <select name=""  class="KPIcolor">
+            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
+            </select>
+          </div>
+          <div>
+            <input type="text" placeholder="Số giờ" class="KPIHours">
+          </div>
+          <div>Tạm lưu</div>
+          <div>
+            <button class="removeKPI">
+              <img src="../images/bin.svg" alt="">
+            </button>
+          </div>
+        `;
+        realContent.appendChild(kpiInput);
+        const removeButtons = document.querySelectorAll('.removeKPI');
+        removeButtons.forEach(button => {
+            
+                button.addEventListener('click', function() {
+                    if (kpiIndex == 1) { 
+
+                    } else {
+                    button.parentElement.parentElement.remove();
+                    updateKPIIndexes();}
+          });
+        });
+      });
+
+      function updateKPIIndexes() {
+                const kpiInputs = document.querySelectorAll('.KPIinput');
+                kpiInputs.forEach((input, index) => {
+            
+                input.firstElementChild.textContent = index + 1;
+                });
+                kpiIndex = kpiInputs.length;
+        
+        }
+
 */
 
 //const openAddTask = document.querySelector();
 
 
+const inputContent = document.querySelector("#taskInputContainer");
+const initAddTaskContainer = () =>{
+  taskIndex = 1;
+  inputContent.innerHTML = `
+                <div class="flex task-input">
+                  <div>1</div>
+                  <div>
+                    <input type="text" class="taskName">
+                  </div>
+                  <div>
+                    <select name="" class="KPIID"></select>
+                  </div>
+                  <div>
+                    <input type="date" class="date" >
+                  </div>
+                  <div>
+                    <input type="time" name="" class="">
+                  </div>
+                  <div>
+                    <input type="time" name="" id="">         
+                  </div>
+                  <div>
+                    <input type="text" name="" id="">
+                  </div>
+                  <div>
+                    <select name="" id="">
+                      <option value="">Mỗi ngày</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button class="removeTask">
+                      <img src="../images/bin.svg" alt="">
+                    </button>
+                  </div>
+                </div>
+  `;
+  inputContent.parentElement.appendChild(inputContent);
+}
+let taskIndex = 1;
 
+function updateTaskIndexes() {
+  const taskInputs = document.querySelectorAll('.task-input');
+  taskInputs.forEach((input, index) => {
 
+  input.firstElementChild.textContent = index + 1;
+  });
+  taskIndex = taskInputs.length;
+
+}
+
+const addTaskButton = document.querySelector("#addTaskButton>button");
+
+addTaskButton.addEventListener('click', function() {
+  taskIndex++;
+  const taskInput = document.createElement('div');
+  taskInput.className = 'flex task-input';
+  taskInput.innerHTML = `
+                  <div>${taskIndex}</div>
+                  <div>
+                    <input type="text" class="taskName">
+                  </div>
+                  <div>
+                    <select name="" class="KPIID"></select>
+                  </div>
+                  <div>
+                    <input type="date" class="date" >
+                  </div>
+                  <div>
+                    <input type="time" name="" class="">
+                  </div>
+                  <div>
+                    <input type="time" name="" id="">         
+                  </div>
+                  <div>
+                    <input type="text" name="" id="">
+                  </div>
+                  <div>
+                    <select name="" id="">
+                      <option value="">Mỗi ngày</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button class="removeTask">
+                      <img src="../images/bin.svg" alt="">
+                    </button>
+                  </div>
+  `;
+  inputContent.appendChild(taskInput);
+  const removeButtons = document.querySelectorAll('.removeTask');
+  removeButtons.forEach(button => {
+      
+          button.addEventListener('click', function() {
+              if (taskIndex == 1) { 
+
+              } else {
+              button.parentElement.parentElement.remove();
+              updateTaskIndexes();}
+    });
+  });
+});
 
 
 
@@ -326,8 +509,13 @@ let taskCounter = -1;
   
   const addTasksContainer = document.querySelector("#addTask");
   let container = document.getElementById("list"); 
+  const closeAddTasksContainer = document.querySelector("#closeTaskButton");
   
-  
+  closeAddTasksContainer.addEventListener("click", ()=>{
+    addTasksContainer.classList.add("hidden");
+  });
+
+
   document.getElementById("add-task-button").addEventListener("click", function() {
     if (selectTasksButton.classList.contains("on")) {
         for (let i = 0; i < selectedTasksId.length; i++) {
@@ -335,9 +523,8 @@ let taskCounter = -1;
           }
           toggleSelectTasksButton();
     } else {
-
-
-
+      addTasksContainer.classList.remove("hidden");
+      initAddTaskContainer();
     /*let node;
     if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
         KPICounter ++;
