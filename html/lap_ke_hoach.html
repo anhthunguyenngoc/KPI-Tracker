@@ -5,6 +5,8 @@
     <script src="../js/header.js"></script>
     <link rel="stylesheet" href="../css/app-style-guide.css" />
     <link rel="stylesheet" href="../css/lap_ke_hoach.css" />
+    <link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> 
+    <link href="https://unpkg.com/intro.js/themes/introjs-modern.css" rel="stylesheet"> 
     <link rel="stylesheet" href="../css/footer-mobile.css"/>
     <link
       rel="stylesheet"
@@ -84,23 +86,24 @@
     </div>
     <div class="main">
       <div class="content">
-        <section class="set-kpi">
+        <section id="set-kpi" class="set-kpi">
           <nav class="top-content__navbar">
             <ul class="top-content__navbar-list">
               <h1 class="heading1">Thiết lập mục tiêu KPI</h1>
+              <button id="add-kpi-button" class="img-button">
               <button class="img-button" id="openAddKPIContainer">
                 <img src="../images/plus.svg">
               </button>
             </ul>
             <ul class="top-content__navbar-list">
               <li class="date-kpi">Đợt: đến ngày 27/05/2024 </li>
-              <button class="img-button">
+              <button class="img-button"  data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-left">
                 <img src="../images/clock.svg">
               </button>
             </ul>
           </nav>
           <ul class="top-content__navbar-list" id="title-kpi">
-            <li class="KPI_container">
+            <li id="kpi-example" class="KPI_container">
               <div class="KPI">Giảng dạy</div>
               <div class="hour">80 giờ</div>
             </li>
@@ -142,8 +145,11 @@
       </div>
       <div class="sidebar">
         <section>
-          <div>
+          <div class="top-content__navbar-list">
             <h1 class="heading1"> Danh sách công việc</h1>
+            <button id="add-task-button" class="img-button">
+              <img src="../images/plus.svg">
+            </button>
           </div>
           <div class="sidebar_content">
             <div class="tools">
@@ -196,9 +202,7 @@
                 <li class="name-task">Nghiên cứu ứng dụng</li>
               </ul>-->
             </div>
-            <button id="add-task-button">
-              <img src="../images/plus.svg">
-            </button>
+            
           </div>
         </section>
       </div>
@@ -236,5 +240,90 @@
     </div>
   </div>
     <script src="../js/lap_ke_hoach.js"></script>
+    <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+    <script>
+      const tuto = introJs();
+    tuto.setOptions({
+      steps:[
+          {
+              title:"Thêm chỉ tiêu KPI",
+              element: document.getElementById('add-kpi-button'),
+              intro:'<p>Bước 1: Đầu tiên hãy tạo chỉ tiêu KPI nhé.</p>',
+              position: "bottom"
+          },
+          {   
+              title:"Chỉ tiêu KPI",
+              element: document.getElementById('set-kpi'),
+              intro:'<p>Khung chứa thông tin các chỉ tiêu KPI đặt ra.</p>',
+              position: "bottom"
+          },
+          {
+              title:"Thông tin KPI",
+              element: document.getElementById('kpi-example'),
+              intro:'<p>Thông tin KPI bao gồm tên và chỉ tiêu cần đạt được, mỗi KPI có 1 màu sắc đại diện khác nhau.</p>',
+              position: "left"
+          },
+          {
+              title:"Danh sách nhiệm vụ",
+              element: document.getElementById('calendar'),
+              intro:'<p>Hiển thị danh sách các nhiệm vụ có trong ngày.</p>',
+              position: "right",
+          },
+          {
+              title:"Thanh điều hướng",
+              element: document.getElementById('header-left'),
+              intro:'<p>Bạn có thể click vào các nút điều hướng ở đây để di chuyển đến các trang khác.</p>',
+              position: "bottom"
+          },
+          {
+              title:"Về Trang chủ",
+              element: document.getElementById('home'),
+              intro:'<p>Bạn có thể quay lại trang chủ ở đây.</p>',
+              position: "bottom"
+          },
+          {
+              title:"Đến Theo dõi KPI",
+              element: document.getElementById('kpi'),
+              intro:'<p>Trang này sẽ hiển thị thông tin chi tiết trạng thái KPI của bạn, cùng với bản thống kê KPI đạt được.</p>',
+              position: "bottom"},
+          {
+              title:"Đến Kế hoạch",
+              element: document.getElementById('schedule'),
+              intro:'<p>Đây sẽ là nơi để bạn thiết lập chỉ tiêu, thêm các nhiệm vụ và xây dựng bản kế hoạch cho riêng mình.</p>',
+              position: "bottom"},
+          {   
+              title: "Khác",
+              element: document.getElementById('header-right'),
+              intro:'<p>Các nút để mở Trợ giúp, Thông báo, Cài đặt và đăng xuất.</p>',
+              position: "bottom"
+          },
+          {   
+              element: document.getElementById('schedule'),
+              intro:'<p>Tiếp theo, hãy thử thiết lập KPI và xây dựng bản kế hoạch nhé!.</p>',
+              position: "bottom",
+              disableInteraction: false,
+          },
+      ],
+      tooltipClass: "tutorial",
+      highlightClass: "highlight-tooltip",
+      autoPosition: true,
+      buttonClass: "tooltip-button",
+      skipLabel: "Bỏ qua",
+      nextLabel: "Tiếp theo",
+      prevLabel: "Quay lại",
+      doneLabel: "Hoàn thành",
+      showStepNumbers: true,
+      disableInteraction: true,
+      stepNumbersOfLabel: "trong",
+      hintShowButton: true,
+      hintButtonLabel: "Đã hiểu"
+    }).start();
+    
+    tuto.addHints();
+
+  function helpClick() {
+      tuto.start(); 
+  }
+  </script>
   </body>
 </html>
