@@ -5,7 +5,7 @@ class Header extends HTMLElement {
   
     connectedCallback() {
       this.innerHTML = `
-      <header class="header">
+      <header id="header">
       <div class="left">
         <a class = "logo" id="home" href="../html/trang-chu.html">
           <svg width="60" height="70" viewBox="-5 -5 78 95" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -236,7 +236,7 @@ class Header extends HTMLElement {
           a{
               text-decoration: none;
           }
-          .header {
+          #header {
               width: 100%;
               height: auto;
               display: flex;
@@ -246,7 +246,7 @@ class Header extends HTMLElement {
               padding: 10px 20px 10px 20px;
               }
   
-              .header div:nth-of-type(2) {
+              #header div:nth-of-type(2) {
               width: 100%;
               }
   
@@ -394,7 +394,7 @@ class Header extends HTMLElement {
                 .right {
                     margin-right: 20px;
                 }
-                .header{
+                #header{
                     padding: 5px 0px 5px 0px;
                     
                 }
