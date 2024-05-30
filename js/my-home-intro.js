@@ -80,8 +80,3 @@ function helpClick() {
     tuto.addHints();
     tuto.start(); 
 }
-
-function setOpenIntro() {
-    window.open("../html/trang-chu.html", '_top');
-    helpClick();
-}

@@ -227,11 +227,8 @@ openAddKPIContainer.addEventListener('click', () => {
 })
 closeAddKPIContainer.addEventListener("click", () => {
     addKPIContainer.classList.add("hidden");
-<<<<<<< HEAD
     document.getElementById('overlay').classList.add("hidden");
-=======
     errorLabel.style.display = 'none';
->>>>>>> 6fea9ca82f2f6b9a8114e05b401f0f3d5162c49c
     realContent.innerHTML=``;
     kpiIndex=1;
 })
