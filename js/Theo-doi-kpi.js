@@ -224,21 +224,6 @@ function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'gra
         slider.scrollLeft = scrollLeft - walk;
     });
 
-    /*
-    const handleIcons = (scrollVal) => {
-        let maxScrollableWidth = slider.scrollWidth - slider.clientWidth;
-        arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
-        arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
-    }
-
-    
-    arrowIcons.forEach(icon => {
-        icon.addEventListener("click", () => {
-            let scrollWidth = slider.scrollLeft += icon.id === "left" ? -455 : 455;
-            handleIcons(scrollWidth);
-        });
-    });
-    */
     allTabs.forEach(tab => {
         tab.addEventListener("click", () => {
             slider.querySelector(".active").classList.remove("active");

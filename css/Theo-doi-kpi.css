@@ -73,7 +73,7 @@ section {
   left: 0;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  display: none;
+  display: flex;
 }
 #r-div {
   right: 0;

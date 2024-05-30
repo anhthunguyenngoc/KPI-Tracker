@@ -284,3 +284,4 @@ new Chart(document.getElementById("pie-chart"), {
     right.addEventListener('click', function() {
         weekList.scrollLeft += 455; // Điều chỉnh giá trị tiến đi khi click
     });
+
