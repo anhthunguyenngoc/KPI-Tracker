@@ -98,8 +98,12 @@ let initAddKPIContainer = () =>{
         </div>
         <div>
           <select name="" class="KPIcolor">
-            <option value="#9CB2D7">Hồng sáng</option>
-            <option value="#9CB2D7">Xanh nhạt</option>
+            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
           </select>
         </div>
         <div>
@@ -130,8 +134,12 @@ let initAddKPIContainer = () =>{
           </div>
           <div>
             <select name=""  class="KPIcolor">
-              <option value="#9CB2D7">Hồng sáng</option>
-              <option value="#9CB2D7">Xanh nhạt</option>
+            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
             </select>
           </div>
           <div>
