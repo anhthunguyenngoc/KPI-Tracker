@@ -138,10 +138,13 @@ const addKPIContainerInit = () => {
 
 openAddKPIContainer.addEventListener('click', () => {
     addKPIContainer.classList.remove("hidden");
+    document.getElementById('overlay').classList.remove("hidden");
+    tuto.goToStep(3).start();
     initAddKPIContainer();
 })
 closeAddKPIContainer.addEventListener("click", () => {
     addKPIContainer.classList.add("hidden");
+    document.getElementById('overlay').classList.add("hidden");
     realContent.innerHTML=``;
     kpiIndex=1;
 })

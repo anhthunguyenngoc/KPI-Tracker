@@ -24,31 +24,52 @@
     <div>
       <header-component> </header-component>
     </div>
+    <div class="overlay hidden" id="overlay"></div>
     <div class="fixed flex hidden" id="addKPI">
-      <div id="closeButton">
-        <button>
-          <img src="../images/x.svg" alt="">
-        </button>
-      </div>
-      <div id="title"><h2>Thêm chỉ tiêu</h2></div>
+
+      <div id="title"><h2 class="heading1">Thêm chỉ tiêu</h2></div>
+
+        <button id="add-kpi-guidance" class="help-button" onclick="addKPITutoClick()"> 
+          <img 
+          class="img-icon" 
+          loading="lazy" 
+          alt="" 
+          src="../images/top-app-bar/help.svg"
+          /> 
+      </button> 
+      <svg id="closeButton" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <g id="SVGRepo_iconCarrier"> <g> <path d="M45.363,36.234l-13.158-13.16l12.21-12.21c2.31-2.307,2.31-6.049,0-8.358c-2.308-2.308-6.05-2.307-8.356,0l-12.212,12.21 L11.038,1.906c-2.309-2.308-6.051-2.308-8.358,0c-2.307,2.309-2.307,6.049,0,8.358l12.81,12.81L1.732,36.831 c-2.309,2.31-2.309,6.05,0,8.359c2.308,2.307,6.049,2.307,8.356,0l13.759-13.758l13.16,13.16c2.308,2.308,6.049,2.308,8.356,0 C47.673,42.282,47.672,38.54,45.363,36.234z"/> </g> </g>
+        
+        </svg>
+
+
       <div id="uploadMethod">
-        <p>Tải lên từ</p>
+        <span>Tải lên từ</span>
         <div id="methods">
         </div>
       </div>
       <div id="recommendKPI" class="flex">
-        <p>Các chỉ tiêu gợi ý:</p>
+        <span>Các chỉ tiêu gợi ý:</span>
          <button class="recommendButon">Giảng dạy</button>
          <button class="recommendButon">Nghiên cứu</button>
          <button class="recommendButon">Cá nhân</button>
       </div>
+      
       <div id="input">
+        <div id="addKPIButton" data-hint="Thêm 1 dòng chỉ tiêu mới" data-hint-position="middle-middle">
+          <button>+ Thêm chỉ tiêu mới</button>
+        </div>
         <div id="realContent">
           <div class="inputTitle flex">
             <div>STT</div>
-            <div>Thêm chỉ tiêu*</div>
-            <div>Chọn màu đại diện*</div>
-            <div>Số giờ mục tiêu</div>
+            <div>Tên chỉ tiêu*</div>
+            <div>Chọn màu đại diện</div>
+            <div>Số giờ mục tiêu*</div>
             <div>Trạng thái</div>
             <div></div>
           </div>
@@ -75,10 +96,6 @@
                 </div>
               </div>
             </div>
-        <div id="addKPIButton">
-          <button>+ Thêm chỉ tiêu mới</button>
-        </div>
-
       </div>
       <div id="KPIaddButton">
         <button>Thêm</button>
@@ -90,13 +107,13 @@
           <nav class="top-content__navbar">
             <ul class="top-content__navbar-list">
               <h1 class="heading1">Thiết lập mục tiêu KPI</h1>
-              <button class="img-button" id="openAddKPIContainer">
+              <button class="img-button" id="openAddKPIContainer"  data-hint="Thêm chỉ tiêu KPI mới" data-hint-position="top-right">
                 <img src="../images/plus.svg">
               </button>
             </ul>
             <ul class="top-content__navbar-list">
               <li class="date-kpi">Đợt: đến ngày 27/05/2024 </li>
-              <button class="img-button"  data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-left">
+              <button class="img-button" data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-right">
                 <img src="../images/clock.svg">
               </button>
             </ul>
@@ -145,7 +162,7 @@
       <div class="sidebar">
         <section>
           <div class="top-content__navbar-list">
-            <h1 class="heading1"> Danh sách công việc</h1>
+            <h1 class="heading1"> Danh sách nhiệm vụ</h1>
             <button id="add-task-button" class="img-button">
               <img src="../images/plus.svg">
             </button>
@@ -244,64 +261,19 @@
       const tuto = introJs();
     tuto.setOptions({
       steps:[
+          {   
+              title:"Thiết lập KPI & Bản kế hoạch",
+              intro:'<div id="intro-kpi"><p>Để thiết lập KPI và xây dựng bản kế hoạch, cần 3 bước chính như sau: <ul id="kpi-step"><li>Bước 1: Thiết lập chỉ tiêu KPI.</li><li>Bước 2: Thêm danh sách các nhiệm vụ tương ứng với chỉ tiêu.</li><li>Bước 3: Thêm nhiệm vụ vào bảng kế hoạch.</li></ul> </p></div>',
+              hidePrev: true,
+          },
           {
-              title:"Thêm chỉ tiêu KPI",
+              title:"Bước 1: Thêm chỉ tiêu KPI",
               element: document.getElementById('openAddKPIContainer'),
-              intro:'<p>Bước 1: Đầu tiên hãy tạo chỉ tiêu KPI nhé.</p>',
-              position: "bottom"
-          },
-          {   
-              title:"Chỉ tiêu KPI",
-              element: document.getElementById('set-kpi'),
-              intro:'<p>Khung chứa thông tin các chỉ tiêu KPI đặt ra.</p>',
-              position: "bottom"
-          },
-          {
-              title:"Thông tin KPI",
-              element: document.getElementById('kpi-example'),
-              intro:'<p>Thông tin KPI bao gồm tên và chỉ tiêu cần đạt được, mỗi KPI có 1 màu sắc đại diện khác nhau.</p>',
-              position: "left"
-          },
-          {
-              title:"Danh sách nhiệm vụ",
-              element: document.getElementById('calendar'),
-              intro:'<p>Hiển thị danh sách các nhiệm vụ có trong ngày.</p>',
-              position: "right",
-          },
-          {
-              title:"Thanh điều hướng",
-              element: document.getElementById('header-left'),
-              intro:'<p>Bạn có thể click vào các nút điều hướng ở đây để di chuyển đến các trang khác.</p>',
-              position: "bottom"
-          },
-          {
-              title:"Về Trang chủ",
-              element: document.getElementById('home'),
-              intro:'<p>Bạn có thể quay lại trang chủ ở đây.</p>',
-              position: "bottom"
-          },
-          {
-              title:"Đến Theo dõi KPI",
-              element: document.getElementById('kpi'),
-              intro:'<p>Trang này sẽ hiển thị thông tin chi tiết trạng thái KPI của bạn, cùng với bản thống kê KPI đạt được.</p>',
-              position: "bottom"},
-          {
-              title:"Đến Kế hoạch",
-              element: document.getElementById('schedule'),
-              intro:'<p>Đây sẽ là nơi để bạn thiết lập chỉ tiêu, thêm các nhiệm vụ và xây dựng bản kế hoạch cho riêng mình.</p>',
-              position: "bottom"},
-          {   
-              title: "Khác",
-              element: document.getElementById('header-right'),
-              intro:'<p>Các nút để mở Trợ giúp, Thông báo, Cài đặt và đăng xuất.</p>',
-              position: "bottom"
-          },
-          {   
-              element: document.getElementById('schedule'),
-              intro:'<p>Tiếp theo, hãy thử thiết lập KPI và xây dựng bản kế hoạch nhé!.</p>',
+              intro:'<p class="intro-p">Đầu tiên click vào đây để tạo chỉ tiêu KPI nhé.</p>',
               position: "bottom",
               disableInteraction: false,
-          },
+              hideNext: true,
+          },        
       ],
       tooltipClass: "tutorial",
       highlightClass: "highlight-tooltip",
@@ -315,13 +287,62 @@
       disableInteraction: true,
       stepNumbersOfLabel: "trong",
       hintShowButton: true,
-      hintButtonLabel: "Đã hiểu"
-    }).start();
+      hintButtonLabel: "Đã hiểu",
+      exitOnEsc: true,
+      exitOnOverlayClick: true,
+    });
     
     tuto.addHints();
+    
+    const addKPITuto = introJs();
+    addKPITuto.setOptions({
+      steps:[{
+              title:"Tải file",
+              element: document.getElementById('uploadMethod'),
+              intro:'<p class="intro-p">Nếu bạn có sẵn danh sách các KPI, bạn có thể tải chúng lên ở đây.</p>',
+              position: "bottom",
+          },
+          {
+              title:"KPI của hệ thống",
+              element: document.getElementById('recommendKPI'),
+              intro:'<p class="intro-p">Hoặc bạn cũng có thể chọn các KPI có sẵn thường được thiết lập bởi những người dùng khác.</p>',
+              position: "bottom"
+          },
+          {
+              title:"Thiết lập KPI",
+              element: document.getElementById('realContent'),
+              intro:'<p class="intro-p">Bạn có thể tự tạo KPI của riêng mình ở đây. Các trường có dấu (*) là các trường bắt buộc.</p>',
+              position: "bottom"},
+          {
+              title:"Hoàn tất thiết lập KPI",
+              element: document.getElementById('KPIaddButton'),
+              intro:'<p class="intro-p">Cuối cùng, bấm vào đây để hoàn tất thiết lập KPI.</p>',
+              position: "bottom"},
+              ],
+      tooltipClass: "tutorial",
+      highlightClass: "highlight-tooltip",
+      autoPosition: true,
+      buttonClass: "tooltip-button",
+      skipLabel: "Bỏ qua",
+      nextLabel: "Tiếp theo",
+      prevLabel: "Quay lại",
+      doneLabel: "Hoàn thành",
+      showStepNumbers: true,
+      disableInteraction: true,
+      stepNumbersOfLabel: "trong",
+      hintShowButton: true,
+      hintButtonLabel: "Đã hiểu",
+      exitOnEsc: true,
+    });
+    
+    addKPITuto.addHints();
 
   function helpClick() {
       tuto.start(); 
+  }
+
+  function addKPITutoClick() {
+    addKPITuto.start(); 
   }
   </script>
   </body>
