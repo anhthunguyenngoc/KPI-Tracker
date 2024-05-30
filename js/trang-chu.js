@@ -33,16 +33,6 @@ Chart.defaults.margin = 0;
 
 // Function returns size for responsive 
 
-function getResponsiveFontSize() {
-    const width = window.innerWidth;
-    if (width < 780) {
-        return {
-            size: '14px',
-            family: 'Roboto Flex',                     
-        };
-    } else return font;
-}
-
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
     data: chartData,
