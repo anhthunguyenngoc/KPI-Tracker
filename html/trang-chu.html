@@ -75,7 +75,7 @@
       
         <div id="header-right" class="right">
             <div>
-                <button id="guidance" class="user-button"> 
+                <button id="guidance" class="user-button" onclick="helpClick()"> 
                     <img 
                     class="right-icon" 
                     loading="lazy" 
@@ -263,7 +263,8 @@
     <footer class="footer"></footer>
         <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
     <script>
-      introJs().setOptions({
+        const tuto = introJs();
+      tuto.setOptions({
         steps:[
             { 
                 title:"Chào mừng đến với KPI Tracker!",
@@ -333,14 +334,16 @@
         showStepNumbers: true,
         disableInteraction: true,
         stepNumbersOfLabel: "trong",
-        hintButtonLabel: "Đã hiểu"
+        hintShowButton: true
       }).start();
+      tuto.setOption("hintButtonLabel", "Đã hiểu");
+      tuto.addHints();
 
-      introJs().addHints();
-      introJs().showHint(0);
-    document.getElementById('guidance').addEventListener('click', () => {
-        introJs().start();
-    })
+
+    function helpClick() {
+        tuto.start(); 
+        document.getElementById('guidance').style.backgroundColor = "black";
+    }
     </script>
   </body>
 </html>
