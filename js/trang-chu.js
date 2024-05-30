@@ -37,7 +37,7 @@ function getResponsiveFontSize() {
     const width = window.innerWidth;
     if (width < 780) {
         return {
-            size: 11,
+            size: '14px',
             family: 'Roboto Flex',                     
         };
     } else return font;
