@@ -249,6 +249,29 @@ let taskCounter = -1;
     }
   
   
+/*
+
+      Add tasks
+*/
+
+//const openAddTask = document.querySelector();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const selectTasksButton = document.getElementById("selectTasksButton");
   
 
@@ -298,17 +321,21 @@ let taskCounter = -1;
 
   }
   
-
+  const addTasksContainer = document.querySelector("#addTask");
   let container = document.getElementById("list"); 
+  
+  
   document.getElementById("add-task-button").addEventListener("click", function() {
     if (selectTasksButton.classList.contains("on")) {
         for (let i = 0; i < selectedTasksId.length; i++) {
             console.log(selectedTasksId[i]);
           }
           toggleSelectTasksButton();
-          
     } else {
-    let node;
+
+
+
+    /*let node;
     if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
         KPICounter ++;
         if (storage.KPIs[KPICounter] === undefined) return;
@@ -320,7 +347,7 @@ let taskCounter = -1;
         node = oneTask(storage.KPIs[KPICounter].tasks[taskCounter]);
     }
     container.appendChild(node);
-    node.addEventListener("click", chooseTask);
+    node.addEventListener("click", chooseTask);*/
 }
   });
   
