@@ -9,14 +9,14 @@
             hour: "70",
             tasks : [
                 {
-                    id: '#KPI1task01',
+                    id: '#KPI1task1',
                     title: 'Phát triển hệ thống',
                     start: '2024-05-23T09:00:00',
                     end: '2024-05-23T11:07:00',
                     backgroundColor: '#9CB2D7'
                 },
                 {
-                    id: '#KPI1task02',
+                    id: '#KPI1task2',
                     title: 'Nghiên cứu ứng dụng',
                     start: '2024-05-24T09:00:00',
                     end: '2024-05-24T11:30:00',
@@ -32,7 +32,7 @@
             hour: "80",
             tasks : [
                 {
-                    id: '#KPI2task01',
+                    id: '#KPI2task1',
                     title: 'Giao diện và trải nghiệm',
                     start: '2024-05-24T14:10:00',
                     end: '2024-05-24T17:30:00',
@@ -46,6 +46,7 @@
             name: "Phục vụ",
             color : "#FFDBA6",
             hour: "60",
+            tasks: []
         }
     ]
 }
@@ -196,7 +197,8 @@ const initAddKPIContainer = () =>{
                     id: "#KPI" + (storage.KPIs.length + index + 1).toString(),
                     name: kpiName,
                     color: kpiColor,
-                    hour: kpiHours
+                    hour: kpiHours,
+                    tasks: []
                 });
             });
 
@@ -254,96 +256,40 @@ let taskCounter = -1;
 /*
 
       Add tasks
-      const initAddKPIContainer = () =>{
-        realContent.innerHTML = `
-        <div class="inputTitle flex KPIinput">
-            <div>1</div>
-            <div>
-              <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
-            </div>
-            <div>
-              <select name=""  class="KPIcolor">
-              <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
-              <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
-              <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
-              <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
-              <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
-              <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
-              </select>
-            </div>
-            <div>
-              <input type="text" placeholder="Số giờ" class="KPIHours">
-            </div>
-            <div>Tạm lưu</div>
-            <div>
-              <button class="removeKPI">
-                <img src="../images/bin.svg" alt="">
-              </button>
-            </div>
-          </div>
-        `;
-        realContent.parentElement.appendChild(realContent);
-}
-      const realContent = document.getElementById('inputContainer');
-      let kpiIndex = 1;
+     const allEvents = KPIs.map(kpi => kpi.event).reduce((acc, events) => acc.concat(events), []);
 
-      addKPIButton.addEventListener('click', function() {
-        kpiIndex++;
-        const kpiInput = document.createElement('div');
-        kpiInput.className = 'inputTitle flex KPIinput';
-        kpiInput.innerHTML = `
-          <div>${kpiIndex}</div>
-          <div>
-            <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
-          </div>
-          <div>
-            <select name=""  class="KPIcolor">
-            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
-            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
-            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
-            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
-            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
-            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
-            </select>
-          </div>
-          <div>
-            <input type="text" placeholder="Số giờ" class="KPIHours">
-          </div>
-          <div>Tạm lưu</div>
-          <div>
-            <button class="removeKPI">
-              <img src="../images/bin.svg" alt="">
-            </button>
-          </div>
-        `;
-        realContent.appendChild(kpiInput);
-        const removeButtons = document.querySelectorAll('.removeKPI');
-        removeButtons.forEach(button => {
-            
-                button.addEventListener('click', function() {
-                    if (kpiIndex == 1) { 
-
-                    } else {
-                    button.parentElement.parentElement.remove();
-                    updateKPIIndexes();}
-          });
-        });
-      });
-
-      function updateKPIIndexes() {
-                const kpiInputs = document.querySelectorAll('.KPIinput');
-                kpiInputs.forEach((input, index) => {
-            
-                input.firstElementChild.textContent = index + 1;
-                });
-                kpiIndex = kpiInputs.length;
-        
-        }
-
+console.log(allEvents);
 */
 
 //const openAddTask = document.querySelector();
 
+
+function oneTask(event) {
+  const template = document.createElement("template");
+  template.innerHTML = `
+  <ul class="list-task" id="${event?.id}">
+      <li class="color-task">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" rx="15" fill="${event?.backgroundColor}"/>
+      </svg>
+      </li>
+      <li class="name-task">${event?.title}</li>
+  </ul>
+  `;
+  return template.content.firstElementChild;
+}
+
+function addAllTask() {
+  listTasks.innerHTML = "";
+  const allEvents = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
+  console.log(allEvents);
+  for (let i = 0; i < allEvents.length  ; i++ ){
+    const node = oneTask(allEvents[i])
+    listTasks.appendChild(node);
+  }
+}
+
+addAllTask();
 
 const inputContent = document.querySelector("#taskInputContainer");
 const initAddTaskContainer = () =>{
@@ -355,23 +301,27 @@ const initAddTaskContainer = () =>{
                     <input type="text" class="taskName">
                   </div>
                   <div>
-                    <select name="" class="KPIID"></select>
+                    <select name="" class="KPIID">
+                    ${generateKPIOptions()}
+                    </select>
                   </div>
                   <div>
                     <input type="date" class="date" >
                   </div>
                   <div>
-                    <input type="time" name="" class="">
+                    <input type="time" name="" class="startTime">
                   </div>
                   <div>
-                    <input type="time" name="" id="">         
+                    <input type="time" name="" class="endTime">         
                   </div>
                   <div>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" class="additionalInfo">
                   </div>
                   <div>
-                    <select name="" id="">
-                      <option value="">Mỗi ngày</option>
+                    <select name="" class="recurrence">
+                    <option value="none">Không</option>
+                    <option value="day">Mỗi ngày</option>
+                    <option value="week">Mỗi tuần</option>
                     </select>
                   </div>
                   <div>
@@ -397,6 +347,10 @@ function updateTaskIndexes() {
 
 const addTaskButton = document.querySelector("#addTaskButton>button");
 
+function generateKPIOptions() {
+  return storage.KPIs.map(kpi => `<option value="${kpi.id}">${kpi.name}</option>`).join('');
+}
+
 addTaskButton.addEventListener('click', function() {
   taskIndex++;
   const taskInput = document.createElement('div');
@@ -407,23 +361,27 @@ addTaskButton.addEventListener('click', function() {
                     <input type="text" class="taskName">
                   </div>
                   <div>
-                    <select name="" class="KPIID"></select>
+                    <select name="" class="KPIID">
+                      ${generateKPIOptions()}
+                    </select>
                   </div>
                   <div>
                     <input type="date" class="date" >
                   </div>
                   <div>
-                    <input type="time" name="" class="">
+                    <input type="time" name="" class="startTime">
                   </div>
                   <div>
-                    <input type="time" name="" id="">         
+                    <input type="time" name="" class="endTime">         
                   </div>
                   <div>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" class="additionalInfo">
                   </div>
                   <div>
-                    <select name="" id="">
-                      <option value="">Mỗi ngày</option>
+                    <select name="" class="recurrence">
+                      <option value="none">Không</option>
+                      <option value="day">Mỗi ngày</option>
+                      <option value="week">Mỗi tuần</option>
                     </select>
                   </div>
                   <div>
@@ -448,6 +406,12 @@ addTaskButton.addEventListener('click', function() {
 
 
 
+/*id: '#KPI1task01',
+                    title: 'Phát triển hệ thống',
+                    start: '2024-05-23T09:00:00',
+                    end: '2024-05-23T11:07:00',
+                    backgroundColor: '#9CB2D7'
+*/
 
 
 
@@ -456,8 +420,7 @@ addTaskButton.addEventListener('click', function() {
 
 
 
-
-
+const submitTaskButton = document.getElementById("taskAddButton");
   const selectTasksButton = document.getElementById("selectTasksButton");
   
 
@@ -513,6 +476,8 @@ addTaskButton.addEventListener('click', function() {
   
   closeAddTasksContainer.addEventListener("click", ()=>{
     addTasksContainer.classList.add("hidden");
+    document.getElementById('overlay').classList.add("hidden");
+    errorLabelTask.style.display = 'none';
   });
 
 
@@ -525,6 +490,8 @@ addTaskButton.addEventListener('click', function() {
     } else {
       addTasksContainer.classList.remove("hidden");
       initAddTaskContainer();
+      document.getElementById('overlay').classList.remove("hidden");
+      tuto.goToStep(3).start();
     /*let node;
     if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
         KPICounter ++;
@@ -543,22 +510,75 @@ addTaskButton.addEventListener('click', function() {
   
 /////////////////////
   
+  const errorLabelTask = document.getElementById("errorMissingFieldTask");
   
   
-  function oneTask(event) {
-    const template = document.createElement("template");
-    template.innerHTML = `
-    <ul class="list-task" id="${event.id}">
-        <li class="color-task">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="30" height="30" rx="15" fill="${event.backgroundColor}"/>
-        </svg>
-        </li>
-        <li class="name-task">${event.title}</li>
-    </ul>
-    `;
-    return template.content.firstElementChild;
-  }
+
+  
+  submitTaskButton.addEventListener('click', () => {
+      const taskInputs = document.querySelectorAll('.task-input');
+    let allFieldsFilled = true;
+
+    // To store task data temporarily
+    let taskData = [];
+
+    taskInputs.forEach(input => {
+      const taskName = input.querySelector('.taskName').value;
+      const kpiID = input.querySelector('.KPIID').value;
+      const date = input.querySelector('.date').value;
+      const startTime = input.querySelector('.startTime').value;
+      const endTime = input.querySelector('.endTime').value;
+      const additionalInfo = input.querySelector('.additionalInfo').value;
+      const recurrence = input.querySelector('.recurrence').value;
+
+      // Check if all required fields are filled
+      if (!taskName || !kpiID || !date || !startTime || !endTime) {
+        allFieldsFilled = false;
+      } else {
+        let KPI;
+      
+        for (let i = 0; i < storage.KPIs.length; i++){
+          if (storage.KPIs[i].id === kpiID) {
+          KPI = storage.KPIs[i];
+        }
+      }
+      taskData.push({
+        id: kpiID + "task" + (KPI.tasks.length + taskIndex).toString(),
+        title: taskName,
+        kpiID: kpiID,
+        start: date+ "T" +startTime,
+        end: date+ "T" +endTime,
+        additionalInfo: additionalInfo,
+        recurrence: recurrence,
+        backgroundColor: KPI.color
+        });
+      }
+    });
+
+    if (allFieldsFilled) {
+      // Clear any previous error message
+      errorLabelTask.textContent = '';
+      console.log(taskData);
+      // Store tasks in the related KPI
+      taskData.forEach(task => {
+        const relatedKPI = storage.KPIs.find(kpi => kpi.id === task.kpiID
+        );
+        if (relatedKPI) {
+          relatedKPI.tasks.push(task);
+        }
+      });
+      addTasksContainer.classList.add("hidden");
+      document.getElementById('overlay').classList.add("hidden");
+      errorLabelTask.style.display = 'none';
+      console.log(storage.KPIs); // Verify the tasks are stored correctly in the KPIs array
+      // Here you can save KPIs to localStorage, send it to a server, etc.
+      addAllTask();
+    } else {
+      errorLabelTask.textContent = 'Please fill in all the fields.';
+    }
+  });
+
+
 
   
 
