@@ -2,6 +2,10 @@
     flex-direction: column;
 }
 
+#kpi hr {
+  visibility:visible;
+}
+
 section {
   width: 100%;
 }

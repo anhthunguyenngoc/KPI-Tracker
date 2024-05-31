@@ -487,6 +487,9 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     align-items: center;
 }
 
+#schedule hr {
+    visibility:visible;
+}
 
 #addKPIButton div {
     color: red;

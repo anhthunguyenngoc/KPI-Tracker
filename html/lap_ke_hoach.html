@@ -21,9 +21,9 @@
   </head>
 
   <body>
-    <div>
-      <header-component> </header-component>
-    </div>
+
+    <header-component> </header-component>
+
     <div class="overlay hidden" id="overlay"></div>
     <div class="fixed flex hidden" id="addKPI">
 
@@ -295,8 +295,6 @@
       exitOnOverlayClick: true,
     });
     
-    tuto.addHints();
-    
     const addKPITuto = introJs();
     addKPITuto.setOptions({
       steps:[{
@@ -338,13 +336,13 @@
       exitOnEsc: true,
     });
     
-    addKPITuto.addHints();
-
   function helpClick() {
-      tuto.start(); 
+    tuto.addHints();
+    tuto.start(); 
   }
 
   function addKPITutoClick() {
+    addKPITuto.addHints();
     addKPITuto.start(); 
   }
   </script>

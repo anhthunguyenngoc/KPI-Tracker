@@ -99,6 +99,7 @@ body {
   overflow-y: auto;
 }
 
+
 .main {
   width: 100%;
   display: flex;
@@ -118,7 +119,8 @@ body {
 }
 
 .heading1{
-  font-size: var(--heading1);
+  font-size: var(--heading1) !important;
+  font-weight: 700;
 }
 
 .heading2{
