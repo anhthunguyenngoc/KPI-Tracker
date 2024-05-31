@@ -57,7 +57,7 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+//document.addEventListener('DOMContentLoaded', function() {
 
 // Add KPI
 const addKPIContainer = document.querySelector("#addKPI");
@@ -103,6 +103,7 @@ const initAddKPIContainer = () =>{
             </div>
             <div>
               <select name=""  class="KPIcolor">
+              <option value="null" ></option>
               <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
               <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
               <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
@@ -138,6 +139,7 @@ const initAddKPIContainer = () =>{
           </div>
           <div>
             <select name=""  class="KPIcolor">
+            <option value="null" ></option>
             <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
             <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
             <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
@@ -536,7 +538,6 @@ const submitTaskButton = document.getElementById("taskAddButton");
         allFieldsFilled = false;
       } else {
         let KPI;
-      
         for (let i = 0; i < storage.KPIs.length; i++){
           if (storage.KPIs[i].id === kpiID) {
           KPI = storage.KPIs[i];
@@ -748,11 +749,67 @@ clickAndDragY('.list');
     document.querySelector('.fc-insert-button').innerHTML = `
   <img src="../images/edit.svg" />
     `;
-  });
+ 
 
-  var addKPIArray = [];
 
-  function uploadExcel() {
+///
+//      Upload Excel
+// 
+
+let addKPIArray = [];
+ 
+function loadExcelToKPIContainer () {
+  realContent.innerHTML='';
+  kpiIndex=0;
+  for (let i = 0; i< addKPIArray.length; i++) {
+       
+        kpiIndex++;
+        const kpiInput = document.createElement('div');
+        kpiInput.className = 'inputTitle flex KPIinput';
+        kpiInput.innerHTML = `
+          <div>${kpiIndex}</div>
+          <div>
+            <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName" value="${addKPIArray[i].name}">
+          </div>
+          <div>
+            <select name=""  class="KPIcolor" >
+            <option value="${addKPIArray[i].color}" style="background-color:${addKPIArray[i].color}">Màu tự chọn</option>
+            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
+            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
+            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
+            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
+            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
+            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
+            </select>
+          </div>
+          <div>
+            <input type="text" placeholder="Số giờ" class="KPIHours" value="${addKPIArray[i].hour}">
+          </div>
+          <div>Tạm lưu</div>
+          <div>
+            <button class="removeKPI">
+              <img src="../images/bin.svg" alt="">
+            </button>
+          </div>
+        `;
+        realContent.appendChild(kpiInput);
+        const removeButtons = document.querySelectorAll('.removeKPI');
+        removeButtons.forEach(button => {
+            
+                button.addEventListener('click', function() {
+                    if (kpiIndex == 1) { 
+
+                    } else {
+                    button.parentElement.parentElement.remove();
+                    updateKPIIndexes();}
+          });
+        });
+  }
+}
+
+
+
+function uploadExcel() {
     var fileInput = document.getElementById('kpi-file-upload');   
 
     fileInput.addEventListener('change', function() {
@@ -768,7 +825,7 @@ clickAndDragY('.list');
   
         jsonData.forEach((item, index) => {
             newKPI = {
-                id: `#KPI${storage.KPIs.length + 1}`,
+                id: `#KPI${storage.KPIs.length +addKPIArray.length + 1}`,
                 name: item['Tên chỉ tiêu*'],
                 color: item['Mã màu đại diện'],
                 hour: item['Số giờ mục tiêu*'],
@@ -776,16 +833,17 @@ clickAndDragY('.list');
             };
             addKPIArray.push(newKPI);
         });
-  
+       
         console.log(addKPIArray);
+              loadExcelToKPIContainer();
+
     };
   
-    if(fileInput.files.length > 0) {
-        reader.readAsArrayBuffer(fileInput.files[0]);
-    } else {
-        alert("Please upload a file.");
-    }
-
+      if(fileInput.files.length > 0) {
+          reader.readAsArrayBuffer(fileInput.files[0]);
+      } else {
+          alert("Please upload a file.");
+      }
   } );
 }
 
