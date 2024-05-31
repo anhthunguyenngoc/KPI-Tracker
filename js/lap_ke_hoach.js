@@ -750,6 +750,8 @@ clickAndDragY('.list');
     `;
   });
 
+  var addKPIArray = [];
+
   function uploadExcel() {
     var fileInput = document.getElementById('kpi-file-upload');   
 
@@ -765,17 +767,17 @@ clickAndDragY('.list');
         const jsonData = XLSX.utils.sheet_to_json(firstSheet);
   
         jsonData.forEach((item, index) => {
-            const newKPI = {
+            newKPI = {
                 id: `#KPI${storage.KPIs.length + 1}`,
                 name: item['Tên chỉ tiêu*'],
                 color: item['Mã màu đại diện'],
                 hour: item['Số giờ mục tiêu*'],
                 tasks: [] // Initialize with empty tasks array
             };
-            storage.KPIs.push(newKPI);
+            addKPIArray.push(newKPI);
         });
   
-        console.log(storage);
+        console.log(addKPIArray);
     };
   
     if(fileInput.files.length > 0) {
