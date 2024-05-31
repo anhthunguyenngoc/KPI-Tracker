@@ -321,17 +321,25 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     font-size: var(--heading1);
 }
 
-#closeButton {
+#closeButton, #closeTaskButton {
     position: absolute;
     right: 10px;
 }
 
-#closeButton button {
+#closeButton button, #closeTaskButton button {
     border-radius: 50px;
 }
 
 .flex {
     display: flex;
+}
+
+#inputTask{
+    width: fit-content ;
+    min-height: 320px ;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #input {
@@ -365,7 +373,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     justify-content: center;
 }
 
-#title h2 {
+.title h2 {
     padding-top: 20px;
     font-size: var(--heading2);
     width: fit-content;
@@ -383,7 +391,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     background-color: #FFDBA6 ;
 }
 
-#uploadMethod {
+.uploadMethod {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -400,7 +408,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     background-color: rgba(0, 0, 0, 0.5); /* Màu overlay */
   }
 
-#inputContainer {
+#inputContainer, #taskInputContainer {
     overflow-y: auto;
     height: 200px;
     display: flex;
@@ -408,8 +416,8 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     gap: 10px   ;
 }
 
-#methods {
-    width: 420px;
+div.methods {
+    width: 400px;
     height: 70px;
     background-color: var(--color-mode-1-background);
     border-radius: var(--button-border-radius);
@@ -480,7 +488,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 
 
-#addKPIButton {
+#addKPIButton, #addTaskButton {
     display: flex;
     flex-direction: row;
     gap: 25px;
@@ -491,11 +499,11 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     visibility:visible;
 }
 
-#addKPIButton div {
+#addKPIButton div, #addTaskButton div {
     color: red;
 }
 
-#addKPIButton button{
+#addKPIButton button, #addTaskButton button{
     display: flex;
     height: 40px;
     flex-direction: column;
@@ -535,17 +543,17 @@ ul {
     font-size: 1.5em; /* Kích thước tăng lên */
   }
 
-#KPIaddButton {
+#KPIaddButton , #taskAddButton {
     display: flex;
     width: 290px;
     height: 60px;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
     margin-bottom: 15px;
 }
-#KPIaddButton button {
+#KPIaddButton button, #taskAddButton button {
     font-size: var(--heading1);
 }
 
@@ -587,6 +595,108 @@ ul {
     gap: 10px;
     width: fit-content;
 }
+
+/*
+
+            Style for addTaks
+
+*/
+
+#addTask {
+    height: 630px;
+    width: 1000px;
+    position: fixed;
+    background-color: var( --color-mode-1-frame-background);
+    z-index: 100;
+    top: 80px;
+    left: 220px;
+    border-radius: 15px;
+    box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.25);
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding-top: 10px;
+    font-size: var(--heading1);
+}
+
+#addTaskTitle {
+    gap: 10px;
+    font-size: large;
+}
+
+.task-input {
+    gap: 10px;
+    align-items: center;
+}
+
+.task-input div {
+    font-size: 18px;
+}
+
+.task-input div:nth-of-type(1), #addTaskTitle div:nth-of-type(1) {
+    width: 42px;
+}
+
+.task-input div:nth-of-type(2) input, #addTaskTitle div:nth-of-type(2) {
+   width: 130px;
+}
+
+.task-input div:nth-of-type(3) select, 
+#addTaskTitle div:nth-of-type(3),  #addTaskTitle div:nth-of-type(7)
+  {
+    width: 83px;
+ }
+ .task-input div:nth-of-type(5) input,.task-input div:nth-of-type(4) input,#addTaskTitle div:nth-of-type(4),
+  .task-input div:nth-of-type(6) input,  #addTaskTitle div:nth-of-type(5), #addTaskTitle div:nth-of-type(6) {
+    width: 100px;
+ }
+
+
+ .task-input div:nth-of-type(7) input,  #addTaskTitle div:nth-of-type(7) {
+    width: 140px;
+ }
+ .task-input div:nth-of-type(8) select, #addTaskTitle div:nth-of-type(8) {
+    width: 83px;
+ }
+
+.task-input div input, .task-input div select {
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+
+}
+
+.task-input div input[type="text"] {
+    padding: 10px;
+}
+
+.task-input div input{
+ padding-left: 5px;
+}
+
+#addTaskButton {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+}
+
+#addTaskButton button{
+    display: flex;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 15px;
+    background: var(--color-mode-1-button);    
+    width: fit-content;
+    margin-left: 70px;
+}
+#title-kpi {
+    justify-content: flex-start;
+}
+
 
 @media screen and (max-width: 468px){
     .main{

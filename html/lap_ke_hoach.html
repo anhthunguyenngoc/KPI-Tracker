@@ -48,9 +48,9 @@
         </svg>
 
 
-      <div id="uploadMethod">
+      <div class="uploadMethod">
         <span>Tải lên từ</span>
-        <div id="methods">
+        <div class="methods">
         </div>
       </div>
       <div id="recommendKPI" class="flex">
@@ -75,33 +75,58 @@
             <div></div>
           </div>
             <div id="inputContainer">
-                <div class="inputTitle flex KPIinput">
-                  <div>1</div>
-                  <div>
-                    <input type="text" id="KPIName" placeholder="Thêm chỉ tiêu">
-                  </div>
-                  <div>
-                    <select name="" id="KPIcolor">
-                      <option value="#9CB2D7">Hồng sáng</option>
-                      <option value="#9CB2D7">Xanh nhạt</option>
-                    </select>
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Số giờ">
-                  </div>
-                  <div>Tạm lưu</div>
-                  <div>
-                    <button class="removeKPI">
-                      <img src="../images/bin.svg" alt="">
-                    </button>
-                  </div>
-                </div>
+                
               </div>
             </div>
-
       </div>
       <div id="KPIaddButton">
         <button>Thêm</button>
+      </div>
+    </div>
+
+
+    <div class="flex hidden" id="addTask">
+      <div id="closeTaskButton">
+        <button>
+          <img src="../images/x.svg" alt="">
+        </button>
+      </div>
+      <div class="title"><h2>Thêm nhiệm vụ</h2></div>
+      <div class="uploadMethod">
+        <span>Tải lên từ</span>
+        <div class="methods">
+        </div>
+      </div>
+      <div id="inputTask">
+
+        <div id="addTaskButton">
+          <button>+ Thêm nhiệm vụ mới</button>
+          <div id="errorMissingFieldTask" class=""></div>
+        </div>
+        <div>
+          <div class="title flex" id="addTaskTitle">
+            <div>STT</div>
+            <div>Tên nhiệm vụ*</div>
+            <div>Chọn chỉ tiêu</div>
+            <div>Ngày bắt đầu</div>
+            <div>Thời gian bắt đầu</div>
+            <div>Thời gian Kết thúc</div>
+            <div>Ghi chú</div>
+            <div>Lặp lại</div>
+            <div></div>
+          </div>
+            <div id="taskInputContainer">
+                <div class="flex task-input">
+                  
+                </div>
+          </div>
+        </div>
+      </div>
+      <div id="taskAddButton">
+        <button>Thêm</button>
+      </div>
+      <div>
+
       </div>
     </div>
     <div class="main">
