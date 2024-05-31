@@ -690,6 +690,9 @@ ul {
     width: fit-content;
     margin-left: 70px;
 }
+#title-kpi {
+    justify-content: flex-start;
+}
 
 
 @media screen and (max-width: 468px){

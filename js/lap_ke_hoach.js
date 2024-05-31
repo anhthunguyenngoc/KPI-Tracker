@@ -11,15 +11,15 @@
                 {
                     id: '#KPI1task1',
                     title: 'Phát triển hệ thống',
-                    start: '2024-05-23T09:00:00',
-                    end: '2024-05-23T11:07:00',
+                    start: '2024-05-31T09:00:00',
+                    end: '2024-05-31T11:07:00',
                     backgroundColor: '#9CB2D7'
                 },
                 {
                     id: '#KPI1task2',
                     title: 'Nghiên cứu ứng dụng',
-                    start: '2024-05-24T09:00:00',
-                    end: '2024-05-24T11:30:00',
+                    start: '2024-06-01T09:00:00',
+                    end: '2024-06-01T11:30:00',
                     backgroundColor: '#9CB2D7'
                 },
 
@@ -53,7 +53,7 @@
 
 
 
-
+document.addEventListener('DOMContentLoaded', function() {
 
 // Add KPI
 const addKPIContainer = document.querySelector("#addKPI");
@@ -279,13 +279,17 @@ function oneTask(event) {
   return template.content.firstElementChild;
 }
 
+let allEvents  =[]; 
+
 function addAllTask() {
   listTasks.innerHTML = "";
-  const allEvents = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
+  allEvents.length = 0;
+  allEvents = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
   console.log(allEvents);
   for (let i = 0; i < allEvents.length  ; i++ ){
     const node = oneTask(allEvents[i])
     listTasks.appendChild(node);
+    node.addEventListener("click", chooseTask);
   }
 }
 
@@ -302,6 +306,7 @@ const initAddTaskContainer = () =>{
                   </div>
                   <div>
                     <select name="" class="KPIID">
+                    <option value=""></option>
                     ${generateKPIOptions()}
                     </select>
                   </div>
@@ -362,6 +367,7 @@ addTaskButton.addEventListener('click', function() {
                   </div>
                   <div>
                     <select name="" class="KPIID">
+                      <option value=""></option>
                       ${generateKPIOptions()}
                     </select>
                   </div>
@@ -403,17 +409,6 @@ addTaskButton.addEventListener('click', function() {
     });
   });
 });
-
-
-
-/*id: '#KPI1task01',
-                    title: 'Phát triển hệ thống',
-                    start: '2024-05-23T09:00:00',
-                    end: '2024-05-23T11:07:00',
-                    backgroundColor: '#9CB2D7'
-*/
-
-
 
 
 
@@ -477,15 +472,16 @@ const submitTaskButton = document.getElementById("taskAddButton");
   closeAddTasksContainer.addEventListener("click", ()=>{
     addTasksContainer.classList.add("hidden");
     document.getElementById('overlay').classList.add("hidden");
-    errorLabelTask.style.display = 'none';
+    errorLabelTask.textContent = "";
   });
 
 
   document.getElementById("add-task-button").addEventListener("click", function() {
     if (selectTasksButton.classList.contains("on")) {
-        for (let i = 0; i < selectedTasksId.length; i++) {
-            console.log(selectedTasksId[i]);
-          }
+            console.log(selectedTasksId);
+          
+          addTaskToCalendar(selectedTasksId);
+          console.log(allEvents);
           toggleSelectTasksButton();
     } else {
       addTasksContainer.classList.remove("hidden");
@@ -513,6 +509,8 @@ const submitTaskButton = document.getElementById("taskAddButton");
   const errorLabelTask = document.getElementById("errorMissingFieldTask");
   
   
+  
+
 
   
   submitTaskButton.addEventListener('click', () => {
@@ -569,12 +567,12 @@ const submitTaskButton = document.getElementById("taskAddButton");
       });
       addTasksContainer.classList.add("hidden");
       document.getElementById('overlay').classList.add("hidden");
-      errorLabelTask.style.display = 'none';
+      errorLabelTask.textContent = '';
       console.log(storage.KPIs); // Verify the tasks are stored correctly in the KPIs array
       // Here you can save KPIs to localStorage, send it to a server, etc.
       addAllTask();
     } else {
-      errorLabelTask.textContent = 'Please fill in all the fields.';
+      errorLabelTask.textContent = '*Hãy điền đủ các trường thông tin';
     }
   });
 
@@ -668,7 +666,7 @@ clickAndDragY('.list');
 
 // calendar
 
-document.addEventListener('DOMContentLoaded', function() {
+
     let editable = false;
     var calendarEl = document.getElementById('calendar');
     let calendarInit = {
@@ -728,27 +726,20 @@ document.addEventListener('DOMContentLoaded', function() {
             today: 'Today'
         },
         events : [
-            {
-            id: 'a',
-            title: 'Testing',
-            start: '2024-05-23T09:00:00',
-            end: '2024-05-23T11:07:00',
-            display: 'auto',
-            backgroundColor: '#F2DEDE'
-            },
-            {
-                id: 'a',
-                title: 'Testing',
-                start: '2024-05-23T06:00:00',
-                end: '2024-05-23T08:07:00',
-                display: 'auto',
-                backgroundColor: '#F2DEDE'
-                }
         ]
             
         };
     let calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
     calendar.render();
+    function addTaskToCalendar (tasksSeleted) {
+      for (let i = 0; i < tasksSeleted.length; i++) {
+        for (let m = 0; m < allEvents.length; m++) {
+          if (tasksSeleted[i] === allEvents[m].id) {
+            calendar.addEvent(allEvents[m]);
+          }
+        }
+      }
+    }
     document.querySelector('.fc-share-button').innerHTML = `
   <img src="../images/share-schedule.svg" />
     `;
