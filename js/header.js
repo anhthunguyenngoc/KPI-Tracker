@@ -396,6 +396,9 @@ class Header extends HTMLElement {
                 .mouse-layer {
                     display: none;
                 }
+                .mouse-layer-container{
+                    display:none;
+                }
                 .t {
                     stroke: var(--color-mode-1-footer);
                 }
