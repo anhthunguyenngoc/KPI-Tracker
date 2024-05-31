@@ -9,20 +9,24 @@
             hour: "70",
             tasks : [
                 {
-                    id: '#KPI1task1',
-                    title: 'Phát triển hệ thống',
-                    start: '2024-05-31T09:00:00',
-                    end: '2024-05-31T11:07:00',
-                    backgroundColor: '#9CB2D7'
+                  id: '#KPI1task2',
+                  title: 'Phát triển hệ thống',
+                  start: '2024-05-31T09:00:00',
+                  end: '2024-05-31T11:07:00',              
+                  note: '',
+                  repeat: '',
+                  backgroundColor: '#9CB2D7'
                 },
                 {
-                    id: '#KPI1task2',
-                    title: 'Nghiên cứu ứng dụng',
-                    start: '2024-06-01T09:00:00',
-                    end: '2024-06-01T11:30:00',
-                    backgroundColor: '#9CB2D7'
+                  id: '#KPI1task2',
+                  title: 'Nghiên cứu ứng dụng',
+                  day: '',
+                  start: '2024-06-01T09:00:00',
+                  end: '2024-06-01T11:30:00',               
+                  note: '',
+                  repeat: '',
+                  backgroundColor: '#9CB2D7'
                 },
-
             ]
         },
         {
@@ -233,8 +237,6 @@ closeAddKPIContainer.addEventListener("click", () => {
     realContent.innerHTML=``;
     kpiIndex=1;
 })
-
-
 
 let KPICounter = 0;
 let taskCounter = -1;
@@ -748,7 +750,82 @@ clickAndDragY('.list');
     `;
   });
 
+  var addKPIArray = [];
+
+  function uploadExcel() {
+    var fileInput = document.getElementById('kpi-file-upload');   
+
+    fileInput.addEventListener('change', function() {
+      document.getElementById('kpi-file-name').textContent = fileInput.files[0].name;
+      reader = new FileReader();
+
+      reader.onload = function(event) {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
   
- 
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+  
+        jsonData.forEach((item, index) => {
+            newKPI = {
+                id: `#KPI${storage.KPIs.length + 1}`,
+                name: item['Tên chỉ tiêu*'],
+                color: item['Mã màu đại diện'],
+                hour: item['Số giờ mục tiêu*'],
+                tasks: [] // Initialize with empty tasks array
+            };
+            addKPIArray.push(newKPI);
+        });
+  
+        console.log(addKPIArray);
+    };
+  
+    if(fileInput.files.length > 0) {
+        reader.readAsArrayBuffer(fileInput.files[0]);
+    } else {
+        alert("Please upload a file.");
+    }
 
+  } );
+}
 
+function uploadTaskExcel() {
+  var fileInput = document.getElementById('task-file-upload');   
+
+  fileInput.addEventListener('change', function() {
+    document.getElementById('task-file-name').textContent = fileInput.files[0].name;
+    reader = new FileReader();
+
+    reader.onload = function(event) {
+      const data = new Uint8Array(event.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+      jsonData.forEach((item, index) => {
+          const newKPI = {
+              id: `#KPI1task${storage.KPIs.length + 1}`,
+              title: item['Tên nhiệm vụ*'],
+              kpiId: item['Tên chỉ tiêu*'],
+              hour: item['Ngày thực hiện'],
+              start: item['Thời gian bắt đầu'],
+              end: item['Thời gian kết thúc'],
+              note: item['Ghi chú'],
+              repeat: item['Lặp lại'],
+              tasks: [] // Initialize with empty tasks array
+          };
+          storage.KPIs.push(newKPI);
+      });
+
+      console.log(storage);
+  };
+
+  if(fileInput.files.length > 0) {
+      reader.readAsArrayBuffer(fileInput.files[0]);
+  } else {
+      alert("Please upload a file.");
+  }
+
+} );
+}
