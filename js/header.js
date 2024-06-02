@@ -49,7 +49,7 @@ class Header extends HTMLElement {
     
       <div></div>
     
-      <div class="right">
+      <div id="header-right" class="right">
           <div id="guidance" onclick="helpClick()">
               <button class="user-button"> 
                   <img 

@@ -223,14 +223,6 @@ function clickAndDrag(selector, tab, icon, scroll_speed = 3, classOnEvent = 'gra
         const walk = (x - startX) * scroll_speed; //scroll-fast
         slider.scrollLeft = scrollLeft - walk;
     });
-
-    allTabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-            slider.querySelector(".active").classList.remove("active");
-            tab.classList.add("active");
-        });
-    });
-
 }
 
     document.getElementById("month").addEventListener("click", () => {

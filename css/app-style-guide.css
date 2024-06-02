@@ -72,7 +72,8 @@
   --color-button-hover: var(--color-mode-1-button-hover);
   --color-background: var(--color-mode-1-background);
   --color-text: var(--color-black-text);
-  
+  --color-shadow: var(--color-mode-1-shadow);
+
   /* Gaps */
   --gap-21xl: 40px;
   --gap-11xl: 30px;
@@ -137,6 +138,7 @@ body {
 .heading1{
   font-size: var(--heading1) !important;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .heading2{
@@ -171,8 +173,8 @@ button:hover {
 .img-button {
   border-radius: 5px;
   padding: 5px 5px 5px 5px;
-  min-width: 40px;
-  min-height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 .input-bx{
@@ -253,7 +255,6 @@ section {
   display: flex;
   background-color: var(--color-frame-background);
   border-radius: var(--frame-border-radius);
-  box-shadow: -4px 4px 4px 0 var(--color-shadow);
   padding: 30px 30px 30px 30px;
 }
 
@@ -322,7 +323,6 @@ section {
 }
 
 .tutorial *{
-  color: var(--color-white-text);
   font: var(--body-font) !important;
   font-size: var(--body-size) !important;
 }
@@ -331,7 +331,7 @@ section {
   position: initial !important;
   min-width: fit-content !important;
   height: fit-content !important;
-  color: var(--color-white-text) !important;
+  color: var(--color-text) !important;
 }
 
 .introjs-skipbutton:hover{
@@ -417,7 +417,7 @@ section {
 }
 
 .introjs-tooltiptext {
-color: var(--color-white-text);
+color: var(--color-text) !important;
 display: flex;
 flex-direction: column;
 gap: 15px;
@@ -438,4 +438,54 @@ z-index: -1;
   fill: var(--color-button);
   width: 30px;
   height: 30px;
+}
+
+
+#link-history {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+}
+
+.link-arrow{
+  width: 15px;
+  height: 15px;
+}
+
+.link-arrow path{
+  fill: var(--color-button);
+}
+
+.top-main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  gap: 10px;
+}
+
+.period-select {
+  background-color: var(--color-white-text);
+  border-radius: var(--br-8xs);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  border: 2px solid var(--color-button);
+}
+
+.date-kpi{            
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  align-items: center;
+  height: fit-content;
+  padding: 0px 10px 0px 10px;
 }

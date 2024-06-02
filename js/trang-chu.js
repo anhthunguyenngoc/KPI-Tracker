@@ -311,3 +311,128 @@ new Chart(document.getElementById("pie-chart"), {
           }
         });
       }
+
+
+    function monthSelection(){
+        document.getElementById("month-selection").innerHTML = `
+        <div class="month-picker-header">
+            <div id="prev-year">
+            <svg viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.2911 0.25L17.1079 2.25428L3.74149 17L17.1079 31.7457L15.2911 33.75L0.107903 17L15.2911 0.25Z"/>
+            </svg>
+            </div>
+            <span id="year">2024</span>
+            <div id="next-year">
+            <svg viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z"/>
+            </svg>   
+            </div> 
+        </div>
+        <div class="month-picker">
+            <div class="year-picker-body" id="year-picker">
+                <button class="year" data-year="2021">2021</button>
+                <button class="year" data-year="2022">2022</button>   
+                <button class="year" data-year="2023">2023</button>
+                <button class="year" data-year="2024">2024</button>
+                <button class="year" data-year="2025">2025</button>
+                <button class="year" data-year="2026">2026</button>
+                <button class="year" data-year="2027">2027</button>
+                <button class="year" data-year="2028">2028</button>
+                <button class="year" data-year="2029">2029</button>
+                <button class="year" data-year="2030">2030</button>
+                <button class="year" data-year="2031">2031</button>
+                <button class="year" data-year="2032">2032</button>
+            </div>
+            <div class="month-picker-body">
+                <button class="month" data-month="01">1</button>
+                <button class="month" data-month="02">2</button>   
+                <button class="month" data-month="03">3</button>
+                <button class="month" data-month="04">4</button>
+                <button class="month" data-month="05">5</button>
+                <button class="month" data-month="06">6</button>
+                <button class="month" data-month="07">7</button>
+                <button class="month" data-month="08">8</button>
+                <button class="month" data-month="09">9</button>
+                <button class="month" data-month="10">10</button>
+                <button class="month" data-month="11">11</button>
+                <button class="month" data-month="12">12</button>
+            </div>
+        </div>
+        <div class="month-picker-footer">
+            <button id="back-to-month">Quay lại</button>
+            <button id="this-month">Tháng này</button>
+        </div>
+    `
+    }
+
+    monthSelection();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const yearSpan = document.getElementById('year');
+        let currentYear = new Date().getFullYear();
+    
+        function updateYear(newYear) {
+            currentYear = newYear;
+            yearSpan.textContent = currentYear;
+        }
+    
+        document.getElementById('prev-year').addEventListener('click', function () {
+            updateYear(currentYear - 1);
+        });
+    
+        document.getElementById('next-year').addEventListener('click', function () {
+            updateYear(currentYear + 1);
+        });
+    
+        document.querySelectorAll('.month').forEach(function (monthDiv) {
+            monthDiv.addEventListener('click', function () {
+                const selectedMonth = monthDiv.getAttribute('data-month');
+                alert(`Selected: ${currentYear}-${selectedMonth}`);
+            });
+        });
+    
+        updateYear(currentYear);
+    });
+    
+    const yearSpan = document.getElementById('year');
+    const yearPicker = document.getElementById('year-picker');
+    const monthPickerBody = document.querySelector('.month-picker-body');
+
+    function openYearPicker() {
+        yearPicker.style.display = 'grid';
+        monthPickerBody.style.display = 'none';
+        document.getElementById('back-to-month').style.visibility = 'visible';
+    }
+
+    function hideYear(year) {
+        yearSpan.textContent = year;
+        yearPicker.style.display = 'none';
+        monthPickerBody.style.display = 'grid';
+        document.getElementById('back-to-month').style.visibility = 'hidden';
+    }
+
+    yearSpan.addEventListener('click', openYearPicker);
+    document.getElementById('back-to-month').addEventListener('click', () => {
+        hideYear(yearSpan.textContent);
+    });
+
+    const yearOptions = yearPicker.querySelectorAll('.year');
+    yearOptions.forEach(year => {
+        year.addEventListener('click', () => {
+            hideYear(year.textContent);
+        });
+    });
+
+    const selectBtn = document.querySelector('.select-btn');
+
+    function toggleMonthSelection() {
+        const monthSelection = document.getElementById('month-selection');
+        if(monthSelection.style.display == 'flex'){
+            monthSelection.style.display = 'none';
+        }else {
+            monthSelection.style.display = 'flex';
+        }
+        
+    }
+
+    selectBtn.addEventListener('click', toggleMonthSelection);

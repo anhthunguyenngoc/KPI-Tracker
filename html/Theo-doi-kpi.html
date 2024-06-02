@@ -28,6 +28,22 @@
   <body>
     <header-component> </header-component>
     <main class="main">
+      <div class="top-main">
+        <div id="link-history">
+          <div class="link">Trang chủ</div>
+          <svg class="link-arrow" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z"/>
+          </svg> 
+          <div class="link">Kế hoạch</div>
+        </div>
+         <button id="KPIaddButton">Thêm KPI mới +</button>
+        <div class="period-select">
+          <span class="date-kpi">Đợt: đến ngày 27/05/2024 </span>
+          <button id="period-select-button" class="img-button" data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-right">
+            <img src="../images/clock.svg">
+          </button>
+        </div>
+        </div>
       <div id="kpi-tomtat">
         <svg id="frame-wave" width="1600" height="111" viewBox="0 0 1600 111" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_3922_17426)">
@@ -79,7 +95,7 @@
       </div>
       </div>
       <div class="col-10px">
-        <h1 class="heading1">Thống kê kết quả KPI đạt được</h1>
+        <h1 style="color: var(--color-text);" class="heading1">Thống kê kết quả KPI đạt được</h1>
 
         <section class="chart-container">
             

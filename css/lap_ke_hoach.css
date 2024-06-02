@@ -1,7 +1,15 @@
 .main{
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: fit-content;
+}
+
+.main-body{
+    display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     height: fit-content;
+    gap: 25px;
 }
 .content{
     display: flex;
@@ -44,20 +52,14 @@ section {
     list-style: none;
     flex-direction: row;
     align-items: center;
-    height: auto;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    height: fit-content;
+    width: fit-content;
 }
-.date-kpi{            
-    background-color: var(--color-white-text);
-    border-radius: var(--br-8xs);
-    flex-direction: row;
-    justify-content: center; 
-    align-items: center;
-    height: var(--text-field-height);
-    display: flex;
-    padding: 0px 10px 0px 10px;
+
+#title-kpi {
+    width: 100%;
 }
+
 .KPI_container {
     display: flex;
     min-width: 225px;
@@ -151,7 +153,11 @@ section {
 }
 
 .set-kpi {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     height: auto;
+    gap: 20px;
 }
 
 #list{
@@ -199,6 +205,10 @@ button {
     height: 26px;
   }
 
+#period-select-button{
+  width: 35px;
+  height: 35px;
+}
 
 /*
 *  Calendar
@@ -736,8 +746,9 @@ ul {
 
 #title-kpi {
     justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
-
 
 @media screen and (max-width: 468px){
     .main{
