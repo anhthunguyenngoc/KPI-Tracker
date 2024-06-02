@@ -50,13 +50,13 @@
 .focus {
     font-size: var(--big);
     font-weight: 600px;
-    color: var(--color-mode-1-button);
+    color: var(--color-button);
 }
 
 .donvi {
     font-weight: 500px;
     font-size: var(--heading2);
-    color: var(--color-mode-1-button);
+    color: var(--color-button);
 }
 
 .col-5px {
@@ -142,16 +142,16 @@ section{
 }
 
 .outside {
-    fill:var(--color-mode-1-frame-background);
+    fill:var(--color-frame-background);
 }
 
 .back-layer {
-    fill:var(--color-mode-1-element2);
+    fill:var(--color-element2);
 
 }
 
 .front-layer {
-    fill:var(--color-mode-1-button);
+    fill:var(--color-button);
 }
 
 .content {
@@ -251,8 +251,8 @@ section{
   }
 
   .one-task:hover {
-    background-color: var(--color-mode-1-button-hover);
-    border: 2px solid var(--color-mode-1-button);
+    background-color: var(--color-button-hover);
+    border: 2px solid var(--color-button);
     color: var(--color-white-text);;
     cursor: pointer;
   }
@@ -272,8 +272,8 @@ section{
   }
 
   .day-button.active{
-    background-color: var(--color-mode-1-button);
-    border-color: var(--color-mode-1-button);
+    background-color: var(--color-button);
+    border-color: var(--color-button);
     color: var(--color-white-text);
   }
 
@@ -338,7 +338,7 @@ section{
 .kpi-list-container #kpi-list-right path,
 #left path, 
 #right path{
-    fill: var(--color-mode-1-button)
+    fill: var(--color-button)
 }
 
 .kpi-list-container #kpi-list-left:hover path,
@@ -346,7 +346,7 @@ section{
 #left:hover path, 
 #right:hover path
 {
-    fill: var(--color-mode-1-button-hover)
+    fill: var(--color-button-hover)
 }
 
 .kpi-list-container #kpi-list {
@@ -578,8 +578,8 @@ section{
     /*Ket thuc*/
 
           #a path{
-            fill:var(--color-mode-1-frame-background);
-            stroke:var(--color-mode-1-button);
+            fill:var(--color-frame-background);
+            stroke:var(--color-button);
             stroke-width:5;
           }
 
@@ -588,11 +588,11 @@ section{
           }
 
           #b path{
-            fill:var(--color-mode-1-button);
+            fill:var(--color-button);
           }
 
           #b rect:nth-of-type(1){
-            stroke:var(--color-mode-1-button);
+            stroke:var(--color-button);
           }
 
           #b:hover path{

@@ -12,7 +12,7 @@
     line-height: normal;
     line-height: normal;
     font-family: var(--body-font);
-    color: var(--color-mode-1-button);
+    color: var(--color-button);
 }
 
 #tools-bar {
@@ -57,7 +57,7 @@ section {
     flex: 1 0 0;
     align-self: stretch;
     border-radius: 25px;
-    background: var(--color-mode-1-element2);
+    background: var(--color-element2);
 }
 
 .topbar-schedule {
@@ -121,7 +121,7 @@ button.tool img {
 .schedule:hover {
     transform: translateX(2px) translateY(-2px);
     box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-    border: 2px solid var(--color-mode-1-button);
+    border: 2px solid var(--color-button);
 }
 
 @media only screen and (max-width: 768px) {

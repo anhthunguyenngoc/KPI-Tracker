@@ -2,7 +2,7 @@
   flex-direction: row;
   padding: 100px 80px 60px 80px;
   gap: 80px;
-  background-color: var(--color-mode-1-element2);
+  background-color: var(--color-background);
 }
 
 .main div:nth-of-type(1) {
@@ -60,9 +60,27 @@
 .kpi-tracker {
   font-size: 40px;
   font-family: var(--logo-font);
-  color: var(--color-mode-1-button);
+  color: var(--color-button);
   min-width: 230px;
 }
+
+.t {
+  stroke: var(--color-element2); 
+  stroke-linecap: round;
+  }
+
+  .k {
+  stroke: var(--color-button); 
+  stroke-width: 25;
+  stroke-linecap: round;
+  }
+  .hidden {
+      display: none;
+  }
+
+  .tick path, .row-5px svg path {
+    fill: var(--color-button);
+  }
 
 .goal-group {
   width: inherit;
@@ -70,6 +88,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--color-text);
 }
 
 .row-5px,
@@ -125,12 +144,12 @@ section {
   border-radius: var(--button-border-radius);
   border: none;
   cursor: pointer;
-  border: 2px solid var(--color-mode-1-button);
+  border: 2px solid var(--color-button);
 }
 
 .social-button:hover {
-  background-color: var(--color-mode-1-element2);
-  border: 2px solid var(--color-mode-1-button);
+  background-color: var(--color-element2);
+  border: 2px solid var(--color-button);
 }
 
 .social-icon {

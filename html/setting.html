@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/setting2.css">
 
     <script src="../js/setting.js" type="text/javascript" defer></script>
+    <script src="../js/theme.js" type="text/javascript" defer></script>
 
     <link
       rel="stylesheet"
@@ -17,6 +18,11 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
     />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Verdana:wght@400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Garamond:wght@400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Calibri:wght@400&display=swap">
+
 </head>
 <body>
     <main class="main">
@@ -131,7 +137,7 @@
                             <span>Thay đổi màu sắc chủ đề</span>
 
                             <div id="list-color">
-                                <div id="theme-color-1">
+                                <div id="theme-color-1" onclick="theme1Click()">
                                     <div class="colors">
                                         <div class="color1"></div>
                                         <div class="color2"></div>
@@ -139,7 +145,7 @@
                                     </div>                           
                                 </div>
 
-                                <div id="theme-color-2">
+                                <div id="theme-color-2" onclick="theme2Click()">
                                     <div class="colors">
                                         <div class="color1"></div>
                                         <div class="color2"></div>
@@ -147,7 +153,7 @@
                                     </div>                           
                                 </div>
 
-                                <div id="theme-color-3">
+                                <div id="theme-color-3" onclick="theme3Click()">
                                     <div class="colors">
                                         <div class="color1"></div>
                                         <div class="color2"></div>
@@ -155,7 +161,7 @@
                                     </div>                           
                                 </div>
 
-                                <div id="theme-color-4">
+                                <div id="theme-color-4" onclick="theme4Click()">
                                     <div class="colors">
                                         <div class="color1"></div>
                                         <div class="color2"></div>
@@ -197,9 +203,9 @@
                                     </div>
 
                                     <div class="font-size-control">
-                                        <input type="range" min="10" max="100" value="50" class="slider">
+                                        <input type="range" class="slider">
                                         <div class="input-up-down"> 
-                                            <input type="number" min="10" max="100" value="50">
+                                            <input id="font-size" type="number">
                                             <div class="up-down">
                                                 <button class="spinner-up">
                                                     <svg width="12" height="12" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">

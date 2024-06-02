@@ -3,8 +3,8 @@ const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
 const kpiUp = [2, 8, 5, 3];
 const kpiNow = [24, 26, 32, 16];
 const kpiGoal = [53, 35, 71, 53];
-const color_mode_1_footer = "#3aafa9"
-const color_mode_1_button = "#2a7378"
+color_mode_1_footer = "#3aafa9"
+color_mode_1_button = "#2a7378"
 
 var chartData = {
     labels: ["29/4", "30/4", "1/5", "2/5", "3/5", "4/5", "5/5"],

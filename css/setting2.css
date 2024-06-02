@@ -1,5 +1,5 @@
 body {
-    background-color: var(--color-mode-1-frame-background);
+    background-color: var(--color-frame-background);
 }
 
 .main {
@@ -22,7 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: var(--color-mode-1-background);
+    background-color: var(--color-background);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     padding: 45px 45px 45px 45px;
@@ -47,7 +47,7 @@ body {
 }
 .spinner-up:hover,
 .spinner-down:hover{
-    border-color: var(--color-mode-1-button-hover);
+    border-color: var(--color-button-hover);
 }
 
 .input-up-down{
@@ -75,7 +75,7 @@ section {
 }
 
 #back path{
-    fill: var(--color-mode-1-button);
+    fill: var(--color-button);
 }
 
 #fixed-container {
@@ -112,7 +112,7 @@ section {
 
 .sub-settings a {
     text-decoration: none;
-    color: var(--color-mode-1-button);
+    color: var(--color-button);
     font-family: var(--body-font);
     font-size: var(--body-size);
     font-style: normal;
@@ -125,7 +125,7 @@ section {
     appearance: none;
     height: 18px;
     border-radius: 25px;
-    background-color: var(--color-mode-1-element2);
+    background-color: var(--color-element2);
     overflow: hidden;
     cursor: pointer;
   }
@@ -136,13 +136,13 @@ section {
     width: 20px;
     border-radius: 50%;
     border: 2px solid #fff;
-    background-color: var(--color-mode-1-button);
-    box-shadow: -508px 0 0 500px var(--color-mode-1-button);
+    background-color: var(--color-button);
+    box-shadow: -508px 0 0 500px var(--color-button);
   }
 
   .slider:hover::-webkit-slider-thumb {
-    background-color: var(--color-mode-1-button-hover);
-    box-shadow: -508px 0 0 500px var(--color-mode-1-button-hover);
+    background-color: var(--color-button-hover);
+    box-shadow: -508px 0 0 500px var(--color-button-hover);
   }
 .flex {
     display: flex;
@@ -296,11 +296,11 @@ input[type=number] {
 }
 
 .select-btn i svg path {
-    fill: var(--color-mode-1-button);
+    fill: var(--color-button);
 }
 
 .select-btn:hover i svg path {
-    fill: var(--color-mode-1-button-hover);
+    fill: var(--color-button-hover);
 }
 
 .select-menu1.active .select-btn i,
@@ -338,7 +338,7 @@ input[type=number] {
 }
 .options .option:hover{
     color: var(--color-white-text);
-    background: var(--color-mode-1-button-hover);
+    background: var(--color-button-hover);
 }
 
 .toggle-switch {
@@ -355,7 +355,7 @@ input[type=number] {
     display: inline-block;
     width: 50px;
     height: 25px;
-    background-color: var(--color-mode-1-element2);
+    background-color: var(--color-element2);
     border-radius: 25px;
     position: relative;
     cursor: pointer;
@@ -376,7 +376,7 @@ input[type=number] {
 }
 
 .toggle-switch input:checked + label {
-    background-color: var(--color-mode-1-button)
+    background-color: var(--color-button)
 }
 
 .toggle-switch input:checked + label::before {
@@ -569,6 +569,7 @@ input[type=number] {
 #back-button2 {
     display: none;
 }
+
 @media screen and (max-width: 468px){
     #side-bar {
         display: none;

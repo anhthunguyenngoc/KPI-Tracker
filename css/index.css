@@ -11,7 +11,7 @@ header {
             justify-content: center;
             align-items: center;
             padding: 10px 20px 10px 20px;
-            background-color: var(--color-mode-1-frame-background);
+            background-color: var(--color-frame-background);
           }
 
           header div:nth-of-type(2) {
@@ -40,7 +40,7 @@ header {
           .kpi-tracker {
             font-size: 40px;
             font-family: var(--logo-font);
-            color: var(--color-mode-1-button);
+            color: var(--color-button);
             min-width: 230px;
           }
 
@@ -50,12 +50,12 @@ header {
   }
 
             .t {
-            stroke: var(--color-mode-1-footer); 
+            stroke: var(--color-footer); 
             stroke-linecap: round;
           }
 
           .k {
-            stroke: var(--color-mode-1-button); 
+            stroke: var(--color-button); 
             stroke-width: 25;
             stroke-linecap: round;
           }

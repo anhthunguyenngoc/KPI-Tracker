@@ -31,7 +31,7 @@ section {
 .bottom-content {
     padding: 20px 30px 20px 30px;
     border-radius: 25px;
-    background-color: var(--color-mode-1-element2);
+    background-color: var(--color-element2);
 }
 
 .top-content__navbar {
@@ -107,7 +107,7 @@ section {
     flex-direction: row;
     justify-content: center; 
     align-items: center;
-    background-color: var(--color-mode-1-button);
+    background-color: var(--color-button);
     color: var(--color-white-text);
     border-radius: var(--button-border-radius);
     cursor: pointer;
@@ -180,8 +180,8 @@ section {
 }
 
 .list-task:hover{
-    background-color: var(--color-mode-1-button-hover);
-    border: 2px solid var(--color-mode-1-button);
+    background-color: var(--color-button-hover);
+    border: 2px solid var(--color-button);
     color: var(--color-white-text);
     cursor: pointer;
 }
@@ -205,12 +205,12 @@ button {
 */
 
 .fc-toolbar.fc-header-toolbar {
-    background-color: var(--color-mode-1-frame-background);
+    background-color: var(--color-frame-background);
     color: #ffffff;
     padding: 10px;
   }
   .fc-toolbar.fc-header-toolbar .fc-button {
-    background-color: var(--color-mode-1-button);
+    background-color: var(--color-button);
     position: relative;
     border: none;
     border-radius: 5px;
@@ -219,7 +219,7 @@ button {
 
   }
   .fc-toolbar.fc-header-toolbar .fc-button:hover {
-    background-color: var(--color-mode-1-button-hover);
+    background-color: var(--color-button-hover);
   }
   .fc-toolbar.fc-header-toolbar h2 {
     color: var(--color-black-text);
@@ -278,7 +278,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
     /* Track */
     .fc .fc-scroller-liquid-absolute::-webkit-scrollbar-track {
-    background: var(--color-mode-1-element2); 
+    background: var(--color-element2); 
     border-radius: 2px;
     width: 6px;
 }
@@ -286,7 +286,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     /* Handle */
     .fc .fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
     width: 4px;
-    background: var(--color-mode-1-button); 
+    background: var(--color-button); 
     border-radius: 2px;
 }
 
@@ -307,13 +307,13 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     height: fit-content;
     width: fit-content;
     position: fixed;
-    background-color: var( --color-mode-1-frame-background);
+    background-color: var( --color-frame-background);
     z-index: 100;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
-    box-shadow: -2px 2px 2px 2px var(--color-mode-1-shadow);
+    box-shadow: -2px 2px 2px 2px var(--color-shadow);
     flex-direction: column;
     gap: 20px;
     align-items: center;
@@ -498,10 +498,10 @@ input[type="file"] {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-mode-1-button);
+    background-color: var(--color-button);
     color: var(--color-white-text);
     border-radius: var(--button-border-radius);
-    border: 2px solid var(--color-mode-1-button);
+    border: 2px solid var(--color-button);
     cursor: pointer;
     font-size: var(--body-size);
     width: 106px;
@@ -510,8 +510,8 @@ input[type="file"] {
   }
   
   .custom-file-upload:hover {
-    background-color: var(--color-mode-1-button-hover);
-    border: 2px solid var(--color-mode-1-button);
+    background-color: var(--color-button-hover);
+    border: 2px solid var(--color-button);
   }
 
 .addButton {
@@ -543,7 +543,7 @@ ul {
 
 #kpi-step li::before {
     content: "\2022"; /* Dấu chấm */
-    color: var(--color-mode-1-button);
+    color: var(--color-button);
     display: inline-block;
     width: 1em;
     font-size: 1.5em; /* Kích thước tăng lên */
@@ -584,7 +584,7 @@ ul {
 }
 
 .icon-svg:hover {
-    fill: var(--color-mode-1-button-hover);
+    fill: var(--color-button-hover);
     cursor: pointer;
 }
 
@@ -612,7 +612,7 @@ ul {
     height: 630px;
     width: 1000px;
     position: fixed;
-    background-color: var( --color-mode-1-frame-background);
+    background-color: var( --color-frame-background);
     z-index: 100;
     top: 80px;
     left: 220px;
@@ -683,7 +683,7 @@ ul {
 .uploadMethod {
     width: auto;
     height: auto;
-    background-color: var(--color-mode-1-background);
+    background-color: var(--color-background);
     border-radius: var(--button-border-radius);
     display: flex;
     justify-content: center;
@@ -723,15 +723,15 @@ ul {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: var(--color-mode-1-button);
+    color: var(--color-button);
     padding: 0 5px;
 }
 .example-file-container a:hover{
     border-radius: var(--button-border-radius);
     border: none;
-    background-color: var(--color-mode-1-frame-background); 
+    background-color: var(--color-frame-background); 
     cursor: pointer;
-    color: var(--color-mode-1-button-hover);
+    color: var(--color-button-hover);
 }
 
 #title-kpi {

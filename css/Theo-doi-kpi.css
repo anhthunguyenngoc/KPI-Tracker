@@ -68,7 +68,7 @@ section {
   height: fit-content;
   top: 50%;
   transform: translateY(-50%);
-  background-color: var(--color-mode-1-element2);
+  background-color: var(--color-element2);
   padding: 60px 10px 60px 10px;
   cursor: pointer;
 }
@@ -144,7 +144,7 @@ section {
 
 #day {
   border-radius:10px 0px 0px 10px;
-  background-color: var(--color-mode-1-footer);
+  background-color: var(--color-footer);
 }
 
 #month {
