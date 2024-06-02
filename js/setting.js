@@ -1,19 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const selectBtn = document.getElementById("selectBtn");
-  const optionMenu = document.getElementById("selectMenu");
-  const options = document.getElementById("options");
-
-  selectBtn.addEventListener("click", () => {
-      optionMenu.classList.toggle("active");
-      if (optionMenu.classList.contains("active")) {
-          // Nếu select-menu được kích hoạt, đặt vị trí của options
-          const rect = selectBtn.getBoundingClientRect();
-          options.style.top = rect.bottom + "px";
-          options.style.left = rect.left + "px";
-      }
-  });
-});
-
 function selectionClick(selectMenu, select_btn, option, btnText){
     const optionMenu = document.querySelector(selectMenu),
         selectBtn = optionMenu.querySelector(select_btn),
@@ -21,15 +5,16 @@ function selectionClick(selectMenu, select_btn, option, btnText){
         sBtn_text = optionMenu.querySelector(btnText);
 
     selectBtn.addEventListener("click", () => {
-        optionMenu.classList.toggle("active");
-        if (optionMenu.classList.contains("active")) {
-            // Nếu select-menu được kích hoạt, đặt vị trí của options
-            const rect = selectBtn.getBoundingClientRect();
-            options.style.top = rect.bottom + "px";
-            options.style.left = rect.left + "px";
-        }
-        }
-    );       
+      optionMenu.classList.toggle("active");
+      if (optionMenu.classList.contains("active")) {
+          // Nếu select-menu được kích hoạt, đặt vị trí của options
+          const rect = selectBtn.getBoundingClientRect();
+          options.forEach((option) => {
+              option.style.top = rect.bottom + "px";
+              option.style.left = rect.left + "px";
+          });
+      }
+    });
 
     options.forEach(option =>{option.addEventListener("click", ()=>{
         let selectedOption = option.querySelector(".option-text").innerText;
@@ -58,11 +43,11 @@ switchClick('switch2', 'switchText2');
 
 switchClick('switch3', 'switchText3');
 
-selectionClick(".select-menu1", ".select-btn", ".option", ".sBtn-text");
+selectionClick(".select-menu1", ".select-menu1 .select-btn", ".select-menu1 .options .option", ".select-menu1 .select-btn .sBtn-text");
 
-selectionClick(".select-menu2", ".select-btn", ".option", ".sBtn-text");
+selectionClick(".select-menu2", ".select-menu2 .select-btn", ".select-menu2 .options .option", ".select-menu2 .select-btn .sBtn-text");
 
-selectionClick(".select-menu3", ".select-btn", ".option", ".sBtn-text");
+selectionClick(".select-menu3", ".select-menu3 .select-btn", ".select-menu3 .options .option", ".select-menu3 .select-btn .sBtn-text");
 
 const scrollHandler = (elmRef) => {
   console.log(elmRef);
@@ -119,13 +104,18 @@ spinnerDown.addEventListener('click', function() {
   changeFontSize(slider.value);
 });
 
+function changeFontStyle() {
+  const selectMenu = document.querySelector('.select-menu1');
+  const options = selectMenu.querySelectorAll('.select-menu1 .options .option');
 
-/*
-const sBtnText = document.querySelector('.sBtn-text'); // Giả sử id của thẻ span là "sBtn-text"
-sBtnText.addEventListener('input', function() {
-    localStorage.setItem('--body-font', sBtnText.textContent);
-    console.log(sBtnText.textContent);
-    document.documentElement.style.setProperty('--body-font', localStorage.getItem('--body-font'));
-});
+  options.forEach(option => {
+      option.addEventListener('click', () => {
+          const selectedFont = option.querySelector('.option-text').textContent;
+          localStorage.setItem('--body-font', selectedFont);
+          document.documentElement.style.setProperty('--body-font', localStorage.getItem('--body-font'));
+      });
+  });
+}
 
-*/
+document.querySelector('.select-menu1 .select-btn .sBtn-text').textContent = localStorage.getItem('--body-font');
+changeFontStyle();

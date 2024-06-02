@@ -89,18 +89,22 @@ function theme1Click() {
 
   let font_size_min = getComputedStyle(document.documentElement).getPropertyValue('--body-size-min').trim();
   font_size_min = parseFloat(font_size_min);
-  
+
   let heading1_min = getComputedStyle(document.documentElement).getPropertyValue('--heading1-min').trim();
   heading1_min = parseFloat(heading1_min);
 
 function changeFontSize(value){
   localStorage.setItem('--body-size', value);
   localStorage.setItem('--heading1', value - font_size_min + heading1_min);
-  console.log(localStorage.getItem('--body-size'));
-  console.log(localStorage.getItem('--heading1'));
   document.documentElement.style.setProperty('--body-size', localStorage.getItem('--body-size')+'px');
   document.documentElement.style.setProperty('--heading1', localStorage.getItem('--heading1')+'px');
 }
 
+function changeFont(value){
+  localStorage.setItem('--body-font', value);
+  document.documentElement.style.setProperty('--body-font', localStorage.getItem('--body-font'));
+}
+
   loadTheme();
   changeFontSize(localStorage.getItem('--body-size'));
+  changeFont(localStorage.getItem('--body-font'));
