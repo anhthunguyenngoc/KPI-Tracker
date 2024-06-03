@@ -839,6 +839,6 @@ ul {
     }
 
     #addKPIButton button {
-        justify-self: left;
+        margin-left: 0;
     }
 }
