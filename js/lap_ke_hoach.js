@@ -67,6 +67,9 @@ const submitButton = document.querySelector("#KPIaddButton");
 const errorLabel = document.querySelector("#errorMissingField");
 
 const KPIContainer = document.querySelector("#title-kpi");
+
+const submitTaskButton = document.getElementById("taskAddButton");
+const selectTasksButton = document.getElementById("selectTasksButton");
 /*
 //
 
@@ -435,17 +438,33 @@ function addAllTask() {
 
     let taskIndex = taskId.indexOf('task') + 4; 
     let taskNumber = parseInt(taskId.substring(taskIndex)); 
-    document.querySelector('list-task').addEventListener('click', openTaskInfo(kpiNumber, taskNumber));
-    node.addEventListener("click", chooseTask);
+    node.addEventListener("click", e => {
+      
+        if (selectTasksButton.classList.contains("on")) {
+          
+              let selectedId = e.currentTarget.id;
+              if (selectedTasksId.includes(selectedId)) {
+  
+                  selectedTasksId = selectedTasksId.filter(item => item !== selectedId);
+                  e.currentTarget.style.border = ""; // Remove border styling
+              } else {
+                  selectedTasksId.push(selectedId);
+                  e.currentTarget.style.border = "3px solid #2a7378"; // Apply border styling
+              }
+          }
+        else{
+          openTaskInfo(kpiNumber-1, taskNumber-1);
+        }
+    });
   }
 }
 
 addAllTask();
 
 function openTaskInfo(id, taskId){
-  document.getElementById('taskInfo').classList.add("hidden");
-  document.getElementById('overlay').classList.remove("hidden");
   initTaskInfo(id, taskId);
+  document.getElementById('taskInfo').classList.remove("hidden");
+  document.getElementById('overlay').classList.remove("hidden");
 }
 
 const inputContent = document.querySelector("#taskInputContainer");
@@ -563,10 +582,6 @@ addTaskButton.addEventListener('click', function() {
   });
 });
 
-const submitTaskButton = document.getElementById("taskAddButton");
-  const selectTasksButton = document.getElementById("selectTasksButton");
-  
-
   const toggleSelectTasksButton = () => {
     if (!selectTasksButton.classList.contains("on")){
         selectTasksButton.classList.add("on");
@@ -595,24 +610,7 @@ const submitTaskButton = document.getElementById("taskAddButton");
 }
   
   selectTasksButton.addEventListener('click', toggleSelectTasksButton);
-  
-  
-  function chooseTask (e) {
-      if (selectTasksButton.classList.contains("on")) {
-        
-            let selectedId = e.currentTarget.id;
-            if (selectedTasksId.includes(selectedId)) {
-
-                selectedTasksId = selectedTasksId.filter(item => item !== selectedId);
-                e.currentTarget.style.border = ""; // Remove border styling
-            } else {
-                selectedTasksId.push(selectedId);
-                e.currentTarget.style.border = "3px solid #2a7378"; // Apply border styling
-            }
-        }
-
-  }
-  
+ 
   const addTasksContainer = document.querySelector("#addTask");
   let container = document.getElementById("list"); 
   const closeAddTasksContainer = document.querySelector("#closeTaskButton");
