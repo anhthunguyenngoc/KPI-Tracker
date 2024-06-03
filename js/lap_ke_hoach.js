@@ -55,8 +55,6 @@
     ]
 }
 
-
-
 //document.addEventListener('DOMContentLoaded', function() {
 
 // Add KPI
@@ -94,36 +92,81 @@ function placeKPI() {
 placeKPI();
 
 
+function addKPIRow(){
+  return `
+        <div>
+          <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
+        </div>
+        <div>
+          <input type="text" class="KPIcolor"/>
+        </div>
+        <div>
+          <input type="text" placeholder="Số giờ" class="KPIHours">
+        </div>
+        <div>Tạm lưu</div>
+        <div>
+          <button class="removeKPI">
+            <img src="../images/bin.svg" alt="">
+          </button>
+        </div>
+      </div>
+  `
+}
+
+function addExcelKPIRow(name, color_value, hour){
+  return `
+        <div>
+          <input type="text" value='${name}' class="KPIName">
+        </div>
+        <div>
+          <input type="text" class="KPIcolor" value='${color_value}' />
+        </div>
+        <div>
+          <input type="text" value='${hour}'  class="KPIHours">
+        </div>
+        <div>Tạm lưu</div>
+        <div>
+          <button class="removeKPI">
+            <img src="../images/bin.svg" alt="">
+          </button>
+        </div>
+      </div>
+  `
+}
+
+function addColorLib(){
+  var colorPickers = document.querySelectorAll('.KPIcolor');
+
+  colorPickers.forEach(function(colorPicker) {
+    $(colorPicker).spectrum({
+      type: "component",
+      showPalette: true,
+      showSelectionPalette: true, 
+      togglePaletteOnly: true,
+      togglePaletteMoreText: 'Hiển thị thêm',
+      togglePaletteLessText: 'Ẩn bớt',
+      showInput: true,
+      allowEmpty:true,
+      localStorageKey: "spectrum.homepage",
+      maxSelectionSize: 8,
+      cancelText: "Hủy bỏ",
+      chooseText: "Xác nhận",
+      clearText: "Đặt lại màu",
+      palette: [
+        ["#F2DEDE","#9CB2D7", "#FFDBA6", "#64B5F6", "#4DB6AC", "#90A4AE"]
+      ],
+      containerClassName: 'kpi-color-class'
+    });
+  });
+}
+
 const initAddKPIContainer = () =>{
         realContent.innerHTML = `
-        <div class="inputTitle flex KPIinput">
-            <div>1</div>
-            <div>
-              <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
-            </div>
-            <div>
-              <select name=""  class="KPIcolor">
-              <option value="null" ></option>
-              <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
-              <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
-              <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
-              <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
-              <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
-              <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
-              </select>
-            </div>
-            <div>
-              <input type="text" placeholder="Số giờ" class="KPIHours">
-            </div>
-            <div>Tạm lưu</div>
-            <div>
-              <button class="removeKPI">
-                <img src="../images/bin.svg" alt="">
-              </button>
-            </div>
-          </div>
-        `;
+          <div class="inputTitle flex KPIinput">
+            <div>1</div>`
+          +addKPIRow();
         realContent.parentElement.appendChild(realContent);
+        addColorLib();
 }
       const realContent = document.getElementById('inputContainer');
       let kpiIndex = 1;
@@ -134,31 +177,11 @@ const initAddKPIContainer = () =>{
         kpiInput.className = 'inputTitle flex KPIinput';
         kpiInput.innerHTML = `
           <div>${kpiIndex}</div>
-          <div>
-            <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
-          </div>
-          <div>
-            <select name=""  class="KPIcolor">
-            <option value="null" ></option>
-            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
-            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
-            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
-            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
-            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
-            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
-            </select>
-          </div>
-          <div>
-            <input type="text" placeholder="Số giờ" class="KPIHours">
-          </div>
-          <div>Tạm lưu</div>
-          <div>
-            <button class="removeKPI">
-              <img src="../images/bin.svg" alt="">
-            </button>
-          </div>
-        `;
+          `+ addKPIRow();
         realContent.appendChild(kpiInput);
+
+        addColorLib();
+
         const removeButtons = document.querySelectorAll('.removeKPI');
         removeButtons.forEach(button => {
             
@@ -221,6 +244,7 @@ const initAddKPIContainer = () =>{
                 errorLabel.style.display = 'none';
                 realContent.innerHTML=``;
                 kpiIndex=1;
+                showToast('Thêm chỉ tiêu KPI thành công', '', 'none');
             }
           // Here you can store kpiData to localStorage, send it to a server, etc.
       });
@@ -228,16 +252,20 @@ const initAddKPIContainer = () =>{
 openAddKPIContainer.addEventListener('click', () => {
     addKPIContainer.classList.remove("hidden");
     document.getElementById('overlay').classList.remove("hidden");
-    initAddKPIContainer();
-    tuto.goToStep(3).start();
-    
+    initAddKPIContainer();  
 })
+
 closeAddKPIContainer.addEventListener("click", () => {
     addKPIContainer.classList.add("hidden");
     document.getElementById('overlay').classList.add("hidden");
     errorLabel.style.display = 'none';
     realContent.innerHTML=``;
     kpiIndex=1;
+})
+
+document.getElementById('closeKpiInfoButton').addEventListener("click", () => {
+  document.getElementById('kpiInfo').classList.add("hidden");
+  document.getElementById('overlay').classList.add("hidden");
 })
 
 let KPICounter = 0;
@@ -414,11 +442,6 @@ addTaskButton.addEventListener('click', function() {
   });
 });
 
-
-
-
-
-
 const submitTaskButton = document.getElementById("taskAddButton");
   const selectTasksButton = document.getElementById("selectTasksButton");
   
@@ -508,14 +531,7 @@ const submitTaskButton = document.getElementById("taskAddButton");
 }
   });
   
-/////////////////////
-  
   const errorLabelTask = document.getElementById("errorMissingFieldTask");
-  
-  
-  
-
-
   
   submitTaskButton.addEventListener('click', () => {
       const taskInputs = document.querySelectorAll('.task-input');
@@ -574,18 +590,11 @@ const submitTaskButton = document.getElementById("taskAddButton");
       console.log(storage.KPIs); // Verify the tasks are stored correctly in the KPIs array
       // Here you can save KPIs to localStorage, send it to a server, etc.
       addAllTask();
+      showToast('Thêm chỉ tiêu KPI thành công', '', 'none');
     } else {
       errorLabelTask.textContent = '*Hãy điền đủ các trường thông tin';
     }
   });
-
-
-
-  
-
-
-
-
 
   function clickAndDrag(selector, scroll_speed = 3, classOnEvent = 'grabbed_elem') {
     const slider = document.querySelector(selector);
@@ -665,6 +674,7 @@ function clickAndDragY(selector, scroll_speed = 3, classOnEvent = 'grabbed_elem'
 clickAndDrag('.list');
 
 clickAndDragY('.list');
+
 
 
 // calendar
@@ -768,31 +778,9 @@ function loadExcelToKPIContainer () {
         kpiInput.className = 'inputTitle flex KPIinput';
         kpiInput.innerHTML = `
           <div>${kpiIndex}</div>
-          <div>
-            <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName" value="${addKPIArray[i].name}">
-          </div>
-          <div>
-            <select name=""  class="KPIcolor" >
-            <option value="${addKPIArray[i].color}" style="background-color:${addKPIArray[i].color}">Màu tự chọn</option>
-            <option value="#F2DEDE" style="background-color:#F2DEDE">Hồng sáng </option>
-            <option value="#9CB2D7" style="background-color:#9CB2D7">Xanh dương đậm</option>
-            <option value="#FFDBA6" style="background-color:#FFDBA6">Cam</option>
-            <option value="#64B5F6" style="background-color:#64B5F6">Xanh dương nhạt</option>
-            <option value="#4DB6AC" style="background-color:#4DB6AC">Xanh lam</option>
-            <option value="#90A4AE" style="background-color:#90A4AE">Xám</option>
-            </select>
-          </div>
-          <div>
-            <input type="text" placeholder="Số giờ" class="KPIHours" value="${addKPIArray[i].hour}">
-          </div>
-          <div>Tạm lưu</div>
-          <div>
-            <button class="removeKPI">
-              <img src="../images/bin.svg" alt="">
-            </button>
-          </div>
-        `;
+        ` +  addExcelKPIRow(addKPIArray[i].name, addKPIArray[i].color, addKPIArray[i].hour);
         realContent.appendChild(kpiInput);
+        addColorLib();
         const removeButtons = document.querySelectorAll('.removeKPI');
         removeButtons.forEach(button => {
             
@@ -806,8 +794,6 @@ function loadExcelToKPIContainer () {
         });
   }
 }
-
-
 
 function uploadExcel() {
     var fileInput = document.getElementById('kpi-file-upload');   

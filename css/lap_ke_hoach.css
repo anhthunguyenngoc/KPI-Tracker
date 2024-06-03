@@ -313,7 +313,8 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     display: none;
 }
 
-#addKPI {
+.popUpWindow {
+    display: flex;
     height: fit-content;
     width: fit-content;
     position: fixed;
@@ -323,37 +324,49 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
-    box-shadow: -2px 2px 2px 2px var(--color-shadow);
+    box-shadow: 0 10px 20px 0 var(--color-shadow);
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    padding-top: 10px;
-    font-size: var(--heading1);
 }
 
-#closeButton, #closeTaskButton {
-    position: absolute;
-    right: 10px;
+.progress-bar {
+    width: 100%;
+    background-color: var(--color-element2);
+    border-radius: 25px;
+  }
+  
+  .progress {
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    background-color: var(--color-button);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+
+.flex {
+    display: flex;
+}
+#kpiInfo {
+    gap: 0;
 }
 
 #closeButton button, #closeTaskButton button {
     border-radius: 50px;
 }
 
-.flex {
-    display: flex;
-}
-
 #inputTask{
     width: fit-content ;
-    min-height: 320px ;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 #input {
-    width: 760px ;
+    width: 860px ;
     min-height: 320px ;
     display: flex;
     flex-direction: column;
@@ -361,9 +374,10 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 }
 
 #recommendKPI {
+    width: 780px;
     display: flex;
     gap: 10px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 #recommendKPI button {
@@ -383,8 +397,8 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     justify-content: center;
 }
 
-.title h2 {
-    padding-top: 20px;
+#popup-title {
+    padding-top: 40px;
     font-size: var(--heading2);
     width: fit-content;
 }
@@ -453,13 +467,12 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 .inputTitle div:nth-of-type(3) select {
     flex: 3;
-    width: 126px;
-
+    width: 100%;
 }
 
 .inputTitle div:nth-of-type(4) input {
     flex: 2;
-    width: 84px;
+    width: 100%;
 }
 
 .inputTitle div:nth-of-type(5), .inputTitle div:nth-of-type(4), .inputTitle div:nth-of-type(6) {
@@ -470,6 +483,11 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     flex: 2;
 }
 
+.inputTitle div:nth-of-type(6) {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .inputTitle div:nth-of-type(6) button {
     width: 50px;
     height: 40px;
@@ -477,12 +495,11 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 .inputTitle div input,  .inputTitle div select {
     height: 40px;
+    width: 100%;
     border-radius: 5px;
     border: none;
     padding-left: 10px;
 }
-
-
 
 #addKPIButton, #addTaskButton {
     display: flex;
@@ -514,9 +531,10 @@ input[type="file"] {
     border: 2px solid var(--color-button);
     cursor: pointer;
     font-size: var(--body-size);
-    width: 106px;
+    width: fit-content;
     height: 40px;
     padding: 10px;
+    white-space: nowrap;
   }
   
   .custom-file-upload:hover {
@@ -567,7 +585,7 @@ ul {
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 #KPIaddButton button, #taskAddButton button {
     font-size: var(--heading1);
@@ -582,7 +600,7 @@ ul {
     right: 80px;
 }
 
-#closeButton {
+#closeButton, #closeTaskButton, #closeKpiInfoButton {
     position: absolute;
     top: 20px;
     right: 40px;
@@ -617,23 +635,6 @@ ul {
             Style for addTaks
 
 */
-
-#addTask {
-    height: 630px;
-    width: 1000px;
-    position: fixed;
-    background-color: var( --color-frame-background);
-    z-index: 100;
-    top: 80px;
-    left: 220px;
-    border-radius: 15px;
-    box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.25);
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    padding-top: 10px;
-    font-size: var(--heading1);
-}
 
 #addTaskTitle {
     gap: 10px;
@@ -691,20 +692,15 @@ ul {
 }
 
 .uploadMethod {
-    width: auto;
-    height: auto;
-    background-color: var(--color-background);
-    border-radius: var(--button-border-radius);
+    height: fit-content;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 30px;
-    padding: 10px 25px;
+    gap: 20px;
     font-size: var(--body-size) !important;
 }
-
 #uploadMethod {
-    max-width: 622px;
+    width: 780px;
 }
 
 #uploadTaskMethod {
@@ -718,8 +714,13 @@ ul {
     gap: 10px;
 }
 
+.uploadMethod svg path, .uploadMethod svg circle,
+.methods svg path, .methods svg circle{
+    stroke: var(--color-button);
+}
+
 .example-file-container {
-    width: auto;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -727,21 +728,23 @@ ul {
 }
 
 .example-file-container a{
-    width: auto;
-    height: auto;
+    width: fit-content;
+    height: fit-content;
+    max-width: 130px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     color: var(--color-button);
-    padding: 0 5px;
 }
 .example-file-container a:hover{
-    border-radius: var(--button-border-radius);
-    border: none;
-    background-color: var(--color-frame-background); 
     cursor: pointer;
     color: var(--color-button-hover);
+}
+
+.example-file-container a img{
+    width: 50px;
+    height: 50px;
 }
 
 #title-kpi {
@@ -750,6 +753,44 @@ ul {
     overflow-y: hidden;
 }
 
+.color-picker-class *{
+    font-size: var(--body-size) !important;
+    font: var(--body-font) !important;
+}
+
+.sp-button-container.sp-cf {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+}
+
+.sp-cancel {
+    background-color: var(--color-frame-background) !important;
+}
+
+.sp-choose{
+    background-color: var(--color-button) !important;
+}
+
+.sp-choose:hover, .sp-cancel:hover{
+    background-color: var(--color-button-hover) !important;
+    color: var(--color-white-text);
+}
+
+.kpi-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 40px;
+    margin-bottom: 40px;
+}
+
+.row-10px {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 @media screen and (max-width: 468px){
     .main{
         display: block;
