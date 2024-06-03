@@ -259,11 +259,11 @@ button {
     border-color: rgba(255, 255, 255, 0.3); /* Change color and opacity of the header cell borders */
   }
 
-
+/*
 #calander {
-    /*height: 800px;*/
+    height: 800px;
 }  
-
+*/
 
 tbody tr {
     height: calc((600px - 60px) / 8); 
@@ -872,5 +872,49 @@ ul {
     }
     tbody tr{
         height: calc((400px / 8));
+    }
+
+    #addKPI {
+        width: 95%;
+        position: fixed;
+        background-color: var( --color-mode-1-frame-background);
+        z-index: 100;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15px;
+        box-shadow: -2px 2px 2px 2px var(--color-mode-1-shadow);
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        padding-top: 10px;
+        font-size: var(--heading1);
+    }
+    
+    .heading2{
+        font-size: var(--mobile-heading1);
+    }
+
+    #closeButton {
+        right: 30px;
+    }
+
+    .uploadMethod{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #recommendKPI{
+        display: none;
+    }
+
+    #addKPIButton {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+
+    #addKPIButton button {
+        margin-left: 0;
     }
 }
