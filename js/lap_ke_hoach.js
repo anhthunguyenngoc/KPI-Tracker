@@ -616,6 +616,7 @@ addTaskButton.addEventListener('click', function() {
   const closeAddTasksContainer = document.querySelector("#closeTaskButton");
   
   closeAddTasksContainer.addEventListener("click", ()=>{
+    addConfirmNoti("Bạn ");
     addTasksContainer.classList.add("hidden");
     document.getElementById('overlay').classList.add("hidden");
     errorLabelTask.textContent = "";
@@ -633,7 +634,6 @@ addTaskButton.addEventListener('click', function() {
       addTasksContainer.classList.remove("hidden");
       initAddTaskContainer();
       document.getElementById('overlay').classList.remove("hidden");
-      tuto.goToStep(3).start();
     /*let node;
     if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
         KPICounter ++;
@@ -1027,7 +1027,8 @@ function initTaskInfo(id, taskId){
         </svg> <span>${storage.KPIs[id].name}</span></p>
 
         <p class="row-10px">Mục tiêu nhiệm vụ đạt được: <span>${storage.KPIs[id].tasks[taskId].id}</span></p>
-
+        <p class="row-10px">Thời gian bắt đầu: <span>${storage.KPIs[id].tasks[taskId].start}</span></p>
+        <p class="row-10px">Thời gian kết thúc: <span>${storage.KPIs[id].tasks[taskId].end}</span></p>
         <p class="row-10px">Ghi chú: <span>${storage.KPIs[id].tasks[taskId].note}</span>
         </p>     
       </div>

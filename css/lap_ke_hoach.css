@@ -356,6 +356,11 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     width: 780px;
 }
 
+#taskInfo {
+    gap: 0;
+    width: 580px;
+}
+
 #closeButton button, #closeTaskButton button {
     border-radius: 50px;
 }
@@ -604,7 +609,7 @@ ul {
     right: 80px;
 }
 
-#closeButton, #closeTaskButton, #closeKpiInfoButton {
+#closeButton, #closeTaskButton, #closeKpiInfoButton, #closeTaskInfoButton {
     position: absolute;
     top: 20px;
     right: 40px;
@@ -781,13 +786,14 @@ ul {
     color: var(--color-white-text);
 }
 
-#kpi-info-container {
+#kpi-info-container, #task-info-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 0 40px;
     margin-bottom: 40px;
     height: 100%;
+    width: 100%;
 }
 
 .row-10px {

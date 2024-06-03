@@ -94,3 +94,90 @@ function showToast(content, linkText, isdisplay) {
         progress.classList.remove('run');
     }, 3000); // Toast sẽ hiển thị trong 3 giây
 }
+
+function addConfirmNoti(content){
+    let confirmNoti = document.createElement('template');
+    confirmNoti.innerHTML =
+    `
+    <div id="popup-container">
+    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-end;">
+    <svg id="closeNoti" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+
+      <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+      
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <g id="SVGRepo_iconCarrier"> <g> <path d="M45.363,36.234l-13.158-13.16l12.21-12.21c2.31-2.307,2.31-6.049,0-8.358c-2.308-2.308-6.05-2.307-8.356,0l-12.212,12.21 L11.038,1.906c-2.309-2.308-6.051-2.308-8.358,0c-2.307,2.309-2.307,6.049,0,8.358l12.81,12.81L1.732,36.831 c-2.309,2.31-2.309,6.05,0,8.359c2.308,2.307,6.049,2.307,8.356,0l13.759-13.758l13.16,13.16c2.308,2.308,6.049,2.308,8.356,0 C47.673,42.282,47.672,38.54,45.363,36.234z"/> </g> </g>
+      
+    </svg>
+  </div>
+    <div class="popup-content">
+      <svg width="100px" height="100px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"/> <path style="fill: var(--color-button);" fill-rule="evenodd" clip-rule="evenodd" d="M11 13C11 13.5523 11.4477 14 12 14C12.5523 14 13 13.5523 13 13V10C13 9.44772 12.5523 9 12 9C11.4477 9 11 9.44772 11 10V13ZM13 15.9888C13 15.4365 12.5523 14.9888 12 14.9888C11.4477 14.9888 11 15.4365 11 15.9888V16C11 16.5523 11.4477 17 12 17C12.5523 17 13 16.5523 13 16V15.9888ZM9.37735 4.66136C10.5204 2.60393 13.4793 2.60393 14.6223 4.66136L21.2233 16.5431C22.3341 18.5427 20.8882 21 18.6008 21H5.39885C3.11139 21 1.66549 18.5427 2.77637 16.5431L9.37735 4.66136Z"/> </g>
+        
+      </svg>
+      <p  style="display: flex; flex-direction: column; width: 100%; align-items: flex-start;">${content}</p>
+    </div>
+    
+    <div id="popup-buttons">
+      <button id="cancel-btn">Từ chối</button>
+      <button id="confirm-btn">Đồng ý</button>        
+    </div>
+    
+</div>
+
+<style>
+
+  #popup-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    gap: 20px;
+    top: 50%;
+    left: 50%;
+    max-width: 30%;
+    height: 30%;
+    height: fit-content;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-white-text);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--color-shadow);
+    text-align: center;
+    z-index: 6;
+  }
+
+  .popup-content{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: fit-content;
+    align-items: center;
+    height: fit-content;
+  }
+  
+  #popup-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  #popup-buttons button {
+    white-space: nowrap;
+    padding: 10px;
+  }
+</style>
+`
+return confirmNoti.content.firstElementChild;
+}
+
+function showConfirmNoti(content) {
+    document.body.appendChild(addConfirmNoti(content));
+}
