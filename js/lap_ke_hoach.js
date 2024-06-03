@@ -9,7 +9,7 @@
             hour: "70",
             tasks : [
                 {
-                  id: '#KPI1task2',
+                  id: '#KPI1task1',
                   title: 'Phát triển hệ thống',
                   start: '2024-05-31T09:00:00',
                   end: '2024-05-31T11:07:00',              
@@ -79,14 +79,129 @@ function placeKPI() {
   KPIContainer.innerHTML="";
   for (let i = 0; i< storage.KPIs.length; i++) {
     let KPI = document.createElement('li');
+    KPI.id = 'kpi_' + i;
     KPI.className = 'KPI_container';
     KPI.innerHTML=`
       <div class="KPI" style="background-color:${storage.KPIs[i].color}">${storage.KPIs[i].name}</div>
       <div class="hour">${storage.KPIs[i].hour}</div>
     `;
 
+    KPI.addEventListener('click', function() {
+      showKPIInfo(i);
+    });
+
     KPIContainer.appendChild(KPI);
   }
+}
+
+function showKPIInfo(id){
+  initKPIInfo(id); 
+  document.getElementById('kpiInfo').classList.remove("hidden");
+  document.getElementById('overlay').classList.remove("hidden");
+}
+
+function initKPIInfo(id){
+  let kpiInfo = document.createElement('div');
+  kpiInfo.classList.add('popUpWindow');
+  kpiInfo.classList.add('hidden');
+  kpiInfo.id = 'kpiInfo';
+  kpiInfo.innerHTML = `
+      <div id="popup-title"><h2 class="heading2">Chi tiết KPI</h2></div>
+
+      <svg id="closeKpiInfoButton" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <g id="SVGRepo_iconCarrier"> <g> <path d="M45.363,36.234l-13.158-13.16l12.21-12.21c2.31-2.307,2.31-6.049,0-8.358c-2.308-2.308-6.05-2.307-8.356,0l-12.212,12.21 L11.038,1.906c-2.309-2.308-6.051-2.308-8.358,0c-2.307,2.309-2.307,6.049,0,8.358l12.81,12.81L1.732,36.831 c-2.309,2.31-2.309,6.05,0,8.359c2.308,2.307,6.049,2.307,8.356,0l13.759-13.758l13.16,13.16c2.308,2.308,6.049,2.308,8.356,0 C47.673,42.282,47.672,38.54,45.363,36.234z"/> </g> </g>
+        
+      </svg>
+
+      <p class="row-10px" style="width: 100%; justify-content: flex-end; padding-right: 40px;"> 
+      <button class="img-button">
+        <img src="../images/edit.svg">
+      </button> 
+      <button class="img-button">
+        <img src="../images/bin.svg" alt="">
+      </button>
+      </p>
+
+      <div id="kpi-info-container">
+      <p class="row-10px">Tên chỉ tiêu: <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" rx="15" fill="${storage.KPIs[id].color}"/>
+        </svg> <span>${storage.KPIs[id].name}</span></p>
+
+        <p class="row-10px">Mục tiêu cần đạt: <span>${storage.KPIs[id].hour}</span></p>
+
+        <div class="row-10px">
+          <span>Tiến độ hiện tại: </span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 50%;">50%</div>
+          </div> 
+          <div style="display: flex; flex-direction: row; align-items: center;">
+          <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <g id="SVGRepo_iconCarrier">
+            
+            <path style="fill: var(--color-button);" d="M12.707 5.293a1 1 0 0 0-1.414 0l-4 4a1 1 0 0 0 1.414 1.414L11 8.414V18a1 1 0 1 0 2 0V8.414l2.293 2.293a1 1 0 0 0 1.414-1.414l-4-4Z"/>
+            
+            </g>
+            
+          </svg>
+          <span>3% so với tuần trước</span>
+        </div>
+        </div>
+        <p class="row-10px" style="justify-content: space-between; align-items: center;">Danh sách các nhiệm vụ <button class="addButton">Thêm nhiệm vụ mới +</button> </p>
+        <table id="kpi-task-list">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên nhiệm vụ</th>
+              <th>Thời gian bắt đầu</th>
+              <th>Thời gian kết thúc</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            `+addKpisTaskRow(id)+`
+          </tbody>
+        </table>
+        
+      </div>
+  `
+  document.body.appendChild(kpiInfo);
+  document.getElementById('closeKpiInfoButton').addEventListener("click", () => {
+    document.getElementById('kpiInfo').classList.add("hidden");
+    document.getElementById('overlay').classList.add("hidden");
+  })
+  
+}
+
+function addKpisTaskRow(id){
+  htmlText = ``
+  for(let task of storage.KPIs[id].tasks){
+    htmlText += `
+    <tr>
+      <td>${task.id.substring(9)}</td>
+      <td>${task.title}</td>
+      <td>${task.start}</td>
+      <td>${task.end}</td>
+      <td><div class="link" style="white-space: nowrap;">Xem chi tiết</div></td>
+      <td>
+        <button class="img-button">
+          <img src="../images/bin.svg" alt="">
+        </button>
+      </td>
+    </tr>
+    `
+  }
+  return htmlText;
 }
 
 placeKPI();
@@ -205,8 +320,6 @@ const initAddKPIContainer = () =>{
         
         }
 
-
-
         // Function to store the data from all input elements
         submitButton.addEventListener('click', function() {
           const kpiData = [];
@@ -223,7 +336,7 @@ const initAddKPIContainer = () =>{
                 }
 
                 kpiData.push({
-                    id: "#KPI" + (storage.KPIs.length + index + 1).toString(),
+                    id: "#KPI" + (storage.KPIs[id].length + index + 1).toString(),
                     name: kpiName,
                     color: kpiColor,
                     hour: kpiHours,
@@ -261,11 +374,6 @@ closeAddKPIContainer.addEventListener("click", () => {
     errorLabel.style.display = 'none';
     realContent.innerHTML=``;
     kpiIndex=1;
-})
-
-document.getElementById('closeKpiInfoButton').addEventListener("click", () => {
-  document.getElementById('kpiInfo').classList.add("hidden");
-  document.getElementById('overlay').classList.add("hidden");
 })
 
 let KPICounter = 0;
@@ -321,52 +429,65 @@ function addAllTask() {
   for (let i = 0; i < allEvents.length  ; i++ ){
     const node = oneTask(allEvents[i])
     listTasks.appendChild(node);
+    taskId = allEvents[i].id;
+    let kpiIndex = taskId.indexOf('KPI') + 3; 
+    let kpiNumber = parseInt(taskId.substring(kpiIndex, taskId.indexOf('task'))); 
+
+    let taskIndex = taskId.indexOf('task') + 4; 
+    let taskNumber = parseInt(taskId.substring(taskIndex)); 
+    document.querySelector('list-task').addEventListener('click', openTaskInfo(kpiNumber, taskNumber));
     node.addEventListener("click", chooseTask);
   }
 }
 
 addAllTask();
 
+function openTaskInfo(id, taskId){
+  document.getElementById('taskInfo').classList.add("hidden");
+  document.getElementById('overlay').classList.remove("hidden");
+  initTaskInfo(id, taskId);
+}
+
 const inputContent = document.querySelector("#taskInputContainer");
 const initAddTaskContainer = () =>{
   taskIndex = 1;
   inputContent.innerHTML = `
-                <div class="flex task-input">
-                  <div>1</div>
-                  <div>
-                    <input type="text" class="taskName">
-                  </div>
-                  <div>
-                    <select name="" class="KPIID">
-                    <option value=""></option>
-                    ${generateKPIOptions()}
-                    </select>
-                  </div>
-                  <div>
-                    <input type="date" class="date" >
-                  </div>
-                  <div>
-                    <input type="time" name="" class="startTime">
-                  </div>
-                  <div>
-                    <input type="time" name="" class="endTime">         
-                  </div>
-                  <div>
-                    <input type="text" name="" class="additionalInfo">
-                  </div>
-                  <div>
-                    <select name="" class="recurrence">
-                    <option value="none">Không</option>
-                    <option value="day">Mỗi ngày</option>
-                    <option value="week">Mỗi tuần</option>
-                    </select>
-                  </div>
-                  <div>
-                    <button class="removeTask">
-                      <img src="../images/bin.svg" alt="">
-                    </button>
-                  </div>
-                </div>
+    <div class="flex task-input">
+      <div>1</div>
+      <div>
+        <input type="text" class="taskName">
+      </div>
+      <div>
+        <select name="" class="KPIID">
+        <option value=""></option>
+        ${generateKPIOptions()}
+        </select>
+      </div>
+      <div>
+        <input type="date" class="date" >
+      </div>
+      <div>
+        <input type="time" name="" class="startTime">
+      </div>
+      <div>
+        <input type="time" name="" class="endTime">         
+      </div>
+      <div>
+        <input type="text" name="" class="additionalInfo">
+      </div>
+      <div>
+        <select name="" class="recurrence">
+        <option value="none">Không</option>
+        <option value="day">Mỗi ngày</option>
+        <option value="week">Mỗi tuần</option>
+        </select>
+      </div>
+      <div>
+        <button class="removeTask">
+          <img src="../images/bin.svg" alt="">
+        </button>
+      </div>
+    </div>
   `;
   inputContent.parentElement.appendChild(inputContent);
 }
@@ -872,4 +993,51 @@ function uploadTaskExcel() {
   }
 
 } );
+}
+
+function initTaskInfo(id, taskId){
+  let taskInfo = document.createElement('div');
+  taskInfo.classList.add('popUpWindow');
+  taskInfo.classList.add('hidden');
+  taskInfo.id = 'taskInfo';
+  taskInfo.innerHTML = `
+      <div id="popup-title"><h2 class="heading2">Chi tiết nhiệm vụ</h2></div>
+
+      <svg id="closeTaskInfoButton" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <g id="SVGRepo_iconCarrier"> <g> <path d="M45.363,36.234l-13.158-13.16l12.21-12.21c2.31-2.307,2.31-6.049,0-8.358c-2.308-2.308-6.05-2.307-8.356,0l-12.212,12.21 L11.038,1.906c-2.309-2.308-6.051-2.308-8.358,0c-2.307,2.309-2.307,6.049,0,8.358l12.81,12.81L1.732,36.831 c-2.309,2.31-2.309,6.05,0,8.359c2.308,2.307,6.049,2.307,8.356,0l13.759-13.758l13.16,13.16c2.308,2.308,6.049,2.308,8.356,0 C47.673,42.282,47.672,38.54,45.363,36.234z"/> </g> </g>
+        
+      </svg>
+
+      <p class="row-10px" style="width: 100%; justify-content: flex-end; padding-right: 40px;"> 
+      <button class="img-button">
+        <img src="../images/edit.svg">
+      </button> 
+      <button class="img-button">
+        <img src="../images/bin.svg" alt="">
+      </button>
+      </p>
+
+      <div id="task-info-container">
+        <p class="row-10px">Tên nhiệm vụ: <span>${storage.KPIs[id].tasks[taskId].title}</span></p>
+        <p class="row-10px">Loại chỉ tiêu: <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" rx="15" fill="${storage.KPIs[id].color}"/>
+        </svg> <span>${storage.KPIs[id].name}</span></p>
+
+        <p class="row-10px">Mục tiêu nhiệm vụ đạt được: <span>${storage.KPIs[id].tasks[taskId].id}</span></p>
+
+        <p class="row-10px">Ghi chú: <span>${storage.KPIs[id].tasks[taskId].note}</span>
+        </p>     
+      </div>
+  `
+  document.body.appendChild(taskInfo);
+  document.getElementById('closeTaskInfoButton').addEventListener("click", () => {
+    document.getElementById('taskInfo').classList.add("hidden");
+    document.getElementById('overlay').classList.add("hidden");
+  })
+  
 }

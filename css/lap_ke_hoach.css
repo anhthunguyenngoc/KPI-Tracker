@@ -65,6 +65,7 @@ section {
     min-width: 225px;
     min-height: 25px;
     height: auto;
+    cursor: pointer;
 }
 
 .KPI_container:nth-of-type(1) > .KPI {
@@ -315,7 +316,8 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 .popUpWindow {
     display: flex;
-    height: fit-content;
+    height: 90%;
+    max-height: 90%;
     width: fit-content;
     position: fixed;
     background-color: var( --color-frame-background);
@@ -351,6 +353,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 }
 #kpiInfo {
     gap: 0;
+    width: 780px;
 }
 
 #closeButton button, #closeTaskButton button {
@@ -367,7 +370,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 #input {
     width: 860px ;
-    min-height: 320px ;
+    height: 362.4px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -427,7 +430,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 #inputContainer, #taskInputContainer {
     overflow-y: auto;
-    height: 200px;
+    height: 290px;
     display: flex;
     flex-direction: column;
     gap: 10px   ;
@@ -438,6 +441,7 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 302.4px;
 }
 
 .inputTitle div {
@@ -777,12 +781,13 @@ ul {
     color: var(--color-white-text);
 }
 
-.kpi-info {
+#kpi-info-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 0 40px;
     margin-bottom: 40px;
+    height: 100%;
 }
 
 .row-10px {
@@ -791,6 +796,25 @@ ul {
     align-items: center;
     gap: 10px;
 }
+
+#kpi-task-list{
+    border: 2px solid var(--color-button);
+  }
+  
+  #kpi-task-list thead tr{
+    background-color: var(--color-element2);
+    height: 50px;
+  }
+  
+  #kpi-task-list thead tr th, #kpi-task-list tbody tr td{
+    padding: 5px;
+  }
+  
+  #kpi-task-list tbody {
+    background-color: var(--color-white-text);
+    
+  }
+
 @media screen and (max-width: 468px){
     .main{
         display: block;

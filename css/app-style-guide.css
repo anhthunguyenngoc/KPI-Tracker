@@ -489,21 +489,3 @@ z-index: -1;
   height: fit-content;
   padding: 0px 10px 0px 10px;
 }
-
-#kpi-task-list{
-  border: 2px solid var(--color-button);
-}
-
-#kpi-task-list thead tr{
-  background-color: var(--color-element2);
-  height: 50px;
-}
-
-#kpi-task-list thead tr th, #kpi-task-list tbody tr td{
-  padding: 5px;
-}
-
-#kpi-task-list tbody {
-  background-color: var(--color-white-text);
-  
-}
