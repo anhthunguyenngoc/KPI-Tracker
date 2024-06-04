@@ -1,5 +1,7 @@
   
 // Simple data storage
+
+
   let storage = {
     KPIs: [
         {   
@@ -7,6 +9,8 @@
             name: "Nghiên cứu",
             color : "#9CB2D7",
             hour: "70",
+            unit: "Giờ",
+            progress : 0,
             tasks : [
                 {
                   id: '#KPI1task1',
@@ -15,7 +19,9 @@
                   end: '2024-05-31T11:07:00',              
                   note: '',
                   repeat: '',
-                  backgroundColor: '#9CB2D7'
+                  backgroundColor: '#9CB2D7',
+                  kpiID:'#KPI1',
+                  done: 0,
                 },
                 {
                   id: '#KPI1task2',
@@ -25,7 +31,9 @@
                   end: '2024-06-01T11:30:00',               
                   note: '',
                   repeat: '',
-                  backgroundColor: '#9CB2D7'
+                  backgroundColor: '#9CB2D7',
+                  kpiID:'#KPI1',
+                  done: 0,
                 },
             ]
         },
@@ -34,13 +42,17 @@
             name: "Giảng dạy",
             color : "#F2DEDE",
             hour: "80",
+            unit: "Giờ",
+            progress : 0,
             tasks : [
                 {
                     id: '#KPI2task1',
                     title: 'Giao diện và trải nghiệm',
                     start: '2024-05-24T14:10:00',
                     end: '2024-05-24T17:30:00',
-                    backgroundColor: '#F2DEDE'
+                    backgroundColor: '#F2DEDE',
+                    kpiID:'#KPI2',
+                    done: 0,
                 },
 
             ]
@@ -50,10 +62,16 @@
             name: "Phục vụ",
             color : "#FFDBA6",
             hour: "60",
+            unit: "Giờ",
+            progress : 0,
             tasks: []
         }
     ]
 }
+
+
+
+
 
 //document.addEventListener('DOMContentLoaded', function() {
 
@@ -86,7 +104,7 @@ function placeKPI() {
     KPI.className = 'KPI_container';
     KPI.innerHTML=`
       <div class="KPI" style="background-color:${storage.KPIs[i].color}">${storage.KPIs[i].name}</div>
-      <div class="hour">${storage.KPIs[i].hour}</div>
+      <div class="hour"> ${storage.KPIs[i].progress}/${storage.KPIs[i].hour} ${storage.KPIs[i].unit}</div>
     `;
 
     KPI.addEventListener('click', function() {
@@ -219,9 +237,11 @@ function addKPIRow(){
           <input type="text" class="KPIcolor"/>
         </div>
         <div>
-          <input type="text" placeholder="Số giờ" class="KPIHours">
+          <input type="text" class="KPIHours">
         </div>
-        <div>Tạm lưu</div>
+        <div>
+          <input type="text" placeholder="Ví dụ: Giờ" class="KPIUnit">
+        </div>
         <div>
           <button class="removeKPI">
             <img src="../images/bin.svg" alt="">
@@ -333,16 +353,19 @@ const initAddKPIContainer = () =>{
                 const kpiName = input.querySelector('.KPIName').value;
                 const kpiColor = input.querySelector('.KPIcolor').value;
                 const kpiHours = input.querySelector('.KPIHours').value;
+                const kpiUnit = input.querySelector('.KPIUnit').value;
 
-                if (!kpiName || !kpiColor || !kpiHours) {
+                if (!kpiName || !kpiColor || !kpiHours ||!kpiUnit) {
                     allFieldsFilled = false;
                 }
 
                 kpiData.push({
-                    id: "#KPI" + (storage.KPIs[id].length + index + 1).toString(),
+                    id: "#KPI" + (storage.KPIs.length + index + 1).toString(),
                     name: kpiName,
                     color: kpiColor,
                     hour: kpiHours,
+                    unit: kpiUnit,
+                    progress : 0,
                     tasks: []
                 });
             });
@@ -483,13 +506,13 @@ const initAddTaskContainer = () =>{
         </select>
       </div>
       <div>
-        <input type="date" class="date" >
+        <input type="datetime-local" class="startTime" >
       </div>
       <div>
-        <input type="time" name="" class="startTime">
+        <input type="datetime-local" name="" class="endTime">
       </div>
       <div>
-        <input type="time" name="" class="endTime">         
+        <input type="number" name="" class="KPIProgress">         
       </div>
       <div>
         <input type="text" name="" class="additionalInfo">
@@ -509,6 +532,21 @@ const initAddTaskContainer = () =>{
     </div>
   `;
   inputContent.parentElement.appendChild(inputContent);
+  document.querySelector(".KPIProgress").addEventListener("focus", (e)=> {
+    let kpiID = document.querySelector(".KPIID").value;
+    console.log(kpiID);
+    let KPI = storage.KPIs.find(kpi => kpi.id === kpiID);
+    if ( KPI.unit === "Giờ"){
+      let startTime = new Date(document.querySelector(".startTime").value);
+      let endTime = new Date(document.querySelector(".endTime").value);
+      let diff;
+      if (startTime && endTime) {
+        diff = Math.abs(endTime - startTime) / (1000 * 3600);
+        console.log(diff);
+        e.target.value = diff;
+      }
+    }
+  } )
 }
 let taskIndex = 1;
 
@@ -539,27 +577,27 @@ addTaskButton.addEventListener('click', function() {
                   </div>
                   <div>
                     <select name="" class="KPIID">
-                      <option value=""></option>
-                      ${generateKPIOptions()}
+                    <option value=""></option>
+                    ${generateKPIOptions()}
                     </select>
                   </div>
                   <div>
-                    <input type="date" class="date" >
+                    <input type="datetime-local" class="startTime" >
                   </div>
                   <div>
-                    <input type="time" name="" class="startTime">
+                    <input type="datetime-local" name="" class="endTime">
                   </div>
                   <div>
-                    <input type="time" name="" class="endTime">         
+                    <input type="number" name="" class="KPIProgress">         
                   </div>
                   <div>
                     <input type="text" name="" class="additionalInfo">
                   </div>
                   <div>
                     <select name="" class="recurrence">
-                      <option value="none">Không</option>
-                      <option value="day">Mỗi ngày</option>
-                      <option value="week">Mỗi tuần</option>
+                    <option value="none">Không</option>
+                    <option value="day">Mỗi ngày</option>
+                    <option value="week">Mỗi tuần</option>
                     </select>
                   </div>
                   <div>
@@ -580,6 +618,26 @@ addTaskButton.addEventListener('click', function() {
               updateTaskIndexes();}
     });
   });
+  document.querySelectorAll(".task-input").forEach(input => {
+    input.querySelector(".KPIProgress").addEventListener("focus", (e)=> {
+      let kpiID = input.querySelector(".KPIID").value;
+      if (kpiID) {
+
+        let KPI = storage.KPIs.find(kpi => kpi.id === kpiID);
+        console.log(KPI);
+        if ( KPI.unit === "Giờ"){
+          let startTime = new Date(input.querySelector(".startTime").value);
+          let endTime = new Date(input.querySelector(".endTime").value);
+          let diff;
+          if (startTime && endTime) {
+            diff = Math.abs(endTime - startTime) / (1000 * 3600);
+            e.target.value = diff;
+          }
+        }
+      }
+    })
+   } 
+  );
 });
 
   const toggleSelectTasksButton = () => {
@@ -662,14 +720,14 @@ addTaskButton.addEventListener('click', function() {
     taskInputs.forEach(input => {
       const taskName = input.querySelector('.taskName').value;
       const kpiID = input.querySelector('.KPIID').value;
-      const date = input.querySelector('.date').value;
+      const progress = input.querySelector('.KPIProgress').value;
       const startTime = input.querySelector('.startTime').value;
       const endTime = input.querySelector('.endTime').value;
       const additionalInfo = input.querySelector('.additionalInfo').value;
       const recurrence = input.querySelector('.recurrence').value;
 
       // Check if all required fields are filled
-      if (!taskName || !kpiID || !date || !startTime || !endTime) {
+      if (!taskName || !kpiID || !progress || !startTime || !endTime) {
         allFieldsFilled = false;
       } else {
         let KPI;
@@ -682,11 +740,13 @@ addTaskButton.addEventListener('click', function() {
         id: kpiID + "task" + (KPI.tasks.length + taskIndex).toString(),
         title: taskName,
         kpiID: kpiID,
-        start: date+ "T" +startTime,
-        end: date+ "T" +endTime,
+        start:startTime,
+        end:endTime,
         additionalInfo: additionalInfo,
         recurrence: recurrence,
-        backgroundColor: KPI.color
+        progress: progress,
+        backgroundColor: KPI.color,
+        done: 0,
         });
       }
     });

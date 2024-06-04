@@ -62,7 +62,7 @@ section {
 
 .KPI_container {
     display: flex;
-    min-width: 225px;
+    min-width: 275px;
     min-height: 25px;
     height: auto;
     cursor: pointer;
@@ -83,7 +83,7 @@ section {
 .KPI{
     border-radius: 5px 0px 0px 5px;
     padding-left: 10px;
-    width: 63.5%;
+    width: 50%;
     height: 100%;
     padding: 10px 15px 10px 15px;
 }
@@ -92,7 +92,7 @@ section {
     background-color: #FEFADE; 
     border-radius: 0px 5px 5px 0px;
     justify-content: center;
-    width: 36.5%;
+    width: 50%;
     height: 100%;
     padding: 10px 10px 10px 10px;
 }
