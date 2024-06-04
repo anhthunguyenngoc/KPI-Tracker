@@ -4,6 +4,12 @@ const color_pink_pastel = "#F06292"; //"#F48FB1";
 const color_blue_pastel = "#64B5F6"; //"#90CAF9";  
 const color_yellow_pastel = "#FFD54F"; //"#FFE082";
 const color_cyan_pastel = "#4DB6AC"; //"#80CBC4";
+var today = new Date();
+var selectDay = {
+    dd: today.getDate(),
+    mm: today.getMonth(),
+    yyyy: today.getFullYear()
+}
 
 const chartData = {
     labels: kpiName,
@@ -206,26 +212,25 @@ new Chart(document.getElementById("pie-chart"), {
         document.getElementById("kpi-list").innerHTML += `<style>`+ addKPIcss()+`<\style>`;
     }
 
-    function addDay(){
-        let day = 29;
+    function addDay(arr){
         var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-
-        for(i=0; i<31; i++){
+        document.getElementById("week-list").innerHTML=``;
+        for(i=0; i<arr.length; i++){
             const button = document.createElement("button");
             button.className = "day-button";
-            if(day==dd){
+            button.data = i;
+            if(arr[i].dd==today.getDate() && arr[i].mm == today.getMonth()+1 && arr[i].yyyy == today.getFullYear()){
                 button.classList.add("active");
             }
-            button.innerHTML = `${day}`;
-            if(day==31) {
-                day = 0;
-            }
-            day++;
+            button.innerHTML = `${arr[i].dd}`;
             document.getElementById("week-list").appendChild(button);
+            
+            button.addEventListener('click', () => {
+                selectDay = arr[button.data];
+            });
         }
     }
-
+    
     function addTask(){
         taskData.name.forEach((v, i) => {
             const div = document.createElement("div");
@@ -262,7 +267,9 @@ new Chart(document.getElementById("pie-chart"), {
         })
     }
 
-  addDay();
+    var today = new Date();
+    document.querySelector('.sBtn-text').textContent = 'Tháng 0' + (today.getMonth()+1) + '/ ' + today.getFullYear();
+    addDay(getWeekDays(today.getFullYear(), today.getMonth() + 1));
 
   addKPI();
 
@@ -367,6 +374,67 @@ new Chart(document.getElementById("pie-chart"), {
 
     monthSelection();
 
+    function getDaysInMonth(year, month) {
+        return new Date(year, month, 0).getDate();
+    }
+      
+    function getWeekDays(currentYear, selectedMonth) {
+        var daysInMonth = getDaysInMonth(currentYear, selectedMonth); 
+        var weekDays = [];
+        
+        for (var i = 1; i <= daysInMonth; i++) {
+            var date = new Date(currentYear, selectedMonth, i); 
+            var dayOfWeek = date.getDay();
+        
+            if (dayOfWeek >= 0 && dayOfWeek <= 6) {
+                a = {
+                    dd: i,
+                    mm: selectedMonth,
+                    yyyy: currentYear
+                }
+                weekDays.push(a);
+            }
+        }
+        
+        // Nếu ngày 1 không bắt đầu từ thứ Hai, thêm ngày của tháng trước
+        var firstDay = new Date(currentYear, selectedMonth - 1, 1).getDay(); 
+        if (firstDay !== 1) {
+            var daysInPreviousMonth = getDaysInMonth(currentYear, selectedMonth - 1); 
+            for (var j = 0; j < firstDay-1; j++) {
+                a = {
+                    dd: daysInPreviousMonth - j,
+                    mm: selectedMonth-1,
+                    yyyy: currentYear
+                }
+                weekDays.unshift(a);
+            }
+        }else if(firstDay == 0){
+            var daysInPreviousMonth = getDaysInMonth(currentYear, selectedMonth - 1); 
+            for (var j = 0; j < 6; j++) {
+                a = {
+                    dd: daysInPreviousMonth - j,
+                    mm: selectedMonth-1,
+                    yyyy: currentYear
+                }
+                weekDays.unshift(a);
+            }
+        }
+        
+        // Nếu ngày cuối cùng không kết thúc vào cn, thêm ngày của tháng sau
+        var lastDay = new Date(currentYear, selectedMonth - 1, weekDays[weekDays.length - 1]).getDay(); 
+        if (lastDay !== 0) {
+            for (var j = 1; j <= 7-lastDay; j++) {
+                a = {
+                    dd: j,
+                    mm: selectedMonth+1,
+                    yyyy: currentYear
+                }
+                weekDays.push(a);
+            }
+        }
+        return weekDays;
+    }
+      
     document.addEventListener('DOMContentLoaded', function () {
         const yearSpan = document.getElementById('year');
         let currentYear = new Date().getFullYear();
@@ -386,8 +454,11 @@ new Chart(document.getElementById("pie-chart"), {
     
         document.querySelectorAll('.month').forEach(function (monthDiv) {
             monthDiv.addEventListener('click', function () {
-                const selectedMonth = monthDiv.getAttribute('data-month');
-                alert(`Selected: ${currentYear}-${selectedMonth}`);
+                const selectedMonth = Number(monthDiv.getAttribute('data-month'));
+                var weekDaysArray = getWeekDays(currentYear, selectedMonth);
+                document.querySelector('.sBtn-text').textContent = 'Tháng ' + selectedMonth + '/ ' + currentYear;
+                document.getElementById('month-selection').style.display = 'none';
+                addDay(weekDaysArray);
             });
         });
     

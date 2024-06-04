@@ -125,7 +125,7 @@ function initKPIInfo(id){
       <button class="img-button">
         <img src="../images/edit.svg">
       </button> 
-      <button class="img-button">
+      <button id="delete-kpi" class="img-button">
         <img src="../images/bin.svg" alt="">
       </button>
       </p>
@@ -180,10 +180,12 @@ function initKPIInfo(id){
   `
   document.body.appendChild(kpiInfo);
   document.getElementById('closeKpiInfoButton').addEventListener("click", () => {
-    document.getElementById('kpiInfo').classList.add("hidden");
+    document.body.removeChild(kpiInfo);
     document.getElementById('overlay').classList.add("hidden");
   })
-  
+  document.getElementById('delete-kpi').addEventListener('click', () => {
+    showConfirmNoti("Bạn có chắc chắn là muốn xóa KPI này không?");
+  })
 }
 
 function addKpisTaskRow(id){
@@ -616,7 +618,6 @@ addTaskButton.addEventListener('click', function() {
   const closeAddTasksContainer = document.querySelector("#closeTaskButton");
   
   closeAddTasksContainer.addEventListener("click", ()=>{
-    addConfirmNoti("Bạn ");
     addTasksContainer.classList.add("hidden");
     document.getElementById('overlay').classList.add("hidden");
     errorLabelTask.textContent = "";
@@ -1015,7 +1016,7 @@ function initTaskInfo(id, taskId){
       <button class="img-button">
         <img src="../images/edit.svg">
       </button> 
-      <button class="img-button">
+      <button id="del-task" class="img-button">
         <img src="../images/bin.svg" alt="">
       </button>
       </p>
@@ -1035,8 +1036,28 @@ function initTaskInfo(id, taskId){
   `
   document.body.appendChild(taskInfo);
   document.getElementById('closeTaskInfoButton').addEventListener("click", () => {
-    document.getElementById('taskInfo').classList.add("hidden");
+    document.body.removeChild(taskInfo);
     document.getElementById('overlay').classList.add("hidden");
   })
-  
+  document.getElementById('del-task').addEventListener('click', () => {
+    showConfirmNoti("Bạn có chắc chắn là muốn xóa nhiệm vụ này không?")
+  });
 }
+
+/*
+
+var table = document.getElementById('kpi-task-list');
+var html = table.outerHTML;
+
+// Chuyển đổi HTML thành Excel
+var blob = new Blob([html], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+});
+saveAs(blob, "ten_file.xlsx"); 
+
+// Tạo một nút hoặc liên kết để người dùng có thể tải xuống
+var downloadLink = document.createElement("a");
+downloadLink.href = URL.createObjectURL(blob);
+downloadLink.download = "ten_file.xlsx";  // Tên file Excel khi tải xuống
+downloadLink.click();
+*/

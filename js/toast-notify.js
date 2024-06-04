@@ -97,11 +97,12 @@ function showToast(content, linkText, isdisplay) {
 
 function addConfirmNoti(content){
     let confirmNoti = document.createElement('template');
+    confirmNoti.id = 'confirmNoti';
     confirmNoti.innerHTML =
     `
     <div id="popup-container">
-    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-end;">
-    <svg id="closeNoti" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+    <div class="noti-header">
+    <svg id="closeNoti" class="icon-svg" onclick="closeConfirmNoti()" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
 
       <g id="SVGRepo_bgCarrier" stroke-width="0"/>
       
@@ -125,59 +126,19 @@ function addConfirmNoti(content){
     </div>
     
     <div id="popup-buttons">
-      <button id="cancel-btn">Từ chối</button>
+      <button id="cancel-btn" onclick="closeConfirmNoti()">Từ chối</button>
       <button id="confirm-btn">Đồng ý</button>        
     </div>
     
 </div>
-
-<style>
-
-  #popup-container {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    gap: 20px;
-    top: 50%;
-    left: 50%;
-    max-width: 30%;
-    height: 30%;
-    height: fit-content;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-white-text);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px var(--color-shadow);
-    text-align: center;
-    z-index: 6;
-  }
-
-  .popup-content{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: fit-content;
-    align-items: center;
-    height: fit-content;
-  }
-  
-  #popup-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  #popup-buttons button {
-    white-space: nowrap;
-    padding: 10px;
-  }
-</style>
 `
 return confirmNoti.content.firstElementChild;
 }
 
 function showConfirmNoti(content) {
-    document.body.appendChild(addConfirmNoti(content));
+  document.body.appendChild(addConfirmNoti(content));
+}
+
+function closeConfirmNoti(){
+  document.body.removeChild(document.getElementById('popup-container'));
 }
