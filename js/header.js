@@ -309,7 +309,8 @@ class Header extends HTMLElement {
               .mouse-layer-container hr{
                 width: 185px;
                 color: var(--color-button);
-                border-width: 1px;
+                border: 0;
+                border-top: 2px solid var(--color-button);
                 visibility: hidden;
               }
   
