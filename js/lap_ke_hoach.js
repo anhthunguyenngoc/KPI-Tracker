@@ -1,72 +1,80 @@
   
-// Simple data storage
 
-
-  let storage = {
-    KPIs: [
-        {   
-            id: '#KPI1',
-            name: "Nghiên cứu",
-            color : "#9CB2D7",
-            hour: "70",
-            unit: "Giờ",
-            progress : 0,
-            tasks : [
-                {
-                  id: '#KPI1task1',
-                  title: 'Phát triển hệ thống',
-                  start: '2024-05-31T09:00:00',
-                  end: '2024-05-31T11:07:00',              
-                  note: '',
-                  repeat: '',
-                  backgroundColor: '#9CB2D7',
-                  kpiID:'#KPI1',
-                  done: 0,
-                },
-                {
-                  id: '#KPI1task2',
-                  title: 'Nghiên cứu ứng dụng',
-                  day: '',
-                  start: '2024-06-01T09:00:00',
-                  end: '2024-06-01T11:30:00',               
-                  note: '',
-                  repeat: '',
-                  backgroundColor: '#9CB2D7',
-                  kpiID:'#KPI1',
-                  done: 0,
-                },
-            ]
-        },
-        {
-            id: '#KPI2',
-            name: "Giảng dạy",
-            color : "#F2DEDE",
-            hour: "80",
-            unit: "Giờ",
-            progress : 0,
-            tasks : [
-                {
-                    id: '#KPI2task1',
-                    title: 'Giao diện và trải nghiệm',
-                    start: '2024-05-24T14:10:00',
-                    end: '2024-05-24T17:30:00',
-                    backgroundColor: '#F2DEDE',
-                    kpiID:'#KPI2',
+let storage;
+let storageString = localStorage.getItem("Storage");
+if (storageString) {
+  storage = JSON.parse(storageString);
+} else {
+    storage = {
+        KPIs: [
+            {   
+                id: '#KPI1',
+                name: "Nghiên cứu",
+                color : "#9CB2D7",
+                hour: "70",
+                unit: "Giờ",
+                progress : 0,
+                tasks : [
+                    {
+                    id: '#KPI1task1',
+                    title: 'Phát triển hệ thống',
+                    start: '2024-06-05T09:00',
+                    end: '2024-06-05T11:00',       
+                    progress: 2,       
+                    note: 'Ghi chú',
+                    repeat: '',
+                    backgroundColor: '#9CB2D7',
+                    kpiID:'#KPI1',
                     done: 0,
-                },
+                    },
+                    {
+                    id: '#KPI1task2',
+                    title: 'Nghiên cứu ứng dụng',
+                    day: '',
+                    start: '2024-06-05T09:00',
+                    end: '2024-06-05T11:30', 
+                    progress: 2.5,              
+                    note: 'Ghi chú',
+                    repeat: '',
+                    backgroundColor: '#9CB2D7',
+                    kpiID:'#KPI1',
+                    done: 0,
+                    },
+                ]
+            },
+            {
+                id: '#KPI2',
+                name: "Giảng dạy",
+                color : "#F2DEDE",
+                hour: "80",
+                unit: "Giờ",
+                progress : 0,
+                tasks : [
+                    {
+                        id: '#KPI2task1',
+                        title: 'Giao diện và trải nghiệm',
+                        start: '2024-05-24T14:00',
+                        end: '2024-05-24T17:30',
+                        backgroundColor: '#F2DEDE',
+                        kpiID:'#KPI2',
+                        done: 0,
+                        progress: 3.5,
+                        note: 'Ghi chú',
+                    },
 
-            ]
-        },
-        {
-            id: '#KPI3',
-            name: "Phục vụ",
-            color : "#FFDBA6",
-            hour: "60",
-            unit: "Giờ",
-            progress : 0,
-            tasks: []
-        }
-    ]
+                ]
+            },
+            {
+                id: '#KPI3',
+                name: "Phục vụ",
+                color : "#FFDBA6",
+                hour: "60",
+                unit: "Giờ",
+                progress : 0,
+                tasks: []
+            }
+        ]
+    }
 }
 
 
@@ -379,6 +387,7 @@ const initAddKPIContainer = () =>{
                 console.log(kpiData);
                 storage.KPIs = storage.KPIs.concat(kpiData);
                 console.log(storage.KPIs);
+                localStorage.setItem('Storage', JSON.stringify(storage));
                 placeKPI();
                 addKPIContainer.classList.add("hidden");
                 document.getElementById('overlay').classList.add("hidden");
@@ -767,6 +776,7 @@ addTaskButton.addEventListener('click', function() {
       addTasksContainer.classList.add("hidden");
       document.getElementById('overlay').classList.add("hidden");
       errorLabelTask.textContent = '';
+      localStorage.setItem('Storage', JSON.stringify(storage));
       console.log(storage.KPIs); // Verify the tasks are stored correctly in the KPIs array
       // Here you can save KPIs to localStorage, send it to a server, etc.
       addAllTask();

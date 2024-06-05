@@ -1,3 +1,143 @@
+
+let storage;
+let storageString = localStorage.getItem("Storage");
+if (storageString) {
+    storage = JSON.parse(storageString);
+} else {
+    storage = {
+        KPIs: [
+            {   
+                id: '#KPI1',
+                name: "Nghiên cứu",
+                color : "#9CB2D7",
+                hour: "70",
+                unit: "Giờ",
+                progress : 0,
+                tasks : [
+                    {
+                    id: '#KPI1task1',
+                    title: 'Phát triển hệ thống',
+                    start: '2024-06-05T09:00',
+                    end: '2024-06-05T11:00',       
+                    progress: 2,       
+                    note: 'Ghi chú',
+                    repeat: '',
+                    backgroundColor: '#9CB2D7',
+                    kpiID:'#KPI1',
+                    done: 0,
+                    },
+                    {
+                    id: '#KPI1task2',
+                    title: 'Nghiên cứu ứng dụng',
+                    day: '',
+                    start: '2024-06-05T09:00',
+                    end: '2024-06-05T11:30', 
+                    progress: 2.5,              
+                    note: 'Ghi chú',
+                    repeat: '',
+                    backgroundColor: '#9CB2D7',
+                    kpiID:'#KPI1',
+                    done: 0,
+                    },
+                ]
+            },
+            {
+                id: '#KPI2',
+                name: "Giảng dạy",
+                color : "#F2DEDE",
+                hour: "80",
+                unit: "Giờ",
+                progress : 0,
+                tasks : [
+                    {
+                        id: '#KPI2task1',
+                        title: 'Giao diện và trải nghiệm',
+                        start: '2024-05-24T14:00',
+                        end: '2024-05-24T17:30',
+                        backgroundColor: '#F2DEDE',
+                        kpiID:'#KPI2',
+                        done: 0,
+                        progress: 3.5,
+                        note: 'Ghi chú',
+                    },
+
+                ]
+            },
+            {
+                id: '#KPI3',
+                name: "Phục vụ",
+                color : "#FFDBA6",
+                hour: "60",
+                unit: "Giờ",
+                progress : 0,
+                tasks: []
+            }
+        ]
+    }
+}
+
+
+
+function setStorage() {
+
+}
+
+let allTasks = [];
+function addAllTask () {
+    allTasks.length = 0;
+    allTasks = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
+    console.log(allTasks);
+}
+addAllTask();
+
+
+function getDate(isoString) {
+    return isoString.match(/\d{4}-\d{2}-\d{2}/)[0];
+}
+
+function getTime (isoString) {
+    return isoString.split('T')[1]; 
+}
+
+function getTaskByDay (format) {
+    const task = [];
+    allTasks.forEach((v) => {
+        if (getDate(v.end) === format) {
+            task.push(v);
+        }
+    }) 
+    return task;
+}
+
+function updateKPIProgress(KPI) {
+    storage.KPIs.forEach(kpi => {
+        if (kpi.id === KPI.id) {
+            kpi.progress = 0;
+            kpi.tasks.forEach(taskItem => {
+                if (taskItem.done === 1) {
+                    kpi.progress += taskItem.progress;
+                    localStorage.setItem('Storage', JSON.stringify(storage));
+                }
+            });
+        }
+      });
+}
+
+function changeStatusTaskById(task, status) {
+    storage.KPIs.forEach(kpi => {
+        if (kpi.id === task.kpiID) {
+          kpi.tasks.forEach(taskItem => {
+            if (taskItem.id === task.id) {
+              taskItem.done = status;
+              updateKPIProgress(kpi);
+              console.log(storage);
+            }
+          });
+        }
+      });
+  }
+
+
 const kpiPercentage = [25, 50, 100, 50];
 const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
 const color_pink_pastel = "#F06292"; //"#F48FB1"; 
@@ -227,12 +367,20 @@ new Chart(document.getElementById("pie-chart"), {
             
             button.addEventListener('click', () => {
                 selectDay = arr[button.data];
+                console.log(selectDay);
+                const day = selectDay.dd.toString().padStart(2, '0');
+                const month = selectDay.mm.toString().padStart(2, '0');
+                const format = `${selectDay.yyyy}-${month}-${day}`;
+                addTask(getTaskByDay(format));
+                console.log(getTaskByDay(format));
+
+                console.log(format);
             });
         }
     }
     
-    function addTask(){
-        taskData.name.forEach((v, i) => {
+    function addTask(tasksArray){
+        /*taskData.name.forEach((v, i) => {
             const div = document.createElement("div");
             div.className = "one-task";
             div.innerHTML = `      
@@ -264,7 +412,75 @@ new Chart(document.getElementById("pie-chart"), {
             </div>      
         `;
             document.getElementById("task-list").appendChild(div);
-        })
+        })*/
+
+        document.getElementById("task-list").innerHTML = ``;
+        for (let i = 0; i < tasksArray.length; i++ ) {
+            
+            const div = document.createElement("div");
+            div.className = "one-task";
+            if (tasksArray[i].done === 0){
+                div.innerHTML = `      
+                <div class="color-task">
+                <svg id="a" data-target="${tasksArray[i].id}" style="display: block;" onclick="changeSVG(this)" width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M53 27.5C53 41.3071 41.8071 52.5 28 52.5C14.1929 52.5 3 41.3071 3 27.5C3 13.6929 14.1929 2.5 28 2.5C41.8071 2.5 53 13.6929 53 27.5Z"/>
+                </svg>
+
+                <svg id="b" data-target="${tasksArray[i].id}" style="display: none;" onclick="changeSVG(this)" width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_3811_578)">
+                    <path d="M28.0002 4.58398C23.4677 4.58398 19.037 5.92802 15.2684 8.44614C11.4997 10.9643 8.56244 14.5433 6.82793 18.7308C5.09343 22.9183 4.6396 27.5261 5.52384 31.9715C6.40809 36.4169 8.59069 40.5002 11.7956 43.7052C15.0006 46.9101 19.084 49.0927 23.5294 49.977C27.9748 50.8612 32.5825 50.4074 36.77 48.6729C40.9575 46.9384 44.5366 44.0011 47.0547 40.2325C49.5728 36.4638 50.9168 32.0331 50.9168 27.5007C50.9168 24.4912 50.3241 21.5112 49.1724 18.7308C48.0207 15.9504 46.3327 13.4241 44.2047 11.2961C42.0767 9.16811 39.5504 7.48008 36.77 6.32841C33.9896 5.17674 31.0096 4.58398 28.0002 4.58398ZM41.0077 23.4604L27.2577 36.0646C26.8223 36.4638 26.2497 36.6795 25.6592 36.6667C25.0687 36.6539 24.5059 36.4135 24.0883 35.9959L17.2133 29.1209C16.9944 28.9095 16.8198 28.6566 16.6997 28.377C16.5796 28.0974 16.5164 27.7967 16.5138 27.4924C16.5111 27.1881 16.5691 26.8864 16.6843 26.6047C16.7996 26.3231 16.9697 26.0672 17.1849 25.852C17.4001 25.6369 17.6559 25.4667 17.9376 25.3515C18.2192 25.2363 18.521 25.1783 18.8253 25.1809C19.1295 25.1836 19.4303 25.2468 19.7098 25.3669C19.9894 25.487 20.2423 25.6616 20.4537 25.8804L25.7773 31.204L37.9093 20.0825C38.3573 19.6717 38.9501 19.4556 39.5574 19.4818C40.1646 19.508 40.7366 19.7744 41.1475 20.2223C41.5583 20.6703 41.7744 21.2631 41.7482 21.8703C41.722 22.4776 41.4556 23.0496 41.0077 23.4604Z"/>
+                    </g>
+                    <rect x="1" y="0.5" width="54" height="54" rx="27"/>
+                    <defs>
+                    <clipPath id="clip0_3811_578">
+                    <rect x="0.5" width="55" height="55" rx="27.5" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                </div>
+                <div id="center">
+                    <div id="task-name-container" class="row-5px">
+                        <span id="task-name">${tasksArray[i].title}</span>
+                    </div>
+                    <span id="memo">${tasksArray[i].note}</span>
+                </div>
+                <div>
+                    <span id="time">${getTime(tasksArray[i].start)} - ${getTime(tasksArray[i].end)}</span>
+                </div>      
+                `;
+            } else {
+                div.innerHTML = `      
+                <div class="color-task">
+                <svg id="a" data-target="${tasksArray[i].id}" style="display: none;" onclick="changeSVG(this)" width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M53 27.5C53 41.3071 41.8071 52.5 28 52.5C14.1929 52.5 3 41.3071 3 27.5C3 13.6929 14.1929 2.5 28 2.5C41.8071 2.5 53 13.6929 53 27.5Z"/>
+                </svg>
+
+                <svg id="b" data-target="${tasksArray[i].id}" style="display: block;" onclick="changeSVG(this)" width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_3811_578)">
+                    <path d="M28.0002 4.58398C23.4677 4.58398 19.037 5.92802 15.2684 8.44614C11.4997 10.9643 8.56244 14.5433 6.82793 18.7308C5.09343 22.9183 4.6396 27.5261 5.52384 31.9715C6.40809 36.4169 8.59069 40.5002 11.7956 43.7052C15.0006 46.9101 19.084 49.0927 23.5294 49.977C27.9748 50.8612 32.5825 50.4074 36.77 48.6729C40.9575 46.9384 44.5366 44.0011 47.0547 40.2325C49.5728 36.4638 50.9168 32.0331 50.9168 27.5007C50.9168 24.4912 50.3241 21.5112 49.1724 18.7308C48.0207 15.9504 46.3327 13.4241 44.2047 11.2961C42.0767 9.16811 39.5504 7.48008 36.77 6.32841C33.9896 5.17674 31.0096 4.58398 28.0002 4.58398ZM41.0077 23.4604L27.2577 36.0646C26.8223 36.4638 26.2497 36.6795 25.6592 36.6667C25.0687 36.6539 24.5059 36.4135 24.0883 35.9959L17.2133 29.1209C16.9944 28.9095 16.8198 28.6566 16.6997 28.377C16.5796 28.0974 16.5164 27.7967 16.5138 27.4924C16.5111 27.1881 16.5691 26.8864 16.6843 26.6047C16.7996 26.3231 16.9697 26.0672 17.1849 25.852C17.4001 25.6369 17.6559 25.4667 17.9376 25.3515C18.2192 25.2363 18.521 25.1783 18.8253 25.1809C19.1295 25.1836 19.4303 25.2468 19.7098 25.3669C19.9894 25.487 20.2423 25.6616 20.4537 25.8804L25.7773 31.204L37.9093 20.0825C38.3573 19.6717 38.9501 19.4556 39.5574 19.4818C40.1646 19.508 40.7366 19.7744 41.1475 20.2223C41.5583 20.6703 41.7744 21.2631 41.7482 21.8703C41.722 22.4776 41.4556 23.0496 41.0077 23.4604Z"/>
+                    </g>
+                    <rect x="1" y="0.5" width="54" height="54" rx="27"/>
+                    <defs>
+                    <clipPath id="clip0_3811_578">
+                    <rect x="0.5" width="55" height="55" rx="27.5" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                </div>
+                <div id="center">
+                    <div id="task-name-container" class="row-5px">
+                        <span id="task-name">${tasksArray[i].title}</span>
+                    </div>
+                    <span id="memo">${tasksArray[i].note}</span>
+                </div>
+                <div>
+                    <span id="time">${getTime(tasksArray[i].start)} - ${getTime(tasksArray[i].end)}</span>
+                </div>      
+                `;
+            }
+            
+            document.getElementById("task-list").appendChild(div);
+        }
     }
 
     var today = new Date();
@@ -273,7 +489,6 @@ new Chart(document.getElementById("pie-chart"), {
 
   addKPI();
 
-  addTask();
 
   clickAndDrag("week-list", ".day-button", ".container svg");
 
@@ -310,12 +525,31 @@ new Chart(document.getElementById("pie-chart"), {
     function changeSVG(svg) {
         var target = svg.getAttribute('data-target');
         var targetSVGs = document.querySelectorAll('svg[data-target="' + target + '"]');
-        targetSVGs.forEach(function (targetSVG) {
-          if (targetSVG.style.display === 'none') {
-            targetSVG.style.display = 'block';
-          } else {
-            targetSVG.style.display = 'none';
-          }
+        targetSVGs.forEach(function (targetSVG) {  
+            let task = allTasks.find(task => task.id === target);
+            if (targetSVG.id === "a" ) {
+                if (targetSVG.style.display === 'none') {
+                    targetSVG.style.display = 'block';
+                    changeStatusTaskById(task, 0);
+                } else {
+                    targetSVG.style.display = 'none';
+                    changeStatusTaskById(task, 1);
+                }
+            } else {
+                if (targetSVG.style.display === 'none') {
+                    targetSVG.style.display = 'block';
+                } else {
+                    targetSVG.style.display = 'none';
+                }
+            }
+
+            /*if (targetSVG.style.display === 'none') {
+                targetSVG.style.display = 'block';
+                console.log(targetSVG.parentElement);
+            } else {
+                targetSVG.style.display = 'none';
+                //console.log(targetSVG.parentElement);
+            }*/
         });
       }
 
