@@ -310,7 +310,8 @@ class Header extends HTMLElement {
                 width: 185px;
                 color: var(--color-button);
                 border: 0;
-                border-top: 2px solid var(--color-button);
+                border-top: 3px solid var(--color-button);
+                border-radius: 50px;
                 visibility: hidden;
               }
   

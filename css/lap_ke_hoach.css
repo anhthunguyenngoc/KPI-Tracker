@@ -19,6 +19,10 @@
     height: 100%;
     gap: 25px;
 }
+
+.content section {
+    gap: 0;
+}
 .sidebar{
     display: flex;
     flex-direction: column;
@@ -62,22 +66,12 @@ section {
 
 .KPI_container {
     display: flex;
-    min-width: 275px;
+    width: fit-content;
     min-height: 25px;
     height: auto;
     cursor: pointer;
-}
-
-.KPI_container:nth-of-type(1) > .KPI {
-    background-color: #F2DEDE;
-}
-
-.KPI_container:nth-of-type(2) > .KPI {
-    background-color: #9CB2D7;
-}
-
-.KPI_container:nth-of-type(3) > .KPI {
-    background-color: #FFDBA6;
+    gap: 10px;
+    align-items: center;
 }
 
 .KPI{
@@ -159,6 +153,8 @@ section {
     width: 100%;
     height: auto;
     gap: 20px;
+    align-items: center;
+    border-radius: 0;
 }
 
 #list{
@@ -218,7 +214,13 @@ button {
 .fc-toolbar.fc-header-toolbar {
     background-color: var(--color-frame-background);
     color: #ffffff;
-    padding: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 0 !important;
+  }
+
+  .fc {
+    font-size: var(--body-size) !important;
+    font: var(--body-font) !important;
   }
   .fc-toolbar.fc-header-toolbar .fc-button {
     background-color: var(--color-button);
@@ -272,12 +274,6 @@ tbody tr {
     vertical-align: top;
     text-align: start;
   }
-
-
-.fc .fc-toolbar.fc-header-toolbar {
-    margin-bottom: 0;
-    padding-bottom: 1em;
-}
 
 div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     width: 6px;
@@ -434,7 +430,6 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
   }
 
 #inputContainer, #taskInputContainer {
-    overflow-y: auto;
     height: 290px;
     display: flex;
     flex-direction: column;
@@ -817,8 +812,8 @@ ul {
   }
   
   #kpi-task-list tbody {
-    background-color: var(--color-white-text);
-    
+    background-color: var(--color-background);
+    color: var(--color-text);    
   }
 
   #popup-container {
@@ -896,9 +891,6 @@ ul {
     }
     #title-kpi{
         display: block;
-    }
-    .KPI_container{
-        margin-bottom: 5px;
     }
     section {
         gap: 15px;
@@ -978,9 +970,7 @@ ul {
 
     #addKPIButton button {
         margin-left: 0;
-    }
-    .set-kpi {
-        flex-wrap: wrap;
+        position: absolute;
     }
 
     .top-main {
@@ -990,13 +980,10 @@ ul {
 
     .main-body {
         flex-direction: column-reverse;
+        margin-bottom: 60px;
     }
 
     .set-kpi {
         margin-top: 15px;
-    }
-
-    #addTaskButton {
-        
     }
 }

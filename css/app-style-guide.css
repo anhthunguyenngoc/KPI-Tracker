@@ -148,7 +148,7 @@ body {
 .link {
   font-size: var(--body-size);
   text-decoration: underline;
-  color: var(--color-button);
+  color: var(--color-text);
   cursor: pointer;
 }
 
@@ -456,7 +456,7 @@ z-index: -1;
 }
 
 .link-arrow path{
-  fill: var(--color-button);
+  fill: var(--color-text);
 }
 
 .top-main {

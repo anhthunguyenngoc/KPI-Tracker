@@ -111,8 +111,12 @@ function placeKPI() {
     KPI.id = 'kpi_' + i;
     KPI.className = 'KPI_container';
     KPI.innerHTML=`
-      <div class="KPI" style="background-color:${storage.KPIs[i].color}">${storage.KPIs[i].name}</div>
-      <div class="hour"> ${storage.KPIs[i].progress}/${storage.KPIs[i].hour} ${storage.KPIs[i].unit}</div>
+      <li class="color-task">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="${storage.KPIs[i].color}"/>
+        </svg>
+      </li>
+      <div> ${storage.KPIs[i].progress}/${storage.KPIs[i].hour} ${storage.KPIs[i].unit}</div>
     `;
 
     KPI.addEventListener('click', function() {
@@ -399,12 +403,13 @@ const initAddKPIContainer = () =>{
           // Here you can store kpiData to localStorage, send it to a server, etc.
       });
 
+      /*
 openAddKPIContainer.addEventListener('click', () => {
     addKPIContainer.classList.remove("hidden");
     document.getElementById('overlay').classList.remove("hidden");
     initAddKPIContainer();  
 })
-
+*/
 closeAddKPIContainer.addEventListener("click", () => {
     addKPIContainer.classList.add("hidden");
     document.getElementById('overlay').classList.add("hidden");
@@ -733,7 +738,7 @@ addTaskButton.addEventListener('click', function() {
       const progress = input.querySelector('.KPIProgress').value;
       const startTime = input.querySelector('.startTime').value;
       const endTime = input.querySelector('.endTime').value;
-      const additionalInfo = input.querySelector('.additionalInfo').value;
+      const additionalInfo = "" + input.querySelector('.additionalInfo').value;
       const recurrence = input.querySelector('.recurrence').value;
 
       // Check if all required fields are filled
@@ -873,7 +878,7 @@ clickAndDragY('.list');
     let editable = false;
     var calendarEl = document.getElementById('calendar');
     let calendarInit = {
-        initialView: 'timeGridWeek',
+        initialView: 'dayGridMonth',
         eventStartEditable: editable,
         height: 'auto',
         locale: 'vi',
@@ -921,8 +926,8 @@ clickAndDragY('.list');
             omitCommas: true,
         },
         headerToolbar : {
-            start: 'title',
-            center: 'prev,today,next',
+            start: 'dayGridMonth,timeGridWeek',
+            center: 'title',//'prev,today,next',
             end: 'select,share,insert'
         },
         buttonText: {
