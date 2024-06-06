@@ -17,6 +17,10 @@
     type="text/css" 
     href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
     <script src="../js/lap_ke_hoach.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js" defer></script>
@@ -242,30 +246,8 @@
           <img src="../images/clock.svg">
         </button>
       </div>
-      </div>
-      <section id="set-kpi" class="set-kpi">
-        <ul class="top-content__navbar-list">
-          <h1 class="heading1">Danh sách KPI</h1>
-          <button class="img-button" id="openAddKPIContainer"  data-hint="Thêm chỉ tiêu KPI mới" data-hint-position="top-right">
-            <img src="../images/plus.svg">
-          </button>
-        </ul>
-        <ul class="top-content__navbar-list" id="title-kpi">
-          <!--<li id="kpi-example" class="KPI_container">
-            <div class="KPI">Giảng dạy</div>
-            <div class="hour">80 giờ</div>
-          </li>
-          <li class="KPI_container">
-            <div class="KPI">Nghiên cứu</div>
-            <div class="hour">70 giờ</div> 
-          </li>
-          <li class="KPI_container">
-            <div class="KPI">Phục vụ</div>
-            <div class="hour">60 giờ</div>
-          </li>-->
-            
-        </ul>
-      </section>
+    </div>
+      
       <div class="main-body">    
         <div class="content">
           
@@ -289,8 +271,33 @@
                 </ul>
               </nav>
             </div> -->
+            
+            
             <div class="scheduleContainer" id="calendar">
-
+              <section id="set-kpi" class="set-kpi">
+              <!--
+              <ul class="top-content__navbar-list">
+                <button class="img-button" id="openAddKPIContainer"  data-hint="Thêm chỉ tiêu KPI mới" data-hint-position="top-right">
+                  <img src="../images/plus.svg">
+                </button>
+              </ul>
+              -->
+              <ul style="gap: 30px;" class="top-content__navbar-list" id="title-kpi">
+                <!--<li id="kpi-example" class="KPI_container">
+                  <div class="KPI">Giảng dạy</div>
+                  <div class="hour">80 giờ</div>
+                </li>
+                <li class="KPI_container">
+                  <div class="KPI">Nghiên cứu</div>
+                  <div class="hour">70 giờ</div> 
+                </li>
+                <li class="KPI_container">
+                  <div class="KPI">Phục vụ</div>
+                  <div class="hour">60 giờ</div>
+                </li>-->
+                  
+              </ul>
+            </section>
             </div>
           </section>
         </div>
@@ -309,7 +316,7 @@
                     <input type="text" required>  
                     <span class="label-text">Tìm kiếm nhiệm vụ</span>           
                   </div>
-                  <button class="img-button">
+                  <button id="search-task" class="img-button">
                     <img src="../images/search.svg">
                   </button>
                 </div>
@@ -318,10 +325,10 @@
                     <button class="img-button" id="selectTasksButton">
                       <span> Chọn </span>
                     </button>
-                    <button class="img-button">
+                    <button id="sort-task"  class="img-button">
                       <img src="../images/sort.svg">
                     </button>
-                    <button class="img-button">
+                    <button id="filter-task"  class="img-button">
                       <img src="../images/filter.svg">
                     </button>
                   </ul>
@@ -391,6 +398,7 @@
     </div>
   </div>
 
+ 
     <script>
       const tuto = introJs();
     tuto.setOptions({
