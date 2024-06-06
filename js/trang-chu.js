@@ -115,10 +115,14 @@ function updateKPIProgress(KPI) {
             kpi.progress = 0;
             kpi.tasks.forEach(taskItem => {
                 if (taskItem.done === 1) {
-                    kpi.progress += taskItem.progress;
-                    localStorage.setItem('Storage', JSON.stringify(storage));
+                    console.log(kpi.progress);
+                    kpi.progress += Number(taskItem.progress);
+                    console.log(taskItem.progress);
+                    console.log(kpi.progress);
                 }
             });
+            localStorage.setItem('Storage', JSON.stringify(storage));
+
         }
       });
 }
@@ -741,3 +745,14 @@ new Chart(document.getElementById("pie-chart"), {
     }
 
     selectBtn.addEventListener('click', toggleMonthSelection);
+
+    let todayDate = new Date();
+
+    let year = todayDate.getFullYear();
+    let month = String(todayDate.getMonth() + 1).padStart(2, '0'); // Add leading zero
+    let day = String(todayDate.getDate()).padStart(2, '0'); // Add leading zero
+    
+    let formattedDate = `${year}-${month}-${day}`;
+    
+    console.log(formattedDate); // e.g., "2024-06-05"
+    addTask(getTaskByDay(formattedDate));
