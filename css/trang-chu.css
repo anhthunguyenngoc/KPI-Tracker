@@ -391,8 +391,11 @@ section{
 
 .percentage {
     position: absolute;
-    bottom: 78px;
-    left: 38px;
+    /*bottom: 78px;
+    left: 38px;*/
+    top: 38%;
+    left: 55%;
+    transform: translate(-50%, -50%);
     font-size: var(--heading1-min);
     color: #13c2c2;
 }
