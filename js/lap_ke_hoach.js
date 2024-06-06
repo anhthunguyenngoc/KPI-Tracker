@@ -738,7 +738,7 @@ addTaskButton.addEventListener('click', function() {
       const progress = input.querySelector('.KPIProgress').value;
       const startTime = input.querySelector('.startTime').value;
       const endTime = input.querySelector('.endTime').value;
-      const additionalInfo = input.querySelector('.additionalInfo').value;
+      const additionalInfo = "" + input.querySelector('.additionalInfo').value;
       const recurrence = input.querySelector('.recurrence').value;
 
       // Check if all required fields are filled

@@ -188,6 +188,28 @@ section {
     min-height: 100%;
     gap: 15px;
   }
+
+  .top-main {
+    display: inline;
+  }
+
+  #KPIaddButton {
+    display: inline-block;
+    font-size: var(--mobile-title-size);
+    margin: 5px;
+    margin-top: 10px;
+  }
+
+  .date-kpi{
+    font-size: var(--mobile-title-size);
+  }
+
+  .period-select {
+    display: inline-flex;
+    margin: 10px  5px 5px 30px;
+
+  }
+
   .nd1-name{
     font-size: 18px;
     padding-top: 10px;

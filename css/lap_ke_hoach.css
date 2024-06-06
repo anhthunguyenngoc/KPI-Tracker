@@ -434,7 +434,6 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
   }
 
 #inputContainer, #taskInputContainer {
-    overflow-y: auto;
     height: 290px;
     display: flex;
     flex-direction: column;
@@ -975,5 +974,41 @@ ul {
 
     #addKPIButton button {
         margin-left: 0;
+        position: absolute;
     }
+    .set-kpi {
+        flex-wrap: wrap;
+    }
+
+    .top-main {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .main-body {
+        flex-direction: column-reverse;
+        margin-bottom: 60px;
+    }
+
+    .set-kpi {
+        margin-top: 15px;
+    }
+    #input {
+        width: 380px;
+        overflow-x: auto;
+    }
+
+    .inputTitle div:nth-of-type(3) {
+        min-width: 146px;
+    }
+    .inputTitle div:nth-of-type(4), .inputTitle div:nth-of-type(5) {
+        min-width: 97.34px;
+    }
+    .inputTitle div:nth-of-type(2) {
+        min-width: 210px;
+    }
+    #realContent {
+        margin-top: 40px;
+    }
+    
 }
