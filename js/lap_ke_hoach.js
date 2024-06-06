@@ -878,7 +878,7 @@ clickAndDragY('.list');
     let editable = false;
     var calendarEl = document.getElementById('calendar');
     let calendarInit = {
-        initialView: 'timeGridWeek',
+        initialView: 'dayGridMonth',
         eventStartEditable: editable,
         height: 'auto',
         locale: 'vi',
@@ -926,8 +926,8 @@ clickAndDragY('.list');
             omitCommas: true,
         },
         headerToolbar : {
-            start: 'title',
-            center: 'prev,today,next',
+            start: 'dayGridMonth,timeGridWeek',
+            center: 'title',//'prev,today,next',
             end: 'select,share,insert'
         },
         buttonText: {

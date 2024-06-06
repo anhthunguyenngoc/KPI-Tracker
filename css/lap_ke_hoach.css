@@ -148,14 +148,12 @@ section {
 }
 
 .set-kpi {
-    order: 2;
     display: flex;
     flex-direction: row;
     width: 100%;
     height: auto;
     gap: 20px;
     align-items: center;
-    padding: 20px 0;
     border-radius: 0;
 }
 
@@ -214,12 +212,15 @@ button {
 */
 
 .fc-toolbar.fc-header-toolbar {
-    order: 1;
     background-color: var(--color-frame-background);
     color: #ffffff;
+    padding-bottom: 20px;
+    margin-bottom: 0 !important;
   }
-  .fc-view-harness.fc-view-harness-passive {
-    order: 3;
+
+  .fc {
+    font-size: var(--body-size) !important;
+    font: var(--body-font) !important;
   }
   .fc-toolbar.fc-header-toolbar .fc-button {
     background-color: var(--color-button);
@@ -273,11 +274,6 @@ tbody tr {
     vertical-align: top;
     text-align: start;
   }
-
-
-.fc .fc-toolbar.fc-header-toolbar {
-    margin-bottom: 0;
-}
 
 div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     width: 6px;
@@ -975,9 +971,6 @@ ul {
     #addKPIButton button {
         margin-left: 0;
         position: absolute;
-    }
-    .set-kpi {
-        flex-wrap: wrap;
     }
 
     .top-main {
