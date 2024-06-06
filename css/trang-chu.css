@@ -30,6 +30,10 @@
     height: 189px;
 }
 
+g[clip-path="url(#clip0_3922_17426)"] path {
+    fill: var(--color-element2); /* Đặt màu xanh lơ cho đường dẫn */
+  }
+
 .nd-1{
     flex-grow: 2; 
     display: flex;
@@ -393,7 +397,7 @@ section{
     position: absolute;
     /*bottom: 78px;
     left: 38px;*/
-    top: 38%;
+    top: 44%;
     left: 55%;
     transform: translate(-50%, -50%);
     font-size: var(--heading1-min);
