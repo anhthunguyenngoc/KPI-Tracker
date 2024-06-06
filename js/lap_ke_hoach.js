@@ -559,7 +559,7 @@ const initAddTaskContainer = () =>{
       if (startTime && endTime) {
         diff = Math.abs(endTime - startTime) / (1000 * 3600);
         console.log(diff);
-        e.target.value = diff;
+        e.target.value = diff.toFixed(1);
       }
     }
   } )
@@ -647,7 +647,7 @@ addTaskButton.addEventListener('click', function() {
           let diff;
           if (startTime && endTime) {
             diff = Math.abs(endTime - startTime) / (1000 * 3600);
-            e.target.value = diff;
+            e.target.value = diff.toFixed(1);
           }
         }
       }
@@ -896,17 +896,7 @@ clickAndDragY('.list');
             select: {
                 text: 'Chọn',
                 click: function() {
-                    editable = !editable;
-                    calendar.setOption('eventStartEditable',editable);
-                    if (editable) {
-                    document.querySelector('.fc-select-button').innerHTML = `
-                    <img src="../images/x.svg" />
-                        `;
-                    } else {
-                        document.querySelector('.fc-select-button').innerHTML = `
-                        Chọn
-                        `;
-                    }
+                  
                 }
             },
             share: {
