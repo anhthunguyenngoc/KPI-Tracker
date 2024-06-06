@@ -986,22 +986,4 @@ ul {
     .set-kpi {
         margin-top: 15px;
     }
-    #input {
-        width: 380px;
-        overflow-x: auto;
-    }
-
-    .inputTitle div:nth-of-type(3) {
-        min-width: 146px;
-    }
-    .inputTitle div:nth-of-type(4), .inputTitle div:nth-of-type(5) {
-        min-width: 97.34px;
-    }
-    .inputTitle div:nth-of-type(2) {
-        min-width: 210px;
-    }
-    #realContent {
-        margin-top: 40px;
-    }
-    
 }
