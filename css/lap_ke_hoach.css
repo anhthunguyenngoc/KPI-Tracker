@@ -659,17 +659,17 @@ ul {
 }
 
 .task-input div:nth-of-type(2) input, #addTaskTitle div:nth-of-type(2) {
-   width: 130px;
+    min-width: 165px;
 }
 
 .task-input div:nth-of-type(3) select, 
 #addTaskTitle div:nth-of-type(3),  #addTaskTitle div:nth-of-type(7)
   {
-    width: 83px;
+    min-width: 83px;
  }
  .task-input div:nth-of-type(5) input,.task-input div:nth-of-type(4) input,#addTaskTitle div:nth-of-type(4),
   .task-input div:nth-of-type(6) input,  #addTaskTitle div:nth-of-type(5), #addTaskTitle div:nth-of-type(6) {
-    width: 100px;
+    min-width: 100px;
  }
 
 
@@ -677,7 +677,7 @@ ul {
     width: 140px;
  }
  .task-input div:nth-of-type(8) select, #addTaskTitle div:nth-of-type(8) {
-    width: 83px;
+    min-width: 83px;
  }
 
 .task-input div input, .task-input div select {
@@ -928,7 +928,7 @@ ul {
         height: calc((400px / 8));
     }
 
-    #addKPI {
+    #addKPI, #addTask {
         width: 95%;
         position: fixed;
         background-color: var( --color-mode-1-frame-background);
@@ -968,9 +968,13 @@ ul {
         align-self: center;
     }
 
-    #addKPIButton button {
+    #addKPIButton button, .addButton {
         margin-left: 0;
         position: absolute;
+    }
+
+    .addButton {
+        margin: 20px;
     }
 
     .top-main {
@@ -986,7 +990,7 @@ ul {
     .set-kpi {
         margin-top: 15px;
     }
-    #input {
+    #input, #inputTask {
         width: 380px;
         overflow-x: auto;
     }
@@ -1003,5 +1007,23 @@ ul {
     #realContent {
         margin-top: 40px;
     }
-    
+
+    input[type="datetime-local"] {
+        width: 100px;
+    }
+
+    .task-input input[type="number"] {
+        width: 100px;
+    }
+    #addTaskTitle div:nth-of-type(7) {
+        min-width: 140px;
+    }
+
+    #inputTask {
+        margin-top: 20px;
+    }
+
+    #inputTask > div:nth-of-type(2) {
+        margin-top: 20px;
+    }
 }
