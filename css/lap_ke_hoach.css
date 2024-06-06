@@ -659,17 +659,17 @@ ul {
 }
 
 .task-input div:nth-of-type(2) input, #addTaskTitle div:nth-of-type(2) {
-    min-width: 165px;
+    width: 165px;
 }
 
 .task-input div:nth-of-type(3) select, 
 #addTaskTitle div:nth-of-type(3),  #addTaskTitle div:nth-of-type(7)
   {
-    min-width: 83px;
+    width: 83px;
  }
  .task-input div:nth-of-type(5) input,.task-input div:nth-of-type(4) input,#addTaskTitle div:nth-of-type(4),
   .task-input div:nth-of-type(6) input,  #addTaskTitle div:nth-of-type(5), #addTaskTitle div:nth-of-type(6) {
-    min-width: 100px;
+    width: 100px;
  }
 
 
@@ -677,7 +677,7 @@ ul {
     width: 140px;
  }
  .task-input div:nth-of-type(8) select, #addTaskTitle div:nth-of-type(8) {
-    min-width: 83px;
+    width: 83px;
  }
 
 .task-input div input, .task-input div select {
@@ -994,6 +994,12 @@ ul {
         width: 380px;
         overflow-x: auto;
     }
+    .task-input div:nth-of-type(2) input, #addTaskTitle div:nth-of-type(2) {
+        min-width: 165px;
+    }
+    .task-input div:nth-of-type(3) select, #addTaskTitle div:nth-of-type(3), #addTaskTitle div:nth-of-type(7) {
+        min-width: 83px;
+    }
 
     .inputTitle div:nth-of-type(3) {
         min-width: 146px;
@@ -1025,5 +1031,14 @@ ul {
 
     #inputTask > div:nth-of-type(2) {
         margin-top: 20px;
+    }
+    .task-input div:nth-of-type(5) input, .task-input div:nth-of-type(4) input, #addTaskTitle div:nth-of-type(4), .task-input div:nth-of-type(6) input, #addTaskTitle div:nth-of-type(5), #addTaskTitle div:nth-of-type(6) {
+        min-width: 100px;
+    }
+    .task-input div:nth-of-type(8) select, #addTaskTitle div:nth-of-type(8) {
+        min-width: 83px;
+    }
+    .task-input div:nth-of-type(1), #addTaskTitle div:nth-of-type(1) {
+        min-width: 42px;
     }
 }
