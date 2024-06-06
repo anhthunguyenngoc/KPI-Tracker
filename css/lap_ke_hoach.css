@@ -979,4 +979,20 @@ ul {
     #addKPIButton button {
         margin-left: 0;
     }
+    .set-kpi {
+        flex-wrap: wrap;
+    }
+
+    .top-main {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .main-body {
+        flex-direction: column-reverse;
+    }
+
+    .set-kpi {
+        margin-top: 15px;
+    }
 }
