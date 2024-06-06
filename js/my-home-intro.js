@@ -1,4 +1,32 @@
 
+function getResponsiveElementNavMobile() {
+    const width = window.innerWidth;
+    if (width < 780) {
+        return document.querySelector(".left-mb");
+    } else return document.getElementById('header-left');
+}
+
+function getResponsiveElementHomeMobile() {
+    const width = window.innerWidth;
+    if (width < 780) {
+        return document.querySelector("#home-mobile");
+    } else return document.getElementById('home');
+}
+
+function getResponsiveElementKpiMobile() {
+    const width = window.innerWidth;
+    if (width < 780) {
+        return document.querySelector("#kpi-mobile");
+    } else return document.getElementById('kpi');
+}
+
+function getResponsiveElementScheduleMobile() {
+    const width = window.innerWidth;
+    if (width < 780) {
+        return document.querySelector("#schedule-mobile");
+    } else return document.getElementById('schedule');
+}
+
 const tuto = introJs();
 tuto.setOptions({
 steps:[
@@ -26,24 +54,24 @@ steps:[
     },
     {
         title:"Thanh điều hướng",
-        element: document.getElementById('header-left'),
+        element: getResponsiveElementNavMobile(),
         intro:'<p class="intro-p">Bạn có thể click vào các nút điều hướng ở đây để di chuyển đến các trang khác.</p>',
         position: "bottom"
     },
     {
         title:"Về Trang chủ",
-        element: document.getElementById('home'),
+        element: getResponsiveElementHomeMobile(),
         intro:'<p class="intro-p">Bạn có thể quay lại trang chủ ở đây.</p>',
         position: "bottom"
     },
     {
         title:"Đến Theo dõi KPI",
-        element: document.getElementById('kpi'),
+        element: getResponsiveElementKpiMobile(),
         intro:'<p class="intro-p">Trang này sẽ hiển thị thông tin chi tiết trạng thái KPI của bạn, cùng với bản thống kê KPI đạt được.</p>',
         position: "bottom"},
     {
         title:"Đến Kế hoạch",
-        element: document.getElementById('schedule'),
+        element: getResponsiveElementScheduleMobile(),
         intro:'<p class="intro-p">Đây sẽ là nơi để bạn thiết lập chỉ tiêu, thêm các nhiệm vụ và xây dựng bản kế hoạch cho riêng mình.</p>',
         position: "bottom"},
     {   
@@ -54,7 +82,7 @@ steps:[
     },
     {   
         title: "Bắt đầu thiết lập KPI",
-        element: document.getElementById('schedule'),
+        element: getResponsiveElementScheduleMobile(),
         intro:'<p class="intro-p">Tiếp theo, hãy click vào đây để bắt đầu thiết lập KPI và xây dựng bản kế hoạch nhé!.</p>',
         position: "bottom",
         disableInteraction: false,
