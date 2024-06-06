@@ -364,7 +364,7 @@ section{
     display: flex;
     flex-direction: column;
     width: 109px;
-    height: 110px;
+    height: 120px;
     justify-content: center;
     position: relative;
 }
@@ -393,7 +393,7 @@ section{
     position: absolute;
     bottom: 78px;
     left: 38px;
-    font-size: var(--heading1);
+    font-size: var(--heading1-min);
     color: #13c2c2;
 }
 
@@ -634,6 +634,7 @@ section{
         display: flex;
         flex-direction: column;
         gap: 25px;
+        padding-bottom: 75px;
     }
 
     .col-5px {
@@ -669,6 +670,10 @@ section{
     .kpi-list-container #kpi-list {
         max-width: 100%;
         
+    }
+
+    .percentage {
+        font-size: var(--mobile-heading1);
     }
 
     #statistic-frame {
