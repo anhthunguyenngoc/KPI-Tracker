@@ -26,6 +26,7 @@ if (storageString) {
                     kpiID:'#KPI1',
                     done: 0,
                     inCalender: 1,
+                    textColor: 'black'
                     },
                     {
                     id: '#KPI1task2',
@@ -40,6 +41,7 @@ if (storageString) {
                     kpiID:'#KPI1',
                     done: 0,
                     inCalender: 0,
+                    textColor: 'black'
                     },
                 ]
             },
@@ -62,6 +64,7 @@ if (storageString) {
                         inCalender: 0,
                         progress: 3.5,
                         note: 'Ghi chú',
+                        textColor: 'black'
                     },
 
                 ]
@@ -429,7 +432,7 @@ new Chart(document.getElementById("pie-chart"), {
   storage.KPIs.forEach((v, i) => {
     res += v.progress;
   });
-  return res/storage.KPIs.length;
+  return (res/storage.KPIs.length).toFixed(2);
 }
 
 document.getElementById('completed-task').textContent = getCompletePer();
