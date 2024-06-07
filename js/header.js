@@ -412,7 +412,7 @@ class Header extends HTMLElement {
                     stroke: var(--color-button);
                 }
                 .right {
-                    margin-right: 20px;
+                    padding: 15px;
                 }
                 #header{
                     padding: 5px 0px 5px 0px;

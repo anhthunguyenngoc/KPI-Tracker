@@ -22,7 +22,7 @@ color_mode_3_background = "#376E6F";
 color_mode_4_button = "#254E58";
 color_mode_4_footer = "#45A29E";
 color_mode_4_frame_background = "#C5C6C7";
-color_mode_4_element2 = "#9CD6D3";
+color_mode_4_element2 = "#88BDBC";
 color_mode_4_button_hover = "#439BA1";
 color_mode_4_background = "#080808";
 
