@@ -55,8 +55,22 @@ section {
 }
 
 .percentage {
+<<<<<<< HEAD
   bottom: 40%;
   left: 23%;
+=======
+  /*bottom: 74px;
+  left: 68px;*/
+
+  position: absolute;
+  /*bottom: 78px;
+  left: 38px;*/
+  top: 54%;
+  left: 27%;
+  transform: translate(-50%, -50%);
+  font-size: var(--heading1-min);
+  color: #13c2c2;
+>>>>>>> 7c94548313c90b363345311404f072662cae3189
 }
 
 .kpi-list-container {
@@ -189,7 +203,7 @@ section {
   .main {
     padding: 0px 15px;
     width: 100%;
-    min-height: 100%;
+    /*min-height: 100%;*/
     gap: 15px;
   }
 
@@ -240,5 +254,9 @@ section {
   }
   .kpi-detail{
     padding: 10px 10px 10px 30px;
+  }
+
+  #l-div, #r-div{
+    height: 150px;
   }
 }

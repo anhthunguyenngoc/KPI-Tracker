@@ -485,7 +485,7 @@ const initAddTaskContainer = () =>{
       if (startTime && endTime) {
         diff = Math.abs(endTime - startTime) / (1000 * 3600);
         console.log(diff);
-        e.target.value = diff;
+        e.target.value = diff.toFixed(1);
       }
     }
   } )
@@ -573,7 +573,7 @@ addTaskButton.addEventListener('click', function() {
           let diff;
           if (startTime && endTime) {
             diff = Math.abs(endTime - startTime) / (1000 * 3600);
-            e.target.value = diff;
+            e.target.value = diff.toFixed(1);
           }
         }
       }
@@ -827,6 +827,7 @@ dateRange = {
             select: {
                 text: 'Chọn',
                 click: function() {
+<<<<<<< HEAD
                     editable = !editable;
                     calendar.setOption('eventStartEditable',editable);
                     if (editable) {
@@ -838,6 +839,9 @@ dateRange = {
                         Chọn
                         `;
                     }
+=======
+                  
+>>>>>>> 7c94548313c90b363345311404f072662cae3189
                 }
             },
             share: {
