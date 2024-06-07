@@ -1036,9 +1036,10 @@ ul {
     }
 
     .fc-toolbar.fc-header-toolbar h2 {
-        font-size: var(--heading1);
+        font-size: 18px !important;
         display: flex;
         justify-content: center;
+        padding: 3px;
     }
     .scheduleContainer{
         height: fit-content;
