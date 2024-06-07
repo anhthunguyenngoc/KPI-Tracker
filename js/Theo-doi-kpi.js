@@ -78,6 +78,9 @@ if (storageString) {
     }
 }
 
+console.log(storage);
+
+
 const kpiUp = [2, 8, 5, 3];
 
 function getKPINames() {
@@ -425,8 +428,8 @@ function showKPIInfo(id){
   function remKPI(id){
     id = "#KPI"+id;
     storage.KPIs = storage.KPIs.filter(kpi => kpi.id !== id);
-    localStorage.setItem('Storage', JSON.stringify(storage));
-    storage = JSON.parse(localStorage.getItem('Storage'));
+    localStorage.setItem("Storage", JSON.stringify(storage));
+    storage = JSON.parse(localStorage.getItem("Storage"));
     console.log(storage);
     console.log(id);
     closeConfirmNoti();
@@ -446,7 +449,7 @@ document.getElementById('completed-task').textContent = getCompletePer();
 
 function addKPI(){
     document.getElementById("kpi-detail-list").innerHTML = ``;
-    storage = JSON.parse(localStorage.getItem('Storage'));
+    //storage = JSON.parse(localStorage.getItem("Storage"));
     storage.KPIs.slice().reverse().forEach((v, i) => {           
       let kpiNumber = parseInt(v.id.substring(4)); 
         const section = document.createElement("section");
