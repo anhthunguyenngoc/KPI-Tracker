@@ -1064,6 +1064,9 @@ ul {
         font-size: var(--heading1);
         height: auto;
     }
+    #popup-container{
+        max-width: 400px;
+    }
     
     .heading2{
         font-size: var(--mobile-heading1);
