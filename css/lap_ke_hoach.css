@@ -133,7 +133,7 @@ section {
 }
 .sort_filter{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 15px;
 }
 
@@ -161,9 +161,10 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     overflow-x: hidden;
     overflow-y: hidden;
+    border-radius: var(--br-8xs);
   }
 
 .list-task {
@@ -172,14 +173,13 @@ section {
     flex-direction: row;
     height: auto;
     width: 100%;
-    margin: 7px 0px 7px 0px;
     background-color: var(--color-white-text);
     border: 2px solid var(--color-white-text);
     justify-content: left; 
     align-items: center;
     border-radius: var(--br-8xs);
     padding: 10px 15px 10px 15px;
-    gap: 20px;
+    gap: 15px;
 }
 
 .list-task:hover{
@@ -202,6 +202,11 @@ button {
     height: 26px;
   }
 
+.img-button {
+    height: 40px;
+    width: 40px;
+}
+
 #period-select-button{
   width: 35px;
   height: 35px;
@@ -210,6 +215,53 @@ button {
 /*
 *  Calendar
 */
+.fc-button-active {
+    background-color: var(--color-button-hover) !important;
+}
+.fc-view-harness fc-view-harness-passive {
+    border-radius: 5px;
+}
+
+.fc-day-today {
+    background-color: var(--color-button-hover) !important;
+    color: #ffffff;
+}
+.fc-toolbar .fc-toolbar-chunk:nth-child(2) div {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+.fc-toolbar-title {
+    font-size: var(--heading1) !important;
+    width: fit-content !important;
+    white-space: nowrap;
+    height: 41.4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0 !important;
+}
+
+#addToKHButton, #delTasks {
+    display: none;
+}
+
+#selectTasksButton {
+    width: 60px;
+}
+
+.fc-select-button {
+    width: 60px !important;
+}
+
+.share-rect {
+    fill: var(--color-button);
+}
+
+.fc-share-button:hover .share-rect {
+    fill: var(--color-button-hover);
+}
 
 .fc-toolbar.fc-header-toolbar {
     background-color: var(--color-frame-background);
@@ -228,8 +280,6 @@ button {
     border: none;
     border-radius: 5px;
     color: white;
-    margin-right: 5px;
-
   }
   .fc-toolbar.fc-header-toolbar .fc-button:hover {
     background-color: var(--color-button-hover);
@@ -310,24 +360,6 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     display: none;
 }
 
-.popUpWindow {
-    display: flex;
-    height: 90%;
-    max-height: 90%;
-    width: fit-content;
-    position: fixed;
-    background-color: var( --color-frame-background);
-    z-index: 10;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 15px;
-    box-shadow: 0 10px 20px 0 var(--color-shadow);
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
 .progress-bar {
     width: 100%;
     background-color: var(--color-element2);
@@ -357,6 +389,20 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     width: 580px;
 }
 
+.color-task {
+    width: fit-content;
+}
+
+.name-task {
+    width: 100%;
+}
+
+.unit {
+    display: flex;
+    width: 15%;
+    gap: 5px;
+    justify-content: flex-end;
+}
 #closeButton button, #closeTaskButton button {
     border-radius: 50px;
 }
@@ -872,6 +918,66 @@ ul {
     padding: 20px 30px;
   }
 
+.options{
+    width: fit-content;
+    position: absolute; /* Đặt vị trí tuyệt đối cho options */
+    top: 0; 
+    right: 100%; 
+    z-index: 3; /* Đảm bảo options hiển thị trên các phần tử khác */
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 7px;
+    background: #fff;
+    display: none;
+}
+
+.options .option{
+    display: flex;
+    height: 45px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 7px;
+    align-items: center;
+    background: #fff;
+}
+
+.options .option.active{
+    background: var(--color-footer);
+    color: #fff;
+}
+
+.options .option:hover{
+    color: var(--color-white-text);
+    background: var(--color-button-hover);
+}
+
+.sort-unsort {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+#sort-task {
+    border-radius: 5px;
+}
+
+#unsort-task {
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: none;
+}
+
+#filter-task {
+    border-radius: 5px;
+}
+
+#unfilter-task {
+    border-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: none;
+}
 @media screen and (max-width: 468px){
     .main{
         display: block;

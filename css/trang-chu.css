@@ -497,7 +497,7 @@ section{
 }
 
 #month-selection{
-    left: 105%;
+    right: 105%;
     display: none;
     flex-direction: column;
     background: #fff;

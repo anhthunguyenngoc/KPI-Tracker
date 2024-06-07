@@ -1,5 +1,3 @@
-  
-
 let storage;
 let storageString = localStorage.getItem("Storage");
 if (storageString) {
@@ -26,6 +24,7 @@ if (storageString) {
                     backgroundColor: '#9CB2D7',
                     kpiID:'#KPI1',
                     done: 0,
+                    inCalender: 1,
                     },
                     {
                     id: '#KPI1task2',
@@ -39,6 +38,7 @@ if (storageString) {
                     backgroundColor: '#9CB2D7',
                     kpiID:'#KPI1',
                     done: 0,
+                    inCalender: 0,
                     },
                 ]
             },
@@ -52,12 +52,13 @@ if (storageString) {
                 tasks : [
                     {
                         id: '#KPI2task1',
-                        title: 'Giao diện và trải nghiệm',
+                        title: 'Giao diện và trải nghiệm người dùng',
                         start: '2024-05-24T14:00',
                         end: '2024-05-24T17:30',
                         backgroundColor: '#F2DEDE',
                         kpiID:'#KPI2',
                         done: 0,
+                        inCalender: 0,
                         progress: 3.5,
                         note: 'Ghi chú',
                     },
@@ -77,20 +78,46 @@ if (storageString) {
     }
 }
 
+/*
+function updateKPIProcess(taskID, isDone) {
+  let targetKPI;
+  let targetTask;
+  for (let kpi of storage.KPIs) {
+    targetTask = kpi.tasks.find(task => task.id === taskID);
+    if (targetTask) {
+      targetKPI = kpi;
+      break;
+    }
+  }
 
+  if (targetTask) {
+    targetTask.done = isDone ? 1 : 0;
 
+    let totalProgress = 0;
+    for (let task of targetKPI.tasks) {
+      totalProgress += task.done === 1 ? task.progress : 0;
+    }
+    targetKPI.progress = totalProgress;
+  }
+}
 
+function calculateKPIProcess() {
+  storage.KPIs.forEach(kpi => {
+    let totalProgress = 0;
+    kpi.tasks.forEach(task => {
+      if (task.done === 1) {
+        totalProgress += task.progress;
+      }
+    });
+    kpi.progress = totalProgress;
+  });
+}
 
+calculateKPIProcess();
+*/
 //document.addEventListener('DOMContentLoaded', function() {
 
 // Add KPI
-const addKPIContainer = document.querySelector("#addKPI");
-const closeAddKPIContainer = document.querySelector("#closeButton");
-const openAddKPIContainer = document.querySelector("#openAddKPIContainer");
-
-const addKPIButton = document.getElementById('addKPIButton');
-const submitButton = document.querySelector("#KPIaddButton");
-const errorLabel = document.querySelector("#errorMissingField");
 
 const KPIContainer = document.querySelector("#title-kpi");
 
@@ -104,6 +131,18 @@ const selectTasksButton = document.getElementById("selectTasksButton");
               <div class="hour">80 giờ</div>
             </li>
 */
+
+function getTotalProgressForKPI(kpiId) {
+  let totalProgress = 0;
+  kpi = storage.KPIs[kpiId];
+  for (let task of kpi.tasks) {
+    if (task.inCalender === 1) {
+      totalProgress += task.progress*10;
+    }
+  }
+  return totalProgress/10;
+}
+
 function placeKPI() {
   KPIContainer.innerHTML="";
   for (let i = 0; i< storage.KPIs.length; i++) {
@@ -116,7 +155,7 @@ function placeKPI() {
             <rect width="30" height="30" rx="15" fill="${storage.KPIs[i].color}"/>
         </svg>
       </li>
-      <div> ${storage.KPIs[i].progress}/${storage.KPIs[i].hour} ${storage.KPIs[i].unit}</div>
+      <div> ${getTotalProgressForKPI(i)}/${storage.KPIs[i].hour} ${storage.KPIs[i].unit}</div>
     `;
 
     KPI.addEventListener('click', function() {
@@ -241,51 +280,6 @@ function addKpisTaskRow(id){
 
 placeKPI();
 
-
-function addKPIRow(){
-  return `
-        <div>
-          <input type="text" placeholder="Thêm chỉ tiêu" class="KPIName">
-        </div>
-        <div>
-          <input type="text" class="KPIcolor"/>
-        </div>
-        <div>
-          <input type="text" class="KPIHours">
-        </div>
-        <div>
-          <input type="text" placeholder="Ví dụ: Giờ" class="KPIUnit">
-        </div>
-        <div>
-          <button class="removeKPI">
-            <img src="../images/bin.svg" alt="">
-          </button>
-        </div>
-      </div>
-  `
-}
-
-function addExcelKPIRow(name, color_value, hour){
-  return `
-        <div>
-          <input type="text" value='${name}' class="KPIName">
-        </div>
-        <div>
-          <input type="text" class="KPIcolor" value='${color_value}' />
-        </div>
-        <div>
-          <input type="text" value='${hour}'  class="KPIHours">
-        </div>
-        <div>Tạm lưu</div>
-        <div>
-          <button class="removeKPI">
-            <img src="../images/bin.svg" alt="">
-          </button>
-        </div>
-      </div>
-  `
-}
-
 function addColorLib(){
   var colorPickers = document.querySelectorAll('.KPIcolor');
 
@@ -311,112 +305,6 @@ function addColorLib(){
     });
   });
 }
-
-const initAddKPIContainer = () =>{
-        realContent.innerHTML = `
-          <div class="inputTitle flex KPIinput">
-            <div>1</div>`
-          +addKPIRow();
-        realContent.parentElement.appendChild(realContent);
-        addColorLib();
-}
-      const realContent = document.getElementById('inputContainer');
-      let kpiIndex = 1;
-
-      addKPIButton.addEventListener('click', function() {
-        kpiIndex++;
-        const kpiInput = document.createElement('div');
-        kpiInput.className = 'inputTitle flex KPIinput';
-        kpiInput.innerHTML = `
-          <div>${kpiIndex}</div>
-          `+ addKPIRow();
-        realContent.appendChild(kpiInput);
-
-        addColorLib();
-
-        const removeButtons = document.querySelectorAll('.removeKPI');
-        removeButtons.forEach(button => {
-            
-                button.addEventListener('click', function() {
-                    if (kpiIndex == 1) { 
-
-                    } else {
-                    button.parentElement.parentElement.remove();
-                    updateKPIIndexes();}
-          });
-        });
-      });
-
-      function updateKPIIndexes() {
-                const kpiInputs = document.querySelectorAll('.KPIinput');
-                kpiInputs.forEach((input, index) => {
-            
-                input.firstElementChild.textContent = index + 1;
-                });
-                kpiIndex = kpiInputs.length;
-        
-        }
-
-        // Function to store the data from all input elements
-        submitButton.addEventListener('click', function() {
-          const kpiData = [];
-            const kpiInputs = document.querySelectorAll('.KPIinput');
-            let allFieldsFilled = true;
-
-            kpiInputs.forEach((input, index) => {
-                const kpiName = input.querySelector('.KPIName').value;
-                const kpiColor = input.querySelector('.KPIcolor').value;
-                const kpiHours = input.querySelector('.KPIHours').value;
-                const kpiUnit = input.querySelector('.KPIUnit').value;
-
-                if (!kpiName || !kpiColor || !kpiHours ||!kpiUnit) {
-                    allFieldsFilled = false;
-                }
-
-                kpiData.push({
-                    id: "#KPI" + (storage.KPIs.length + index + 1).toString(),
-                    name: kpiName,
-                    color: kpiColor,
-                    hour: kpiHours,
-                    unit: kpiUnit,
-                    progress : 0,
-                    tasks: []
-                });
-            });
-
-            if (!allFieldsFilled) {
-                errorLabel.style.display = 'block';
-            } else {
-                errorLabel.style.display = 'none';
-                console.log(kpiData);
-                storage.KPIs = storage.KPIs.concat(kpiData);
-                console.log(storage.KPIs);
-                localStorage.setItem('Storage', JSON.stringify(storage));
-                placeKPI();
-                addKPIContainer.classList.add("hidden");
-                document.getElementById('overlay').classList.add("hidden");
-                errorLabel.style.display = 'none';
-                realContent.innerHTML=``;
-                kpiIndex=1;
-                showToast('Thêm chỉ tiêu KPI thành công', '', 'none');
-            }
-          // Here you can store kpiData to localStorage, send it to a server, etc.
-      });
-
-      /*
-openAddKPIContainer.addEventListener('click', () => {
-    addKPIContainer.classList.remove("hidden");
-    document.getElementById('overlay').classList.remove("hidden");
-    initAddKPIContainer();  
-})
-*/
-closeAddKPIContainer.addEventListener("click", () => {
-    addKPIContainer.classList.add("hidden");
-    document.getElementById('overlay').classList.add("hidden");
-    errorLabel.style.display = 'none';
-    realContent.innerHTML=``;
-    kpiIndex=1;
-})
 
 let KPICounter = 0;
 let taskCounter = -1;
@@ -447,6 +335,9 @@ console.log(allEvents);
 
 
 function oneTask(event) {
+  taskId = event?.id;
+  let kpiIndex = taskId.indexOf('KPI') + 3; 
+  let kpiNumber = parseInt(taskId.substring(kpiIndex, taskId.indexOf('task'))); 
   const template = document.createElement("template");
   template.innerHTML = `
   <ul class="list-task" id="${event?.id}">
@@ -456,6 +347,7 @@ function oneTask(event) {
       </svg>
       </li>
       <li class="name-task">${event?.title}</li>
+      <li class="unit"><div>${event?.progress}</div> <div>${storage.KPIs[kpiNumber].unit}</div></li>
   </ul>
   `;
   return template.content.firstElementChild;
@@ -467,11 +359,45 @@ function addAllTask() {
   listTasks.innerHTML = "";
   allEvents.length = 0;
   allEvents = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
+  allEvents = allEvents.sort((a, b) => a.title.localeCompare(b.title));
   console.log(allEvents);
   for (let i = 0; i < allEvents.length  ; i++ ){
     const node = oneTask(allEvents[i])
     listTasks.appendChild(node);
     taskId = allEvents[i].id;
+    let kpiIndex = taskId.indexOf('KPI') + 3; 
+    let kpiNumber = parseInt(taskId.substring(kpiIndex, taskId.indexOf('task'))); 
+
+    let taskIndex = taskId.indexOf('task') + 4; 
+    let taskNumber = parseInt(taskId.substring(taskIndex)); 
+    node.addEventListener("click", e => {
+      
+        if (selectTasksButton.classList.contains("on")) {
+          
+              let selectedId = e.currentTarget.id;
+              if (selectedTasksId.includes(selectedId)) {
+  
+                  selectedTasksId = selectedTasksId.filter(item => item !== selectedId);
+                  e.currentTarget.style.border = ""; // Remove border styling
+              } else {
+                  selectedTasksId.push(selectedId);
+                  e.currentTarget.style.border = "3px solid #2a7378"; // Apply border styling
+              }
+          }
+        else{
+          openTaskInfo(kpiNumber-1, taskNumber-1);
+        }
+    });
+  }
+}
+
+function addSortTask(arr) {
+  listTasks.innerHTML = "";
+
+  for (let i = 0; i < arr.length  ; i++ ){
+    const node = oneTask(arr[i])
+    listTasks.appendChild(node);
+    taskId = arr[i].id;
     let kpiIndex = taskId.indexOf('KPI') + 3; 
     let kpiNumber = parseInt(taskId.substring(kpiIndex, taskId.indexOf('task'))); 
 
@@ -661,14 +587,17 @@ addTaskButton.addEventListener('click', function() {
         selectTasksButton.classList.add("on");
         listTasks.style.border = "3px solid #2a7378";
         selectTasksButton.innerHTML =`
-            <img src="../images/x.svg" />
+            Hủy
         `;
-        submitButton.innerHTML=`
-            <img src="../images/left.svg" />
-        `;
+        document.getElementById('addToKHButton').style.display = 'block';
+        document.getElementById('delTasks').style.display = 'block';
+        document.getElementById('list').style.padding = '7px';
     } else {
     selectTasksButton.classList.remove("on");
     listTasks.style.border = "";
+    document.getElementById('addToKHButton').style.display = 'none';
+    document.getElementById('delTasks').style.display = 'none';
+    document.getElementById('list').style.padding = '0';
     let elements = document.querySelectorAll('.list-task');
       elements.forEach(function(element) {
       element.style.border = "";
@@ -677,9 +606,6 @@ addTaskButton.addEventListener('click', function() {
     selectTasksButton.innerHTML=`
       <span>Chọn</span>
       `;
-      submitButton.innerHTML=`
-            <img src="../images/plus.svg" />
-        `;
     }
 }
   
@@ -695,18 +621,18 @@ addTaskButton.addEventListener('click', function() {
     errorLabelTask.textContent = "";
   });
 
+  document.getElementById("addToKHButton").addEventListener("click", function() {
+    console.log(selectedTasksId);
+    addTaskToCalendar(selectedTasksId);
+    localStorage.setItem('Storage', JSON.stringify(storage));
+    console.log(allEvents);
+    toggleSelectTasksButton();
+  });
 
   document.getElementById("add-task-button").addEventListener("click", function() {
-    if (selectTasksButton.classList.contains("on")) {
-            console.log(selectedTasksId);
-          
-          addTaskToCalendar(selectedTasksId);
-          console.log(allEvents);
-          toggleSelectTasksButton();
-    } else {
-      addTasksContainer.classList.remove("hidden");
-      initAddTaskContainer();
-      document.getElementById('overlay').classList.remove("hidden");
+    addTasksContainer.classList.remove("hidden");
+    initAddTaskContainer();
+    document.getElementById('overlay').classList.remove("hidden");
     /*let node;
     if (storage.KPIs[KPICounter].tasks[taskCounter+1] == undefined) {
         KPICounter ++;
@@ -720,7 +646,6 @@ addTaskButton.addEventListener('click', function() {
     }
     container.appendChild(node);
     node.addEventListener("click", chooseTask);*/
-}
   });
   
   const errorLabelTask = document.getElementById("errorMissingFieldTask");
@@ -870,6 +795,10 @@ clickAndDrag('.list');
 
 clickAndDragY('.list');
 
+dateRange = {
+  start: '2024-05-26',
+
+}
 
 
 // calendar
@@ -879,6 +808,7 @@ clickAndDragY('.list');
     var calendarEl = document.getElementById('calendar');
     let calendarInit = {
         initialView: 'dayGridMonth',
+        //validRange: dateRange,
         eventStartEditable: editable,
         height: 'auto',
         locale: 'vi',
@@ -888,6 +818,7 @@ clickAndDragY('.list');
             minute: '2-digit',
             meridiem: 'short'
         },
+        eventStartEditable: true,
         slotDuration: {hours:3},
         slotMinTime: '00:00:00',  // Start at midnight
         slotMaxTime: '24:00:00',  // End at midnight the next day
@@ -900,7 +831,7 @@ clickAndDragY('.list');
                     calendar.setOption('eventStartEditable',editable);
                     if (editable) {
                     document.querySelector('.fc-select-button').innerHTML = `
-                    <img src="../images/x.svg" />
+                    Hủy
                         `;
                     } else {
                         document.querySelector('.fc-select-button').innerHTML = `
@@ -919,6 +850,10 @@ clickAndDragY('.list');
                
                 }
             },
+
+            selectDate: {
+
+            }
         },
         titleFormat: {  
             month: '2-digit', 
@@ -927,11 +862,13 @@ clickAndDragY('.list');
         },
         headerToolbar : {
             start: 'dayGridMonth,timeGridWeek',
-            center: 'title',//'prev,today,next',
+            center: 'prev,title,next', //'title,selectDate','prev,today,next', 
             end: 'select,share,insert'
         },
         buttonText: {
-            today: 'Today'
+            today: 'Today',
+            week: 'Tuần',
+            month: 'Tháng'
         },
         events : [
         ]
@@ -939,8 +876,24 @@ clickAndDragY('.list');
         };
     let calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
     calendar.render();
+
+    function changeInCalendarValue(taskId, newValue) {
+      // Duyệt qua mảng KPIs
+      for (let i = 0; i < storage.KPIs.length; i++) {
+          // Tìm task có id tương ứng trong mỗi KPI
+          let task = storage.KPIs[i].tasks.find(task => task.id === taskId);
+          // Nếu tìm thấy task, thay đổi giá trị của inCalendar và kết thúc hàm
+          if (task) {
+              task.inCalender = newValue;
+              return; // Kết thúc hàm sau khi thay đổi giá trị
+          }
+      }
+  }
+
     function addTaskToCalendar (tasksSeleted) {
+      console.log(tasksSeleted);
       for (let i = 0; i < tasksSeleted.length; i++) {
+        changeInCalendarValue(tasksSeleted[i], 1);
         for (let m = 0; m < allEvents.length; m++) {
           if (tasksSeleted[i] === allEvents[m].id) {
             calendar.addEvent(allEvents[m]);
@@ -948,8 +901,52 @@ clickAndDragY('.list');
         }
       }
     }
+
+    function getTasksInCalender() {
+      let tasksInCalender = [];
+      for (let kpi of storage.KPIs) {
+        for (let task of kpi.tasks) {
+          console.log(task);
+          console.log(task.inCalender);
+          if (task.inCalender === 1) {
+            tasksInCalender.push(task.id);
+          }
+        }
+      }
+      return tasksInCalender;
+    }
+
+    function initCalendar () {
+      addTaskToCalendar (getTasksInCalender());
+    }
+
+    initCalendar();
     document.querySelector('.fc-share-button').innerHTML = `
-  <img src="../images/share-schedule.svg" />
+        <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_358_6337)">
+      <path d="M8.18331 9.52942H6.00519V11.7077H8.18331V9.52942Z" fill="white"/>
+      <path d="M17.7127 9.52942H15.5346V11.7077H17.7127V9.52942Z" fill="white"/>
+      <path d="M14.5363 9.52942H12.3582V11.7077H14.5363V9.52942Z" fill="white"/>
+      <path d="M8.18331 12.9328H6.00519V15.1111H8.18331V12.9328Z" fill="white"/>
+      <path d="M14.5363 12.9328H12.3582V15.1111H14.5363V12.9328Z" fill="white"/>
+      <path d="M11.3598 12.9328H9.1817V15.1111H11.3598V12.9328Z" fill="white"/>
+      <path d="M17.7127 16.3361H15.5346V18.5144H17.7127V16.3361Z" fill="white"/>
+      <path d="M14.5363 16.3361H12.3582V18.5144H14.5363V16.3361Z" fill="white"/>
+      <path d="M11.3598 16.3361H9.1817V18.5144H11.3598V16.3361Z" fill="white"/>
+      <path d="M19.7047 2.35641H17.9335V4.05462C17.9335 4.68826 17.4114 5.20359 16.7698 5.20359H14.4571C13.8155 5.20359 13.2935 4.68826 13.2935 4.05462V2.35641H10.4213V4.03865C10.4213 4.68112 9.89353 5.20359 9.24477 5.20359H6.95779C6.30903 5.20359 5.78124 4.68112 5.78124 4.03865V2.35641H4.01001C2.85821 2.35641 1.92114 3.28501 1.92114 4.42636V19.8479C1.92114 20.9892 2.85821 21.9178 4.01001 21.9178H19.7047C20.8583 21.9178 21.7967 20.9892 21.7967 19.8479V4.42636C21.7967 3.28505 20.8583 2.35641 19.7047 2.35641ZM20.2993 19.8077C20.2993 20.1741 20.0531 20.4202 19.6867 20.4202H4.0312C3.66476 20.4202 3.41857 20.1741 3.41857 19.8077V7.62367H20.2993V19.8077Z" fill="white"/>
+      <path d="M6.95847 4.38814H9.24409C9.43763 4.38814 9.59507 4.23176 9.59507 4.03951V0.877269C9.59507 0.393536 9.19824 0 8.7104 0H7.49212C7.00432 0 6.60736 0.393493 6.60736 0.877269V4.03951C6.6074 4.23176 6.76485 4.38814 6.95847 4.38814Z" fill="white"/>
+      <path d="M14.4571 4.38814H16.7698C16.9559 4.38814 17.1073 4.23776 17.1073 4.05312V0.863784C17.1073 0.387543 16.7166 0 16.2361 0H14.9908C14.5104 0 14.1197 0.387543 14.1197 0.863784V4.05312C14.1196 4.23776 14.2711 4.38814 14.4571 4.38814Z" fill="white"/>
+      </g>
+      <rect class="share-rect" width="6.84932" height="8.90411" transform="translate(11.8624 16.0959)"/>
+      <rect class="share-rect" width="5.82192" height="11.3014" transform="translate(18.7117 13.6986)"/>
+      <rect class="share-rect" width="14.726" height="5.47945" transform="translate(9.80756 19.5205)"/>
+      <path d="M18.9115 15.1541C18.8664 15.1572 18.8226 15.1678 18.7824 15.1853C18.7422 15.2028 18.7065 15.227 18.6773 15.2563C18.6481 15.2856 18.626 15.3195 18.6124 15.3561C18.5987 15.3927 18.5936 15.4312 18.5975 15.4695V18.0408C14.2596 18.4047 11.4628 20.9275 11.4058 23.4746C11.4058 23.6202 11.4628 23.7172 11.577 23.7172C11.6911 23.7172 11.7768 23.6444 11.8909 23.4504C12.5759 22.1404 14.1169 21.3884 18.5975 21.2186V23.5716C18.5936 23.6099 18.5987 23.6484 18.6124 23.685C18.626 23.7216 18.6481 23.7555 18.6773 23.7849C18.7065 23.8142 18.7422 23.8383 18.7824 23.8558C18.8226 23.8733 18.8664 23.8839 18.9115 23.887C18.9562 23.8891 19.0008 23.8813 19.0408 23.8643C19.0809 23.8473 19.115 23.8217 19.1398 23.79L23.8487 19.7874C23.9189 19.7207 23.9577 19.6343 23.9577 19.5448C23.9577 19.4553 23.9189 19.369 23.8487 19.3022L19.1398 15.2512C19.115 15.2195 19.0809 15.1938 19.0408 15.1768C19.0008 15.1598 18.9562 15.152 18.9115 15.1541Z" fill="white"/>
+      <defs>
+      <clipPath id="clip0_358_6337">
+      <rect width="21.9178" height="21.9178" fill="white" transform="translate(0.900024)"/>
+      </clipPath>
+      </defs>
+      </svg>
     `;
     document.querySelector('.fc-insert-button').innerHTML = `
   <img src="../images/edit.svg" />
@@ -960,73 +957,6 @@ clickAndDragY('.list');
 ///
 //      Upload Excel
 // 
-
-let addKPIArray = [];
- 
-function loadExcelToKPIContainer () {
-  realContent.innerHTML='';
-  kpiIndex=0;
-  for (let i = 0; i< addKPIArray.length; i++) {
-       
-        kpiIndex++;
-        const kpiInput = document.createElement('div');
-        kpiInput.className = 'inputTitle flex KPIinput';
-        kpiInput.innerHTML = `
-          <div>${kpiIndex}</div>
-        ` +  addExcelKPIRow(addKPIArray[i].name, addKPIArray[i].color, addKPIArray[i].hour);
-        realContent.appendChild(kpiInput);
-        addColorLib();
-        const removeButtons = document.querySelectorAll('.removeKPI');
-        removeButtons.forEach(button => {
-            
-                button.addEventListener('click', function() {
-                    if (kpiIndex == 1) { 
-
-                    } else {
-                    button.parentElement.parentElement.remove();
-                    updateKPIIndexes();}
-          });
-        });
-  }
-}
-
-function uploadExcel() {
-    var fileInput = document.getElementById('kpi-file-upload');   
-
-    fileInput.addEventListener('change', function() {
-      document.getElementById('kpi-file-name').textContent = fileInput.files[0].name;
-      reader = new FileReader();
-
-      reader.onload = function(event) {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-  
-        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-        const jsonData = XLSX.utils.sheet_to_json(firstSheet);
-  
-        jsonData.forEach((item, index) => {
-            newKPI = {
-                id: `#KPI${storage.KPIs.length +addKPIArray.length + 1}`,
-                name: item['Tên chỉ tiêu*'],
-                color: item['Mã màu đại diện'],
-                hour: item['Số giờ mục tiêu*'],
-                tasks: [] // Initialize with empty tasks array
-            };
-            addKPIArray.push(newKPI);
-        });
-       
-        console.log(addKPIArray);
-              loadExcelToKPIContainer();
-
-    };
-  
-      if(fileInput.files.length > 0) {
-          reader.readAsArrayBuffer(fileInput.files[0]);
-      } else {
-          alert("Please upload a file.");
-      }
-  } );
-}
 
 function uploadTaskExcel() {
   var fileInput = document.getElementById('task-file-upload');   
@@ -1102,7 +1032,7 @@ function initTaskInfo(id, taskId){
           <rect width="30" height="30" rx="15" fill="${storage.KPIs[id].color}"/>
         </svg> <span>${storage.KPIs[id].name}</span></p>
 
-        <p class="row-10px">Mục tiêu nhiệm vụ đạt được: <span>${storage.KPIs[id].tasks[taskId].id}</span></p>
+        <p class="row-10px">Mục tiêu nhiệm vụ đạt được: <span>${storage.KPIs[id].tasks[taskId].progress}</span></p>
         <p class="row-10px">Thời gian bắt đầu: <span>${storage.KPIs[id].tasks[taskId].start}</span></p>
         <p class="row-10px">Thời gian kết thúc: <span>${storage.KPIs[id].tasks[taskId].end}</span></p>
         <p class="row-10px">Ghi chú: <span>${storage.KPIs[id].tasks[taskId].note}</span>
@@ -1136,3 +1066,78 @@ downloadLink.href = URL.createObjectURL(blob);
 downloadLink.download = "ten_file.xlsx";  // Tên file Excel khi tải xuống
 downloadLink.click();
 */
+
+let sortUp = true;
+let criteria = 'name';
+let openOpt = true
+
+let options = document.querySelectorAll('.option');
+
+options.forEach(option => {
+    option.addEventListener('click', function() {
+        // Loại bỏ lớp "active" khỏi tất cả các tùy chọn
+        options.forEach(opt => {
+            opt.classList.remove('active');
+        });
+        // Thêm lớp "active" vào tùy chọn được chọn
+        this.classList.add('active');
+    });
+});
+
+document.getElementById('sort-name').addEventListener('click', () => {
+  document.getElementById('sort-opt').style.display = 'none';
+  criteria = 'name';
+})
+
+document.getElementById('sort-point').addEventListener('click', () => {
+  document.getElementById('sort-opt').style.display = 'none';
+  criteria = 'point';
+})
+
+document.getElementById('sort-task').addEventListener('click', () => {
+  
+  if(openOpt){
+    document.getElementById('sort-opt').style.display = 'block';
+    openOpt = false;
+  }
+  
+  document.getElementById('unsort-task').style.display = 'block';
+
+  sortedTask = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
+  if(sortUp){
+    document.getElementById('sort-task').innerHTML = `<img style="width: 100%; height: 100%;" src="../images/sort-up.svg">`;
+    if(criteria === 'name') {
+      sortedTask = sortedTask.sort((a, b) => a.title.localeCompare(b.title));
+    }else if(criteria = 'sort'){
+      sortedTask = sortedTask.sort((a, b) => a.progress - b.progress); 
+    }
+     
+  }else {
+    document.getElementById('sort-task').innerHTML = `<img style="width: 100%; height: 100%;" src="../images/sort-down.svg">`;
+    if(criteria === 'name') {
+      sortedTask = sortedTask.sort((a, b) => b.title.localeCompare(a.title));
+    }else if(criteria = 'sort'){
+      sortedTask = sortedTask.sort((a, b) => b.progress - a.progress); 
+    }
+  }
+
+  addSortTask(sortedTask);
+  sortUp = !sortUp;
+
+  document.getElementById('sort-task').style.borderRadius = 0;
+  document.getElementById('sort-task').style.borderTopRightRadius = '5px';
+  document.getElementById('sort-task').style.borderBottomRightRadius = '5px';
+  document.getElementById('sort-task').style.backgroundColor = document.documentElement.style.getPropertyValue('--color-element2');
+  document.getElementById('unsort-task').style.backgroundColor = document.documentElement.style.getPropertyValue('--color-element2');
+})
+
+document.getElementById('unsort-task').addEventListener('click', () => {
+  openOpt = true;
+  sortedTask = storage.KPIs.map(kpi => kpi.tasks).reduce((acc, events) => acc.concat(events), []);
+  sortedTask = sortedTask.sort((a, b) => a.title.localeCompare(b.title));
+  addSortTask(sortedTask);
+    document.getElementById('sort-opt').style.display = 'none';
+    document.getElementById('unsort-task').style.display = 'none';
+    document.getElementById('sort-task').style.borderRadius = '5px';
+    document.getElementById('sort-task').style.backgroundColor = document.documentElement.style.getPropertyValue('--color-button');
+})

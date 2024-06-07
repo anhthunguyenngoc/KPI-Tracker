@@ -25,6 +25,7 @@ if (storageString) {
                     backgroundColor: '#9CB2D7',
                     kpiID:'#KPI1',
                     done: 0,
+                    inCalender: 1,
                     },
                     {
                     id: '#KPI1task2',
@@ -38,6 +39,7 @@ if (storageString) {
                     backgroundColor: '#9CB2D7',
                     kpiID:'#KPI1',
                     done: 0,
+                    inCalender: 0,
                     },
                 ]
             },
@@ -57,6 +59,7 @@ if (storageString) {
                         backgroundColor: '#F2DEDE',
                         kpiID:'#KPI2',
                         done: 0,
+                        inCalender: 0,
                         progress: 3.5,
                         note: 'Ghi chú',
                     },
@@ -74,12 +77,6 @@ if (storageString) {
             }
         ]
     }
-}
-
-
-
-function setStorage() {
-
 }
 
 let allTasks = [];
@@ -115,10 +112,7 @@ function updateKPIProgress(KPI) {
             kpi.progress = 0;
             kpi.tasks.forEach(taskItem => {
                 if (taskItem.done === 1) {
-                    console.log(kpi.progress);
                     kpi.progress += Number(taskItem.progress);
-                    console.log(taskItem.progress);
-                    console.log(kpi.progress);
                 }
             });
             localStorage.setItem('Storage', JSON.stringify(storage));
@@ -139,11 +133,42 @@ function changeStatusTaskById(task, status) {
           });
         }
       });
+    kpiPercentage = getKPIPercentages();
+    updatePercentageValues();
   }
 
+function getKPINames() {
+    let kpiNames = [];
+    for (let kpi of storage.KPIs) {
+      kpiNames.push(kpi.name);
+    }
+    return kpiNames;
+  }
 
-const kpiPercentage = [25, 50, 100, 50];
-const kpiName = ["Giảng dạy", "Nghiên cứu", "Phục vụ", "Cá nhân"];
+  function roundPercentage(percentage) {
+    let roundedPercentage;
+    if (percentage % 1 < 0.5) {
+      roundedPercentage = Math.floor(percentage);
+    } else {
+      roundedPercentage = Math.ceil(percentage);
+    }
+    return roundedPercentage;
+  }
+
+  function getKPIPercentages() {
+    let kpiPercentages = [];
+    for (let kpi of storage.KPIs) {
+      let percentage = (kpi.progress / parseInt(kpi.hour)) * 100;
+      kpiPercentages.push(roundPercentage(percentage));
+    }
+    return kpiPercentages;
+  } 
+
+  let kpiPercentage = getKPIPercentages();
+
+  let kpiName = getKPINames();
+
+
 const color_pink_pastel = "#F06292"; //"#F48FB1"; 
 const color_blue_pastel = "#64B5F6"; //"#90CAF9";  
 const color_yellow_pastel = "#FFD54F"; //"#FFE082";
@@ -326,8 +351,9 @@ new Chart(document.getElementById("pie-chart"), {
         kpiName.forEach((v, i) => {           
             const div = document.createElement("div");
             div.className = "kpi";
+            div.id = 'kpi-per_'+i;
             div.innerHTML = `      
-            <div class="kpi-circle">  
+            <div class="kpi-circle"">  
                                                  
                     <svg width="109" x="0" viewBox="0 0 110 107" xmlns="http://www.w3.org/2000/svg">
                         <defs><path id="gentle-wave" d="M-160 100c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v100h-352z" /></defs>
@@ -356,6 +382,21 @@ new Chart(document.getElementById("pie-chart"), {
         document.getElementById("kpi-list").innerHTML += `<style>`+ addKPIcss()+`<\style>`;
     }
 
+    function updatePercentageValues() {
+        let kpiList = document.getElementById('kpi-list'); // Lấy ra phần tử có class "kpi-list"
+        let kpiPerIds = kpiList.querySelectorAll('.kpi'); // Lấy ra tất cả các phần tử có id bắt đầu bằng "kpi_per_id"
+        
+        kpiPerIds.forEach(kpi => {
+          id = kpi.id.substring(8);
+          let percentageValue = kpiPercentage[id];
+          kpi.querySelector('.percentage').textContent = percentageValue+' %'; // Cập nhật giá trị của class "percentage"
+        });
+      }
+      
+      // Sử dụng hàm để cập nhật giá trị của class "percentage"
+      updatePercentageValues();
+      
+
     function addDay(arr){
         var today = new Date();
         document.getElementById("week-list").innerHTML=``;
@@ -382,6 +423,16 @@ new Chart(document.getElementById("pie-chart"), {
             });
         }
     }
+
+    function getCompletePer(){
+  res = 0;
+  storage.KPIs.forEach((v, i) => {
+    res += v.progress;
+  });
+  return res/storage.KPIs.length;
+}
+
+document.getElementById('completed-task').textContent = getCompletePer();
     
     function addTask(tasksArray){
         /*taskData.name.forEach((v, i) => {

@@ -39,8 +39,12 @@ section {
     justify-content: center; /* Căn giữa ngang */
     align-items: center;     /* Căn giữa dọc */
     position: relative;
+    cursor: pointer;
 }
 
+#schedule hr{
+  visibility: hidden;
+}
 .kpi-info {
   display: flex;
   flex-direction: column;
@@ -51,8 +55,8 @@ section {
 }
 
 .percentage {
-  bottom: 74px;
-  left: 68px;
+  bottom: 40%;
+  left: 23%;
 }
 
 .kpi-list-container {
@@ -171,7 +175,7 @@ section {
   height: 100%;
 }
 
-#KPIaddButton {
+#openAddKPIContainer {
   display: flex;
   width: fit-content;
   padding: 5px;

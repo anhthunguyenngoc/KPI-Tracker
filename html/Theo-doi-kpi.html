@@ -5,14 +5,17 @@
 
     <link rel="stylesheet" href="../css/app-style-guide.css"/>
     <link rel="stylesheet" href="../css/trang-chu.css" />
+    <link rel="stylesheet" href="../css/lap_ke_hoach.css" />
     <link rel="stylesheet" href="../css/Theo-doi-kpi.css" />
     <link rel="stylesheet" href="../css/footer-mobile.css"/>
-
+    <script src="../js/toast-notify.js" type="text/javascript" defer></script>
     <script src="../js/theme.js" type="text/javascript" defer></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js" defer></script>
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
@@ -21,12 +24,115 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
     />
-
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css"
+    />
     <title>KPI Tracker</title>
   </head>
   
   <body>
     <header-component> </header-component>
+
+    <div class="overlay hidden" id="overlay"></div>
+
+    <div id="toast" class="toast"> </div>
+
+    <div class="popUpWindow hidden" id="addKPI">
+      <div id="popup-title"><h2 class="heading2">Thêm chỉ tiêu</h2></div>
+
+      <button id="add-kpi-guidance" class="help-button" onclick="addKPITutoClick()"> 
+        <img 
+        class="img-icon" 
+        loading="lazy" 
+        alt="" 
+        src="../images/top-app-bar/help.svg"
+        /> 
+      </button> 
+      <svg id="closeButton" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        
+        <g id="SVGRepo_iconCarrier"> <g> <path d="M45.363,36.234l-13.158-13.16l12.21-12.21c2.31-2.307,2.31-6.049,0-8.358c-2.308-2.308-6.05-2.307-8.356,0l-12.212,12.21 L11.038,1.906c-2.309-2.308-6.051-2.308-8.358,0c-2.307,2.309-2.307,6.049,0,8.358l12.81,12.81L1.732,36.831 c-2.309,2.31-2.309,6.05,0,8.359c2.308,2.307,6.049,2.307,8.356,0l13.759-13.758l13.16,13.16c2.308,2.308,6.049,2.308,8.356,0 C47.673,42.282,47.672,38.54,45.363,36.234z"/> </g> </g>
+        
+      </svg>
+
+
+      <div id="uploadMethod" class="uploadMethod">
+        <span>Tải tệp sẵn có:</span>
+        <div class="example-file-container">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; height: 50px;">
+          <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11095)"> <path d="M12.5 17V7L10.5 9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> <circle cx="12" cy="12" r="9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> </g> <defs> <clipPath id="clip0_429_11095"> <rect width="24" height="24" fill="white"/> </clipPath> </defs> </g>
+            
+          </svg>
+          </div>
+          <a href="../file/add-kpi-example.xlsx">
+            <img src="../images/excel.svg">
+            <div style="width: 100%;">File mẫu.xlsx</div>
+          </a>
+          <a href="../file/add-kpi-example.docx">
+            <img src="../images/word.svg">
+            <div style="width: 100%;">File mẫu.docx</div>
+          </a> 
+        </div>
+        <div class="methods">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; height: 50px;">
+        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_10992)"> <circle cx="12" cy="12" r="9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9.5 9.5C9.5 8.8602 9.74408 8.2204 10.2322 7.73224C11.2085 6.75593 12.7915 6.75593 13.7678 7.73224C14.7441 8.70856 14.7441 10.2915 13.7678 11.2678L9.93934 15.0962C9.65804 15.3775 9.5 15.759 9.5 16.1569L9.5 17H14.5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> </g> <defs> <clipPath id="clip0_429_10992"> <rect width="24" height="24" fill="white"/> </clipPath> </defs> </g>
+            
+        </svg>
+      </div>
+        <div>
+          <label for="kpi-file-upload" class="custom-file-upload">Tải tệp lên</label>
+          <input id="kpi-file-upload" type="file" onclick="uploadExcel()">
+        </div>
+          <div id="kpi-file-name">Tên file</div>
+        </div>
+      </div>
+      <div id="recommendKPI" class="flex">
+        <span>Các chỉ tiêu gợi ý:</span>
+         <button class="recommendButon">Giảng dạy</button>
+         <button class="recommendButon">Nghiên cứu</button>
+         <button class="recommendButon">Cá nhân</button>
+      </div>     
+      <div id="input">
+        <div id="addKPIButton" data-hint="Thêm 1 dòng chỉ tiêu mới" data-hint-position="middle-middle">
+          <button class="addButton">Thêm KPI mới +</button>
+          <div id="errorMissingField" class="hidden">*Hãy điền đủ số trường</div>
+        </div>
+        <div id="realContent">
+          <div class="inputTitle flex">
+            <div>STT</div>
+            <div>Tên chỉ tiêu*</div>
+            <div>Chọn màu đại diện</div>
+            <div>Mục tiêu*</div>
+            <div>Đơn vị</div>
+            <div></div>
+          </div>
+            <div id="inputContainer">
+                
+              </div>
+            </div>
+      </div>
+      <div id="KPIaddButton">
+        <button>Thêm</button>
+      </div>
+    </div>
+
     <main class="main">
       <div class="top-main">
         <div id="link-history">
@@ -34,9 +140,9 @@
           <svg class="link-arrow" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
             <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z"/>
           </svg> 
-          <div class="link">Kế hoạch</div>
+          <div class="link">Theo dõi KPI</div>
         </div>
-         <button id="KPIaddButton">Thêm KPI mới +</button>
+         <button id="openAddKPIContainer">Thêm KPI mới +</button>
         <div class="period-select">
           <span class="date-kpi">Đợt: đến ngày 27/05/2024 </span>
           <button id="period-select-button" class="img-button" data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-right">
@@ -64,7 +170,7 @@
 
                 <div class="nd-2">
                     <div>
-                        <span class="focus">79</span>
+                        <span id="completed-task" class="focus">79</span>
                         <span class="donvi">%</span> 
                     </div>
                     <span>KPI đã hoàn thành</span>

@@ -489,3 +489,25 @@ z-index: -1;
   height: fit-content;
   padding: 0px 10px 0px 10px;
 }
+
+.popUpWindow {
+  display: flex;
+  height: 90%;
+  max-height: 90%;
+  width: fit-content;
+  position: fixed;
+  background-color: var( --color-frame-background);
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px 0 var(--color-shadow);
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
