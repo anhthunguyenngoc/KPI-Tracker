@@ -890,7 +890,8 @@ ul {
         justify-content: space-between;
     }
     #title-kpi{
-        display: block;
+        display:contents;
+        overflow-x: auto;
     }
     section {
         gap: 15px;
@@ -910,7 +911,19 @@ ul {
     }
     .sidebar section {
         height: 500px;
+        padding-bottom: 15px;
+        padding-top: 15px;
     }
+
+    .sidebar_content {
+        max-height: 400px;
+    }
+
+    .content section {
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+
     .fc-toolbar-chunk:nth-of-type(2),
     .fc-toolbar-chunk:nth-of-type(3) {
         display: table-cell;
@@ -1026,4 +1039,12 @@ ul {
     #inputTask > div:nth-of-type(2) {
         margin-top: 20px;
     }
+
+    #list{
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    
 }
