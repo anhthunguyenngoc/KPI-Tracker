@@ -1008,9 +1008,9 @@ function uploadTaskExcel() {
       jsonData.forEach((item, index) => {
           kpiid =  getKPIIdByName(item['Tên chỉ tiêu*']); 
           const newTask = {
-              id: `{kpiid}task${storage.KPIs.length + 1}`,
+              id: `${kpiid}task${storage.KPIs.length + 1 + index}`,
               title: item['Tên nhiệm vụ*'],
-              kpiId: kpiid,
+              kpiID: kpiid,
               progress: item['Điểm đánh giá*'],
               start: item['Thời gian bắt đầu'],
               end: item['Thời gian kết thúc'],
@@ -1024,9 +1024,86 @@ function uploadTaskExcel() {
           
           tasks.push(newTask);
       });
-
+      loadExcelToTaskContainer();
       console.log(tasks);
   };
+
+  function loadExcelToTaskContainer () {
+    inputContent.innerHTML='';
+    taskIndex=0;
+    for (let i = 0; i< tasks.length; i++) {
+      let KPI ;
+      for (let m = 0; m < storage.KPIs.length; m++) {
+        console.log(storage.KPIs[m].id);
+        console.log(tasks[i].kpiID);
+
+        // Nếu tìm thấy KPI có tên tương ứng, trả về id của KPI đó
+        if (storage.KPIs[m].id === tasks[i].kpiID) {
+            KPI = storage.KPIs[m];
+            console.log(KPI);
+            break;
+        }
+    }
+      taskIndex++;
+      inputContent.innerHTML += `
+        <div class="flex task-input">
+          <div>${taskIndex}</div>
+          <div>
+            <input type="text" class="taskName" value="${tasks[i].title}">
+          </div>
+          <div>
+            <select name="" class="KPIID">
+            <option value="${KPI.id}">${KPI.name}</option>
+            ${generateKPIOptions()}
+            </select>
+          </div>
+          <div>
+            <input type="datetime-local" class="startTime" value="${tasks[i].start}" >
+          </div>
+          <div>
+            <input type="datetime-local" name="" class="endTime" value="${tasks[i].end}">
+          </div>
+          <div>
+            <input type="number" name="" class="KPIProgress" value="${tasks[i].progress}">         
+          </div>
+          <div>
+            <input type="text" name="" class="additionalInfo" value="${tasks[i].note}">
+          </div>
+          <div>
+            <select name="" class="recurrence">
+            <option value="${tasks[i].repeat}">Không</option>
+            <option value="none">Không</option>
+            <option value="day">Mỗi ngày</option>
+            <option value="week">Mỗi tuần</option>
+            </select>
+          </div>
+          <div>
+            <button class="removeTask">
+              <img src="../images/bin.svg" alt="">
+            </button>
+          </div>
+        </div>
+      `;
+      inputContent.parentElement.appendChild(inputContent);
+      document.querySelector(".KPIProgress").addEventListener("focus", (e)=> {
+        let kpiID = document.querySelector(".KPIID").value;
+        console.log(kpiID);
+        let KPI = storage.KPIs.find(kpi => kpi.id === kpiID);
+        if ( KPI.unit === "Giờ"){
+          let startTime = new Date(document.querySelector(".startTime").value);
+          let endTime = new Date(document.querySelector(".endTime").value);
+          let diff;
+          if (startTime && endTime) {
+            diff = Math.abs(endTime - startTime) / (1000 * 3600);
+            console.log(diff);
+            e.target.value = diff.toFixed(1);
+          }
+        }
+      } )
+    }
+  }
+
+
 
   if(fileInput.files.length > 0) {
       reader.readAsArrayBuffer(fileInput.files[0]);
