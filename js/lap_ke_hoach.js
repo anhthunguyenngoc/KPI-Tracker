@@ -25,6 +25,7 @@ if (storageString) {
                     kpiID:'#KPI1',
                     done: 0,
                     inCalender: 1,
+                    textColor: 'black'
                     },
                     {
                     id: '#KPI1task2',
@@ -39,6 +40,7 @@ if (storageString) {
                     kpiID:'#KPI1',
                     done: 0,
                     inCalender: 0,
+                    textColor: 'black'
                     },
                 ]
             },
@@ -61,6 +63,7 @@ if (storageString) {
                         inCalender: 0,
                         progress: 3.5,
                         note: 'Ghi chú',
+                        textColor: 'black'
                     },
 
                 ]
@@ -856,8 +859,8 @@ dateRange = {
             }
         },
         titleFormat: {  
-            month: '2-digit', 
-            day: '2-digit' ,
+            month: 'short', 
+            day: 'numeric' ,
             omitCommas: true,
         },
         headerToolbar : {
@@ -871,8 +874,8 @@ dateRange = {
             month: 'Tháng'
         },
         events : [
-        ]
-            
+        ],
+          textColor: 'black'
         };
     let calendar = new FullCalendar.Calendar(calendarEl, calendarInit);
     calendar.render();
@@ -1016,6 +1019,7 @@ function uploadTaskExcel() {
               done: 0,
               inCalender: 0,
               backgroundColor: getKPIColor(kpiid),
+              textColor: 'black'
           };
           
           tasks.push(newTask);
