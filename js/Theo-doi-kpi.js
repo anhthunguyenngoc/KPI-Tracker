@@ -61,6 +61,7 @@ if (storageString) {
                         inCalender: 0,
                         progress: 3.5,
                         note: 'Ghi chú',
+                        textColor: 'black'
                     },
 
                 ]
@@ -442,7 +443,7 @@ function getCompletePer(){
   storage.KPIs.forEach((v, i) => {
     res += v.progress;
   });
-  return res/storage.KPIs.length;
+  return (res/storage.KPIs.length).toFixed(2);
 }
 
 document.getElementById('completed-task').textContent = getCompletePer();
