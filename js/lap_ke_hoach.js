@@ -952,12 +952,42 @@ dateRange = {
   <img src="../images/edit.svg" />
     `;
  
+    function getKPIIdByName(kpiName) {
+      // Duyệt qua mảng KPIs
+      for (let i = 0; i < storage.KPIs.length; i++) {
+          // Nếu tìm thấy KPI có tên tương ứng, trả về id của KPI đó
+          if (storage.KPIs[i].name === kpiName) {
+              return storage.KPIs[i].id;
+          }
+      }
+      // Trả về null nếu không tìm thấy KPI
+      return null;
+  }
 
+  function getKPIColor(id) {
+    // Duyệt qua mảng KPIs
+    for (let i = 0; i < storage.KPIs.length; i++) {
+        // Nếu tìm thấy KPI có tên tương ứng, trả về id của KPI đó
+        if (storage.KPIs[i].id === id) {
+            return storage.KPIs[i].color;
+        }
+    }
+    // Trả về null nếu không tìm thấy KPI
+    return null;
+}
 
+function addTaskToKPI(id, tasks) {
+  for (let i = 0; i < storage.KPIs.length; i++) {
+      // Nếu tìm thấy KPI có tên tương ứng, trả về id của KPI đó
+      if (storage.KPIs[i].id === id) {
+          storage.KPIs[i].tasks.push(tasks);
+      }
+  }
+}
 ///
 //      Upload Excel
 // 
-
+let tasks = []
 function uploadTaskExcel() {
   var fileInput = document.getElementById('task-file-upload');   
 
@@ -973,10 +1003,11 @@ function uploadTaskExcel() {
       const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
       jsonData.forEach((item, index) => {
+          kpiid =  getKPIIdByName(item['Tên chỉ tiêu*']); 
           const newTask = {
-              id: `#KPI1task${storage.KPIs.length + 1}`,
+              id: `{kpiid}task${storage.KPIs.length + 1}`,
               title: item['Tên nhiệm vụ*'],
-              kpiId: item['Tên chỉ tiêu*'],
+              kpiId: kpiid,
               progress: item['Điểm đánh giá*'],
               start: item['Thời gian bắt đầu'],
               end: item['Thời gian kết thúc'],
@@ -984,12 +1015,13 @@ function uploadTaskExcel() {
               repeat: item['Lặp lại'],
               done: 0,
               inCalender: 0,
-              backgroundColor: '#9CB2D7',
+              backgroundColor: getKPIColor(kpiid),
           };
-          storage.KPIs.push(newKPI);
+          
+          tasks.push(newTask);
       });
 
-      console.log(storage);
+      console.log(tasks);
   };
 
   if(fileInput.files.length > 0) {
