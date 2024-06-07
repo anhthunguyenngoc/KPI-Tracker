@@ -827,7 +827,6 @@ dateRange = {
             select: {
                 text: 'Chọn',
                 click: function() {
-<<<<<<< HEAD
                     editable = !editable;
                     calendar.setOption('eventStartEditable',editable);
                     if (editable) {
@@ -839,9 +838,6 @@ dateRange = {
                         Chọn
                         `;
                     }
-=======
-                  
->>>>>>> 7c94548313c90b363345311404f072662cae3189
                 }
             },
             share: {
@@ -977,16 +973,18 @@ function uploadTaskExcel() {
       const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
       jsonData.forEach((item, index) => {
-          const newKPI = {
+          const newTask = {
               id: `#KPI1task${storage.KPIs.length + 1}`,
               title: item['Tên nhiệm vụ*'],
               kpiId: item['Tên chỉ tiêu*'],
-              hour: item['Ngày thực hiện'],
+              progress: item['Điểm đánh giá*'],
               start: item['Thời gian bắt đầu'],
               end: item['Thời gian kết thúc'],
               note: item['Ghi chú'],
               repeat: item['Lặp lại'],
-              tasks: [] // Initialize with empty tasks array
+              done: 0,
+              inCalender: 0,
+              backgroundColor: '#9CB2D7',
           };
           storage.KPIs.push(newKPI);
       });

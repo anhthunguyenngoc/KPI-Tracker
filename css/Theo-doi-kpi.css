@@ -55,8 +55,8 @@ section {
 }
 
 .percentage {
-  bottom: 40%;
-  left: 23%;
+  top: 55%;
+  left: 27%;
   position: absolute;
   transform: translate(-50%, -50%);
   font-size: var(--heading1-min);
