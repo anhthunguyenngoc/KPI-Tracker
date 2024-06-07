@@ -1047,7 +1047,7 @@ ul {
         height: calc((400px / 8));
     }
 
-    #addKPI, #addTask {
+    #addKPI, #addTask, #taskInfo, #kpiInfo, #popup-container {
         width: 95%;
         position: fixed;
         background-color: var( --color-mode-1-frame-background);
@@ -1062,6 +1062,7 @@ ul {
         align-items: center;
         padding-top: 10px;
         font-size: var(--heading1);
+        height: auto;
     }
     
     .heading2{
