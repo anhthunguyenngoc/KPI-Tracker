@@ -545,7 +545,7 @@ section{
     fill: var(--color-button-hover);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 468px) {
     .main {
         padding: 0 15px;
     }
