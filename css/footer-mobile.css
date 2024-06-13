@@ -7,7 +7,7 @@
     justify-content: center;
     gap: auto;
     padding: 5px 20px 5px 20px;
-    background-color: #fff;
+    background-color: var(--color-background);
     position: fixed;
     z-index: 1000;
     bottom: 0;
@@ -43,7 +43,7 @@
   
   .mouse-layer-mb span {
     font-size: var(--page-title);
-    color: var(--color-mode-1-button);
+    color: var(--color-header-dark);
     font-weight: 500px;
   }
   

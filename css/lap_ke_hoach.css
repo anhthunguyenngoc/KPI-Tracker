@@ -1068,7 +1068,7 @@ ul {
     #addKPI, #addTask, #taskInfo, #kpiInfo, #popup-container {
         width: 95%;
         position: fixed;
-        background-color: var( --color-mode-1-frame-background);
+        background-color: var( --color-frame-background);
         z-index: 100;
         top: 50%;
         left: 50%;

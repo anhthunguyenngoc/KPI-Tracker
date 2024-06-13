@@ -26,6 +26,7 @@
     justify-content: center;
   }
   #forgot_pass-1-frame, #forgot_pass-2-frame {
-    padding: 90px 60px 200px 60px;
+    padding: 330px 60px 200px 60px;
+    gap: 40px;
   }
 }

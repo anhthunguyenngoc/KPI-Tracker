@@ -32,7 +32,7 @@
   --color-mode-1-element2: #9CD6D3;
   --color-mode-1-button-hover: #439BA1;
   --color-mode-1-background: #fff;
-  --color-mode-1-element-background: #C5C6C7;
+  --color-mode-1-element-background: #fff;
 
   --color-mode-2-button: #254E58;
   --color-mode-2-footer: #458797;
@@ -40,7 +40,7 @@
   --color-mode-2-element2: #9CD6D3;
   --color-mode-2-button-hover: #439BA1;
   --color-mode-2-background: #FFFFF7;
-  --color-mode-1-frame-background2: #fff;
+  --color-mode-2-element-background: #fff;
 
   --color-mode-3-button: #1C3334;
   --color-mode-3-footer: #1C3334;
@@ -48,7 +48,7 @@
   --color-mode-3-element2: #9CD6D3;
   --color-mode-3-button-hover: #439BA1;
   --color-mode-3-background: #376E6F;
-  --color-mode-1-frame-background2: #fff;
+  --color-mode-3-element-background: #fff;
 
   --color-mode-4-button: #254E58;
   --color-mode-4-footer: #45A29E;
@@ -56,7 +56,7 @@
   --color-mode-4-element2: #88BDBC;
   --color-mode-4-button-hover: #439BA1;
   --color-mode-4-background: #080808;
-  --color-mode-4-element-background: #C5C6C7;
+  --color-mode-4-element-background: #88BDBC;
 
   --color-black-text: #000;
   --color-white-text: #fff;
@@ -75,7 +75,6 @@
   --color-element2: var(--color-mode-1-element2);
   --color-button-hover: var(--color-mode-1-button-hover);
   --color-background: var(--color-mode-1-background);
-  --color-frame-background2: var(--color-mode-1-frame-background2);
   --color-text: var(--color-black-text);
   --color-shadow: var(--color-mode-1-shadow);
   --color-header-dark: var(--color-mode-1-button);
