@@ -198,6 +198,13 @@ section {
     gap: 15px;
   }
 
+  #kpi {
+    background-color: var(--color-frame-background);
+  }
+  #schedule {
+    background-color: var(--color-background);
+  }
+
   .top-main {
     display: inline;
   }
@@ -246,9 +253,12 @@ section {
   .kpi-detail{
     padding: 10px 10px 10px 5px;
   }
-
+  #kpi-detail-list {
+    overflow-x: auto;
+  }
   #l-div, #r-div{
     height: 150px;
+    display: none !important;
   }
   #openAddKPIContainer{
     display: inline;

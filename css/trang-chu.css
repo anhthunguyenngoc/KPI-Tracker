@@ -610,6 +610,7 @@ section{
     #week-list {
         max-width: 100%;
         padding: 0;
+        overflow-x: auto;
     }
 
     .day-button {
@@ -676,7 +677,15 @@ section{
 
     .kpi-list-container #kpi-list {
         max-width: 100%;
-        
+        overflow-x: auto;
+    }
+
+    .lr {
+        display: none;
+    }
+
+    #home-mobile {
+        background-color: var(--color-frame-background);
     }
 
     .percentage {

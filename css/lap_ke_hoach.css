@@ -983,6 +983,9 @@ ul {
         display: block;
         padding: 0px 15px;
     }
+    #schedule {
+        background-color: var(--color-frame-background);
+    }
     .content{
         width: 100%;
         gap: 15px;

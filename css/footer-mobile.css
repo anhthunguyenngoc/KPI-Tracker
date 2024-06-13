@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: center;
     gap: auto;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 15px;
     background-color: var(--color-background);
     position: fixed;
     z-index: 1000;
@@ -20,7 +20,7 @@
     flex-direction: row;
     justify-content: center;
     align-items:center;
-    gap: 50px;
+    
   }
 
   .mouse-layer-mb:hover{
@@ -51,6 +51,7 @@
     width: 26px;
     height: 26px;
     fill: none;
+    margin-top: 2px;
   }
   
   .svg1 path {
