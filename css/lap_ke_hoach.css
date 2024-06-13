@@ -999,6 +999,10 @@ ul {
         display:contents;
         overflow-x: auto;
     }
+    #kpi-task-list {
+        display: block;
+        overflow-x: auto;
+    }
     section {
         gap: 15px;
         height: fit-content;
@@ -1075,7 +1079,7 @@ ul {
         gap: 20px;
         align-items: center;
         padding-top: 10px;
-        font-size: var(--heading1);
+        font-size: 17px;
         height: auto;
     }
     #popup-container{
@@ -1111,8 +1115,8 @@ ul {
     }
     /*Nen duoc xem xet truoc khi quyet dinh*/
     .addButton {
-        margin: 210px;
-        width: 140px;
+        position: relative;
+        font-size: 15px;
     }
 
     .top-main {
