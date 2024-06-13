@@ -73,6 +73,8 @@
   --color-background: var(--color-mode-1-background);
   --color-text: var(--color-black-text);
   --color-shadow: var(--color-mode-1-shadow);
+  --color-header-dark: var(--color-mode-1-button);
+  --color-header-light: var(--color-mode-1-element2);
 
   /* Gaps */
   --gap-21xl: 40px;
