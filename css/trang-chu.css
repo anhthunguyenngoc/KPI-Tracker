@@ -494,8 +494,8 @@ section{
     height: 65px;
     width: 65px;
     border-radius: 50px;
-    background-color: var(--color-white-text);
-    border-color: var(--color-white-text);
+    background-color: var(--color-frame-background);
+    border-color: var(--color-frame-background);
     color: var(--color-black-text);
 }
 

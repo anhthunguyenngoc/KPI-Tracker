@@ -120,6 +120,20 @@ class Header extends HTMLElement {
     </header>
     
         <style>
+        .mouse-layer .heading1, #home .kpi-tracker {
+            color: var(--color-header-dark);
+        }
+
+        .k {
+            stroke: var(--color-header-dark); 
+            stroke-width: 25;
+            stroke-linecap: round;
+        }
+
+        .t {
+            stroke: var(--color-header-light); 
+            stroke-linecap: round;
+        }
           #user-popup-container {
             z-index: 10;
             position: absolute;
@@ -308,9 +322,9 @@ class Header extends HTMLElement {
 
               .mouse-layer-container hr{
                 width: 185px;
-                color: var(--color-button);
+                color: var(--color-header-dark);
                 border: 0;
-                border-top: 3px solid var(--color-button);
+                border-top: 3px solid var(--color-header-dark);
                 border-radius: 50px;
                 visibility: hidden;
               }
@@ -329,13 +343,13 @@ class Header extends HTMLElement {
               }
               
               .svg1 path {
-              stroke: var(--color-button);
+              stroke: var(--color-header-dark);
               stroke-width: 3;
               stroke-linecap: round;
               }
               
               .svg2 path {
-              fill: var(--color-button);
+              fill: var(--color-header-dark);
               }
               
               .right {
@@ -366,19 +380,12 @@ class Header extends HTMLElement {
               }
               
               .tick{
-                fill: var(--color-button);
+                fill: var(--color-header-dark);
               }
 
-              .t {
-              stroke: var(--color-element2); 
               stroke-linecap: round;
               }
   
-              .k {
-              stroke: var(--color-button); 
-              stroke-width: 25;
-              stroke-linecap: round;
-              }
               .hidden {
                   display: none;
               }
@@ -405,12 +412,7 @@ class Header extends HTMLElement {
                 .mouse-layer-container{
                     display:none;
                 }
-                .t {
-                    stroke: var(--color-footer);
-                }
-                .k {
-                    stroke: var(--color-button);
-                }
+                
                 .right {
                     padding: 15px;
                 }

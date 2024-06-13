@@ -39,6 +39,8 @@ function theme1Click() {
     localStorage.setItem('--color-button-hover', color_mode_1_button_hover);
     localStorage.setItem('--color-background', color_mode_1_background);
     localStorage.setItem('--color-text', color_black_text);
+    localStorage.setItem('--color-header-dark', color_mode_1_button);
+    localStorage.setItem('--color-header-light', color_mode_1_element2);
     loadTheme();
   }
   
@@ -50,6 +52,8 @@ function theme1Click() {
     localStorage.setItem('--color-button-hover', color_mode_2_button_hover);
     localStorage.setItem('--color-background', color_mode_2_background);
     localStorage.setItem('--color-text', color_black_text);
+    localStorage.setItem('--color-header-dark', color_mode_2_button);
+    localStorage.setItem('--color-header-light', color_mode_2_element2);
     loadTheme();
   }
   
@@ -61,6 +65,8 @@ function theme1Click() {
     localStorage.setItem('--color-button-hover', color_mode_3_button_hover);
     localStorage.setItem('--color-background', color_mode_3_background);
     localStorage.setItem('--color-text', color_white_text);
+    localStorage.setItem('--color-header-dark', color_mode_3_element2);
+    localStorage.setItem('--color-header-light', color_mode_3_button);
     loadTheme();
   }
 
@@ -72,12 +78,12 @@ function theme1Click() {
     localStorage.setItem('--color-button-hover', color_mode_4_button_hover);
     localStorage.setItem('--color-background', color_mode_4_background);
     localStorage.setItem('--color-text', color_white_text);
+    localStorage.setItem('--color-header-dark', color_mode_4_element2);
+    localStorage.setItem('--color-header-light', color_mode_4_button);
     loadTheme();
   }
 
   function loadTheme() {
-      // Khôi phục giá trị của các biến từ Local Storage khi trang web được tải lại
-    console.log( localStorage.getItem('--color-button'));
     document.documentElement.style.setProperty('--color-button', localStorage.getItem('--color-button'));
     document.documentElement.style.setProperty('--color-footer', localStorage.getItem('--color-footer'));
     document.documentElement.style.setProperty('--color-frame-background', localStorage.getItem('--color-frame-background'));
@@ -85,6 +91,8 @@ function theme1Click() {
     document.documentElement.style.setProperty('--color-button-hover', localStorage.getItem('--color-button-hover'));
     document.documentElement.style.setProperty('--color-background', localStorage.getItem('--color-background'));
     document.documentElement.style.setProperty('--color-text', localStorage.getItem('--color-text'));
+    document.documentElement.style.setProperty('--color-header-dark', localStorage.getItem('--color-header-dark'));
+    document.documentElement.style.setProperty('--color-header-light', localStorage.getItem('--color-header-light'));
   }
 
   let font_size_min = getComputedStyle(document.documentElement).getPropertyValue('--body-size-min').trim();
