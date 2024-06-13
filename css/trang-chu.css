@@ -54,13 +54,13 @@ g[clip-path="url(#clip0_3922_17426)"] path {
 .focus {
     font-size: var(--big);
     font-weight: 600px;
-    color: var(--color-button);
+    color: var(--color-header-dark);
 }
 
 .donvi {
     font-weight: 500px;
     font-size: var(--heading2);
-    color: var(--color-button);
+    color: var(--color-header-dark);
 }
 
 .col-5px {
@@ -485,8 +485,8 @@ section{
     height: 65px;
     width: 65px;
     border-radius: 50px;
-    background-color: var(--color-white-text);
-    border-color: var(--color-white-text);
+    background-color: var(--color-element-background);
+    border-color: var(--color-element-background);
     color: var(--color-black-text);
 }
 
@@ -494,8 +494,8 @@ section{
     height: 65px;
     width: 65px;
     border-radius: 50px;
-    background-color: var(--color-frame-background);
-    border-color: var(--color-frame-background);
+    background-color: var(--color-element-background);
+    border-color: var(--color-element-background);
     color: var(--color-black-text);
 }
 
@@ -507,7 +507,7 @@ section{
     right: 105%;
     display: none;
     flex-direction: column;
-    background: var(--color-frame-background2);
+    background: var(--color-element-background);
     border: 2px solid var(--color-button);
     border-radius: 7px;
     box-shadow: 0 2px 10px var(--color-shadow);

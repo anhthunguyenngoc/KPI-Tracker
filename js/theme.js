@@ -32,7 +32,7 @@ color_mode_4_frame_background2 = "#C5C6C7";
 
 color_black_text = "#000";
 color_white_text = "#fff";
-
+color_text = color_black_text;
 
 function theme1Click() {
         // Lưu trữ giá trị của các biến vào Local Storage

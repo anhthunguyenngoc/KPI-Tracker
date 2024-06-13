@@ -32,7 +32,7 @@
   --color-mode-1-element2: #9CD6D3;
   --color-mode-1-button-hover: #439BA1;
   --color-mode-1-background: #fff;
-  --color-mode-1-frame-background2: #fff;
+  --color-mode-1-element-background: #C5C6C7;
 
   --color-mode-2-button: #254E58;
   --color-mode-2-footer: #458797;
@@ -56,7 +56,7 @@
   --color-mode-4-element2: #88BDBC;
   --color-mode-4-button-hover: #439BA1;
   --color-mode-4-background: #080808;
-  --color-mode-4-frame-background2: #C5C6C7;
+  --color-mode-4-element-background: #C5C6C7;
 
   --color-black-text: #000;
   --color-white-text: #fff;
@@ -80,6 +80,7 @@
   --color-shadow: var(--color-mode-1-shadow);
   --color-header-dark: var(--color-mode-1-button);
   --color-header-light: var(--color-mode-1-element2);
+  --color-element-background: var(--color-mode-1-element-background);
 
   /* Gaps */
   --gap-21xl: 40px;

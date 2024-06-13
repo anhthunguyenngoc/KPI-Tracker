@@ -231,6 +231,8 @@ function getResponsiveFontSize() {
     } else return font;
 }
 
+chartText = localStorage.getItem('--color-text');
+
 new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
     data: chartData,
@@ -238,14 +240,14 @@ new Chart(document.getElementById("pie-chart"), {
     options: {
         plugins: {
             datalabels: {
-                color: '#fff',
+                color: "#fff",
                 font: getResponsiveFontSize(),
             },
             legend: {
                 position: 'right',
                 fullSize: true,
                 labels: {
-                    color: '#000',
+                    color: chartText,
                     font: getResponsiveFontSize(),
                     padding: 10,
                     usePointStyle: true,
