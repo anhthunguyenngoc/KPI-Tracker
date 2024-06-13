@@ -401,7 +401,7 @@ section{
     left: 55%;
     transform: translate(-50%, -50%);
     font-size: var(--heading1-min);
-    color: #13c2c2;
+    color: var(--color-header-dark);
 }
 
 .kpi {

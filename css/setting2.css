@@ -112,7 +112,7 @@ section {
 
 .sub-settings a {
     text-decoration: none;
-    color: var(--color-button);
+    color: var(--color-header-dark);
     font-family: var(--body-font);
     font-size: var(--body-size);
     font-style: normal;

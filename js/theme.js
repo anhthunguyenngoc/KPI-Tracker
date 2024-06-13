@@ -16,11 +16,11 @@ color_mode_2_element_background = "#fff";
 
 color_mode_3_button = "#1C3334";
 color_mode_3_footer = "#1C3334";
-color_mode_3_frame_background = "#def2f1";
-color_mode_3_element2 = "#9CD6D3";
+color_mode_3_frame_background = "#88BDBC";
+color_mode_3_element2 = "#2B7A78";
 color_mode_3_button_hover = "#439BA1";
-color_mode_3_background = "#376E6F";
-color_mode_3_element_background = "#fff";
+color_mode_3_background = "#254E58";
+color_mode_3_element_background = "#376E6F";
 
 color_mode_4_button = "#254E58";
 color_mode_4_footer = "#45A29E";
