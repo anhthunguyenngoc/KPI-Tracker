@@ -13,6 +13,9 @@
   flex-grow: 2;
 }
 
+.link {
+  color: var(--color-header-dark);
+}
 #col-5px, .col-5px {
   width: inherit;
   height: auto;
