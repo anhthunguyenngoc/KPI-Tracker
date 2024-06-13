@@ -4,6 +4,7 @@ color_mode_1_frame_background = "#def2f1";
 color_mode_1_element2 = "#9CD6D3";
 color_mode_1_button_hover = "#439BA1";
 color_mode_1_background = "#fff";
+color_mode_1_frame_background2 = "#fff";
 
 color_mode_2_button = "#254E58";
 color_mode_2_footer = "#458797";
@@ -11,6 +12,7 @@ color_mode_2_frame_background = "#def2f1";
 color_mode_2_element2 = "#9CD6D3";
 color_mode_2_button_hover = "#439BA1";
 color_mode_2_background = "#FFFFF7";
+color_mode_2_frame_background2 = "#fff";
 
 color_mode_3_button = "#1C3334";
 color_mode_3_footer = "#1C3334";
@@ -18,6 +20,7 @@ color_mode_3_frame_background = "#def2f1";
 color_mode_3_element2 = "#9CD6D3";
 color_mode_3_button_hover = "#439BA1";
 color_mode_3_background = "#376E6F";
+color_mode_3_frame_background2 = "#fff";
 
 color_mode_4_button = "#254E58";
 color_mode_4_footer = "#45A29E";
@@ -25,6 +28,7 @@ color_mode_4_frame_background = "#1F2833";
 color_mode_4_element2 = "#88BDBC";
 color_mode_4_button_hover = "#439BA1";
 color_mode_4_background = "#080808";
+color_mode_4_frame_background2 = "#C5C6C7";
 
 color_black_text = "#000";
 color_white_text = "#fff";
@@ -38,6 +42,7 @@ function theme1Click() {
     localStorage.setItem('--color-element2', color_mode_1_element2);
     localStorage.setItem('--color-button-hover', color_mode_1_button_hover);
     localStorage.setItem('--color-background', color_mode_1_background);
+    localStorage.setItem('--color-frame-background2', color_mode_1_frame_background2);
     localStorage.setItem('--color-text', color_black_text);
     localStorage.setItem('--color-header-dark', color_mode_1_button);
     localStorage.setItem('--color-header-light', color_mode_1_element2);
@@ -51,6 +56,7 @@ function theme1Click() {
     localStorage.setItem('--color-element2', color_mode_2_element2);
     localStorage.setItem('--color-button-hover', color_mode_2_button_hover);
     localStorage.setItem('--color-background', color_mode_2_background);
+    localStorage.setItem('--color-frame-background2', color_mode_2_frame_background2);
     localStorage.setItem('--color-text', color_black_text);
     localStorage.setItem('--color-header-dark', color_mode_2_button);
     localStorage.setItem('--color-header-light', color_mode_2_element2);
@@ -64,6 +70,7 @@ function theme1Click() {
     localStorage.setItem('--color-element2', color_mode_3_element2);
     localStorage.setItem('--color-button-hover', color_mode_3_button_hover);
     localStorage.setItem('--color-background', color_mode_3_background);
+    localStorage.setItem('--color-frame-background2', color_mode_3_frame_background2);
     localStorage.setItem('--color-text', color_white_text);
     localStorage.setItem('--color-header-dark', color_mode_3_element2);
     localStorage.setItem('--color-header-light', color_mode_3_button);
@@ -77,6 +84,7 @@ function theme1Click() {
     localStorage.setItem('--color-element2', color_mode_4_element2);
     localStorage.setItem('--color-button-hover', color_mode_4_button_hover);
     localStorage.setItem('--color-background', color_mode_4_background);
+    localStorage.setItem('--color-frame-background2', color_mode_4_frame_background2);
     localStorage.setItem('--color-text', color_white_text);
     localStorage.setItem('--color-header-dark', color_mode_4_element2);
     localStorage.setItem('--color-header-light', color_mode_4_button);
@@ -90,6 +98,7 @@ function theme1Click() {
     document.documentElement.style.setProperty('--color-element2', localStorage.getItem('--color-element2'));
     document.documentElement.style.setProperty('--color-button-hover', localStorage.getItem('--color-button-hover'));
     document.documentElement.style.setProperty('--color-background', localStorage.getItem('--color-background'));
+    document.documentElement.style.setProperty('--color-frame-background2', localStorage.getItem('--color-frame-background2'));
     document.documentElement.style.setProperty('--color-text', localStorage.getItem('--color-text'));
     document.documentElement.style.setProperty('--color-header-dark', localStorage.getItem('--color-header-dark'));
     document.documentElement.style.setProperty('--color-header-light', localStorage.getItem('--color-header-light'));
