@@ -368,7 +368,22 @@ storage = {
             unit: "Giờ",
             progress : 0,
             lastWeek: 0,
-            tasks: []
+            tasks: [
+                {
+                    id: '#KPI3task1',
+                    title: 'Tổ chức rèn luyện kỹ năng mềm',
+                    start: '2024-06-06T13:00',
+                    end: '2024-06-06T15:30',
+                    backgroundColor: '#F2DEDE',
+                    kpiID:'#KPI2',
+                    done: 1,
+                    repeat: "task1repeat0",
+                    inCalender: 1,
+                    progress: 2,
+                    note: 'Ghi chú',
+                    textColor: 'black'
+                },
+            ]
         }
     ]
 }
