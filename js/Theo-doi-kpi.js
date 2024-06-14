@@ -1,87 +1,3 @@
-let storage;
-let storageString = localStorage.getItem("Storage");
-if (storageString) {
-  storage = JSON.parse(storageString);
-} else {
-    storage = {
-        KPIs: [
-            {   
-                id: '#KPI1',
-                name: "Nghiên cứu",
-                color : "#9CB2D7",
-                hour: "70",
-                unit: "Giờ",
-                progress : 0,
-                tasks : [
-                    {
-                    id: '#KPI1task1',
-                    title: 'Phát triển hệ thống',
-                    start: '2024-06-05T09:00',
-                    end: '2024-06-05T11:00',       
-                    progress: 2,       
-                    note: 'Ghi chú',
-                    repeat: '',
-                    backgroundColor: '#9CB2D7',
-                    kpiID:'#KPI1',
-                    done: 0,
-                    inCalender: 1,
-                    },
-                    {
-                    id: '#KPI1task2',
-                    title: 'Nghiên cứu ứng dụng',
-                    day: '',
-                    start: '2024-06-05T09:00',
-                    end: '2024-06-05T11:30', 
-                    progress: 2.5,              
-                    note: 'Ghi chú',
-                    repeat: '',
-                    backgroundColor: '#9CB2D7',
-                    kpiID:'#KPI1',
-                    done: 0,
-                    inCalender: 0,
-                    },
-                ]
-            },
-            {
-                id: '#KPI2',
-                name: "Giảng dạy",
-                color : "#F2DEDE",
-                hour: "80",
-                unit: "Giờ",
-                progress : 0,
-                tasks : [
-                    {
-                        id: '#KPI2task1',
-                        title: 'Giao diện và trải nghiệm người dùng',
-                        start: '2024-05-24T14:00',
-                        end: '2024-05-24T17:30',
-                        backgroundColor: '#F2DEDE',
-                        kpiID:'#KPI2',
-                        done: 0,
-                        inCalender: 0,
-                        progress: 3.5,
-                        note: 'Ghi chú',
-                        textColor: 'black'
-                    },
-
-                ]
-            },
-            {
-                id: '#KPI3',
-                name: "Phục vụ",
-                color : "#FFDBA6",
-                hour: "60",
-                unit: "Giờ",
-                progress : 0,
-                tasks: []
-            }
-        ]
-    }
-}
-
-console.log(storage);
-
-
 const kpiUp = [2, 8, 5, 3];
 
 function getKPINames() {
@@ -394,7 +310,7 @@ function showKPIInfo(id){
               </g>
               
             </svg>
-            <span>3% so với tuần trước</span>
+            <span>${kpi.lastWeek}% so với tuần trước</span>
           </div>
           </div>
           <p class="row-10px" style="justify-content: space-between; align-items: center;">Danh sách các nhiệm vụ <button class="addButton">Thêm nhiệm vụ mới +</button> </p>
@@ -482,7 +398,7 @@ function addKPI(){
             <span class="heading1">${v.name}</span>
             <span>${v.progress}/${v.hour} giờ</span>
             <span>
-                <span>+${kpiUp[i]}%</span>
+                <span>+${v.lastWeek}%</span>
                 <span class="small-text">so với tuần trước</span>
             </span>
         </div>       

@@ -84,11 +84,13 @@ const spinnerDown = document.querySelector('.spinner-down');
 slider.addEventListener('input', function() {
   numberInput.value = this.value;
   changeFontSize(this.value);
+  loadFontSize();
 });
 
 numberInput.addEventListener('input', function() {
   slider.value = this.value;
   changeFontSize(this.value);
+  loadFontSize();
 });
 
 // Tăng giảm giá trị khi bấm nút tăng hoặc giảm
@@ -96,12 +98,14 @@ spinnerUp.addEventListener('click', function() {
   slider.stepUp();
   numberInput.value = slider.value;
   changeFontSize(slider.value);
+  loadFontSize();
 });
 
 spinnerDown.addEventListener('click', function() {
   slider.stepDown();
   numberInput.value = slider.value;
   changeFontSize(slider.value);
+  loadFontSize();
 });
 
 function changeFontStyle() {
@@ -111,8 +115,8 @@ function changeFontStyle() {
   options.forEach(option => {
       option.addEventListener('click', () => {
           const selectedFont = option.querySelector('.option-text').textContent;
-          localStorage.setItem('--body-font', selectedFont);
-          document.documentElement.style.setProperty('--body-font', localStorage.getItem('--body-font'));
+          changeFont(selectedFont);
+          loadFont();
       });
   });
 }

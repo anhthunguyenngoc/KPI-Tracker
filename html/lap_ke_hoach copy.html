@@ -2,48 +2,52 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-    <link rel="stylesheet" href="../css/app-style-guide.css"/>
-    <link rel="stylesheet" href="../css/trang-chu.css" />
-    <link rel="stylesheet" href="../css/lap_ke_hoach.css" />
-    <link rel="stylesheet" href="../css/Theo-doi-kpi.css" />
-    <link rel="stylesheet" href="../css/footer-mobile.css"/>
-    <script src="../js/toast-notify.js" type="text/javascript" defer></script>
-    <script src="../js/theme.js" type="text/javascript" defer></script>
-    <script src="../js/storage.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+    <script src="../js/header.js"></script>
+    <link rel="stylesheet" href="../css/app-style-guide.css" />
+    <link rel="stylesheet" href="../css/route.css" />
     <link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> 
     <link href="https://unpkg.com/intro.js/themes/introjs-modern.css" rel="stylesheet"> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js" defer></script>
     <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
-    />
+    <link rel="stylesheet" href="../css/footer-mobile.css"/>
+    <script src="../js/theme.js" type="text/javascript" defer></script>
+    <script src="../js/toast-notify.js" type="text/javascript" defer></script>
+    <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link 
     rel="stylesheet" 
     type="text/css" 
     href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css"
     />
-    <title>KPI Tracker</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
+    <script src="../js/route.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js" defer></script>
+   
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Paytone One:wght@400&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto Flex:wght@400;600&display=swap"
+    />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js'></script>
+    <title>Lập kế hoạch - KPI Tracker</title>
   </head>
-  
+
   <body>
+
     <header-component> </header-component>
 
-    <div class="overlay hidden" id="overlay"></div>
+    <div class="overlay hidden" id="overlay"></div> 
 
     <div id="toast" class="toast"> </div>
 
-    <div class="popUpWindow hidden" id="addKPI">
-      <div id="popup-title"><h2 class="heading2">Thêm chỉ tiêu</h2></div>
-
+    <div class="popUpWindow hidden" id="addTask">
       <button id="add-kpi-guidance" class="help-button" onclick="addKPITutoClick()"> 
         <img 
         class="img-icon" 
@@ -52,7 +56,7 @@
         src="../images/top-app-bar/help.svg"
         /> 
       </button> 
-      <svg id="closeButton" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
+      <svg id="closeTaskButton" class="icon-svg" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.095 47.095" xml:space="preserve">
 
         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
         
@@ -61,8 +65,7 @@
         <g id="SVGRepo_iconCarrier"> <g> <path d="M45.363,36.234l-13.158-13.16l12.21-12.21c2.31-2.307,2.31-6.049,0-8.358c-2.308-2.308-6.05-2.307-8.356,0l-12.212,12.21 L11.038,1.906c-2.309-2.308-6.051-2.308-8.358,0c-2.307,2.309-2.307,6.049,0,8.358l12.81,12.81L1.732,36.831 c-2.309,2.31-2.309,6.05,0,8.359c2.308,2.307,6.049,2.307,8.356,0l13.759-13.758l13.16,13.16c2.308,2.308,6.049,2.308,8.356,0 C47.673,42.282,47.672,38.54,45.363,36.234z"/> </g> </g>
         
       </svg>
-
-
+      <div id="popup-title"><h2 class="heading2">Thêm nhiệm vụ</h2></div>
       <div id="uploadMethod" class="uploadMethod">
         <span>Tải tệp sẵn có:</span>
         <div class="example-file-container">
@@ -77,11 +80,11 @@
             
           </svg>
           </div>
-          <a href="../file/add-kpi-example.xlsx">
+          <a href="../file/add-task-example.xlsx">
             <img src="../images/excel.svg">
             <div style="width: 100%;">File mẫu.xlsx</div>
           </a>
-          <a href="../file/add-kpi-example.docx">
+          <a href="../file/add-task-example.docx">
             <img src="../images/word.svg">
             <div style="width: 100%;">File mẫu.docx</div>
           </a> 
@@ -99,137 +102,154 @@
         </svg>
       </div>
         <div>
-          <label for="kpi-file-upload" class="custom-file-upload">Tải tệp lên</label>
-          <input id="kpi-file-upload" type="file" onclick="uploadExcel()">
+          <label for="task-file-upload" class="custom-file-upload">Tải tệp lên</label>
+          <input id="task-file-upload" type="file" onclick="uploadTaskExcel()">
         </div>
-          <div id="kpi-file-name">Tên file</div>
+          <div id="task-file-name">Tên file</div>
         </div>
       </div>
-      <div id="recommendKPI" class="flex">
-        <span>Các chỉ tiêu gợi ý:</span>
-         <button class="recommendButon">Giảng dạy</button>
-         <button class="recommendButon">Nghiên cứu</button>
-         <button class="recommendButon">Cá nhân</button>
-      </div>     
-      <div id="input">
-        <div id="addKPIButton" data-hint="Thêm 1 dòng chỉ tiêu mới" data-hint-position="middle-middle">
-          <button class="addButton">Thêm KPI mới +</button>
-          <div id="errorMissingField" class="hidden">*Hãy điền đủ số trường</div>
+      <div id="inputTask">
+
+        <div id="addTaskButton">
+          <button class="addButton">Thêm nhiệm vụ mới +</button>
+          <div id="errorMissingFieldTask" class=""></div>
         </div>
-        <div id="realContent">
-          <div class="inputTitle flex">
+        <div style="padding: 0 40px; height: 100%;">
+          <div class="title flex" id="addTaskTitle">
             <div>STT</div>
-            <div>Tên chỉ tiêu*</div>
-            <div>Chọn màu đại diện</div>
-            <div>Mục tiêu*</div>
-            <div>Đơn vị</div>
+            <div>Tên nhiệm vụ*</div>
+            <div>Chọn chỉ tiêu</div>
+            <div>Thời gian bắt đầu</div>
+            <div>Thời gian Kết thúc</div>
+            <div>Mục tiêu hoàn thành</div>
+            <div>Ghi chú</div>
+            <div>Lặp lại</div>
             <div></div>
           </div>
-            <div id="inputContainer">
-                
-              </div>
-            </div>
+          <div id="taskInputContainer">
+            <div class="flex task-input"> </div>
+          </div>
+        </div>
       </div>
-      <div id="KPIaddButton">
+      <div id="taskAddButton">
         <button>Thêm</button>
       </div>
     </div>
 
     <main class="main">
       <div class="top-main">
-        <div id="link-history">
-          <div class="link">Trang chủ</div>
-          <svg class="link-arrow" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z"/>
-          </svg> 
-          <div class="link">Theo dõi KPI</div>
-        </div>
-         <button id="openAddKPIContainer">Thêm KPI mới +</button>
-        <div class="period-select">
-          <span class="date-kpi">Đợt: đến ngày 27/05/2024 </span>
-          <button id="period-select-button" class="img-button" data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-right">
-            <img src="../images/clock.svg">
-          </button>
-        </div>
-        </div>
-      <div id="kpi-tomtat">
-        <svg id="frame-wave" width="1600" height="111" viewBox="0 0 1600 111" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3922_17426)">
-            <path d="M0 110.44L24.2222 103.089C48.4444 95.6 96.6667 81.1047 145.556 73.6155C193.889 66.2643 242.222 66.2643 291.111 58.9132C339.444 51.424 387.778 36.9287 436.667 34.9615C484.889 33.1324 533.333 44.1764 582.222 55.2204C630.333 66.2643 678.889 77.3083 727.778 82.8303C775.778 88.3523 824.444 88.3523 872.222 82.8303C921.222 77.3083 970 66.2643 1017.78 62.5715C1066.67 59.0167 1115.56 62.468 1163.33 57.0495C1212.11 51.424 1261.11 36.9287 1308.89 42.3472C1357.56 47.9727 1405.56 73.512 1454.44 77.3083C1503 81.1047 1551.11 62.468 1575.56 53.3912L1600 44.1764V110.44H1575.78C1551.56 110.44 1503.33 110.44 1454.44 110.44C1406.11 110.44 1357.78 110.44 1308.89 110.44C1260.56 110.44 1212.22 110.44 1163.33 110.44C1115.11 110.44 1066.67 110.44 1017.78 110.44C969.667 110.44 921.111 110.44 872.222 110.44C824.222 110.44 775.556 110.44 727.778 110.44C678.778 110.44 630 110.44 582.222 110.44C533.333 110.44 484.444 110.44 436.667 110.44C387.889 110.44 338.889 110.44 291.111 110.44C242.444 110.44 194.444 110.44 145.556 110.44C97 110.44 48.8889 110.44 24.4444 110.44H0Z" fill="#9CD6D3"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_3922_17426">
-            <path d="M0 0H1600V95.4399C1600 103.724 1593.28 110.44 1585 110.44H15C6.71569 110.44 0 103.724 0 95.4399V0Z" fill="white"/>
-            </clipPath>
-            </defs>
-        </svg>
-                
-        <section>
-            <div class="kpi-container">
-                <div class="nd-1">
-                    <span class="nd1-name">Tiến độ hiện tại</span>
-                </div>
-
-                <div id="nd-2" class="nd-2">
-                    <div>
-                        <span id="completed-task" class="focus">79</span>
-                        <span class="donvi">%</span> 
-                    </div>
-                    <span>KPI đã hoàn thành</span>
-                </div>
-
-                <div id="nd-3" class="nd-3">
-                    <div>
-                        <span class="focus">10</span>
-                        <span class="donvi">ngày</span> 
-                    </div>
-                    <span>Dự kiến hoàn thành</span>
-                </div>                   
-            </div>                            
-        </section>            
-      </div>
-
-      <div id="kpi-list-container" class="kpi-list-container">       
-        <div id="kpi-detail-list"> </div>
-        <div id = "l-div">
-        <svg id="left" class="lr" viewBox="0 0 18 34" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.2911 0.25L17.1079 2.25428L3.74149 17L17.1079 31.7457L15.2911 33.75L0.107903 17L15.2911 0.25Z" fill="#3AAFA9"/>
-          </svg>
-        </div>
-        <div id = "r-div">
-        <svg id="right" class="lr" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z" fill="#3AAFA9"/>
+      <div id="link-history">
+        <div class="link">Trang chủ</div>
+        <svg class="link-arrow" viewBox="0 0 18 34"  xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.9247 33.75L0.10791 31.7457L13.4743 17L0.10791 2.25427L1.9247 0.25L17.1079 17L1.9247 33.75Z"/>
         </svg> 
+        <div class="link">Kế hoạch</div>
       </div>
+      <div class="period-select">
+        <span class="date-kpi">Đợt: đến ngày 27/05/2024 </span>
+        <button id="period-select-button" class="img-button" data-hint="Thay đổi thời gian của bảng kế hoạch" data-hint-position="top-right">
+          <img src="../images/clock.svg">
+        </button>
       </div>
-      <div class="col-10px">
-        <h1 style="color: var(--color-text);" class="heading1">Thống kê kết quả KPI đạt được</h1>
-
-        <section id="chart-container" class="chart-container">
-            
-            <div class="interact"> 
-              <div class="choose-chart-range">     
-                <span class="heading1">29/6 - 05/7</span>
-                <button class="img-button">
-                  <img src="../images/calender.svg">
-                </button>
-              </div>  
-              <div id="choose-chart-type">
-                <button id="day" class="chart-type-button">
-                    <span> Ngày </span>
-                </button>
-                <button id="month" class="chart-type-button">
-                  <span> Tháng </span>
-                </button>
-              </div>       
-            </div>
-            <canvas id="line-chart">
-
-            </canvas>
-        </section>   
-      </div>
+    </div>
+      
+    <section>
+      <hr>
+      <div id="cd-timeline" class="cd-container">
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-picture">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+          </svg>
+        </div> <!-- cd-timeline-img -->
+  
+        <div class="cd-timeline-content">
+          <h2>Title of section 1</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+          <a href="#0" class="cd-read-more">Read more</a>
+          <span class="cd-date">Jan 14</span>
+        </div> <!-- cd-timeline-content -->
+      </div> <!-- cd-timeline-block -->
+  
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-movie">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+          </svg>
+        </div> <!-- cd-timeline-img -->
+  
+        <div class="cd-timeline-content">
+          <h2>Title of section 2</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+          <a href="#0" class="cd-read-more">Read more</a>
+          <span class="cd-date">Jan 18</span>
+        </div> <!-- cd-timeline-content -->
+      </div> <!-- cd-timeline-block -->
+  
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-picture">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+          </svg>
+        </div> <!-- cd-timeline-img -->
+  
+        <div class="cd-timeline-content">
+          <h2>Title of section 3</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+          <a href="#0" class="cd-read-more">Read more</a>
+          <span class="cd-date">Jan 24</span>
+        </div> <!-- cd-timeline-content -->
+      </div> <!-- cd-timeline-block -->
+  
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-location">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+          </svg>
+        </div> <!-- cd-timeline-img -->
+  
+        <div class="cd-timeline-content">
+          <h2>Title of section 4</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+          <a href="#0" class="cd-read-more">Read more</a>
+          <span class="cd-date">Feb 14</span>
+        </div> <!-- cd-timeline-content -->
+      </div> <!-- cd-timeline-block -->
+  
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-location">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+          </svg>
+        </div> <!-- cd-timeline-img -->
+  
+        <div class="cd-timeline-content">
+          <h2>Title of section 5</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+          <a href="#0" class="cd-read-more">Read more</a>
+          <span class="cd-date">Feb 18</span>
+        </div> <!-- cd-timeline-content -->
+      </div> <!-- cd-timeline-block -->
+  
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-movie">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="30" height="30" rx="15" fill="#9CB2D7"/>
+          </svg>
+        </div> <!-- cd-timeline-img -->
+  
+        <div class="cd-timeline-content">
+          <h2>Final Section</h2>
+          <p>This is the content of the last section</p>
+          <span class="cd-date">Feb 26</span>
+        </div> <!-- cd-timeline-content -->
+      </div> <!-- cd-timeline-block -->
+    </div>
+    </section> <!-- cd-timeline -->
     </main>
-    <footer class="footer"></footer>
+    <div id="footer">
+      <footer class="footer"></footer>
+    </div>
     <div class="footer-mobile">
       <div class="left-mb">      
         <a class="mouse-layer-mb" id="home" href="../html/trang-chu.html">
@@ -257,61 +277,50 @@
         </a>
         
     </div>
+  </div>
 
+ 
     <script>
-      function helpClick() {
-  const tuto = introJs();
-  tuto.setOptions({
-  steps:[
-    {   
-        title:"Phần trăm KPI đã hoàn thành",
-        element: document.querySelector('.nd-2'), 
-        intro:'<p class="intro-p">Phần trăm KPI đã hoàn thành được tính bằng trung bình của phần trăm hoàn thành của tổng các KPI</p>',
-        position: "bottom"
-    },
-    {
-        title:"Dự đoán số ngày còn lại",
-        element: document.getElementById('nd-3'),
-        intro:'<p class="intro-p">Số ngày còn lại để hoàn thành tất cả chỉ tiêu được tính dựa trên bảng kế hoạch đã xây dựng, bằng ngày cuối cùng hoàn thành chỉ tiêu trừ đi ngày bắt đầu</p>',
-        position: "right",
-    },
-    {
-        title:"Danh sách KPI",
-        element: document.getElementById('kpi-list-container'), 
-        intro:'<p class="intro-p">Hiển thị danh sách các KPI, có thể bấm vào khung KPI để xem chi tiết và quản lý KPI.</p>',
-        position: "left"
-    },
-    {   
-        title: "Thống kê",
-        element: document.getElementById('chart-container'), 
-        intro:'<p class="intro-p">Hiển thị bản thống kê chỉ tiêu KPI đạt được theo tuần hoặc theo tháng </p>',
-        position: "bottom"
-    },
-  ],
-  tooltipClass: "tutorial",
-  highlightClass: "highlight-tooltip",
-  autoPosition: true,
-  buttonClass: "tooltip-button",
-  skipLabel: "Bỏ qua",
-  nextLabel: "Tiếp theo",
-  prevLabel: "Quay lại",
-  doneLabel: "Hoàn thành",
-  showStepNumbers: true,
-  disableInteraction: true,
-  stepNumbersOfLabel: "trong",
-  hintShowButton: true,
-  hintButtonLabel: "Đã hiểu",
-  exitOnOverlayClick: true,
-  })
-  tuto.start(); 
-}
-
-const addKPITuto = introJs();
+      const tuto = introJs();
+    tuto.setOptions({
+      steps:[
+          {   
+              title:"Thiết lập KPI & Bản kế hoạch",
+              intro:'<div id="intro-kpi"><p>Để thiết lập KPI và xây dựng bản kế hoạch, cần 3 bước chính như sau: <ul id="kpi-step"><li>Bước 1: Thiết lập chỉ tiêu KPI.</li><li>Bước 2: Thêm danh sách các nhiệm vụ tương ứng với chỉ tiêu.</li><li>Bước 3: Thêm nhiệm vụ vào bảng kế hoạch.</li></ul> </p></div>',
+              hidePrev: true,
+          },
+          {
+              title:"Bước 1: Thêm chỉ tiêu KPI",
+              element: document.getElementById('openAddKPIContainer'),
+              intro:'<p class="intro-p">Đầu tiên click vào đây để tạo chỉ tiêu KPI nhé.</p>',
+              position: "bottom",
+              disableInteraction: false,
+              hideNext: true,
+          },        
+      ],
+      tooltipClass: "tutorial",
+      highlightClass: "highlight-tooltip",
+      autoPosition: true,
+      buttonClass: "tooltip-button",
+      skipLabel: "Bỏ qua",
+      nextLabel: "Tiếp theo",
+      prevLabel: "Quay lại",
+      doneLabel: "Hoàn thành",
+      showStepNumbers: true,
+      disableInteraction: true,
+      stepNumbersOfLabel: "trong",
+      hintShowButton: true,
+      hintButtonLabel: "Đã hiểu",
+      exitOnEsc: true,
+      exitOnOverlayClick: true,
+    });
+    
+    const addKPITuto = introJs();
     addKPITuto.setOptions({
       steps:[{
               title:"Tải file",
               element: document.getElementById('uploadMethod'),
-              intro:'<p class="intro-p">Nếu bạn có sẵn danh sách các KPI, bạn có thể tải chúng lên ở đây. Đầu tiên, bạn cần tải xuống file mẫu sau đó chỉnh sửa file mẫu và tải lên</p>',
+              intro:'<p class="intro-p">Nếu bạn có sẵn danh sách các KPI, bạn có thể tải chúng lên ở đây.</p>',
               position: "bottom",
           },
           {
@@ -356,10 +365,7 @@ const addKPITuto = introJs();
     addKPITuto.addHints();
     addKPITuto.start(); 
   }
-    </script>
-  </div>
-    <script src="../js/header.js"></script>
-    <script src="../js/Theo-doi-kpi.js"></script>
-    
+  </script>
+
   </body>
-  </html> 
+</html>

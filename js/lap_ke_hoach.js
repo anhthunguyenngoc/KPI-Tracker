@@ -1,86 +1,3 @@
-let storage;
-let storageString = localStorage.getItem("Storage");
-if (storageString) {
-  storage = JSON.parse(storageString);
-} else {
-    storage = {
-        KPIs: [
-            {   
-                id: '#KPI1',
-                name: "Nghiên cứu",
-                color : "#9CB2D7",
-                hour: "70",
-                unit: "Giờ",
-                progress : 0,
-                tasks : [
-                    {
-                    id: '#KPI1task1',
-                    title: 'Phát triển hệ thống',
-                    start: '2024-06-05T09:00',
-                    end: '2024-06-05T11:00',       
-                    progress: 2,       
-                    note: 'Ghi chú',
-                    repeat: '',
-                    backgroundColor: '#9CB2D7',
-                    kpiID:'#KPI1',
-                    done: 0,
-                    inCalender: 1,
-                    textColor: 'black'
-                    },
-                    {
-                    id: '#KPI1task2',
-                    title: 'Nghiên cứu ứng dụng',
-                    day: '',
-                    start: '2024-06-05T09:00',
-                    end: '2024-06-05T11:30', 
-                    progress: 2.5,              
-                    note: 'Ghi chú',
-                    repeat: '',
-                    backgroundColor: '#9CB2D7',
-                    kpiID:'#KPI1',
-                    done: 0,
-                    inCalender: 0,
-                    textColor: 'black'
-                    },
-                ]
-            },
-            {
-                id: '#KPI2',
-                name: "Giảng dạy",
-                color : "#F2DEDE",
-                hour: "80",
-                unit: "Giờ",
-                progress : 0,
-                tasks : [
-                    {
-                        id: '#KPI2task1',
-                        title: 'Giao diện và trải nghiệm người dùng',
-                        start: '2024-05-24T14:00',
-                        end: '2024-05-24T17:30',
-                        backgroundColor: '#F2DEDE',
-                        kpiID:'#KPI2',
-                        done: 0,
-                        inCalender: 0,
-                        progress: 3.5,
-                        note: 'Ghi chú',
-                        textColor: 'black'
-                    },
-
-                ]
-            },
-            {
-                id: '#KPI3',
-                name: "Phục vụ",
-                color : "#FFDBA6",
-                hour: "60",
-                unit: "Giờ",
-                progress : 0,
-                tasks: []
-            }
-        ]
-    }
-}
-
 /*
 function updateKPIProcess(taskID, isDone) {
   let targetKPI;
@@ -212,7 +129,7 @@ function initKPIInfo(id){
         <div class="row-10px">
           <span>Tiến độ hiện tại: </span>
           <div class="progress-bar">
-            <div class="progress" style="width: 50%;">50%</div>
+            <div class="progress" style="width: ${storage.KPIs[id].progress}%;">${storage.KPIs[id].progress}%</div>
           </div> 
           <div style="display: flex; flex-direction: row; align-items: center;">
           <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -231,7 +148,8 @@ function initKPIInfo(id){
           <span>3% so với tuần trước</span>
         </div>
         </div>
-        <p class="row-10px" style="justify-content: space-between; align-items: center;">Danh sách các nhiệm vụ <button class="addButton">Thêm nhiệm vụ mới +</button> </p>
+        <p class="row-10px" style="justify-content: space-between; align-items: center;">Danh sách các nhiệm vụ của KPI<button class="addButton">Thêm nhiệm vụ mới +</button> </p>
+        <div class="kpi_table">
         <table id="kpi-task-list">
           <thead>
             <tr>
@@ -247,7 +165,7 @@ function initKPIInfo(id){
             `+addKpisTaskRow(id)+`
           </tbody>
         </table>
-        
+        <div>
       </div>
   `
   document.body.appendChild(kpiInfo);
@@ -263,6 +181,10 @@ function initKPIInfo(id){
 function addKpisTaskRow(id){
   htmlText = ``
   for(let task of storage.KPIs[id].tasks){
+    let repeatIndex = task.repeat.indexOf('repeat') + 6;
+    if(task.repeat.substring(repeatIndex) != 0){
+      continue;
+    }
     htmlText += `
     <tr>
       <td>${task.id.substring(9)}</td>
@@ -365,6 +287,10 @@ function addAllTask() {
   allEvents = allEvents.sort((a, b) => a.title.localeCompare(b.title));
   console.log(allEvents);
   for (let i = 0; i < allEvents.length  ; i++ ){
+    let repeatIndex = allEvents[i].repeat.indexOf('repeat') + 6;
+    if(allEvents[i].repeat.substring(repeatIndex) != 0){
+      continue;
+    }
     const node = oneTask(allEvents[i])
     listTasks.appendChild(node);
     taskId = allEvents[i].id;
@@ -627,7 +553,7 @@ addTaskButton.addEventListener('click', function() {
   document.getElementById("addToKHButton").addEventListener("click", function() {
     console.log(selectedTasksId);
     addTaskToCalendar(selectedTasksId);
-    localStorage.setItem('Storage', JSON.stringify(storage));
+    changeStorage();
     console.log(allEvents);
     toggleSelectTasksButton();
   });
@@ -679,6 +605,10 @@ addTaskButton.addEventListener('click', function() {
           KPI = storage.KPIs[i];
         }
       }
+      let inCalendar = 0;
+      if(startTime != "" && endTime!= ""){
+        inCalender = 1;
+      }
       taskData.push({
         id: kpiID + "task" + (KPI.tasks.length + taskIndex).toString(),
         title: taskName,
@@ -688,8 +618,11 @@ addTaskButton.addEventListener('click', function() {
         additionalInfo: additionalInfo,
         recurrence: recurrence,
         progress: progress,
+        repeat: "task"+ (KPI.tasks.length + taskIndex).toString() + "repeat",
         backgroundColor: KPI.color,
         done: 0,
+        inCalender: inCalendar,
+        textColor: "black"
         });
       }
     });
@@ -709,11 +642,11 @@ addTaskButton.addEventListener('click', function() {
       addTasksContainer.classList.add("hidden");
       document.getElementById('overlay').classList.add("hidden");
       errorLabelTask.textContent = '';
-      localStorage.setItem('Storage', JSON.stringify(storage));
+      changeStorage();
       console.log(storage.KPIs); // Verify the tasks are stored correctly in the KPIs array
       // Here you can save KPIs to localStorage, send it to a server, etc.
       addAllTask();
-      showToast('Thêm chỉ tiêu KPI thành công', '', 'none');
+      showToast('Thêm nhiệm vụ thành công', '', 'none');
     } else {
       errorLabelTask.textContent = '*Hãy điền đủ các trường thông tin';
     }
@@ -848,12 +781,6 @@ dateRange = {
                     window.location.href = "../html/shared-schedules.html";
                 },
             },
-            insert: {
-                click: function() {
-               
-                }
-            },
-
             selectDate: {
 
             }
@@ -866,7 +793,7 @@ dateRange = {
         headerToolbar : {
             start: 'dayGridMonth,timeGridWeek',
             center: 'prev,title,next', //'title,selectDate','prev,today,next', 
-            end: 'select,share,insert'
+            end: 'select,share'
         },
         buttonText: {
             today: 'Today',
@@ -951,9 +878,6 @@ dateRange = {
       </defs>
       </svg>
     `;
-    document.querySelector('.fc-insert-button').innerHTML = `
-  <img src="../images/edit.svg" />
-    `;
  
     function getKPIIdByName(kpiName) {
       // Duyệt qua mảng KPIs
@@ -1025,6 +949,7 @@ function uploadTaskExcel() {
           tasks.push(newTask);
       });
       loadExcelToTaskContainer();
+      kiemTraGiaTriHopLe();
       console.log(tasks);
   };
 
@@ -1256,3 +1181,56 @@ document.getElementById('unsort-task').addEventListener('click', () => {
     document.getElementById('sort-task').style.borderRadius = '5px';
     document.getElementById('sort-task').style.backgroundColor = document.documentElement.style.getPropertyValue('--color-button');
 })
+
+function kiemTraKytudacbiet(str) {
+  const pattern = /^[\p{L}][\p{L}\d\s]*$/u;
+  return pattern.test(str);
+}
+
+function kiemTraSo(chuoi) {
+  const regex = /^\d+$/;
+  return regex.test(chuoi);
+}
+
+function kiemTraGiaTriHopLe() {
+  document.getElementById('revInvalid').style.display = 'block';
+  let inputs = document.querySelectorAll('.taskName, .additionalInfo'); // Lấy tất cả các ô input và select
+  inputs.forEach(input => {
+  // Kiểm tra giá trị của ô input sử dụng hàm kiemTraKytudacbiet hoặc hàm kiemTraChuoi (tùy thuộc vào yêu cầu của bạn)
+  if (!kiemTraKytudacbiet(input.value)) {
+    console.log(input.value)
+    input.style.border = '3px solid red'; // Hiển thị viền đỏ cho ô input có giá trị không hợp lệ
+  } else {
+    input.style.border = '3px solid #fff'; // Đặt lại viền cho ô input có giá trị hợp lệ
+  }
+  });
+}
+
+function removeSpecialCharacters() {
+  document.getElementById('revInvalid').style.display = 'none';
+  const pattern = /[^\p{L}\d\s]+/gu;
+  let inputs = document.querySelectorAll('.taskName, .additionalInfo'); // Lấy tất cả các ô input và select
+  inputs.forEach(input => {
+  // Kiểm tra giá trị của ô input sử dụng hàm kiemTraKytudacbiet hoặc hàm kiemTraChuoi (tùy thuộc vào yêu cầu của bạn)
+  if (!kiemTraKytudacbiet(input.value)) {
+    input.value = input.value.replace(pattern, '');
+    input.style.border = '3px solid #fff';
+  } 
+  });
+}
+
+// Lấy tất cả các ô input và select
+let inputs = document.querySelectorAll('.taskName, .additionalInfo');
+
+inputs.forEach(input => {
+  input.value.addEventListener('change', function() {
+    console.log("chang")
+    console.log(input.value)
+    if (!kiemTraKytudacbiet(input.value)) {
+      console.log(input.value)
+      input.style.border = '3px solid red'; // Hiển thị viền đỏ cho ô input có giá trị không hợp lệ
+    } else {
+      input.style.border = '3px solid #fff'; // Đặt lại viền cho ô input có giá trị hợp lệ
+    }
+  });
+});

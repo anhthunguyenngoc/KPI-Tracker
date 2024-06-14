@@ -106,22 +106,32 @@ function theme1Click() {
 
   let font_size_min = getComputedStyle(document.documentElement).getPropertyValue('--body-size-min').trim();
   font_size_min = parseFloat(font_size_min);
-
   let heading1_min = getComputedStyle(document.documentElement).getPropertyValue('--heading1-min').trim();
   heading1_min = parseFloat(heading1_min);
-
 function changeFontSize(value){
   localStorage.setItem('--body-size', value);
   localStorage.setItem('--heading1', value - font_size_min + heading1_min);
-  document.documentElement.style.setProperty('--body-size', localStorage.getItem('--body-size')+'px');
-  document.documentElement.style.setProperty('--heading1', localStorage.getItem('--heading1')+'px');
 }
 
 function changeFont(value){
   localStorage.setItem('--body-font', value);
+}
+
+function loadFontSize(){
+  if((localStorage.getItem('--body-size')+'px')=="nullpx"){
+    localStorage.setItem('--body-size', 18);
+  localStorage.setItem('--heading1', 22);
+    changeFont("Roboto Flex");
+  }
+
+  document.documentElement.style.setProperty('--body-size', localStorage.getItem('--body-size')+'px');
+  document.documentElement.style.setProperty('--heading1', localStorage.getItem('--heading1')+'px');
+}
+
+function loadFont(){
   document.documentElement.style.setProperty('--body-font', localStorage.getItem('--body-font'));
 }
 
   loadTheme();
-  changeFontSize(localStorage.getItem('--body-size'));
-  changeFont(localStorage.getItem('--body-font'));
+  loadFontSize();
+  loadFont();
