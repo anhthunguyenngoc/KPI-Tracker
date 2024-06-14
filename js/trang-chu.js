@@ -34,6 +34,7 @@ function updateKPIProgress(KPI) {
                     kpi.progress += Number(taskItem.progress);
                 }
             });
+            document.getElementById('completed-task').textContent = getCompletePer();
             localStorage.setItem('Storage', JSON.stringify(storage));
 
         }
