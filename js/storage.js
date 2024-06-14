@@ -374,7 +374,7 @@ storage = {
                     title: 'Tổ chức rèn luyện kỹ năng mềm',
                     start: '2024-06-06T13:00',
                     end: '2024-06-06T15:30',
-                    backgroundColor: '#F2DEDE',
+                    backgroundColor: '#FFDBA6',
                     kpiID:'#KPI2',
                     done: 1,
                     repeat: "task1repeat0",
