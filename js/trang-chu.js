@@ -92,7 +92,6 @@ function getKPINames() {
 const color_pink_pastel = "#F06292"; //"#F48FB1"; 
 const color_blue_pastel = "#64B5F6"; //"#90CAF9";  
 const color_yellow_pastel = "#FFD54F"; //"#FFE082";
-const color_cyan_pastel = "#4DB6AC"; //"#80CBC4";
 var today = new Date();
 var selectDay = {
     dd: today.getDate(),
@@ -103,9 +102,9 @@ var selectDay = {
 const chartData = {
     labels: kpiName,
     datasets: [{
-        data: [8, 10, 12, 6],
-        backgroundColor: [color_pink_pastel + 'A4', color_blue_pastel + 'A4', color_yellow_pastel + 'A4', color_cyan_pastel + 'A4'],
-        hoverBackgroundColor: [color_pink_pastel + 'ff', color_blue_pastel + 'ff', color_yellow_pastel + 'ff', color_cyan_pastel + 'ff'],
+        data: [8, 10, 12],
+        backgroundColor: [color_pink_pastel + 'A4', color_blue_pastel + 'A4', color_yellow_pastel + 'A4'],
+        hoverBackgroundColor: [color_pink_pastel + 'ff', color_blue_pastel + 'ff', color_yellow_pastel + 'ff'],
         borderWidth:0,
     }] 
 };
