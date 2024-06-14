@@ -10,6 +10,7 @@
     <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="../css/footer-mobile.css"/>
     <script src="../js/theme.js" type="text/javascript" defer></script>
+    <script src="../js/storage.js" type="text/javascript"></script>
     <script src="../js/toast-notify.js" type="text/javascript" defer></script>
     <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
     <link 
@@ -111,9 +112,10 @@
 
         <div id="addTaskButton">
           <button class="addButton">Thêm nhiệm vụ mới +</button>
+          <div id="revInvalid" onclick="removeSpecialCharacters()" style="cursor: hand;"> Xóa tất cả giá trị không hợp lệ</div>
           <div id="errorMissingFieldTask" class=""></div>
         </div>
-        <div style="padding: 0 40px; height: 100%;">
+        <div id="task-input-intro" style="padding: 0 40px; height: 100%;">
           <div class="title flex" id="addTaskTitle">
             <div>STT</div>
             <div>Tên nhiệm vụ*</div>
@@ -156,7 +158,7 @@
         <div class="content">
           
 
-          <section style="gap: 20px;">
+          <section id="calendar-intro" style="gap: 20px;">
             <!--<div>
               <nav class="top-content__navbar">
                 <ul class="top-content__navbar-list">
@@ -206,7 +208,7 @@
           </section>
         </div>
         <div class="sidebar">
-          <section>
+          <section id="task-list-intro">
             <div style="justify-content: space-between; width: 100%;" class="top-content__navbar-list">
               <h1 class="heading1"> Danh sách nhiệm vụ</h1>
               <button id="add-task-button" class="img-button">
@@ -214,7 +216,7 @@
               </button>
             </div>
             <div class="sidebar_content">
-              <div class="tools">
+              <div id="tools" class="tools">
                 <div class="searchBar">
                   <div class="input-bx">
                     <input type="text" required>  
@@ -358,20 +360,46 @@
     <script>
       const tuto = introJs();
     tuto.setOptions({
-      steps:[
-          {   
-              title:"Thiết lập KPI & Bản kế hoạch",
-              intro:'<div id="intro-kpi"><p>Để thiết lập KPI và xây dựng bản kế hoạch, cần 3 bước chính như sau: <ul id="kpi-step"><li>Bước 1: Thiết lập chỉ tiêu KPI.</li><li>Bước 2: Thêm danh sách các nhiệm vụ tương ứng với chỉ tiêu.</li><li>Bước 3: Thêm nhiệm vụ vào bảng kế hoạch.</li></ul> </p></div>',
-              hidePrev: true,
-          },
+      steps:[  
           {
-              title:"Bước 1: Thêm chỉ tiêu KPI",
-              element: document.getElementById('openAddKPIContainer'),
-              intro:'<p class="intro-p">Đầu tiên click vào đây để tạo chỉ tiêu KPI nhé.</p>',
+              title:"Khung kế hoạch",
+              element: document.getElementById('calendar-intro'),
+              intro:'<p class="intro-p">Đây là khung chứa bản kế hoạch bạn cần xây dựng để đạt được mục tiêu. </p>',
               position: "bottom",
-              disableInteraction: false,
+              hidePrev: true,
+          },   
+          {
+              title:"Danh sách các chỉ tiêu",
+              element: document.getElementById('set-kpi'),
+              intro:'<p class="intro-p">Đây là danh sách các KPI cùng với tổng số KPI của các nhiệm vụ đã có trong bản kế hoạch.</p>',
+              position: "bottom",
+              hidePrev: true,
+          },    
+          {
+              title:"Lịch",
+              element: document.getElementById('calendar'),
+              intro:'<p class="intro-p">Bạn có thể xem các nhiệm vụ có trong 1 khoảng thời gian cụ thể ở đây.</p>',
+              position: "bottom",
+          },     
+          {
+              title:"Danh sách các nhiệm vụ",
+              element: document.getElementById('task-list-intro'),
+              intro:'<p class="intro-p">Đây là danh sách các nhiệm vụ tương ứng với các KPI đã thiết lập. Bạn có thể chọn các nhiệm vụ có trong này để thêm vào bảng kế hoạch.</p>',
+              position: "bottom",
+          },     
+          {
+              title:"Hỗ trợ tìm kiếm nhanh",
+              element: document.getElementById('tools'),
+              intro:'<p class="intro-p">Bạn có thể nhập tên nhiệm vụ hoặc sử dụng bộ lọc, sắp xếp để dễ dàng tìm kiếm nhiệm vụ.</p>',
+              position: "bottom",
+          },      
+          {
+              title:"Danh sách các nhiệm vụ",
+              element: document.getElementById('list'),
+              intro:'<p class="intro-p">Trong mỗi khung nhiệm vụ sẽ có màu tương ứng với KPI mà nó thuộc về cùng với tên và chỉ tiêu của nhiệm vụ. Bạn có thể chọn nhiệm vụ cụ thể để xem chi tiết.</p>',
+              position: "bottom",
               hideNext: true,
-          },        
+          },      
       ],
       tooltipClass: "tutorial",
       highlightClass: "highlight-tooltip",
@@ -395,25 +423,19 @@
       steps:[{
               title:"Tải file",
               element: document.getElementById('uploadMethod'),
-              intro:'<p class="intro-p">Nếu bạn có sẵn danh sách các KPI, bạn có thể tải chúng lên ở đây.</p>',
+              intro:'<p class="intro-p">Nếu bạn có sẵn danh sách các nhiệm vụ, bạn có thể tải chúng lên ở đây. Đầu tiên, bạn cần tải xuống file mẫu sau đó chỉnh sửa file mẫu và tải lên</p>',
               position: "bottom",
           },
           {
-              title:"KPI của hệ thống",
-              element: document.getElementById('recommendKPI'),
-              intro:'<p class="intro-p">Hoặc bạn cũng có thể chọn các KPI có sẵn thường được thiết lập bởi những người dùng khác.</p>',
-              position: "bottom"
-          },
-          {
-              title:"Thiết lập KPI",
-              element: document.getElementById('realContent'),
-              intro:'<p class="intro-p">Bạn có thể tự tạo KPI của riêng mình ở đây. Các trường có dấu (*) là các trường bắt buộc.</p>',
+              title:"Thiết lập nhiệm vụ",
+              element: document.getElementById('task-input-intro'),
+              intro:'<p class="intro-p">Bạn có thể tự tạo nhiệm vụ của riêng mình ở đây. Các trường có dấu (*) là các trường bắt buộc.</p>',
               position: "bottom"},
           {
-              title:"Hoàn tất thiết lập KPI",
-              element: document.getElementById('KPIaddButton'),
+              title:"Hoàn tất thiết lập nhiệm vụ",
+              element: document.getElementById('taskAddButton'),
               intro:'<p class="intro-p">Cuối cùng, bấm vào đây để hoàn tất thiết lập KPI.</p>',
-              position: "bottom"},
+              position: "top"},
               ],
       tooltipClass: "tutorial",
       highlightClass: "highlight-tooltip",

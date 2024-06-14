@@ -116,12 +116,17 @@ section {
     display: flex;
     height: 100%;
     border-radius: var(--br-8xs);
-    background-color: var(--color-white-text);
+    
 }
+
+.fc .fc-view-harness, .fc-scrollgrid thead{
+    background-color: var(--color-element-background) !important;
+}
+
 .sidebar_content {
     width: 100%;
     height: 100%;
-    max-height: 580px;
+    max-height: 600px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -162,8 +167,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
     border-radius: var(--br-8xs);
   }
 
@@ -224,7 +228,7 @@ button {
 
 .fc-day-today {
     background-color: var(--color-button-hover) !important;
-    color: #ffffff;
+    color: var(--color-white-text);
 }
 .fc-toolbar .fc-toolbar-chunk:nth-child(2) div {
     display: flex !important;
@@ -453,18 +457,6 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     width: fit-content;
 }
 
-#recommendKPI button:nth-of-type(1) {   
-    background-color: #F2DEDE ;
-}
-
-#recommendKPI button:nth-of-type(2) {   
-    background-color: #9CB2D7 ;
-}
-
-#recommendKPI button:nth-of-type(3) {   
-    background-color: #FFDBA6 ;
-}
-
 #overlay {
     position: fixed;
     top: 0;
@@ -479,9 +471,14 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
     height: 290px;
     display: flex;
     flex-direction: column;
-    gap: 10px   ;
+    gap: 10px;
+    overflow: auto;
 }
 
+.kpi_table{
+    overflow-y: auto;
+    height: 320px;
+}
 #realContent {
     padding: 0 40px;
     display: flex;
@@ -560,10 +557,6 @@ div.fc-scroller-harness div.fc-scroller::-webkit-scrollbar {
 
 #schedule hr {
     visibility:visible;
-}
-
-#addKPIButton div, #addTaskButton div {
-    color: red;
 }
 
 input[type="file"] {
@@ -729,16 +722,51 @@ ul {
 .task-input div input, .task-input div select {
     height: 40px;
     border-radius: 10px;
+    padding-left: 5px;
     border: none;
-
+    outline: none;
 }
 
+.KPIinput div input,  .KPIinput div select {
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+  
+.task-input div input::-webkit-inner-spin-button,
+.task-input div input::-webkit-outer-spin-button,
+.task-input div select::-webkit-inner-spin-button,
+.task-input div select::-webkit-outer-spin-button,
+.KPIinput div input::-webkit-inner-spin-button,
+.KPIinput div input::-webkit-outer-spin-button,
+.KPIinput div select::-webkit-inner-spin-button,
+.KPIinput div select::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+  }
+ 
+  
+  .task-input div input:valid,
+  .task-input div select:valid,
+  .KPIinput div input:valid,
+  .KPIinput div select:valid {
+    border: 3px solid var(--color-white-text);
+  }
+  
+  .task-input div input:hover,
+  .task-input div input:focus, 
+  .task-input div select:hover,
+  .task-input div select:focus,
+  .KPIinput div input:hover,
+  .KPIinput div input:focus, 
+  .KPIinput div select:hover,
+  .KPIinput div select:focus {
+    border: 3px solid var(--color-button);
+  }
+
+  
 .task-input div input[type="text"] {
     padding: 10px;
-}
-
-.task-input div input{
- padding-left: 5px;
 }
 
 .uploadMethod {
@@ -1217,4 +1245,14 @@ ul {
         display: inline;
     }
     */
+}
+
+.addbtnrow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#revInvalid {
+    display: none;
 }
