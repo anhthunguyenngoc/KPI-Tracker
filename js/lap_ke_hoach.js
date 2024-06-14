@@ -272,7 +272,7 @@ function oneTask(event) {
       </svg>
       </li>
       <li class="name-task">${event?.title}</li>
-      <li class="unit"><div>${event?.progress}</div> <div>${storage.KPIs[kpiNumber].unit}</div></li>
+      <li class="unit"><div>${event?.progress}</div> <div>Giờ</div></li>
   </ul>
   `;
   return template.content.firstElementChild;
