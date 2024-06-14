@@ -314,6 +314,7 @@ function showKPIInfo(id){
           </div>
           </div>
           <p class="row-10px" style="justify-content: space-between; align-items: center;">Danh sách các nhiệm vụ <button class="addButton">Thêm nhiệm vụ mới +</button> </p>
+          <div class="kpi_table">
           <table id="kpi-task-list">
             <thead>
               <tr>
@@ -328,6 +329,7 @@ function showKPIInfo(id){
             <tbody>
               `+addKpisTaskRow(kpi.tasks)+`
             </tbody>
+            </div>
           </table>
           
         </div>
