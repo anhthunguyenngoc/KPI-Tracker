@@ -154,7 +154,7 @@ input[type=number] {
 }
 
 #title {
-    color: var(--color-black-text);
+    color: var(--color-text);
     /* MyM3/typography/heading1 -32 */
     font-family: var(--body-font);
     font-size: var(--heading2);
@@ -321,6 +321,11 @@ input[type=number] {
     border-radius: 7px;
     background: #fff;
     display: none;
+    color: var(--color-black-text);
+}
+
+.sBtn-text, .font-content-right {
+    color: var(--color-black-text);
 }
 .select-menu1.active .options,
 .select-menu2.active .options,
