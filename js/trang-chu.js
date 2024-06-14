@@ -102,7 +102,7 @@ var selectDay = {
 const chartData = {
     labels: kpiName,
     datasets: [{
-        data: [8, 10, 12],
+        data: [11, 7, 2],
         backgroundColor: [color_pink_pastel + 'A4', color_blue_pastel + 'A4', color_yellow_pastel + 'A4'],
         hoverBackgroundColor: [color_pink_pastel + 'ff', color_blue_pastel + 'ff', color_yellow_pastel + 'ff'],
         borderWidth:0,
